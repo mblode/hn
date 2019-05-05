@@ -1,23 +1,40 @@
+import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
+import { fetchComments } from '../actions/postsAction';
+import Loading from '../components/Loading';
+import Comment from '../components/Comment';
+import Alert from '../components/Alert';
 
-import React from 'react';
-import PropTypes from 'prop-types';
+class Item extends Component {
+    componentDidMount() {
+        const id = this.props.match.params.id;
+        this.props.dispatch(fetchComments(id));
+    }
 
-import ItemContainer from '../containers/ItemContainer';
+    render() {
+        const { error, isFetching, data } = this.props.posts;
 
-const propTypes = {
-  match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
-};
+        if (error) {
+            return (<Alert type="danger">Error: {error}</Alert>);
+        }
 
-function ItemRoute({ match }) {
-  const id = parseInt(match.params.id, 10);
+        if (isFetching) {
+            return <Loading />;
+        }
 
-  return (
-    <div className="content-container">
-      <ItemContainer commentId={id} itemId={id} />
-    </div>
-  );
+        return (
+            <div>
+                {data.comments.map((item, i) => (
+                    <Comment key={i} item={item} />
+                ))}
+            </div>
+        )
+    }
 }
 
-ItemRoute.propTypes = propTypes;
+const mapStateToProps = state => ({
+	...state
+});
 
-export default ItemRoute;
+export default withRouter(connect(mapStateToProps)(Item));

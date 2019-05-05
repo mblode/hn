@@ -10,17 +10,17 @@ export function makeIsActive(path) {
 function Header() {
     return (
         <nav className="Header">
-            <Link to="/news/1" href="/news/1">
+            <Link to="/">
                 HN
             </Link>
             <NavLink
                 activeClassName="Header__navlink--active"
                 className="Header__navlink"
-                to="/news/1"
+                to="/1"
                 isActive={makeIsActive('/news')}
             >
                 Top
-      </NavLink>
+            </NavLink>
             <NavLink
                 activeClassName="Header__navlink--active"
                 className="Header__navlink"
@@ -28,7 +28,7 @@ function Header() {
                 isActive={makeIsActive('/newest')}
             >
                 New
-      </NavLink>
+            </NavLink>
             <NavLink
                 activeClassName="Header__navlink--active"
                 className="Header__navlink"
@@ -36,7 +36,7 @@ function Header() {
                 isActive={makeIsActive('/show')}
             >
                 Show
-      </NavLink>
+            </NavLink>
             <NavLink
                 activeClassName="Header__navlink--active"
                 className="Header__navlink"
@@ -44,7 +44,7 @@ function Header() {
                 isActive={makeIsActive('/ask')}
             >
                 Ask
-      </NavLink>
+            </NavLink>
             <NavLink
                 activeClassName="Header__navlink--active"
                 className="Header__navlink"
@@ -52,10 +52,7 @@ function Header() {
                 isActive={makeIsActive('/jobs')}
             >
                 Jobs
-      </NavLink>
-            <a href="https://github.com/taehwanno/hnpwa-react" target="_blank" rel="noopener noreferrer">
-                <span className="Header__title">HNPWA with React</span>
-            </a>
+            </NavLink>
         </nav>
     );
 }

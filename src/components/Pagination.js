@@ -1,16 +1,5 @@
 import cx from 'classnames';
 import React from 'react';
-import PropTypes from 'prop-types';
-
-const propTypes = {
-    currentPage: PropTypes.number,
-    onPaginate: PropTypes.func,
-};
-
-const defaultProps = {
-    currentPage: 1,
-    onPaginate() { },
-};
 
 function Pagination({ currentPage, onPaginate }) {
     const prevDisabled = currentPage === 1;
@@ -51,8 +40,5 @@ function Pagination({ currentPage, onPaginate }) {
         </div>
     );
 }
-
-Pagination.propTypes = propTypes;
-Pagination.defaultProps = defaultProps;
 
 export default Pagination;

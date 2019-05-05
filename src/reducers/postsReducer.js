@@ -2,12 +2,30 @@ import { handleActions } from "redux-actions";
 
 export default handleActions(
     {
-        FETCH_POSTS_SUCCESS: (state, action) => ({
+        FETCH_POSTS_NEWS_SUCCESS: (state, action) => ({
             ...state,
             isFetching: false,
-            type: action.payload.type,
-            page: action.payload.page,
-            data: action.payload.data
+            news: action.payload.data
+        }),
+        FETCH_POSTS_SHOW_SUCCESS: (state, action) => ({
+            ...state,
+            isFetching: false,
+            show: action.payload.data
+        }),
+        FETCH_POSTS_ASK_SUCCESS: (state, action) => ({
+            ...state,
+            isFetching: false,
+            ask: action.payload.data
+        }),
+        FETCH_POSTS_NEWEST_SUCCESS: (state, action) => ({
+            ...state,
+            isFetching: false,
+            newest: action.payload.data
+        }),
+        FETCH_POSTS_JOBS_SUCCESS: (state, action) => ({
+            ...state,
+            isFetching: false,
+            jobs: action.payload.data
         }),
         FETCH_POSTS_FAILURE: (state, action) => ({
             ...state,
@@ -21,7 +39,7 @@ export default handleActions(
         FETCH_COMMENTS_SUCCESS: (state, action) => ({
             ...state,
             isFetching: false,
-            product: action.payload.product
+            data: action.payload.data
         }),
         FETCH_COMMENTS_FAILURE: (state, action) => ({
             ...state,
@@ -35,14 +53,14 @@ export default handleActions(
     },
     {
         isFetching: false,
-        type: null,
-        page: 0,
-        data: {},
-        // ask: {},
-        // jobs: {},
-        // newest: {},
-        // news: {},
-        // show: {},
+        news: [],
+        show: [],
+        ask: [],
+        newest: [],
+        jobs: [],
+        data: {
+            comments: []
+        },
         error: null,
     }
 );

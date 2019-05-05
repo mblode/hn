@@ -1,23 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Pagination from '../components/Pagination';
-
-const propTypes = {
-    currentPage: PropTypes.number,
-    done: PropTypes.func,
-    feedCount: PropTypes.number,
-    history: PropTypes.shape({ push: PropTypes.func }).isRequired,
-    location: PropTypes.shape({ pathname: PropTypes.string }).isRequired,
-    onPaginate: PropTypes.func,
-};
-
-const defaultProps = {
-    currentPage: 1,
-    done() { },
-    feedCount: 0,
-    onPaginate() { return Promise.resolve(); },
-};
 
 class LocationPagination extends React.Component {
     static getRequestQuery(pathname) {
@@ -62,8 +44,5 @@ class LocationPagination extends React.Component {
         );
     }
 }
-
-LocationPagination.propTypes = propTypes;
-LocationPagination.defaultProps = defaultProps;
 
 export default LocationPagination;
