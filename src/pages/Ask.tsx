@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { fetchPosts } from '../actions/postsAction';
 import Loading from '../components/Loading';
-import ListItem from '../components/ListItem';
+import Post from '../components/Post';
 import Alert from '../components/Alert';
 
 class Ask extends Component {
@@ -24,7 +24,9 @@ class Ask extends Component {
             page = 1;
         }
 
-        this.props.dispatch(fetchPosts('show', page));
+        if (this.props.location !== prevProps.location) {
+            this.props.dispatch(fetchPosts('ask', page));
+        }
 	}
 
     render() {
@@ -41,7 +43,7 @@ class Ask extends Component {
         return (
             <div>
                 {ask.map((item, i) => (
-                    <ListItem key={i} item={item} />
+                    <Post key={i} item={item} />
                 ))}
             </div>
         )

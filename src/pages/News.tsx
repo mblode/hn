@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { fetchPosts } from '../actions/postsAction';
 import Loading from '../components/Loading';
-import ListItem from '../components/ListItem';
+import Post from '../components/Post';
 import Alert from '../components/Alert';
 
-class Show extends Component {
+class News extends Component {
     componentDidMount() {
         let page = this.props.match.params.page;
 
@@ -14,7 +14,7 @@ class Show extends Component {
             page = 1;
         }
 
-        this.props.dispatch(fetchPosts('show', page));
+        this.props.dispatch(fetchPosts('news', page));
     }
 
     componentDidUpdate(prevProps) {
@@ -24,11 +24,13 @@ class Show extends Component {
             page = 1;
         }
 
-        this.props.dispatch(fetchPosts('show', page));
+        if (this.props.location !== prevProps.location) {
+            this.props.dispatch(fetchPosts('news', page));
+        }
 	}
 
     render() {
-        const { error, isFetching, show } = this.props.posts;
+        const { error, isFetching, news } = this.props.posts;
 
         if (error) {
 			return (<Alert type="danger">Error: {error}</Alert>);
@@ -40,8 +42,8 @@ class Show extends Component {
 
         return (
             <div>
-                {show.map((item, i) => (
-                    <ListItem key={i} item={item} />
+                {news.map((item, i) => (
+                    <Post key={i} item={item} />
                 ))}
             </div>
         )
@@ -52,4 +54,4 @@ const mapStateToProps = state => ({
 	...state
 });
 
-export default withRouter(connect(mapStateToProps)(Show));
+export default withRouter(connect(mapStateToProps)(News));

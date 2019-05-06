@@ -1,8 +1,20 @@
 import React, { Component } from 'react'
 
-export default class Comment extends Component {
+interface Props {
+    item?: {
+        user?: string;
+        time_ago?: string;
+        content?: string;
+        type?: string;
+    };
+}
+
+interface State {
+}
+
+export default class Comment extends Component<Props, State> {
     render() {
-        const { user, timeAgo, content, type } = this.props.item;
+        const { user, time_ago, content, type } = this.props.item;
 
         return (
             <div>
@@ -25,7 +37,7 @@ export default class Comment extends Component {
                             color: '#999999',
                         }}
                     >
-                        {timeAgo}
+                        {time_ago}
                     </span>
                     <div
                         dangerouslySetInnerHTML={{ __html: content }}
