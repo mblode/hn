@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
+import { withRouter, RouteProps } from 'react-router-dom'
 import { fetchPosts } from '../actions/postsAction';
 import Loading from '../components/Loading';
 import Post from '../components/Post';
 import Alert from '../components/Alert';
 
-class News extends Component {
+interface Props {
+}
+
+interface State {
+}
+
+class News extends Component<Props & RouteProps, State> {
     componentDidMount() {
         let page = this.props.match.params.page;
 
@@ -50,8 +56,8 @@ class News extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: State) => ({
 	...state
 });
 
-export default withRouter(connect(mapStateToProps)(News));
+export default withRouter(connect(mapStateToProps)(News) as React.ComponentType<any>);

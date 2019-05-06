@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
+import { withRouter, RouteProps } from 'react-router-dom'
 import { fetchPosts } from '../actions/postsAction';
 import Loading from '../components/Loading';
 import Post from '../components/Post';
 import Alert from '../components/Alert';
 
-class Jobs extends Component {
+interface Props {
+}
+
+interface State {
+}
+
+class Jobs extends Component<Props & RouteProps, State> {
     componentDidMount() {
         let page = this.props.match.params.page;
 
@@ -50,8 +56,8 @@ class Jobs extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: State) => ({
 	...state
 });
 
-export default withRouter(connect(mapStateToProps)(Jobs));
+export default withRouter(connect(mapStateToProps)(Jobs) as React.ComponentType<any>);

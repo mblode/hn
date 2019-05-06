@@ -19,7 +19,7 @@ function AppShell() {
                     <Route path="/show/:page" component={Show} />
                     <Route path="/ask/:page" component={Ask} />
                     <Route path="/jobs/:page" component={Jobs} />
-                    <Redirect to="/top/1" />
+                    <Redirect to="/top" />
                 </Switch>
             </div>
         </div>

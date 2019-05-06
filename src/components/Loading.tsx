@@ -1,13 +1,20 @@
 import React from 'react';
 
-function Loading({ active, style }) {
+type Props = {
+    active?: boolean;
+    style?: string;
+  };
+
+export const Loading: React.FC<Props> = props => {
+    const { active, style } = props;
+
     if (!active) return null;
 
     return (
-        <div className="Loading" style={style}>
-            <div className="Loading__col" />
-            <div className="Loading__col" />
-            <div className="Loading__col" />
+        <div className="loading">
+            <div className="loading-col" />
+            <div className="loading-col" />
+            <div className="loading-col" />
         </div>
     );
 }

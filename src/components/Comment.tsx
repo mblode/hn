@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 
 interface Props {
-    item?: {
-        user?: string;
-        time_ago?: string;
-        content?: string;
-        type?: string;
-    };
+    user?: string;
+    timeAgo?: string;
+    content?: string;
+    type?: number;
 }
 
 interface State {
@@ -14,34 +12,23 @@ interface State {
 
 export default class Comment extends Component<Props, State> {
     render() {
-        const { user, time_ago, content, type } = this.props.item;
+        const { user, timeAgo, content, type } = this.props;
 
         return (
             <div>
                 <div
-                    style={{
-                        marginLeft: `${type * 40}px`,
-                    }}
                     className="comment-item"
                 >
-                    <span
-                        style={{
-                            textDecoration: 'underline',
-                        }}
-                    >
+                    <span>
                         {user}
                     </span>
                     &nbsp;&nbsp;&nbsp;
-                    <span
-                        style={{
-                            color: '#999999',
-                        }}
-                    >
-                        {time_ago}
+                    <span>
+                        {timeAgo}
                     </span>
-                    <div
+                    {/* <div
                         dangerouslySetInnerHTML={{ __html: content }}
-                    />
+                    /> */}
                 </div>
             </div>
         )

@@ -1,60 +1,47 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-export function makeIsActive(path) {
-    return function isActive(match, location) {
-        return location.pathname.indexOf(path) !== -1;
-    };
-}
-
-function Header() {
+export default function Header() {
     return (
         <nav className="Header">
             <Link to="/">
                 HN
             </Link>
             <NavLink
-                activeClassName="Header__navlink--active"
+                activeClassName="active"
                 className="Header__navlink"
-                to="/top/1"
-                isActive={makeIsActive('/news')}
+                to="/top"
             >
                 Top
             </NavLink>
             <NavLink
-                activeClassName="Header__navlink--active"
+                activeClassName="active"
                 className="Header__navlink"
-                to="/newest/1"
-                isActive={makeIsActive('/newest')}
+                to="/newest"
             >
                 New
             </NavLink>
             <NavLink
-                activeClassName="Header__navlink--active"
+                activeClassName="active"
                 className="Header__navlink"
-                to="/show/1"
-                isActive={makeIsActive('/show')}
+                to="/show"
             >
                 Show
             </NavLink>
             <NavLink
-                activeClassName="Header__navlink--active"
+                activeClassName="active"
                 className="Header__navlink"
-                to="/ask/1"
-                isActive={makeIsActive('/ask')}
+                to="/ask"
             >
                 Ask
             </NavLink>
             <NavLink
-                activeClassName="Header__navlink--active"
+                activeClassName="active"
                 className="Header__navlink"
-                to="/jobs/1"
-                isActive={makeIsActive('/jobs')}
+                to="/jobs"
             >
                 Jobs
             </NavLink>
         </nav>
     );
 }
-
-export default Header;

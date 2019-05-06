@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
+import { withRouter, RouteProps, match } from 'react-router-dom'
 import { fetchPosts } from '../actions/postsAction';
 import Loading from '../components/Loading';
 import Post from '../components/Post';
 import Alert from '../components/Alert';
+import { Dispatch } from 'redux';
 
-class Ask extends Component {
+interface Props {
+    match: match,
+    dispatch: Dispatch
+}
+
+interface State {
+}
+
+class Ask extends Component<Props & RouteProps, State> {
     componentDidMount() {
         let page = this.props.match.params.page;
 
@@ -42,16 +51,16 @@ class Ask extends Component {
 
         return (
             <div>
-                {ask.map((item, i) => (
-                    <Post key={i} item={item} />
+                {ask.map((item: object, i: number) => (
+                    <Post key={i} commentsCount={item.comments_count} id={item.id} points={item.points} timeAgo={item.time_ago} title={item.title} url={item.url} user={item.user} />
                 ))}
             </div>
         )
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: State) => ({
 	...state
 });
 
-export default withRouter(connect(mapStateToProps)(Ask));
+export default withRouter(connect(mapStateToProps)(Ask) as React.ComponentType<any>);

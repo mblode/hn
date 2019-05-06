@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import { withRouter, RouteProps, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const PostWrap = styled.div`
@@ -11,9 +11,22 @@ const PostWrap = styled.div`
     padding: 0.25em 1em;
 `
 
-export default class Post extends Component {
+interface Props {
+    commentsCount?: string,
+    id?: string,
+    points?: string,
+    timeAgo?: string,
+    title?: string,
+    url?: string,
+    user?: string
+}
+
+interface State {
+}
+
+class Post extends Component<Props & RouteProps, State> {
     render() {
-        const { comments_count, id, points, time_ago, title, url, user } = this.props.item;
+        const { commentsCount, id, points, timeAgo, title, url, user } = this.props;
 
         if (url) {
 
@@ -25,7 +38,7 @@ export default class Post extends Component {
                     <h3>{title}</h3>
 
                     <div className="post-info">
-                        {user} &middot; {time_ago}
+                        {user} &middot; {timeAgo}
                     </div>
 
                     <div>{url}</div>
@@ -34,9 +47,11 @@ export default class Post extends Component {
                 <Link
                     to={`/item/${id}`}
                 >
-                    {comments_count} &middot; {points}
+                    {commentsCount} &middot; {points}
                 </Link>
             </PostWrap>
         )
     }
 }
+
+export default withRouter(Post as React.ComponentType<any>);
