@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import { History } from 'history'
 import { connectRouter } from "connected-react-router";
-import postsReducer from "./postsReducer";
+import posts from "./postsReducer";
 
-export default (history: History) => combineReducers({
-    router: connectRouter(history),
-    posts: postsReducer
-});
+export default history =>
+    combineReducers({
+        router: connectRouter(history),
+        posts
+    });

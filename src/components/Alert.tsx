@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 
 interface Props {
     type?: string;
@@ -9,7 +9,7 @@ interface Props {
 interface State {
 }
 
-export default class Alert extends React.Component<Props, State> {
+export default class Alert extends Component<Props, State> {
     render() {
         const { type, className, children } = this.props;
 

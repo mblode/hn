@@ -1,45 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { withRouter, RouteProps, match } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { fetchPosts } from '../actions/postsAction';
-import { ThunkDispatch } from 'redux-thunk'
 import Loading from '../components/Loading';
 import Post from '../components/Post';
 import Alert from '../components/Alert';
-import { Post } from '../store/post/types'
 
-interface PropsFromState {
-    news: Post[],
-    isFetching: boolean,
-    error?: string,
-}
-
-interface Props {
-    match: match<DetailParams>,
-    dispatch: ThunkDispatch,
-    posts: object,
-    location: string,
-}
-
-interface State {
-}
-
-class Feed extends Component<Props & RouteProps, State> {
+class News extends Component {
     componentDidMount() {
         let page = this.props.match.params.page;
 
         if (page === undefined) {
-            page = "1";
+            page = 1;
         }
 
         this.props.dispatch(fetchPosts('news', page));
     }
 
-    componentDidUpdate(prevProps: Props) {
+    componentDidUpdate(prevProps) {
         let page = this.props.match.params.page;
 
         if (page === undefined) {
-            page = "1";
+            page = 1;
         }
 
         if (this.props.location !== prevProps.location) {
@@ -68,8 +50,8 @@ class Feed extends Component<Props & RouteProps, State> {
     }
 }
 
-const mapStateToProps = (state: State) => ({
+const mapStateToProps = state => ({
 	...state
 });
 
-export default withRouter(connect(mapStateToProps)(Feed) as React.ComponentType<any>);
+export default withRouter(connect(mapStateToProps)(News));

@@ -1,27 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { withRouter, RouteProps, match } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { fetchComments } from '../actions/postsAction';
 import Loading from '../components/Loading';
 import Comment from '../components/Comment';
 import Alert from '../components/Alert';
-import { Dispatch } from 'redux';
 
-interface DetailParams {
-    id: string;
-}
-
-interface Props {
-    match: match<DetailParams>,
-    dispatch: Dispatch,
-    posts: object
-}
-
-
-interface State {
-}
-
-class Item extends Component<Props & RouteProps, State> {
+class Item extends Component {
     componentDidMount() {
         const id = this.props.match.params.id;
         this.props.dispatch(fetchComments(id));
@@ -40,16 +25,16 @@ class Item extends Component<Props & RouteProps, State> {
 
         return (
             <div>
-                {data.comments.map((item: object, i: number) => (
-                    <Comment key={i} user={item.user} timeAgo={item.time_ago} content={item.content} type={item.type} />
+                {data.comments.map((item, i) => (
+                    <Comment key={i} item={item} />
                 ))}
             </div>
         )
     }
 }
 
-const mapStateToProps = (state: State) => ({
+const mapStateToProps = state => ({
 	...state
 });
 
-export default withRouter(connect(mapStateToProps)(Item) as React.ComponentType<any>);
+export default withRouter(connect(mapStateToProps)(Item));

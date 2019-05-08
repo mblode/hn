@@ -1,34 +1,47 @@
-import * as React from 'react';
+import React, { Component } from 'react'
 
 interface Props {
-    user?: string;
-    timeAgo?: string;
-    content?: string;
-    type?: number;
+    item?: {
+        user?: string;
+        time_ago?: string;
+        content?: string;
+        type?: string;
+    };
 }
 
 interface State {
 }
 
-export default class Comment extends React.Component<Props, State> {
+export default class Comment extends Component<Props, State> {
     render() {
-        const { user, timeAgo, content, type } = this.props;
+        const { user, time_ago, content, type } = this.props.item;
 
         return (
             <div>
                 <div
+                    style={{
+                        marginLeft: `${type * 40}px`,
+                    }}
                     className="comment-item"
                 >
-                    <span>
+                    <span
+                        style={{
+                            textDecoration: 'underline',
+                        }}
+                    >
                         {user}
                     </span>
                     &nbsp;&nbsp;&nbsp;
-                    <span>
-                        {timeAgo}
+                    <span
+                        style={{
+                            color: '#999999',
+                        }}
+                    >
+                        {time_ago}
                     </span>
-                    {/* <div
+                    <div
                         dangerouslySetInnerHTML={{ __html: content }}
-                    /> */}
+                    />
                 </div>
             </div>
         )
