@@ -2,9 +2,67 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { fetchComments } from '../actions/postsAction';
+import styled from 'styled-components'
 import Loading from '../components/Loading';
-import Comment from '../components/Comment';
+import CommentItem from '../components/CommentItem';
 import Alert from '../components/Alert';
+
+const PageWrap = styled.div`
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 30px 45px;
+`
+
+const PageTitle = styled.div`
+    display: block;
+    padding-bottom: 32px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid #e8e8e8;
+`
+
+const ListTitle = styled.a`
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.5;
+    display: block;
+    width: 100%;
+    color: #212529;
+    text-decoration: none;
+
+    :hover {
+        text-decoration: none;
+        color: #212529;
+    }
+`
+
+const CommentTitle = styled.div`
+    display: inline-block;
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+`
+
+const ListInfo = styled.div`
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    margin-top: 4px;
+`
+
+const Time = styled.span`
+    margin-right: 4px;
+`
+
+const User = styled.a`
+    color: #3e4551;
+    text-decoration: underline;
+
+    :hover {
+        color: #545e6e;
+        text-decoration: underline;
+    }
+`;
 
 class Item extends Component {
     componentDidMount() {
@@ -24,17 +82,38 @@ class Item extends Component {
         }
 
         return (
-            <div>
+            <PageWrap>
+                <PageTitle>
+                    <ListTitle href={data.url} target="_blank" rel="noopener noreferrer">
+                        {data.title}
+                    </ListTitle>
+
+                    <ListInfo>
+                        <Time>{data.time_ago} from</Time>
+
+                        {data.user && (
+                            <User
+                                href={`https://news.ycombinator.com/user?id=${data.user}`}
+                                target="_blank" rel="noopener noreferrer"
+                            >
+                                {data.user}
+                            </User>
+                        )}
+                    </ListInfo>
+                </PageTitle>
+
+                <CommentTitle>{data.comments_count} comments</CommentTitle>
+
                 {data.comments.map((item, i) => (
-                    <Comment key={i} item={item} />
+                    <CommentItem key={i} item={item} />
                 ))}
-            </div>
+            </PageWrap>
         )
     }
 }
 
 const mapStateToProps = state => ({
-	...state
+    ...state
 });
 
 export default withRouter(connect(mapStateToProps)(Item));

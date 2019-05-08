@@ -2,9 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { fetchPosts } from '../actions/postsAction';
+import styled from 'styled-components'
 import Loading from '../components/Loading';
 import ListItem from '../components/ListItem';
 import Alert from '../components/Alert';
+
+const ListWrap = styled.div`
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+`
 
 class Show extends Component {
     componentDidMount() {
@@ -41,11 +48,11 @@ class Show extends Component {
 		}
 
         return (
-            <div>
+            <ListWrap>
                 {show.map((item, i) => (
                     <ListItem key={i} item={item} />
                 ))}
-            </div>
+            </ListWrap>
         )
     }
 }

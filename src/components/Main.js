@@ -8,22 +8,18 @@ import Show from '../pages/Show';
 import Ask from '../pages/Ask';
 import Jobs from '../pages/Jobs';
 
-function AppShell() {
+function Main() {
     return (
-        <div>
-            <div>
-                <Switch>
-                    <Route path="/item/:id" component={Item} />
-                    <Route path="/:page" component={News} />
-                    <Route path="/newest/:page" component={Newest} />
-                    <Route path="/show/:page" component={Show} />
-                    <Route path="/ask/:page" component={Ask} />
-                    <Route path="/jobs/:page" component={Jobs} />
-                    <Redirect to="/1" />
-                </Switch>
-            </div>
-        </div>
+        <Switch>
+            <Route path="/item/:id" component={Item} />
+            <Route path="/:page" component={News} />
+            <Route path="/newest/:page" component={Newest} />
+            <Route path="/show/:page" component={Show} />
+            <Route path="/ask/:page" component={Ask} />
+            <Route path="/jobs/:page" component={Jobs} />
+            <Redirect to="/1" />
+        </Switch>
     );
 }
 
-export default AppShell;
+export default Main;
