@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 export default class Alert extends Component {
     render() {
@@ -8,14 +7,8 @@ export default class Alert extends Component {
 
         let content = children;
 
-        var alertClass = classNames({
-            alert: true,
-            [`alert-${type}`]: type !== undefined,
-            [className]: className !== undefined
-        });
-
         return (
-            <div className={alertClass}>
+            <div>
                 {content}
             </div>
         );

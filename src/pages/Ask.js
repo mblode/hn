@@ -24,7 +24,9 @@ class Ask extends Component {
             page = 1;
         }
 
-        this.props.dispatch(fetchPosts('show', page));
+        if (this.props.location !== prevProps.location) {
+            this.props.dispatch(fetchPosts('news', page));
+        }
 	}
 
     render() {
