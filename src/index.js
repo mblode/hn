@@ -5,6 +5,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import { history } from './store';
 import configureStore from "./store";
 import App from "./components/App";
+import './index.css';
 import * as serviceWorker from "./serviceWorker";
 
 const store = configureStore();

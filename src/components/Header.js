@@ -16,7 +16,7 @@ function Header() {
             <NavLink
                 activeClassName="Header__navlink--active"
                 className="Header__navlink"
-                to="/top/1"
+                to="/1"
                 isActive={makeIsActive('/news')}
             >
                 Top

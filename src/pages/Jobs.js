@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { fetchPosts } from '../actions/postsAction';
 import Loading from '../components/Loading';
-import Post from '../components/Post';
+import ListItem from '../components/ListItem';
 import Alert from '../components/Alert';
 
-class Newest extends Component {
+class Jobs extends Component {
     componentDidMount() {
         let page = this.props.match.params.page;
 
@@ -14,7 +14,7 @@ class Newest extends Component {
             page = 1;
         }
 
-        this.props.dispatch(fetchPosts('newest', page));
+        this.props.dispatch(fetchPosts('jobs', page));
     }
 
     componentDidUpdate(prevProps) {
@@ -24,13 +24,11 @@ class Newest extends Component {
             page = 1;
         }
 
-        if (this.props.location !== prevProps.location) {
-            this.props.dispatch(fetchPosts('newest', page));
-        }
+        this.props.dispatch(fetchPosts('show', page));
 	}
 
     render() {
-        const { error, isFetching, newest } = this.props.posts;
+        const { error, isFetching, jobs } = this.props.posts;
 
         if (error) {
 			return (<Alert type="danger">Error: {error}</Alert>);
@@ -42,8 +40,8 @@ class Newest extends Component {
 
         return (
             <div>
-                {newest.map((item, i) => (
-                    <Post key={i} item={item} />
+                {jobs.map((item, i) => (
+                    <ListItem key={i} item={item} />
                 ))}
             </div>
         )
@@ -54,4 +52,4 @@ const mapStateToProps = state => ({
 	...state
 });
 
-export default withRouter(connect(mapStateToProps)(Newest));
+export default withRouter(connect(mapStateToProps)(Jobs));

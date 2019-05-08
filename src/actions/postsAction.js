@@ -1,5 +1,4 @@
 import { createActions } from "redux-actions";
-import { Dispatch } from 'redux'
 
 export const {
     fetchCommentsSuccess,
@@ -27,8 +26,8 @@ export const {
     "FETCH_POSTS_STARTED"
 );
 
-export const fetchComments = (id: string) => {
-    return async (dispatch: Dispatch) => {
+export const fetchComments = (id) => {
+    return dispatch => {
         dispatch(fetchCommentsStarted());
 
         fetch(`https://node-hnapi.herokuapp.com/item/${id}`)
@@ -42,8 +41,8 @@ export const fetchComments = (id: string) => {
     };
 };
 
-export const fetchPosts = (type: string, page: number) => {
-    return async (dispatch: Dispatch) => {
+export const fetchPosts = (type, page) => {
+    return dispatch => {
         dispatch(fetchPostsStarted());
 
         fetch(`https://node-hnapi.herokuapp.com/${type}?page=${page}`)
@@ -52,15 +51,13 @@ export const fetchPosts = (type: string, page: number) => {
                 error => dispatch(fetchPostsFailure(error))
             )
             .then(data => {
-                console.log(type);
-
                 if (type === "news") {
                     dispatch(fetchPostsNewsSuccess(data))
                 } else if (type === "show") {
                     dispatch(fetchPostsShowSuccess(data))
                 } else if (type === "ask") {
                     dispatch(fetchPostsAskSuccess(data))
-                } else if (type === "newest") {
+                } else if (type === "Newest") {
                     dispatch(fetchPostsNewestSuccess(data))
                 } else if (type === "jobs") {
                     dispatch(fetchPostsJobsSuccess(data))
