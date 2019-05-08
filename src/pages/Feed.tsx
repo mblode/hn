@@ -2,44 +2,53 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter, RouteProps, match } from 'react-router-dom'
 import { fetchPosts } from '../actions/postsAction';
+import { ThunkDispatch } from 'redux-thunk'
 import Loading from '../components/Loading';
 import Post from '../components/Post';
 import Alert from '../components/Alert';
-import { Dispatch } from 'redux';
+import { Post } from '../store/post/types'
+
+interface PropsFromState {
+    news: Post[],
+    isFetching: boolean,
+    error?: string,
+}
 
 interface Props {
-    match: match,
-    dispatch: Dispatch
+    match: match<DetailParams>,
+    dispatch: ThunkDispatch,
+    posts: object,
+    location: string,
 }
 
 interface State {
 }
 
-class Ask extends Component<Props & RouteProps, State> {
+class Feed extends Component<Props & RouteProps, State> {
     componentDidMount() {
         let page = this.props.match.params.page;
 
         if (page === undefined) {
-            page = 1;
+            page = "1";
         }
 
-        this.props.dispatch(fetchPosts('ask', page));
+        this.props.dispatch(fetchPosts('news', page));
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps: Props) {
         let page = this.props.match.params.page;
 
         if (page === undefined) {
-            page = 1;
+            page = "1";
         }
 
         if (this.props.location !== prevProps.location) {
-            this.props.dispatch(fetchPosts('ask', page));
+            this.props.dispatch(fetchPosts('news', page));
         }
 	}
 
     render() {
-        const { error, isFetching, ask } = this.props.posts;
+        const { error, isFetching, news } = this.props.posts;
 
         if (error) {
 			return (<Alert type="danger">Error: {error}</Alert>);
@@ -51,8 +60,8 @@ class Ask extends Component<Props & RouteProps, State> {
 
         return (
             <div>
-                {ask.map((item: object, i: number) => (
-                    <Post key={i} commentsCount={item.comments_count} id={item.id} points={item.points} timeAgo={item.time_ago} title={item.title} url={item.url} user={item.user} />
+                {news.map((item, i) => (
+                    <Post key={i} item={item} />
                 ))}
             </div>
         )
@@ -63,4 +72,4 @@ const mapStateToProps = (state: State) => ({
 	...state
 });
 
-export default withRouter(connect(mapStateToProps)(Ask) as React.ComponentType<any>);
+export default withRouter(connect(mapStateToProps)(Feed) as React.ComponentType<any>);

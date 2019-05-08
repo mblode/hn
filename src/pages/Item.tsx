@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { withRouter, RouteProps } from 'react-router-dom'
+import { withRouter, RouteProps, match } from 'react-router-dom'
 import { fetchComments } from '../actions/postsAction';
 import Loading from '../components/Loading';
 import Comment from '../components/Comment';
 import Alert from '../components/Alert';
+import { Dispatch } from 'redux';
+
+interface DetailParams {
+    id: string;
+}
 
 interface Props {
+    match: match<DetailParams>,
+    dispatch: Dispatch,
+    posts: object
 }
+
 
 interface State {
 }

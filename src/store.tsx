@@ -6,13 +6,14 @@ import rootReducer from "./reducers/rootReducer";
 
 export const history = createBrowserHistory();
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-export default function configureStore(preloadedState) {
+export default function configureStore(preloadedState: object) {
     const store = createStore(
         rootReducer(history), // root reducer with router state
         preloadedState,
-        composeEnhancers(applyMiddleware(routerMiddleware(history), thunk))
+        compose(
+            applyMiddleware(routerMiddleware(history), thunk),
+            (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+        )
     );
 
     return store;

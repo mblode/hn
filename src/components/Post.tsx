@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import * as React from 'react';
 import { withRouter, RouteProps, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -24,7 +24,7 @@ interface Props {
 interface State {
 }
 
-class Post extends Component<Props & RouteProps, State> {
+class Post extends React.Component<Props & RouteProps, State> {
     render() {
         const { commentsCount, id, points, timeAgo, title, url, user } = this.props;
 

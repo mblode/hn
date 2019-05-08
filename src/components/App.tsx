@@ -1,33 +1,21 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, RouteProps } from 'react-router-dom'
+import * as React from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 
-interface Props {
-}
-
-interface State {
-}
-
-class App extends Component<Props & RouteProps, State> {
+class App extends React.Component {
 	render() {
 		return (
-			<Fragment>
+			<React.Fragment>
 				<div className="main-content">
 					<Header />
 					<Main />
 				</div>
 
 				<Footer />
-			</Fragment>
+			</React.Fragment>
 		);
 	}
 }
 
-const mapStateToProps = (state: State) => ({
-	...state
-});
-
-export default withRouter(connect(mapStateToProps)(App) as React.ComponentType<any>);
+export default App;

@@ -1,5 +1,11 @@
 import { createActions } from "redux-actions";
-import { Dispatch } from 'redux'
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
+import { Dispatch } from "react";
+
+interface State {
+    // something: string;
+}
 
 export const {
     fetchCommentsSuccess,
@@ -28,43 +34,50 @@ export const {
 );
 
 export const fetchComments = (id: string) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: ThunkDispatch<State, undefined, Action>) => {
         dispatch(fetchCommentsStarted());
 
-        fetch(`https://node-hnapi.herokuapp.com/item/${id}`)
-            .then(
-                response => response.json(),
-                error => dispatch(fetchCommentsFailure(error))
-            )
-            .then(data => {
-                dispatch(fetchCommentsSuccess(data))
-            })
+        try {
+            const result = await fetch(`https://node-hnapi.herokuapp.com/item/${id}`)
+                .then(
+                    response => response.json(),
+                    error => dispatch(fetchCommentsFailure(error))
+                )
+                .then(data => {
+                    dispatch(fetchCommentsSuccess(data))
+                })
+        } catch (err) {
+            console.error(err);
+        }
+
     };
 };
 
-export const fetchPosts = (type: string, page: number) => {
-    return async (dispatch: Dispatch) => {
+export const fetchPosts = (pageType: string, page: string) => {
+    return async (dispatch: ThunkDispatch<State, undefined, Action>) => {
         dispatch(fetchPostsStarted());
 
-        fetch(`https://node-hnapi.herokuapp.com/${type}?page=${page}`)
-            .then(
-                response => response.json(),
-                error => dispatch(fetchPostsFailure(error))
-            )
-            .then(data => {
-                console.log(type);
-
-                if (type === "news") {
-                    dispatch(fetchPostsNewsSuccess(data))
-                } else if (type === "show") {
-                    dispatch(fetchPostsShowSuccess(data))
-                } else if (type === "ask") {
-                    dispatch(fetchPostsAskSuccess(data))
-                } else if (type === "newest") {
-                    dispatch(fetchPostsNewestSuccess(data))
-                } else if (type === "jobs") {
-                    dispatch(fetchPostsJobsSuccess(data))
-                }
-            })
+        try {
+            const result = await fetch(`https://node-hnapi.herokuapp.com/${pageType}?page=${page}`)
+                .then(
+                    response => response.json(),
+                    error => dispatch(fetchPostsFailure(error))
+                )
+                .then(data => {
+                    if (pageType === "news") {
+                        dispatch(fetchPostsNewsSuccess(data))
+                    } else if (pageType === "show") {
+                        dispatch(fetchPostsShowSuccess(data))
+                    } else if (pageType === "ask") {
+                        dispatch(fetchPostsAskSuccess(data))
+                    } else if (pageType === "newest") {
+                        dispatch(fetchPostsNewestSuccess(data))
+                    } else if (pageType === "jobs") {
+                        dispatch(fetchPostsJobsSuccess(data))
+                    }
+                })
+        } catch (err) {
+            console.error(err);
+        }
     };
 };

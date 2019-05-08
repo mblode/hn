@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import * as React from 'react';
 
 interface Props {
     user?: string;
@@ -10,7 +10,7 @@ interface Props {
 interface State {
 }
 
-export default class Comment extends Component<Props, State> {
+export default class Comment extends React.Component<Props, State> {
     render() {
         const { user, timeAgo, content, type } = this.props;
 
