@@ -60,7 +60,7 @@ function Header() {
 
                 <StyledNavLink
                     activeClassName="active"
-                    to="/1"
+                    to="/top/1"
                     isActive={makeIsActive('/news')}
                 >
                     Top

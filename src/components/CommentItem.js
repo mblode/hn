@@ -7,6 +7,7 @@ const Comment = styled.div`
     text-decoration: none;
     border-bottom: 1px solid #e8e8e8;
     margin-top: 16px;
+    margin-left: ${props => props.level * 40}px;
 
     :hover {
         text-decoration: none;
@@ -61,10 +62,10 @@ export default class CommentItem extends Component {
     }
 
     render() {
-        const { user, time_ago, content } = this.props.item;
+        const {user, timeAgo, content, level } = this.props;
 
         return (
-            <Comment>
+            <Comment level={level}>
                 <Toggle onClick={this.toggleHidden.bind(this)}>
                     <User
                         href={`https://news.ycombinator.com/user?id=${user}`}
@@ -73,7 +74,7 @@ export default class CommentItem extends Component {
                         {user},
                     </User>
                     <Time>
-                        {time_ago}
+                        {timeAgo}
                     </Time>
                 </Toggle>
 

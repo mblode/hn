@@ -32,7 +32,7 @@ class Newest extends Component {
         }
 
         if (this.props.location !== prevProps.location) {
-            this.props.dispatch(fetchPosts('news', page));
+            this.props.dispatch(fetchPosts('newest', page));
         }
 	}
 

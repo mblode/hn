@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
+import parseDomain from 'parse-domain';
 
 const List = styled.div`
     overflow: hidden;
@@ -33,6 +34,18 @@ const ListTitle = styled.a`
     :visited {
         color: #828b98;
     }
+`
+
+const ListUrl = styled.span`
+    font-size: 14px;
+    font-weight: 400;
+    color: #828b98;
+    margin-left: 4px;
+    width: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: anywhere;
 `
 
 const ListInfo = styled.div`
@@ -73,6 +86,16 @@ const StyledLink = styled(Link)`
 `;
 
 export default class ListItem extends Component {
+    parse(url) {
+        let link = parseDomain(url)
+
+        if (link != null) {
+            return "(" + link.domain + "." + link.tld + ")";
+        } else {
+            return "";
+        }
+    }
+
     render() {
         const { comments_count, id, points, time_ago, title, url, user } = this.props.item;
 
@@ -80,6 +103,7 @@ export default class ListItem extends Component {
             <List>
                 <ListTitle href={url} target="_blank" rel="noopener noreferrer">
                     {title}
+                    <ListUrl>{this.parse(url)}</ListUrl>
                 </ListTitle>
 
                 <ListInfo>
