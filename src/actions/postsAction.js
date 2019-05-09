@@ -30,7 +30,7 @@ export const fetchComments = (id) => {
     return dispatch => {
         dispatch(fetchCommentsStarted());
 
-        fetch(`https://node-hnapi.herokuapp.com/item/${id}`)
+        fetch(`https://api.hackerwebapp.com/item/${id}`)
             .then(
                 response => response.json(),
                 error => dispatch(fetchCommentsFailure(error))
@@ -45,7 +45,7 @@ export const fetchPosts = (type, page) => {
     return dispatch => {
         dispatch(fetchPostsStarted());
 
-        fetch(`https://node-hnapi.herokuapp.com/${type}?page=${page}`)
+        fetch(`https://api.hackerwebapp.com/${type}?page=${page}`)
             .then(
                 response => response.json(),
                 error => dispatch(fetchPostsFailure(error))
@@ -58,7 +58,7 @@ export const fetchPosts = (type, page) => {
                     dispatch(fetchPostsShowSuccess(data))
                 } else if (type === "ask") {
                     dispatch(fetchPostsAskSuccess(data))
-                } else if (type === "Newest") {
+                } else if (type === "newest") {
                     dispatch(fetchPostsNewestSuccess(data))
                 } else if (type === "jobs") {
                     dispatch(fetchPostsJobsSuccess(data))
