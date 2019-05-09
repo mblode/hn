@@ -51,7 +51,6 @@ export const fetchPosts = (type, page) => {
                 error => dispatch(fetchPostsFailure(error))
             )
             .then(data => {
-                console.log(type);
                 if (type === "news") {
                     dispatch(fetchPostsNewsSuccess(data))
                 } else if (type === "show") {
