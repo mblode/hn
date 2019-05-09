@@ -93,7 +93,7 @@ class Item extends Component {
         }
     }
 
-    renderChildren(data, type = 1) {
+    renderChildren(data) {
         if (data.comments) {
             data.comments.forEach((ele, key) => {
                 this.element.push(
@@ -112,16 +112,7 @@ class Item extends Component {
     }
 
     renderComponent(data) {
-        this.element = [
-            <CommentItem
-                user={data.user}
-                timeAgo={data.time_ago}
-                content={data.content}
-                key={data.id}
-                level={data.level}
-                id={data.id}
-            />
-        ];
+        this.element = [];
 
         this.renderChildren(data);
         return this.element;
@@ -139,13 +130,25 @@ class Item extends Component {
             return <Loading />;
         }
 
+        let title = (
+            <ListTitle href={data.url} target="_blank" rel="noopener noreferrer">
+                {data.title}
+                <ListUrl>{this.parse(data.url)}</ListUrl>
+            </ListTitle>
+        )
+
+        // if (data.url.match(/^item?id/)) {
+        //     title = (
+        //         <ListTitle>
+        //             {data.title}
+        //         </ListTitle>
+        //     )
+        // }
+
         return (
             <PageWrap>
                 <PageTitle>
-                    <ListTitle href={data.url} target="_blank" rel="noopener noreferrer">
-                        {data.title}
-                        <ListUrl>{this.parse(data.url)}</ListUrl>
-                    </ListTitle>
+                    { title }
 
                     <ListInfo>
                         <Time>{data.time_ago} from</Time>

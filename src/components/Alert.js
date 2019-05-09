@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import styled from 'styled-components'
+
+const StyledAlert = styled.div`
+    font-size: 14px;
+    font-weight: 400;
+    color: #828b98;
+`
 
 export default class Alert extends Component {
     render() {
-        const { type, className, children } = this.props;
+        const { type, children } = this.props;
 
         let content = children;
 
         return (
-            <div>
+            <StyledAlert type={type}>
                 {content}
-            </div>
+            </StyledAlert>
         );
     }
 }
-
-Alert.propTypes = {
-    type: PropTypes.string,
-    className: PropTypes.string
-};
