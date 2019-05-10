@@ -33,13 +33,12 @@ const StyledLink = styled(Link)`
 const StyledNavLink = styled(NavLink)`
     color: white;
     position: relative;
-    margin: 0 0 0 6px;
     padding: 0 20px;
     font-weight: 500;
     font-size: 16px;
     text-decoration: none;
     line-height: 60px;
-    border-bottom: 6px solid transparent;
+    border-bottom: 4px solid transparent;
 
     &.active {
         text-decoration: none;
@@ -54,12 +53,6 @@ const StyledNavLink = styled(NavLink)`
     }
 `;
 
-export function makeIsActive(path) {
-    return function isActive(match, location) {
-        return location.pathname.indexOf(path) !== -1;
-    };
-}
-
 function Header() {
     return (
         <Nav>
@@ -70,40 +63,36 @@ function Header() {
 
                 <StyledNavLink
                     activeClassName="active"
-                    to="/hn-react/top/1"
-                    isActive={makeIsActive('/top')}
+                    to="/"
+                    exact
                 >
                     Top
                 </StyledNavLink>
 
                 <StyledNavLink
                     activeClassName="active"
-                    to="/hn-react/newest/1"
-                    isActive={makeIsActive('/newest')}
+                    to="/newest"
                 >
                     New
                 </StyledNavLink>
 
                 <StyledNavLink
                     activeClassName="active"
-                    to="/hn-react/show/1"
-                    isActive={makeIsActive('/show')}
+                    to="/show"
                 >
                     Show
                 </StyledNavLink>
 
                 <StyledNavLink
                     activeClassName="active"
-                    to="/hn-react/ask/1"
-                    isActive={makeIsActive('/ask')}
+                    to="/ask"
                 >
                     Ask
                 </StyledNavLink>
 
                 <StyledNavLink
                     activeClassName="active"
-                    to="/hn-react/jobs/1"
-                    isActive={makeIsActive('/jobs')}
+                    to="/jobs"
                 >
                     Jobs
                 </StyledNavLink>
