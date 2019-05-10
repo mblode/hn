@@ -7,7 +7,7 @@ const List = styled.div`
     overflow: hidden;
     position: relative;
     border-bottom: 1px solid #e8e8e8;
-    padding: 20px 45px;
+    padding: 20px 24px;
     display: flex;
     flex-wrap: wrap;
     text-decoration: none;
@@ -108,27 +108,34 @@ export default class ListItem extends Component {
 
                 <ListInfo>
                     <StyledLink
-                        href={`/item/${id}/`}
-                        to={`/item/${id}`}
+                        href={`/hn-react/item/${id}/`}
+                        to={`/hn-react/item/${id}`}
                     >
                         {comments_count} comments
                     </StyledLink>
 
                     <Dot>•</Dot>
 
-                    {points !== null && `${points} points`}
+                    {points &&
+                        <span>
+                            <span>{points} points</span>
 
-                    <Dot>•</Dot>
+                            <Dot>•</Dot>
+                        </span>
+                    }
 
-                    <Time>{time_ago} from</Time>
+                    <Time>{time_ago}</Time>
 
                     {user && (
-                        <User
-                            href={`https://news.ycombinator.com/user?id=${user}`}
-                            target="_blank" rel="noopener noreferrer"
-                        >
-                            {user}
-                        </User>
+                        <span>
+                            <Time>from</Time>
+                            <User
+                                href={`https://news.ycombinator.com/user?id=${user}`}
+                                target="_blank" rel="noopener noreferrer"
+                            >
+                                {user}
+                            </User>
+                        </span>
                     )}
 
                 </ListInfo>

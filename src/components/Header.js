@@ -20,6 +20,10 @@ const StyledLink = styled(Link)`
     padding-right: 20px;
     line-height: 60px;
 
+    @media (max-width: 768px) {
+        margin-left: 24px;
+    }
+
     :hover {
         text-decoration: none;
         color: white;
@@ -36,6 +40,12 @@ const StyledNavLink = styled(NavLink)`
     text-decoration: none;
     line-height: 60px;
     border-bottom: 6px solid transparent;
+
+    &.active {
+        text-decoration: none;
+        color: white;
+        border-color: white;
+    }
 
     :hover {
         text-decoration: none;
@@ -60,35 +70,39 @@ function Header() {
 
                 <StyledNavLink
                     activeClassName="active"
-                    to="/top/1"
-                    isActive={makeIsActive('/news')}
+                    to="/hn-react/top/1"
+                    isActive={makeIsActive('/top')}
                 >
                     Top
                 </StyledNavLink>
+
                 <StyledNavLink
                     activeClassName="active"
-                    to="/newest/1"
+                    to="/hn-react/newest/1"
                     isActive={makeIsActive('/newest')}
                 >
                     New
                 </StyledNavLink>
+
                 <StyledNavLink
                     activeClassName="active"
-                    to="/show/1"
+                    to="/hn-react/show/1"
                     isActive={makeIsActive('/show')}
                 >
                     Show
                 </StyledNavLink>
+
                 <StyledNavLink
                     activeClassName="active"
-                    to="/ask/1"
+                    to="/hn-react/ask/1"
                     isActive={makeIsActive('/ask')}
                 >
                     Ask
                 </StyledNavLink>
+
                 <StyledNavLink
                     activeClassName="active"
-                    to="/jobs/1"
+                    to="/hn-react/jobs/1"
                     isActive={makeIsActive('/jobs')}
                 >
                     Jobs

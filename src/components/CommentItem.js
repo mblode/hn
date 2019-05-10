@@ -7,7 +7,7 @@ const Comment = styled.div`
     text-decoration: none;
     border-bottom: 1px solid #e8e8e8;
     margin-top: 16px;
-    margin-left: ${props => props.level * 40}px;
+    margin-left: ${props => props.level * 24}px;
 
     :hover {
         text-decoration: none;
@@ -21,8 +21,17 @@ const Toggle = styled.div`
     margin: -6px;
     margin-bottom: 10px;
 
+    &.hidden {
+        background-color: #f0f1f4;
+        opacity: 0.5;
+    }
+
     :hover {
-        background-color: #f9f9f9;
+        background-color: #f8f8fa;
+    }
+
+    &.hidden:hover {
+        background-color: #f0f1f4;
     }
 `
 
@@ -51,22 +60,23 @@ export default class CommentItem extends Component {
     constructor() {
         super()
         this.state = {
-            isHidden: false
+            hidden: false
         }
     }
 
     toggleHidden() {
         this.setState({
-            isHidden: !this.state.isHidden
+            hidden: !this.state.hidden
         })
     }
 
     render() {
-        const {user, timeAgo, content, level } = this.props;
+        const { user, timeAgo, content, level } = this.props;
+        const { hidden } = this.state;
 
         return (
             <Comment level={level}>
-                <Toggle onClick={this.toggleHidden.bind(this)}>
+                <Toggle onClick={this.toggleHidden.bind(this)} className={hidden ? "hidden" : ""}>
                     <User
                         href={`https://news.ycombinator.com/user?id=${user}`}
                         target="_blank" rel="noopener noreferrer"
@@ -79,7 +89,7 @@ export default class CommentItem extends Component {
                 </Toggle>
 
                 {
-                    !this.state.isHidden &&
+                    !hidden &&
                     <Content
                         dangerouslySetInnerHTML={{ __html: content }}
                     />

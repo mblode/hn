@@ -11,13 +11,13 @@ import Jobs from '../pages/Jobs';
 function Main() {
     return (
         <Switch>
-            <Route path="/item/:id" component={Item} />
-            <Route path="/top/:page" component={News} />
-            <Route path="/newest/:page" component={Newest} />
-            <Route path="/show/:page" component={Show} />
-            <Route path="/ask/:page" component={Ask} />
-            <Route path="/jobs/:page" component={Jobs} />
-            <Redirect to="/top/1" />
+            <Route path="/hn-react/item/:id" component={Item} />
+            <Route path="/hn-react/top/:page" component={News} />
+            <Route path="/hn-react/newest/:page" component={Newest} />
+            <Route path="/hn-react/show/:page" component={Show} />
+            <Route path="/hn-react/ask/:page" component={Ask} />
+            <Route path="/hn-react/jobs/:page" component={Jobs} />
+            <Redirect to="/hn-react/top/1" />
         </Switch>
     );
 }
