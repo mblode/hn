@@ -108,8 +108,8 @@ export default class ListItem extends Component {
 
                 <ListInfo>
                     <StyledLink
-                        href={`/hn-react/item/${id}/`}
-                        to={`/hn-react/item/${id}`}
+                        href={`/item/${id}/`}
+                        to={`/item/${id}`}
                     >
                         {comments_count} comments
                     </StyledLink>
