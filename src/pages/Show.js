@@ -10,7 +10,7 @@ import Alert from '../components/Alert';
 const ListWrap = styled.div`
     background-color: #fff;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    border-radius: 4px;
 `
 
 class Show extends Component {

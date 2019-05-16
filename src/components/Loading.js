@@ -6,7 +6,7 @@ export const LoadingWrap = styled.p`
     text-align: center;
     background-color: #fff;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    border-radius: 4px;
     padding: 30px 24px;
 `
 

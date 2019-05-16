@@ -11,7 +11,7 @@ import Alert from '../components/Alert';
 const PageWrap = styled.div`
     background-color: #fff;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    border-radius: 4px;
     padding: 30px 24px;
 `
 
@@ -56,6 +56,11 @@ const CommentTitle = styled.div`
     font-size: 16px;
 `
 
+const CommentList = styled.ul`
+    padding: 0;
+    margin: 0;
+`
+
 const ListInfo = styled.div`
     display: block;
     width: 100%;
@@ -93,32 +98,6 @@ class Item extends Component {
         }
     }
 
-    renderChildren(data) {
-        if (data.comments) {
-            data.comments.forEach((ele, key) => {
-                this.element.push(
-                    <CommentItem
-                        user={ele.user}
-                        timeAgo={ele.time_ago}
-                        content={ele.content}
-                        key={ele.id}
-                        level={ele.level}
-                        id={ele.id}
-                    />
-                );
-                this.renderChildren(ele, key + 2);
-            });
-        }
-    }
-
-    renderComponent(data) {
-        this.element = [];
-
-        this.renderChildren(data);
-        return this.element;
-    }
-
-
     render() {
         const { error, isFetching, data } = this.props.posts;
 
@@ -137,13 +116,19 @@ class Item extends Component {
             </ListTitle>
         )
 
-        // if (data.url.match(/^item?id/)) {
-        //     title = (
-        //         <ListTitle>
-        //             {data.title}
-        //         </ListTitle>
-        //     )
-        // }
+        const commentLoop = data.comments.map(ele => {
+            return (
+                <CommentItem
+                    user={ele.user}
+                    timeAgo={ele.time_ago}
+                    content={ele.content}
+                    key={ele.id}
+                    level={ele.level}
+                    id={ele.id}
+                    comments={ele.comments}
+                />
+            );
+        })
 
         return (
             <PageWrap>
@@ -166,7 +151,9 @@ class Item extends Component {
 
                 <CommentTitle>{data.comments_count} comments</CommentTitle>
 
-                {this.renderComponent(data)}
+                <CommentList>
+                    { commentLoop }
+                </CommentList>
             </PageWrap>
         )
     }
