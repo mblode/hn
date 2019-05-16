@@ -13,6 +13,7 @@ const ScrollButton = styled.button`
     right: 16px;
     border-radius: 4px;
     border: none;
+    z-index: 1000;
 
     &:hover {
         opacity: 1;

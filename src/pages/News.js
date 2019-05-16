@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { fetchPosts } from '../actions/postsAction';
@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import Loading from '../components/Loading';
 import ListItem from '../components/ListItem';
 import Alert from '../components/Alert';
+import Pagination from '../components/Pagination';
 
 const ListWrap = styled.div`
     background-color: #fff;
@@ -14,25 +15,24 @@ const ListWrap = styled.div`
 `
 
 class News extends Component {
-    componentDidMount() {
-        let page = this.props.match.params.page;
+    constructor(props) {
+        super(props);
+        this.state = {page: this.props.match.params.page};
 
-        if (page === undefined) {
-            page = 1;
+        if (this.state === undefined) {
+            this.setState({
+                page: 1
+            });
         }
+    }
 
-        this.props.dispatch(fetchPosts('news', page));
+    componentDidMount() {
+        this.props.dispatch(fetchPosts('news', this.state.page));
     }
 
     componentDidUpdate(prevProps) {
-        let page = this.props.match.params.page;
-
-        if (page === undefined) {
-            page = 1;
-        }
-
         if (this.props.location !== prevProps.location) {
-            this.props.dispatch(fetchPosts('news', page));
+            this.props.dispatch(fetchPosts('news', this.state.page));
         }
 	}
 
@@ -48,11 +48,15 @@ class News extends Component {
 		}
 
         return (
-            <ListWrap>
-                {news.map((item, i) => (
-                    <ListItem key={i} item={item} />
-                ))}
-            </ListWrap>
+            <Fragment>
+                <Pagination page={this.state.page} />
+                <ListWrap>
+                    {news.map((item, i) => (
+                        <ListItem key={i} item={item} />
+                    ))}
+                </ListWrap>
+                <Pagination page={this.state.page} />
+            </Fragment>
         )
     }
 }

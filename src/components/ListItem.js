@@ -36,6 +36,25 @@ const ListTitle = styled.a`
     }
 `
 
+const ListTitleAlt = styled(Link)`
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    display: block;
+    width: 100%;
+    color: #212529;
+    text-decoration: none;
+
+    :hover {
+        text-decoration: none;
+        color: #212529;
+    }
+
+    :visited {
+        color: #828b98;
+    }
+`
+
 const ListUrl = styled.span`
     font-size: 14px;
     font-weight: 400;
@@ -99,12 +118,25 @@ export default class ListItem extends Component {
     render() {
         const { comments_count, id, points, time_ago, title, url, user } = this.props.item;
 
-        return (
-            <List>
-                <ListTitle href={url} target="_blank" rel="noopener noreferrer">
+        let linkTitle = (
+            <ListTitle href={url} target="_blank" rel="noopener noreferrer">
+                {title}
+                <ListUrl>{this.parse(url)}</ListUrl>
+            </ListTitle>
+        );
+
+        if (url.includes("item?")) {
+            linkTitle = (
+                <ListTitleAlt href={`/item/${id}/`} to={`/item/${id}`}>
                     {title}
                     <ListUrl>{this.parse(url)}</ListUrl>
-                </ListTitle>
+                </ListTitleAlt>
+            );
+        }
+
+        return (
+            <List>
+                {linkTitle}
 
                 <ListInfo>
                     <StyledLink

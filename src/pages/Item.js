@@ -17,7 +17,7 @@ const PageWrap = styled.div`
 
 const PageTitle = styled.div`
     display: block;
-    padding-bottom: 32px;
+    padding-bottom: 16px;
     margin-bottom: 32px;
     border-bottom: 1px solid #e8e8e8;
 `
@@ -81,6 +81,20 @@ const User = styled.a`
         text-decoration: underline;
     }
 `;
+
+const Content = styled.div`
+    margin-right: 4px;
+    margin-top: 1rem;
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    a {
+        color: #212529;
+        text-decoration: underline;
+    }
+`
 
 class Item extends Component {
     componentDidMount() {
@@ -147,6 +161,10 @@ class Item extends Component {
                             </User>
                         )}
                     </ListInfo>
+
+                    <Content
+                        dangerouslySetInnerHTML={{ __html: data.content }}
+                    />
                 </PageTitle>
 
                 <CommentTitle>{data.comments_count} comments</CommentTitle>

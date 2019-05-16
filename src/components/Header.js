@@ -22,6 +22,7 @@ const StyledLink = styled(Link)`
 
     @media (max-width: 768px) {
         margin-left: 24px;
+        line-height: 48px;
     }
 
     :hover {
@@ -50,6 +51,11 @@ const StyledNavLink = styled(NavLink)`
         text-decoration: none;
         color: white;
         border-color: white;
+    }
+
+    @media (max-width: 768px) {
+        padding: 0 12px;
+        line-height: 48px;
     }
 `;
 

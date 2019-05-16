@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 
-export default class Pagination extends Component {
+ class Pagination extends Component {
     render() {
         return (
             <div>
-                
+                <button>Prev</button>
+                <button>Next</button>
             </div>
         )
     }
 }
+
+export default Pagination
