@@ -4,26 +4,18 @@ export const {
     fetchCommentsSuccess,
     fetchCommentsFailure,
     fetchCommentsStarted,
-    fetchPostsNewsSuccess,
-    fetchPostsShowSuccess,
-    fetchPostsAskSuccess,
-    fetchPostsNewestSuccess,
-    fetchPostsJobsSuccess,
-    fetchPostsFailure,
-    fetchPostsStarted
+    fetchFeedSuccess,
+    fetchFeedFailure,
+    fetchFeedStarted,
 } = createActions(
     {
         FETCH_COMMENTS_SUCCESS: data => ({ data }),
         FETCH_COMMENTS_FAILURE: error => ({ error }),
-        FETCH_POSTS_NEWS_SUCCESS: data => ({ data }),
-        FETCH_POSTS_SHOW_SUCCESS: data => ({ data }),
-        FETCH_POSTS_ASK_SUCCESS: data => ({ data }),
-        FETCH_POSTS_NEWEST_SUCCESS: data => ({ data }),
-        FETCH_POSTS_JOBS_SUCCESS: data => ({ data }),
+        FETCH_FEED_SUCCESS: (data, type) => ({ data, type }),
         FETCH_POSTS_FAILURE: error => ({ error })
     },
     "FETCH_COMMENTS_STARTED",
-    "FETCH_POSTS_STARTED"
+    "FETCH_FEED_STARTED"
 );
 
 export const fetchComments = (id) => {
@@ -41,27 +33,17 @@ export const fetchComments = (id) => {
     };
 };
 
-export const fetchPosts = (type, page) => {
+export const fetchFeed = (type, page) => {
     return dispatch => {
-        dispatch(fetchPostsStarted());
+        dispatch(fetchFeedStarted());
 
         fetch(`https://api.hackerwebapp.com/${type}?page=${page}`)
             .then(
                 response => response.json(),
-                error => dispatch(fetchPostsFailure(error))
+                error => dispatch(fetchFeedFailure(error))
             )
             .then(data => {
-                if (type === "news") {
-                    dispatch(fetchPostsNewsSuccess(data))
-                } else if (type === "show") {
-                    dispatch(fetchPostsShowSuccess(data))
-                } else if (type === "ask") {
-                    dispatch(fetchPostsAskSuccess(data))
-                } else if (type === "newest") {
-                    dispatch(fetchPostsNewestSuccess(data))
-                } else if (type === "jobs") {
-                    dispatch(fetchPostsJobsSuccess(data))
-                }
+                dispatch(fetchFeedSuccess(data, type))
             })
     };
 };

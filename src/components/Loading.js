@@ -1,8 +1,46 @@
 import React, { Component } from 'react'
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components'
 
-export const LoadingWrap = styled.p`
-    font-style: italic;
+const rotate = keyframes`
+    100% {
+        transform: rotate(360deg);
+    }
+`
+
+const dash = keyframes`
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
+    }
+
+    100% {
+        stroke-dashoffset: -125px;
+    }
+`
+
+export const SvgWrap = styled.svg`
+    transform-origin: center;
+    animation: ${rotate} 2s linear infinite;
+    width: 50px;
+    height: 50px;
+`
+
+export const CircleWrap = styled.circle`
+    fill: none;
+    stroke: #f68a30;
+    stroke-width: 3;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: ${dash} 1.5s ease-in-out infinite;
+`
+
+export const LoadingWrap = styled.div`
     text-align: center;
     background-color: #fff;
     border-radius: 4px;
@@ -14,10 +52,22 @@ export const LoadingWrap = styled.p`
     }
 `
 
+export const LoadingText = styled.p`
+    text-align: center;
+    padding-top: 1rem;
+    margin-bottom: 0;
+`
+
 export default class Loading extends Component {
     render() {
         return (
-            <LoadingWrap>Loading...</LoadingWrap>
+            <LoadingWrap>
+                <SvgWrap viewBox="25 25 50 50">
+                    <CircleWrap cx="50" cy="50" r="20"></CircleWrap>
+                </SvgWrap>
+
+                <LoadingText>Loading...</LoadingText>
+            </LoadingWrap>
         )
     }
 }

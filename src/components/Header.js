@@ -92,28 +92,28 @@ function Header() {
 
                     <StyledNavLink
                         activeClassName="active"
-                        to="/newest"
+                        to="/newest/1"
                     >
                         New
                     </StyledNavLink>
 
                     <StyledNavLink
                         activeClassName="active"
-                        to="/show"
+                        to="/show/1"
                     >
                         Show
                     </StyledNavLink>
 
                     <StyledNavLink
                         activeClassName="active"
-                        to="/ask"
+                        to="/ask/1"
                     >
                         Ask
                     </StyledNavLink>
 
                     <StyledNavLink
                         activeClassName="active"
-                        to="/jobs"
+                        to="/jobs/1"
                     >
                         Jobs
                     </StyledNavLink>

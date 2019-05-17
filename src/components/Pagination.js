@@ -49,18 +49,14 @@ const Button = styled(Link)`
     }
 `
 
-const Prev = styled(Button)`
-`
-
-const Next = styled(Button)`
-`
-
- class Pagination extends Component {
+class Pagination extends Component {
      render() {
+        console.log(this.props.type, this.props.page)
+
         return (
             <PaginationWrap>
-                <Prev to={`/${this.props.type}/${parseInt(this.props.page) - 1}`} disabled={parseInt(this.props.page) <= 1}>Prev</Prev>
-                <Next to={`/${this.props.type}/${parseInt(this.props.page) + 1}`}>Next</Next>
+                <Button to={`/${this.props.type}/${parseInt(this.props.page) - 1}`} disabled={parseInt(this.props.page) <= 1}>Prev</Button>
+                <Button to={`/${this.props.type}/${parseInt(this.props.page) + 1}`} disabled={this.props.type === "jobs"}>Next</Button>
             </PaginationWrap>
         )
     }

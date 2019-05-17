@@ -58,6 +58,7 @@ const CommentTitle = styled.div`
     margin: 0;
     font-weight: 500;
     font-size: 16px;
+    margin-bottom: 0.5rem;
 `
 
 const CommentList = styled.ul`
