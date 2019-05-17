@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const ErrorWrap = styled.h3`
     text-align: center;
     background-color: #fff;
-    border-radius: 4px;
+    border-radius: 6px;
     padding: 30px 24px;
     border: 1px solid rgb(235, 236, 237);
 

@@ -11,7 +11,7 @@ import Pagination from '../components/Pagination'
 
 const ListWrap = styled.div`
     background-color: #fff;
-    border-radius: 4px;
+    border-radius: 6px;
     border: 1px solid rgb(235, 236, 237);
 
     @media (max-width: 768px) {

@@ -10,7 +10,7 @@ const ScrollButton = styled.button`
     position: fixed;
     bottom: 16px;
     right: 16px;
-    border-radius: 4px;
+    border-radius: 6px;
     border: none;
     z-index: 1000;
 `

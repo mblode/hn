@@ -94,10 +94,10 @@ export default class CommentItem extends Component {
     }
 
     toggleHidden(e) {
-        e.preventDefault()
         this.setState({
             hidden: !this.state.hidden
         })
+        e.stopPropagation();
     }
 
     render() {
