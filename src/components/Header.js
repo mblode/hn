@@ -54,6 +54,7 @@ const StyledNavLink = styled(NavLink)`
     text-decoration: none;
     line-height: 60px;
     display: block;
+    transition: color 0.15s ease-in-out;
 
     &.active {
         text-decoration: none;

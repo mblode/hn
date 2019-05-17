@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { fetchPosts } from '../actions/postsAction'
@@ -11,6 +11,7 @@ import Pagination from '../components/Pagination'
 const ListWrap = styled.div`
     background-color: #fff;
     border-radius: 4px;
+    border: 1px solid rgb(235, 236, 237);
 `
 
 class News extends Component {

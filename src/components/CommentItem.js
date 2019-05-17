@@ -36,6 +36,7 @@ const Toggle = styled.div`
     padding: 6px;
     margin: -6px;
     margin-bottom: 10px;
+    cursor: pointer;
 
     :hover {
         background-color: #f8f8fa;
@@ -70,10 +71,10 @@ const User = styled.a`
 
 const Content = styled.div`
     margin-right: 4px;
-    font-size: 14px;
+    margin-bottom: 8px;
 
     p {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
 
     a {
@@ -90,7 +91,8 @@ export default class CommentItem extends Component {
         }
     }
 
-    toggleHidden() {
+    toggleHidden(e) {
+        e.preventDefault()
         this.setState({
             hidden: !this.state.hidden
         })
@@ -123,7 +125,7 @@ export default class CommentItem extends Component {
         return (
             <CommentWrap className={hidden ? "hidden" : ""}>
                 <Comment level={level}>
-                    <Toggle onClick={this.toggleHidden.bind(this)} className={hidden ? "toggled" : ""}>
+                    <Toggle onClick={this.toggleHidden.bind(this)} className={hidden ? "toggled" : ""} onMouseDown={(e) => e.preventDefault()}>
                         <User
                             href={`https://news.ycombinator.com/user?id=${user}`}
                             target="_blank" rel="noopener noreferrer"
