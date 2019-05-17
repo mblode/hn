@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { ArrowUp } from 'react-feather'
 
 const ScrollButton = styled.button`
-    opacity: 0.6;
     background-color: white;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     width: 40px;
@@ -15,9 +14,6 @@ const ScrollButton = styled.button`
     border: none;
     z-index: 1000;
 
-    &:hover {
-        opacity: 1;
-    }
 `
 
 const Arrow = styled.span`

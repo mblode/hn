@@ -13,10 +13,20 @@ function Main() {
     return (
         <Switch>
             <Route path="/" exact component={News} />
-            <Route path="/newest" component={Newest} />
-            <Route path="/show" component={Show} />
-            <Route path="/ask" component={Ask} />
-            <Route path="/jobs" component={Jobs} />
+            <Route path="/news/:page" component={News} />
+
+            <Route path="/newest" exact component={Newest} />
+            <Route path="/newest/:page" component={Newest} />
+
+            <Route path="/show" exact component={Show} />
+            <Route path="/show/:page" component={Show} />
+
+            <Route path="/ask" exact component={Ask} />
+            <Route path="/ask/:page" component={Ask} />
+
+            <Route path="/jobs" exact component={Jobs} />
+            <Route path="/jobs/:page" component={Jobs} />
+
             <Route path="/item/:id" component={Item} />
             <Route component={Error} />
         </Switch>

@@ -12,6 +12,10 @@ const List = styled.div`
     flex-wrap: wrap;
     text-decoration: none;
 
+    @media (max-width: 768px) {
+        padding: 16px 16px;
+    }
+
     :hover {
         text-decoration: none;
     }
@@ -61,10 +65,10 @@ const ListUrl = styled.span`
     color: #828b98;
     margin-left: 4px;
     width: 50px;
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
-    overflow-wrap: anywhere;
+    word-break: break-word;
 `
 
 const ListInfo = styled.div`

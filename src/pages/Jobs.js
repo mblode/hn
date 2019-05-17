@@ -1,38 +1,58 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { fetchPosts } from '../actions/postsAction';
-import styled from 'styled-components';
-import Loading from '../components/Loading';
-import ListItem from '../components/ListItem';
-import Alert from '../components/Alert';
+import { fetchPosts } from '../actions/postsAction'
+import styled from 'styled-components'
+import Loading from '../components/Loading'
+import ListItem from '../components/ListItem'
+import Alert from '../components/Alert'
+import Pagination from '../components/Pagination'
 
 const ListWrap = styled.div`
     background-color: #fff;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
     border-radius: 4px;
 `
 
 class Jobs extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            page: 1
+        };
+    }
+
     componentDidMount() {
-        let page = this.props.match.params.page;
+        if (this.props.match.params.page !== undefined) {
+            this.setState({
+                page: this.props.match.params.page
+            });
 
-        if (page === undefined) {
-            page = 1;
+            this.props.dispatch(fetchPosts('jobs', this.props.match.params.page));
+        } else {
+            this.setState({
+                page: 1
+            });
+
+            this.props.dispatch(fetchPosts('jobs', 1));
         }
-
-        this.props.dispatch(fetchPosts('jobs', page));
     }
 
     componentDidUpdate(prevProps) {
-        let page = this.props.match.params.page;
-
-        if (page === undefined) {
-            page = 1;
-        }
-
         if (this.props.location !== prevProps.location) {
-            this.props.dispatch(fetchPosts('jobs', page));
+            if (this.props.match.params.page !== undefined) {
+                this.setState({
+                    page: this.props.match.params.page
+                });
+
+                this.props.dispatch(fetchPosts('jobs', this.props.match.params.page));
+            } else {
+                this.setState({
+                    page: 1
+                });
+
+                this.props.dispatch(fetchPosts('jobs', 1));
+            }
         }
     }
 
@@ -52,6 +72,8 @@ class Jobs extends Component {
                 {jobs.map((item, i) => (
                     <ListItem key={i} item={item} />
                 ))}
+
+                <Pagination type='jobs' page={this.state.page} />
             </ListWrap>
         )
     }

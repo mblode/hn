@@ -70,6 +70,7 @@ const User = styled.a`
 
 const Content = styled.div`
     margin-right: 4px;
+    font-size: 14px;
 
     p {
         margin-bottom: 10px;
