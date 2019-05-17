@@ -16,13 +16,16 @@ const PageWrap = styled.div`
 
     @media (max-width: 768px) {
         padding: 24px 16px;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
     }
 `
 
 const PageTitle = styled.div`
     display: block;
-    padding-bottom: 16px;
-    margin-bottom: 32px;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
     border-bottom: 1px solid #e8e8e8;
 `
 
@@ -98,6 +101,8 @@ const Content = styled.div`
     a {
         color: #212529;
         text-decoration: underline;
+        word-wrap: break-word;
+        word-break: break-all;
     }
 `
 

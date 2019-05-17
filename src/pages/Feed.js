@@ -13,6 +13,12 @@ const ListWrap = styled.div`
     background-color: #fff;
     border-radius: 4px;
     border: 1px solid rgb(235, 236, 237);
+
+    @media (max-width: 768px) {
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+    }
 `
 
 const PageNumber = styled.div`

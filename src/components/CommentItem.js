@@ -80,6 +80,8 @@ const Content = styled.div`
     a {
         color: #212529;
         text-decoration: underline;
+        word-wrap: break-word;
+        word-break: break-all;
     }
 `
 

@@ -13,7 +13,6 @@ const ScrollButton = styled.button`
     border-radius: 4px;
     border: none;
     z-index: 1000;
-
 `
 
 const Arrow = styled.span`

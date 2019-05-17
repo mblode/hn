@@ -10,6 +10,9 @@ export const ErrorWrap = styled.h3`
 
     @media (max-width: 768px) {
         padding: 24px 16px;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
     }
 `
 

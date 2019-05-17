@@ -49,6 +49,9 @@ export const LoadingWrap = styled.div`
 
     @media (max-width: 768px) {
         padding: 24px 16px;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
     }
 `
 

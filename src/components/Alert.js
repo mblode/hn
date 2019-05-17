@@ -15,6 +15,7 @@ const StyledAlert = styled.div`
 
     @media (max-width: 768px) {
         padding: 24px 16px;
+        margin: 16px;
     }
 `
 const IconWrap = styled.div`
