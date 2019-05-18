@@ -2548,6 +2548,11 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+classnames@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
+
 clean-css@4.2.x:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.2.1.tgz#2d411ef76b8569b6d0c84068dabe85b0aa5e5c17"
@@ -7612,6 +7617,16 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
+pikcha-frame@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/pikcha-frame/-/pikcha-frame-1.0.8.tgz#3ddc3a3ce64dffd759071652a1da19ba41ecdc27"
+  integrity sha512-rUa/FfdqC8fETJ+LeKDYsPWXG6+Q4rppCTavgo4mh2AX1BguvzEM7yogMDYZkChYbvicB4rkJWwN6KVX2UeDag==
+  dependencies:
+    classnames "^2.2.6"
+    prop-types "^15.7.2"
+    react-feather "^1.1.6"
+    styled-system "^4.2.2"
+
 pinkie-promise@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/pinkie-promise/-/pinkie-promise-2.0.1.tgz#2135d6dfa7a358c069ac9b178776288228450ffa"
@@ -9911,6 +9926,14 @@ styled-components@^4.2.0:
     stylis "^3.5.0"
     stylis-rule-sheet "^0.0.10"
     supports-color "^5.5.0"
+
+styled-system@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/styled-system/-/styled-system-4.2.2.tgz#f456d53039706418f4898dc6cc2caf338a9ac46f"
+  integrity sha512-qaIIFbjHZxjIOQQ3AWIswriHP91L42UmNHt5GFut+IKkLIqMEWmd+OYo7N3myt5kFrJKGGKJBVDcjCpwglsY0A==
+  dependencies:
+    "@babel/runtime" "^7.4.2"
+    prop-types "^15.7.2"
 
 stylehacks@^4.0.0:
   version "4.0.3"
