@@ -6,8 +6,8 @@ import PropTypes from "prop-types";
 import styled from 'styled-components'
 import Loading from '../components/Loading'
 import ListItem from '../components/ListItem'
-import Alert from '../components/Alert'
 import Pagination from '../components/Pagination'
+import { Alert, Heading } from 'pikcha-frame'
 
 const ListWrap = styled.div`
     background-color: #fff;
@@ -25,8 +25,6 @@ const PageNumber = styled.div`
     padding: 20px 24px;
     text-transform: uppercase;
     text-align: center;
-    font-weight: 600;
-    font-size: 14px;
     overflow: hidden;
     position: relative;
     border-bottom: 1px solid #e8e8e8;
@@ -94,7 +92,7 @@ class Feed extends Component {
         const { error, isFetching, feed } = this.props.posts;
 
         if (error) {
-            return (<Alert type="danger">Failed to load posts</Alert>);
+            return (<Alert kind="danger">Failed to load posts</Alert>);
         }
 
         if (isFetching) {
@@ -104,7 +102,9 @@ class Feed extends Component {
         return (
             <ListWrap>
                 { this.state.page > 1 &&
-                    <PageNumber>Page {this.state.page}</PageNumber>
+                    <PageNumber>
+                        <Heading as="h3" fontSize={2}>Page {this.state.page}</Heading>
+                    </PageNumber>
                 }
 
                 {feed[this.state.type].map((item, i) => (

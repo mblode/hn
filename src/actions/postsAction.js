@@ -1,4 +1,5 @@
-import { createActions } from "redux-actions";
+import { createActions } from "redux-actions"
+import axios from 'axios'
 
 export const {
     fetchCommentsSuccess,
@@ -19,31 +20,27 @@ export const {
 );
 
 export const fetchComments = (id) => {
-    return dispatch => {
+    return async dispatch => {
         dispatch(fetchCommentsStarted());
 
-        fetch(`https://api.hackerwebapp.com/item/${id}`)
-            .then(
-                response => response.json(),
-                error => dispatch(fetchCommentsFailure(error))
-            )
-            .then(data => {
-                dispatch(fetchCommentsSuccess(data))
-            })
+        try {
+            const response = await axios.get(`https://api.hackerwebapp.com/item/${id}`);
+            dispatch(fetchCommentsSuccess(response.data))
+        } catch(error) {
+            dispatch(fetchCommentsFailure(error))
+        }
     };
 };
 
 export const fetchFeed = (type, page) => {
-    return dispatch => {
+    return async dispatch => {
         dispatch(fetchFeedStarted());
 
-        fetch(`https://api.hackerwebapp.com/${type}?page=${page}`)
-            .then(
-                response => response.json(),
-                error => dispatch(fetchFeedFailure(error))
-            )
-            .then(data => {
-                dispatch(fetchFeedSuccess(data, type))
-            })
+        try {
+            const response = await axios.get(`https://api.hackerwebapp.com/${type}?page=${page}`);
+            dispatch(fetchFeedSuccess(response.data, type))
+        } catch(error) {
+            dispatch((error))
+        }
     };
 };

@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import parseDomain from 'parse-domain';
 import Loading from '../components/Loading';
 import CommentItem from '../components/CommentItem';
-import Alert from '../components/Alert';
+import { Alert, Heading } from 'pikcha-frame'
 
 const PageWrap = styled.div`
     background-color: #fff;
@@ -54,14 +54,6 @@ const ListUrl = styled.span`
     overflow: hidden;
     text-overflow: ellipsis;
     overflow-wrap: anywhere;
-`
-
-const CommentTitle = styled.div`
-    display: inline-block;
-    margin: 0;
-    font-weight: 500;
-    font-size: 16px;
-    margin-bottom: 0.5rem;
 `
 
 const CommentList = styled.ul`
@@ -126,7 +118,7 @@ class Item extends Component {
         const { error, isFetching, data } = this.props.posts;
 
         if (error) {
-            return (<Alert type="danger">Error: {error}</Alert>);
+            return (<Alert kind="danger">Error: {error}</Alert>);
         }
 
         if (isFetching) {
@@ -177,7 +169,7 @@ class Item extends Component {
                     />
                 </PageTitle>
 
-                <CommentTitle>{data.comments_count} comments</CommentTitle>
+                <Heading as="h5" fontSize={2} mb={3}>{data.comments_count} comments</Heading>
 
                 <CommentList>
                     { commentLoop }
