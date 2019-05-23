@@ -3,7 +3,6 @@
     "version": "0.1.0",
     "private": true,
     "repository": "MIT",
-    "homepage": "https://mblode.github.io/hn",
     "dependencies": {
         "axios": "^0.18.0",
         "connected-react-router": "^6.4.0",
