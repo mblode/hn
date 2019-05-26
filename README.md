@@ -2,4 +2,4 @@
 
 > Hacker News web app built using React and Redux
 
-## [Check it out at hn.matthewblode.com](https://hn.matthewblode.com/)
+## [Check it out: hn.matthewblode.com](https://hn.matthewblode.com/)
