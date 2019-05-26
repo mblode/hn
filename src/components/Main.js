@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Item from '../pages/Item';
-import Feed from '../pages/Feed';
-import Error from '../pages/Error';
+import Item from './Item';
+import Feed from './Feed';
+import Error from './Error';
 
 function Main() {
     return (

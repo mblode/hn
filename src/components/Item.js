@@ -7,6 +7,7 @@ import parseDomain from 'parse-domain';
 import Loading from '../components/Loading';
 import CommentItem from '../components/CommentItem';
 import { Alert, Heading } from 'pikcha-frame'
+import { Dot, User, Time, ListUrl } from '../components/Base'
 
 const PageWrap = styled.div`
     background-color: #fff;
@@ -42,15 +43,8 @@ const ListTitle = styled.a`
     }
 `
 
-const ListUrl = styled.span`
-    font-size: 16px;
-    color: #67717a;
-    margin-left: 4px;
-    width: 50px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    overflow-wrap: anywhere;
+const ListTitleInner = styled.span`
+    margin-right: 4px;
 `
 
 const CommentList = styled.ul`
@@ -61,32 +55,8 @@ const CommentList = styled.ul`
 const ListInfo = styled.div`
     display: block;
     width: 100%;
-    color: #67717a;
-    font-size: 14px;
-    padding-bottom: 8px;
+    padding-bottom: 6px;
 `
-
-const Dot = styled.span`
-    color: #67717a;
-    padding: 0 6px;
-    opacity: 0.7;
-`
-
-const Time = styled.span`
-    margin-right: 4px;
-`
-
-const User = styled.a`
-    color: #67717a;
-    text-decoration: none;
-    padding-top: 4px;
-    padding-bottom: 4px;
-
-    :hover {
-        color: #545e6e;
-        text-decoration: underline;
-    }
-`;
 
 const Content = styled.div`
     margin-right: 4px;
@@ -133,7 +103,7 @@ class Item extends Component {
 
         let title = (
             <ListTitle href={data.url} target="_blank" rel="noopener noreferrer">
-                {data.title}
+                <ListTitleInner>{data.title}</ListTitleInner>
                 <ListUrl>{this.parse(data.url)}</ListUrl>
             </ListTitle>
         )

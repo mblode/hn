@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import parseDomain from 'parse-domain';
+import { Dot, User, Time, ListUrl } from './Base'
 
 const List = styled.div`
     overflow: hidden;
@@ -27,9 +28,15 @@ const ListTitleWrap = styled.span`
     font-weight: 500;
     display: block;
     width: 100%;
-    text-decoration: none;
-    padding-top: 8px;
+    padding-top: 6px;
     padding-bottom: 4px;
+    color: #212529;
+    text-decoration: none;
+
+    :hover {
+        text-decoration: none;
+        color: #212529;
+    }
 `
 
 const ListTitle = styled.a`
@@ -46,6 +53,10 @@ const ListTitle = styled.a`
     }
 `
 
+const ListTitleInner = styled.span`
+    margin-right: 4px;
+`
+
 const ListTitleAlt = styled(Link)`
     color: #212529;
 
@@ -59,49 +70,10 @@ const ListTitleAlt = styled(Link)`
     }
 `
 
-const ListUrl = styled.span`
-    font-size: 14px;
-    color: #67717a;
-    margin-left: 4px;
-    width: 50px;
-    white-space: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-word;
-
-    &:hover {
-        text-decoration: underline;
-    }
-`
-
 const ListInfo = styled.div`
     display: block;
-    color: #67717a;
     width: 100%;
-    font-size: 14px;
 `
-
-const Dot = styled.span`
-    color: #67717a;
-    padding: 0 6px;
-    opacity: 0.7;
-`
-
-const Time = styled.span`
-    margin-right: 4px;
-`
-
-const User = styled.a`
-    color: #67717a;
-    text-decoration: none;
-    padding-top: 4px;
-    padding-bottom: 4px;
-
-    :hover {
-        color: #545e6e;
-        text-decoration: underline;
-    }
-`;
 
 const StyledLink = styled(Link)`
     color: #67717a;
@@ -142,7 +114,7 @@ export default class ListItem extends Component {
 
         let linkTitle = (
             <ListTitle href={url} target="_blank" rel="noopener noreferrer">
-                {title}
+                <ListTitleInner>{title}</ListTitleInner>
                 <ListUrl>{this.parse(url)}</ListUrl>
             </ListTitle>
         );

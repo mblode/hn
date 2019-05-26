@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Dot, User, Time } from './Base'
 
 const CommentList = styled.ul`
     padding: 0;
@@ -51,30 +52,6 @@ const Toggle = styled.div`
         background-color: #f0f1f4;
     }
 `
-
-const Time = styled.span`
-    margin-left: 4px;
-    font-size: 14px;
-    color: #3e4551;
-    color: #67717a;
-`
-
-const Dot = styled.span`
-    color: #67717a;
-    padding: 0 6px;
-    opacity: 0.7;
-`
-
-const User = styled.a`
-    font-size: 14px;
-    color: #67717a;
-    text-decoration: none;
-
-    :hover {
-        color: #545e6e;
-        text-decoration: underline;
-    }
-`;
 
 const Content = styled.div`
     margin-right: 4px;
