@@ -24,6 +24,7 @@ const List = styled.div`
 const ListTitleWrap = styled.span`
     font-size: 16px;
     line-height: 1.3;
+    font-weight: 500;
     display: block;
     width: 100%;
     text-decoration: none;
