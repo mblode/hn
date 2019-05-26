@@ -24,15 +24,13 @@ const PageWrap = styled.div`
 
 const PageTitle = styled.div`
     display: block;
-    padding-bottom: 8px;
     margin-bottom: 16px;
     border-bottom: 1px solid #e8e8e8;
 `
 
 const ListTitle = styled.a`
     font-size: 22px;
-    font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.3;
     display: block;
     width: 100%;
     color: #212529;
@@ -46,8 +44,7 @@ const ListTitle = styled.a`
 
 const ListUrl = styled.span`
     font-size: 16px;
-    font-weight: 400;
-    color: #828b98;
+    color: #67717a;
     margin-left: 4px;
     width: 50px;
     white-space: nowrap;
@@ -64,8 +61,15 @@ const CommentList = styled.ul`
 const ListInfo = styled.div`
     display: block;
     width: 100%;
+    color: #67717a;
     font-size: 14px;
-    margin-top: 4px;
+    padding-bottom: 8px;
+`
+
+const Dot = styled.span`
+    color: #67717a;
+    padding: 0 6px;
+    opacity: 0.7;
 `
 
 const Time = styled.span`
@@ -73,8 +77,10 @@ const Time = styled.span`
 `
 
 const User = styled.a`
-    color: #3e4551;
-    text-decoration: underline;
+    color: #67717a;
+    text-decoration: none;
+    padding-top: 4px;
+    padding-bottom: 4px;
 
     :hover {
         color: #545e6e;
@@ -149,27 +155,31 @@ class Item extends Component {
         return (
             <PageWrap>
                 <PageTitle>
-                    { title }
-
                     <ListInfo>
-                        <Time>{data.time_ago} from</Time>
-
                         {data.user && (
-                            <User
-                                href={`https://news.ycombinator.com/user?id=${data.user}`}
-                                target="_blank" rel="noopener noreferrer"
-                            >
-                                {data.user}
-                            </User>
+                            <span>
+                                <User
+                                    href={`https://news.ycombinator.com/user?id=${data.user}`}
+                                    target="_blank" rel="noopener noreferrer"
+                                >
+                                    {data.user}
+                                </User>
+
+                                <Dot>•</Dot>
+                            </span>
                         )}
+
+                        <Time>{data.time_ago}</Time>
                     </ListInfo>
+
+                    { title }
 
                     <Content
                         dangerouslySetInnerHTML={{ __html: data.content }}
                     />
                 </PageTitle>
 
-                <Heading as="h5" fontSize={2} mb={3}>{data.comments_count} comments</Heading>
+                <Heading as="h5" fontSize={2} mb={1} fontWeight={400}>{data.comments_count} comment{data.comments_count !== 1 ? "s" : ""}</Heading>
 
                 <CommentList>
                     { commentLoop }

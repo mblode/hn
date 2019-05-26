@@ -25,6 +25,7 @@ const NavInner = styled.div`
         padding-right: 4px;
     }
 `
+
 const StyledBrand = styled(Link)`
     color: white;
     font-weight: bold;
