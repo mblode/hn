@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { fetchComments } from '../actions/postsAction';
@@ -8,6 +8,7 @@ import Loading from '../components/Loading';
 import CommentItem from '../components/CommentItem';
 import { Alert, Heading } from 'pikcha-frame'
 import { Dot, User, Time, ListUrl } from '../components/Base'
+import { Helmet } from 'react-helmet'
 
 const PageWrap = styled.div`
     background-color: #fff;
@@ -123,38 +124,44 @@ class Item extends Component {
         })
 
         return (
-            <PageWrap>
-                <PageTitle>
-                    <ListInfo>
-                        {data.user && (
-                            <span>
-                                <User
-                                    href={`https://news.ycombinator.com/user?id=${data.user}`}
-                                    target="_blank" rel="noopener noreferrer"
-                                >
-                                    {data.user}
-                                </User>
+            <Fragment>
+                <Helmet>
+                    <title>Hacker News &middot; {`${data.title}`}</title>
+                </Helmet>
 
-                                <Dot>•</Dot>
-                            </span>
-                        )}
+                <PageWrap>
+                    <PageTitle>
+                        <ListInfo>
+                            {data.user && (
+                                <span>
+                                    <User
+                                        href={`https://news.ycombinator.com/user?id=${data.user}`}
+                                        target="_blank" rel="noopener noreferrer"
+                                    >
+                                        {data.user}
+                                    </User>
 
-                        <Time>{data.time_ago}</Time>
-                    </ListInfo>
+                                    <Dot>•</Dot>
+                                </span>
+                            )}
 
-                    { title }
+                            <Time>{data.time_ago}</Time>
+                        </ListInfo>
 
-                    <Content
-                        dangerouslySetInnerHTML={{ __html: data.content }}
-                    />
-                </PageTitle>
+                        { title }
 
-                <Heading as="h5" fontSize={2} mb={1} fontWeight={400}>{data.comments_count} comment{data.comments_count !== 1 ? "s" : ""}</Heading>
+                        <Content
+                            dangerouslySetInnerHTML={{ __html: data.content }}
+                        />
+                    </PageTitle>
 
-                <CommentList>
-                    { commentLoop }
-                </CommentList>
-            </PageWrap>
+                    <Heading as="h5" fontSize={2} mb={1} fontWeight={400}>{data.comments_count} comment{data.comments_count !== 1 ? "s" : ""}</Heading>
+
+                    <CommentList>
+                        { commentLoop }
+                    </CommentList>
+                </PageWrap>
+            </Fragment>
         )
     }
 }

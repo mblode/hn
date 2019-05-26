@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { fetchFeed } from '../actions/postsAction'
@@ -8,6 +8,7 @@ import Loading from '../components/Loading'
 import ListItem from '../components/ListItem'
 import Pagination from '../components/Pagination'
 import { Alert, Heading } from 'pikcha-frame'
+import { Helmet } from 'react-helmet'
 
 const ListWrap = styled.div`
     background-color: #fff;
@@ -29,6 +30,11 @@ const PageNumber = styled.div`
     position: relative;
     border-bottom: 1px solid #e8e8e8;
 `
+
+const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+}
 
 class Feed extends Component {
     static propTypes = {
@@ -100,19 +106,25 @@ class Feed extends Component {
         }
 
         return (
-            <ListWrap>
-                { this.state.page > 1 &&
-                    <PageNumber>
-                        <Heading as="h3" fontSize={2}>Page {this.state.page}</Heading>
-                    </PageNumber>
-                }
+            <Fragment>
+                <Helmet>
+                    <title>Hacker News &middot; {capitalize(this.state.type)}</title>
+                </Helmet>
 
-                {feed[this.state.type].map((item, i) => (
-                    <ListItem key={i} item={item} />
-                ))}
+                <ListWrap>
+                    {this.state.page > 1 &&
+                        <PageNumber>
+                            <Heading as="h3" fontSize={2}>Page {this.state.page}</Heading>
+                        </PageNumber>
+                    }
 
-                <Pagination type={this.state.type} page={this.state.page} />
-            </ListWrap>
+                    {feed[this.state.type].map((item, i) => (
+                        <ListItem key={i} item={item} />
+                    ))}
+
+                    <Pagination type={this.state.type} page={this.state.page} />
+                </ListWrap>
+            </Fragment>
         )
     }
 }
