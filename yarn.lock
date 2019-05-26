@@ -7625,10 +7625,10 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pikcha-frame@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/pikcha-frame/-/pikcha-frame-1.0.9.tgz#f782b98a2c8522cb6e718f9a8af3e5521e6ffe8d"
-  integrity sha512-4doJzzomQbGf4VHUEpCt8BPdgUpZQHgifLKx0oDzvl9ILumP/1gO5KQ9ypoBO6r27xZxDAWifLk7r1cxge/NFA==
+pikcha-frame@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/pikcha-frame/-/pikcha-frame-1.0.11.tgz#ed0fdb7af35b184f9931e24a5b5d688ff9149144"
+  integrity sha512-Mezr0FbMN7TBbt+g7yfaDU/kO9dkM6e28wlgeL+40hTyevhkHlztOV/GYmzlzhla9xzGWxpKMOZgFGywjdC5tw==
   dependencies:
     classnames "^2.2.6"
     prop-types "^15.7.2"
@@ -7694,10 +7694,10 @@ pnp-webpack-plugin@1.2.1:
   dependencies:
     ts-pnp "^1.0.0"
 
-polished@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/polished/-/polished-3.3.0.tgz#59158368b29466e19f16f5ed38007397fb66f51d"
-  integrity sha512-R04iFBAViTVQ5vMZqhwCZPcG3Av4WyUP2kxTfsr+yNoO60CXai9u7YMlExZZh56/DRoCamXKbusaTbTsBX0vtw==
+polished@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-3.4.0.tgz#29b2a028ee0408df5dded55a2a25e913bc6749a9"
+  integrity sha512-GiuavmunMIKMOEoSPkXoqBYM2ZcI4YIwCaiwmTOQ55Zq4HG2kD0YZt3WlLZ2l3U9XhJ1LM/fgjCFHHffiZP0YQ==
   dependencies:
     "@babel/runtime" "^7.4.4"
 
