@@ -24,7 +24,7 @@ const Comment = styled.div`
     flex-wrap: wrap;
     text-decoration: none;
     border-bottom: 1px solid #e8e8e8;
-    padding-top: 16px;
+    padding-top: 12px;
 
     :hover {
         text-decoration: none;
