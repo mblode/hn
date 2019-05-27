@@ -1,0 +1,11 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Matthew Blode -- mblode
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, JS
+    React, Redux

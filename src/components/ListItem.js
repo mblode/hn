@@ -9,14 +9,11 @@ const List = styled.div`
     overflow: hidden;
     position: relative;
     border-bottom: 1px solid #e8e8e8;
-    padding: 16px 24px 8px;
+    padding-left: 16px;
+    padding-right: 16px;
     display: flex;
     flex-wrap: wrap;
     text-decoration: none;
-
-    @media (max-width: 768px) {
-        padding: 16px 16px 8px;
-    }
 
     :hover {
         text-decoration: none;
@@ -29,8 +26,6 @@ const ListTitleWrap = styled.span`
     font-weight: 500;
     display: block;
     width: 100%;
-    padding-top: 6px;
-    padding-bottom: 4px;
     color: #212529;
     text-decoration: none;
 
@@ -43,6 +38,24 @@ const ListTitleWrap = styled.span`
 const ListTitle = styled.a`
     color: #212529;
     display: block;
+    padding-top: 6px;
+    padding-bottom: 4px;
+
+    :hover {
+        text-decoration: none;
+        color: #212529 !important;
+    }
+
+    :visited {
+        color: #67717a;
+    }
+`
+
+const ListTitleAlt = styled(Link)`
+    color: #212529;
+    display: block;
+    padding-top: 6px;
+    padding-bottom: 4px;
 
     :hover {
         text-decoration: none;
@@ -58,49 +71,41 @@ const ListTitleInner = styled.span`
     margin-right: 4px;
 `
 
-const ListTitleAlt = styled(Link)`
-    color: #212529;
-
-    :hover {
-        text-decoration: none;
-        color: #212529 !important;
-    }
-
-    :visited {
-        color: #67717a;
-    }
-`
-
 const ListInfo = styled.div`
     display: block;
     width: 100%;
 `
 
-const StyledLink = styled(Link)`
+const CommentLink = styled(Link)`
     color: #67717a;
+    display: block;
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 12px;
     text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    flex-direction: row;
-    padding-right: 16px;
 
     :hover {
         color: #545e6e;
         text-decoration: underline;
     }
+`
+
+const CommentItem = styled.span`
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+    padding-right: 16px;
 `;
 
 const ThumbsUpIcon = styled(ThumbsUp)`
     width: 20px;
     height: 20px;
-    stroke: #67717a;
     padding-right: 4px;
 `;
 
 const MessageCircleIcon = styled(MessageCircle)`
     width: 20px;
     height: 20px;
-    stroke: #67717a;
     padding-right: 4px;
 `;
 
@@ -129,6 +134,7 @@ export default class ListItem extends Component {
             linkTitle = (
                 <ListTitleAlt href={`/item/${id}/`} to={`/item/${id}`}>
                     {title}
+                    <ListTitleInner>{title}</ListTitleInner>
                     <ListUrl>{this.parse(url)}</ListUrl>
                 </ListTitleAlt>
             );
@@ -142,6 +148,7 @@ export default class ListItem extends Component {
                             <User
                                 href={`/user/${user}/`}
                                 to={`/user/${user}`}
+                                pt={16}
                             >
                                 {user}
                             </User>
@@ -157,28 +164,23 @@ export default class ListItem extends Component {
                     {linkTitle}
                 </ListTitleWrap>
 
-                <ListInfo>
-                    <StyledLink
-                        href={`/item/${id}/`}
-                        to={`/item/${id}`}
-                    >
+                <CommentLink
+                    href={`/item/${id}/`}
+                    to={`/item/${id}`}
+                >
+                    <CommentItem>
                         <MessageCircleIcon />
-
                         <span>{comments_count}</span>
-                    </StyledLink>
+                    </CommentItem>
 
                     {points &&
-                        <StyledLink
-                            href={`/item/${id}/`}
-                            to={`/item/${id}`}
-                        >
+                        <CommentItem>
                             <ThumbsUpIcon />
-
                             <span>{points}</span>
-                        </StyledLink>
+                        </CommentItem>
                     }
 
-                </ListInfo>
+                </CommentLink>
             </List>
         )
     }

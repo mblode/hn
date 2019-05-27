@@ -28,6 +28,11 @@ const NavInner = styled.div`
     }
 `
 
+const BrandH1 = styled.h1`
+    font-size: 1rem;
+    margin: 0;
+`
+
 const StyledBrand = styled(Link)`
     color: white;
     font-weight: bold;
@@ -100,9 +105,9 @@ function Header() {
         <Nav>
             <Container>
                 <NavInner>
-                    <StyledBrand to="/">
-                        HN
-                    </StyledBrand>
+                    <BrandH1 itemscope="" itemtype="http://schema.org/Organization">
+                        <StyledBrand to="/">HN</StyledBrand>
+                    </BrandH1>
 
                     <StyledNavLink
                         activeClassName="active"
