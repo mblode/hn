@@ -7,7 +7,7 @@ import parseDomain from 'parse-domain';
 import Loading from '../components/Loading';
 import CommentItem from '../components/CommentItem';
 import { Alert, Heading } from 'pikcha-frame'
-import { Dot, User, Time, ListUrl } from '../components/Base'
+import { Dot, User, Time, ListUrl, Content } from '../components/Base'
 import { Helmet } from 'react-helmet'
 
 const PageWrap = styled.div`
@@ -37,6 +37,7 @@ const ListTitle = styled.a`
     width: 100%;
     color: #212529;
     text-decoration: none;
+    padding-bottom: 4px;
 
     :hover {
         text-decoration: none;
@@ -57,22 +58,6 @@ const ListInfo = styled.div`
     display: block;
     width: 100%;
     padding-bottom: 6px;
-`
-
-const Content = styled.div`
-    margin-right: 4px;
-    margin-top: 1rem;
-
-    p {
-        margin-bottom: 10px;
-    }
-
-    a {
-        color: #212529;
-        text-decoration: underline;
-        word-wrap: break-word;
-        word-break: break-all;
-    }
 `
 
 class Item extends Component {
@@ -119,6 +104,7 @@ class Item extends Component {
                     level={ele.level}
                     id={ele.id}
                     comments={ele.comments}
+                    postUser={data.user}
                 />
             );
         })
@@ -135,8 +121,8 @@ class Item extends Component {
                             {data.user && (
                                 <span>
                                     <User
-                                        href={`https://news.ycombinator.com/user?id=${data.user}`}
-                                        target="_blank" rel="noopener noreferrer"
+                                        href={`/user/${data.user}/`}
+                                        to={`/user/${data.user}`}
                                     >
                                         {data.user}
                                     </User>

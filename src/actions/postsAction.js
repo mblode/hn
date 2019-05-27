@@ -8,15 +8,21 @@ export const {
     fetchFeedSuccess,
     fetchFeedFailure,
     fetchFeedStarted,
+    fetchUserSuccess,
+    fetchUserFailure,
+    fetchUserStarted,
 } = createActions(
     {
         FETCH_COMMENTS_SUCCESS: data => ({ data }),
         FETCH_COMMENTS_FAILURE: error => ({ error }),
         FETCH_FEED_SUCCESS: (data, type) => ({ data, type }),
-        FETCH_POSTS_FAILURE: error => ({ error })
+        FETCH_FEED_FAILURE: error => ({ error }),
+        FETCH_USER_SUCCESS: user => ({ user }),
+        FETCH_USER_FAILURE: error => ({ error })
     },
     "FETCH_COMMENTS_STARTED",
-    "FETCH_FEED_STARTED"
+    "FETCH_FEED_STARTED",
+    "FETCH_USER_STARTED",
 );
 
 export const fetchComments = (id) => {
@@ -26,7 +32,7 @@ export const fetchComments = (id) => {
         try {
             const response = await axios.get(`https://api.hackerwebapp.com/item/${id}`);
             dispatch(fetchCommentsSuccess(response.data))
-        } catch(error) {
+        } catch (error) {
             dispatch(fetchCommentsFailure(error))
         }
     };
@@ -39,8 +45,21 @@ export const fetchFeed = (type, page) => {
         try {
             const response = await axios.get(`https://api.hackerwebapp.com/${type}?page=${page}`);
             dispatch(fetchFeedSuccess(response.data, type))
-        } catch(error) {
+        } catch (error) {
             dispatch((error))
+        }
+    };
+};
+
+export const fetchUser = (id) => {
+    return async dispatch => {
+        dispatch(fetchUserStarted());
+
+        try {
+            const response = await axios.get(`https://api.hackerwebapp.com/user/${id}`);
+            dispatch(fetchUserSuccess(response.data))
+        } catch (error) {
+            dispatch(fetchUserFailure(error))
         }
     };
 };

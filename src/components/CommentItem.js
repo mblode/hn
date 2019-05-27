@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Dot, User, Time } from './Base'
+import { Dot, User, Time, Content } from './Base'
 
 const CommentList = styled.ul`
     padding: 0;
@@ -53,30 +53,6 @@ const Toggle = styled.div`
     }
 `
 
-const Content = styled.div`
-    margin-right: 4px;
-    margin-bottom: 8px;
-    line-height: 1.5;
-    width: 100%;
-
-    p {
-        margin-bottom: 8px;
-    }
-
-    a {
-        color: #212529;
-        text-decoration: underline;
-        word-wrap: break-word;
-        word-break: break-all;
-    }
-
-    pre {
-        overflow-x: auto;
-        word-wrap: break-word;
-        text-align: justify;
-    }
-`
-
 export default class CommentItem extends Component {
     constructor() {
         super()
@@ -93,7 +69,7 @@ export default class CommentItem extends Component {
     }
 
     render() {
-        const { user, timeAgo, content, level, comments } = this.props;
+        const { user, timeAgo, content, level, comments, postUser } = this.props;
         const { hidden } = this.state;
 
         let commentLoop = null;
@@ -110,6 +86,7 @@ export default class CommentItem extends Component {
                             level={ele.level}
                             id={ele.id}
                             comments={ele.comments}
+                            postUser={postUser}
                         />
                     );
                 })
@@ -121,8 +98,9 @@ export default class CommentItem extends Component {
                 <Comment level={level}>
                     <Toggle onClick={this.toggleHidden.bind(this)} className={hidden ? "toggled" : ""} onMouseDown={(e) => e.preventDefault()}>
                         <User
-                            href={`https://news.ycombinator.com/user?id=${user}`}
-                            target="_blank" rel="noopener noreferrer"
+                            href={`/user/${user}/`}
+                            to={`/user/${user}`}
+                            parent={user === postUser ? 1 : 0}
                         >
                             {user}
                         </User>

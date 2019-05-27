@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components'
+import { Search } from 'react-feather'
 
 const Nav = styled.nav`
     background: #f68a30;
@@ -14,6 +15,7 @@ const Container = styled.div`
     height: 100%;
     display: flex;
     overflow-x: auto;
+    justify-content: space-between;
 `
 
 const NavInner = styled.div`
@@ -74,6 +76,25 @@ const StyledNavLink = styled(NavLink)`
     }
 `;
 
+const SearchWrap = styled.a`
+    text-decoration: none;
+    line-height: 58px;
+    display: block;
+    transition: color 0.15s ease-in-out;
+
+    @media (max-width: 768px) {
+        padding-left: 4px;
+        padding-right: 16px;
+    }
+`
+
+const SearchIcon = styled(Search)`
+    width: 24px;
+    height: 24px;
+    text-align: right;
+    color: white;
+`
+
 function Header() {
     return (
         <Nav>
@@ -118,7 +139,11 @@ function Header() {
                     >
                         Jobs
                     </StyledNavLink>
+
                 </NavInner>
+                <SearchWrap href="https://hn.algolia.com" target="_blank" rel="noopener noreferrer">
+                    <SearchIcon />
+                </SearchWrap>
             </Container>
         </Nav>
     );

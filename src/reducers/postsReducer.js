@@ -32,6 +32,20 @@ export default handleActions(
         FETCH_COMMENTS_STARTED: (state) => ({
             ...state,
             isFetching: true
+        }),
+        FETCH_USER_SUCCESS: (state, action) => ({
+            ...state,
+            isFetching: false,
+            user: action.payload.user
+        }),
+        FETCH_USER_FAILURE: (state, action) => ({
+            ...state,
+            isFetching: false,
+            error: action.payload.error
+        }),
+        FETCH_USER_STARTED: (state) => ({
+            ...state,
+            isFetching: true
         })
     },
     {
@@ -46,6 +60,7 @@ export default handleActions(
         data: {
             comments: []
         },
+        user: {},
         error: null,
     }
 );
