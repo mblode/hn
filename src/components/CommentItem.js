@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Dot, User, Time, Content } from './Base'
+import { get } from 'pikcha-frame'
+import { Dot, UserName, Time, Content } from './Base'
 
 const CommentList = styled.ul`
     padding: 0;
@@ -40,16 +41,16 @@ const Toggle = styled.div`
     cursor: pointer;
 
     :hover {
-        background-color: #f8f8fa;
+        background-color: ${get('colors.gray.0')};
     }
 
     &.toggled {
-        background-color: #f0f1f4;
+        background-color: ${get('colors.gray.1')};
         opacity: 0.5;
     }
 
     &.toggled:hover {
-        background-color: #f0f1f4;
+        background-color: ${get('colors.gray.1')};
     }
 `
 
@@ -97,13 +98,13 @@ export default class CommentItem extends Component {
             <CommentWrap className={hidden ? "hidden" : ""}>
                 <Comment level={level}>
                     <Toggle onClick={this.toggleHidden.bind(this)} className={hidden ? "toggled" : ""} onMouseDown={(e) => e.preventDefault()}>
-                        <User
+                        <UserName
                             href={`/user/${user}/`}
                             to={`/user/${user}`}
                             parent={user === postUser ? 1 : 0}
                         >
                             {user}
-                        </User>
+                        </UserName>
                         <Dot>•</Dot>
                         <Time>{timeAgo}</Time>
                     </Toggle>

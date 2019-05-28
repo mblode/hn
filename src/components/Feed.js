@@ -4,16 +4,16 @@ import { withRouter } from 'react-router-dom'
 import { fetchFeed } from '../actions/postsAction'
 import PropTypes from "prop-types";
 import styled from 'styled-components'
-import Loading from '../components/Loading'
+import Loading from './Base/Loading'
 import ListItem from '../components/ListItem'
 import Pagination from '../components/Pagination'
-import { Alert, Heading } from 'pikcha-frame'
+import { Alert, Heading, get } from 'pikcha-frame'
 import { Helmet } from 'react-helmet'
 
 const ListWrap = styled.div`
-    background-color: #fff;
+    background-color: white;
     border-radius: 6px;
-    border: 1px solid rgb(235, 236, 237);
+    box-shadow: ${get('shadows.md')};
 
     @media (max-width: 768px) {
         border-left: none;

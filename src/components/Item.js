@@ -4,25 +4,11 @@ import { withRouter } from 'react-router-dom'
 import { fetchComments } from '../actions/postsAction';
 import styled from 'styled-components'
 import parseDomain from 'parse-domain';
-import Loading from '../components/Loading';
+import Loading from './Base/Loading';
 import CommentItem from '../components/CommentItem';
-import { Alert, Heading } from 'pikcha-frame'
-import { Dot, User, Time, ListUrl, Content } from '../components/Base'
+import { Alert, Heading, get } from 'pikcha-frame'
+import { Dot, UserName, Time, ListUrl, Content, Wrap } from '../components/Base'
 import { Helmet } from 'react-helmet'
-
-const PageWrap = styled.div`
-    background-color: #fff;
-    border-radius: 6px;
-    padding: 24px 24px;
-    border: 1px solid rgb(235, 236, 237);
-
-    @media (max-width: 768px) {
-        padding: 24px 16px;
-        border-left: none;
-        border-right: none;
-        border-radius: 0;
-    }
-`
 
 const PageTitle = styled.div`
     display: block;
@@ -35,13 +21,13 @@ const ListTitle = styled.a`
     line-height: 1.3;
     display: block;
     width: 100%;
-    color: #212529;
+    color: ${get('colors.gray.6')};
     text-decoration: none;
     padding-bottom: 4px;
 
     :hover {
         text-decoration: none;
-        color: #212529;
+        color: ${get('colors.gray.6')};
     }
 `
 
@@ -115,17 +101,17 @@ class Item extends Component {
                     <title>Hacker News &middot; {`${data.title}`}</title>
                 </Helmet>
 
-                <PageWrap>
+                <Wrap>
                     <PageTitle>
                         <ListInfo>
                             {data.user && (
                                 <span>
-                                    <User
+                                    <UserName
                                         href={`/user/${data.user}/`}
                                         to={`/user/${data.user}`}
                                     >
                                         {data.user}
-                                    </User>
+                                    </UserName>
 
                                     <Dot>•</Dot>
                                 </span>
@@ -146,7 +132,7 @@ class Item extends Component {
                     <CommentList>
                         { commentLoop }
                     </CommentList>
-                </PageWrap>
+                </Wrap>
             </Fragment>
         )
     }

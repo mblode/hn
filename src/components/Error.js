@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import Wrap from '../components/Wrap'
-import { Heading } from 'pikcha-frame'
 import { Helmet } from 'react-helmet'
+import { Heading } from 'pikcha-frame'
+import { Wrap } from './Base'
 
 export default class Error extends Component {
     render() {
@@ -10,7 +10,7 @@ export default class Error extends Component {
                 <Helmet>
                     <title>Hacker News &middot; Page Not Found</title>
                 </Helmet>
-                <Wrap>
+                <Wrap align="center">
                     <Heading as="h1" fontSize={4}>Page Not Found</Heading>
                 </Wrap>
             </Fragment>

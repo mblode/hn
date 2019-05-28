@@ -3,24 +3,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { fetchUser } from '../actions/postsAction';
 import styled from 'styled-components'
-import Loading from '../components/Loading';
-import { Alert } from 'pikcha-frame'
+import Loading from './Base/Loading';
+import { Alert, get } from 'pikcha-frame'
 import { Helmet } from 'react-helmet'
-import { Content } from './Base'
-
-const PageWrap = styled.div`
-    background-color: #fff;
-    border-radius: 6px;
-    padding: 24px 24px;
-    border: 1px solid rgb(235, 236, 237);
-
-    @media (max-width: 768px) {
-        padding: 24px 16px;
-        border-left: none;
-        border-right: none;
-        border-radius: 0;
-    }
-`
+import { Content, Wrap } from './Base'
 
 const PageTitle = styled.div`
     display: block;
@@ -34,13 +20,13 @@ const UserName = styled.div`
     line-height: 1.3;
     display: block;
     width: 100%;
-    color: #212529;
+    color: ${get('colors.gray.6')};
     text-decoration: none;
     margin-bottom: 8px;
 `
 
 const Details = styled.p`
-    color: #67717a;
+    color: ${get('colors.gray.5')};
     margin-bottom: 6px;
 `
 
@@ -67,7 +53,7 @@ class User extends Component {
                     <title>Hacker News &middot; {`${user.id}`}</title>
                 </Helmet>
 
-                <PageWrap>
+                <Wrap>
                     <PageTitle>
                         <UserName>{user.id}</UserName>
 
@@ -78,7 +64,7 @@ class User extends Component {
                     <Content
                         dangerouslySetInnerHTML={{ __html: user.about }}
                     />
-                </PageWrap>
+                </Wrap>
             </Fragment>
         )
     }

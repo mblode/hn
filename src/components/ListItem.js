@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import parseDomain from 'parse-domain';
-import { Dot, User, Time, ListUrl } from './Base'
+import { Dot, UserName, Time, ListUrl } from './Base'
+import { get } from 'pikcha-frame'
 import { MessageCircle, ThumbsUp } from 'react-feather'
 
 const List = styled.div`
@@ -26,44 +27,44 @@ const ListTitleWrap = styled.span`
     font-weight: 500;
     display: block;
     width: 100%;
-    color: #212529;
+    color: ${get('colors.gray.6')};
     text-decoration: none;
 
     :hover {
         text-decoration: none;
-        color: #212529;
+        color: ${get('colors.gray.6')};
     }
 `
 
 const ListTitle = styled.a`
-    color: #212529;
+    color: ${get('colors.gray.6')};
     display: block;
     padding-top: 6px;
     padding-bottom: 4px;
 
     :hover {
         text-decoration: none;
-        color: #212529 !important;
+        color: ${get('colors.gray.6')} !important;
     }
 
     :visited {
-        color: #67717a;
+        color: ${get('colors.gray.5')};
     }
 `
 
 const ListTitleAlt = styled(Link)`
-    color: #212529;
+    color: ${get('colors.gray.6')};
     display: block;
     padding-top: 6px;
     padding-bottom: 4px;
 
     :hover {
         text-decoration: none;
-        color: #212529 !important;
+        color: ${get('colors.gray.6')} !important;
     }
 
     :visited {
-        color: #67717a;
+        color: ${get('colors.gray.5')};
     }
 `
 
@@ -77,7 +78,7 @@ const ListInfo = styled.div`
 `
 
 const CommentLink = styled(Link)`
-    color: #67717a;
+    color: ${get('colors.gray.5')};
     display: block;
     width: 100%;
     padding-top: 4px;
@@ -85,7 +86,7 @@ const CommentLink = styled(Link)`
     text-decoration: none;
 
     :hover {
-        color: #545e6e;
+        color: ${get('colors.gray.6')};
         text-decoration: underline;
     }
 `
@@ -145,19 +146,19 @@ export default class ListItem extends Component {
                 <ListInfo>
                     {user && (
                         <span>
-                            <User
+                            <UserName
                                 href={`/user/${user}/`}
                                 to={`/user/${user}`}
                                 pt={16}
                             >
                                 {user}
-                            </User>
+                            </UserName>
 
                             <Dot>•</Dot>
                         </span>
                     )}
 
-                    <Time>{time_ago}</Time>
+                    <Time pt={16}>{time_ago}</Time>
                 </ListInfo>
 
                 <ListTitleWrap>

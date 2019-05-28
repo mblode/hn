@@ -1,8 +1,9 @@
 import styled from 'styled-components'
+import { get } from 'pikcha-frame'
 
 const ListUrl = styled.span`
     font-size: 14px;
-    color: #67717a;
+    color: ${get('colors.gray.5')};
     width: 50px;
     font-weight: 400;
     white-space: normal;
@@ -11,7 +12,7 @@ const ListUrl = styled.span`
     word-break: break-word;
 
     &:hover {
-        color: #545e6e;
+        color: ${get('colors.gray.6')};
         text-decoration: underline;
     }
 `

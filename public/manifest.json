@@ -1,6 +1,6 @@
 {
-    "name": "Hacker News",
     "short_name": "Hacker News",
+    "name": "Hacker News",
     "icons": [
         {
             "src": "/favicons/android-chrome-192x192.png?v=2",

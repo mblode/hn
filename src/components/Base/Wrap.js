@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+import { get } from 'pikcha-frame'
 
 const Wrap = styled.div`
-    text-align: center;
-    background-color: #fff;
+    background-color: white;
     border-radius: 6px;
+    box-shadow: ${get('shadows.md')};
     padding: 24px 24px;
-    border: 1px solid rgb(235, 236, 237);
+    text-align: ${props => props.align};
 
     @media (max-width: 768px) {
         padding: 24px 16px;
@@ -14,5 +15,9 @@ const Wrap = styled.div`
         border-radius: 0;
     }
 `
+
+Wrap.defaultProps = {
+    align: 'left'
+}
 
 export default Wrap
