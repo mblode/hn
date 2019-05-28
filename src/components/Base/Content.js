@@ -4,7 +4,6 @@ import { get } from 'pikcha-frame'
 const Content = styled.div`
     margin-right: 4px;
     margin-bottom: 8px;
-    line-height: 1.5;
     width: 100%;
 
     p {

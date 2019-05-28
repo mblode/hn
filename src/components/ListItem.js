@@ -80,7 +80,6 @@ const ListInfo = styled.div`
 const CommentLink = styled(Link)`
     color: ${get('colors.gray.5')};
     display: block;
-    width: 100%;
     padding-top: 4px;
     padding-bottom: 12px;
     text-decoration: none;

@@ -7630,10 +7630,10 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pikcha-frame@^1.0.13:
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/pikcha-frame/-/pikcha-frame-1.0.13.tgz#389b5d09239a61efc67569db93c753a1ac5ec493"
-  integrity sha512-YyNbJb8llMTKyXpjRflYIfsj92SwmfdtyH4nc5iMse/KG52YTJMoNCzKG9Uh1IU14KgqRgA1xwhhncVy3y0cpw==
+pikcha-frame@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/pikcha-frame/-/pikcha-frame-1.0.14.tgz#5d297737a9fcab6b769a0d2387bd447577417400"
+  integrity sha512-Us6CJ61siDvX5nDReurEOkb16m0XRIdBrSfKJdFKFJ68npQi7Nt+fVNtaj9t++FrxrlI2HfgrGeftJX0p47R+A==
   dependencies:
     classnames "^2.2.6"
     prop-types "^15.7.2"
