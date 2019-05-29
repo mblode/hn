@@ -45,6 +45,10 @@ const Toggle = styled.div`
         background-color: ${get('colors.gray.0')};
     }
 
+    :active {
+        background-color: ${get('colors.gray.1')};
+    }
+
     &.toggled {
         background-color: ${get('colors.gray.1')};
         opacity: 0.5;
