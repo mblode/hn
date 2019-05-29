@@ -16,8 +16,14 @@ const Copy = styled.span`
 const Creator = styled.span`
     color: ${get('colors.gray.5')};
     text-decoration: none;
+    transition: color 0.15s ease-in-out;
 
     :hover {
+        color: ${get('colors.gray.6')};
+        text-decoration: underline;
+    }
+
+    :active {
         color: ${get('colors.gray.7')};
         text-decoration: underline;
     }

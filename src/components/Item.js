@@ -24,10 +24,16 @@ const ListTitle = styled.a`
     color: ${get('colors.gray.6')};
     text-decoration: none;
     padding-bottom: 4px;
+    transition: color 0.15s ease-in-out;
 
     :hover {
         text-decoration: none;
-        color: ${get('colors.gray.6')};
+        color: ${get('colors.gray.7')};
+    }
+
+    :active {
+        text-decoration: none;
+        color: ${get('colors.gray.8')};
     }
 `
 

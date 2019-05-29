@@ -29,10 +29,16 @@ const ListTitleWrap = styled.span`
     width: 100%;
     color: ${get('colors.gray.6')};
     text-decoration: none;
+    transition: color 0.15s ease-in-out;
 
     :hover {
         text-decoration: none;
-        color: ${get('colors.gray.6')};
+        color: ${get('colors.gray.7')};
+    }
+
+    :active {
+        text-decoration: none;
+        color: ${get('colors.gray.8')};
     }
 `
 
@@ -41,10 +47,16 @@ const ListTitle = styled.a`
     display: block;
     padding-top: 6px;
     padding-bottom: 4px;
+    transition: color 0.15s ease-in-out;
 
     :hover {
         text-decoration: none;
-        color: ${get('colors.gray.6')} !important;
+        color: ${get('colors.gray.7')};
+    }
+
+    :active {
+        text-decoration: none;
+        color: ${get('colors.gray.8')};
     }
 
     :visited {
@@ -57,10 +69,16 @@ const ListTitleAlt = styled(Link)`
     display: block;
     padding-top: 6px;
     padding-bottom: 4px;
+    transition: color 0.15s ease-in-out;
 
     :hover {
         text-decoration: none;
-        color: ${get('colors.gray.6')} !important;
+        color: ${get('colors.gray.7')};
+    }
+
+    :active {
+        text-decoration: none;
+        color: ${get('colors.gray.8')};
     }
 
     :visited {
@@ -84,10 +102,16 @@ const CommentLink = styled(Link)`
     padding-bottom: 12px;
     text-decoration: none;
     border-radius: 4px;
+    transition: color 0.15s ease-in-out;
 
     :hover {
-        color: ${get('colors.gray.6')};
         text-decoration: underline;
+        color: ${get('colors.gray.6')};
+    }
+
+    :active {
+        text-decoration: underline;
+        color: ${get('colors.gray.7')};
     }
 `
 

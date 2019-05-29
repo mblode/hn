@@ -15,9 +15,15 @@ const UserName = styled(Link)`
     color: ${get('colors.gray.5')};
     text-decoration: none;
     display: inline-block;
+    transition: color 0.15s ease-in-out;
 
     :hover {
-        color: ${get('colors.gray.6')} !important;
+        color: ${get('colors.gray.6')};
+        text-decoration: underline;
+    }
+
+    :active {
+        color: ${get('colors.gray.7')};
         text-decoration: underline;
     }
 

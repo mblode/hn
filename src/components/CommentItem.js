@@ -39,6 +39,7 @@ const Toggle = styled.div`
     margin: -6px;
     margin-bottom: 6px;
     cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
 
     :hover {
         background-color: ${get('colors.gray.0')};

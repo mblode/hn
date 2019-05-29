@@ -98,6 +98,15 @@ const SearchIcon = styled(Search)`
     height: 24px;
     text-align: right;
     color: ${get('colors.gray.5')};
+    transition: color 0.15s ease-in-out;
+
+    :hover {
+        color: ${get('colors.gray.7')};
+    }
+
+    :active {
+        color: ${get('colors.gray.8')};
+    }
 `
 
 function Header() {
@@ -119,28 +128,28 @@ function Header() {
 
                     <StyledNavLink
                         activeClassName="active"
-                        to="/newest/1"
+                        to="/newest"
                     >
                         New
                     </StyledNavLink>
 
                     <StyledNavLink
                         activeClassName="active"
-                        to="/show/1"
+                        to="/show"
                     >
                         Show
                     </StyledNavLink>
 
                     <StyledNavLink
                         activeClassName="active"
-                        to="/ask/1"
+                        to="/ask"
                     >
                         Ask
                     </StyledNavLink>
 
                     <StyledNavLink
                         activeClassName="active"
-                        to="/jobs/1"
+                        to="/jobs"
                     >
                         Jobs
                     </StyledNavLink>

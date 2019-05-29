@@ -15,6 +15,7 @@ function Main() {
             <Route path="/item/:id" exact component={Item} />
             <Route path="/user/:id" exact component={User} />
             <Route path="/:type/:page" component={Feed} />
+            <Route path="/:type" component={Feed} />
 
             <Route component={Error} />
         </Switch>
