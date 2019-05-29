@@ -32,7 +32,7 @@ const Creator = styled.span`
 const Footer = () => {
     return (
         <FooterWrap>
-            <Copy>&copy; {new Date().getFullYear()} <Creator href="https://matthewblode.com/" target="_blank" rel="noopener noreferrer">Matthew Blode</Creator></Copy>
+            <Copy>Created by <Creator href="https://matthewblode.com/" target="_blank" rel="noopener noreferrer">Matthew Blode</Creator></Copy>
         </FooterWrap>
     )
 }

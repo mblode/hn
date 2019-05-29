@@ -12,7 +12,7 @@ css`
 
 const Wrap = styled.div`
     background-color: white;
-    border-radius: 6px;
+    border-radius: ${get('radii.2')}px;
     box-shadow: ${get('shadows.md')};
     padding: 24px 24px;
     text-align: ${props => props.align};
@@ -23,6 +23,8 @@ const Wrap = styled.div`
         border-left: none;
         border-right: none;
         border-radius: 0;
+        border-bottom: 1px solid ${get('colors.gray.3')};
+        box-shadow: none;
         min-height: ${props => props.minHeight ? "calc(100vh - 60px)" : "auto"};
     }
 

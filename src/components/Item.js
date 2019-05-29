@@ -13,7 +13,7 @@ import { Helmet } from 'react-helmet'
 const PageTitle = styled.div`
     display: block;
     margin-bottom: 16px;
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid ${get('colors.gray.3')};
 `
 
 const ListTitle = styled.a`

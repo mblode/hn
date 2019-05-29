@@ -8,6 +8,8 @@ const Nav = styled.nav`
     background: white;
     overflow: hidden;
     box-shadow: ${get('shadows.md')};
+    z-index: 10;
+    position: relative;
 `
 
 const Container = styled.div`

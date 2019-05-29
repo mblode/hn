@@ -11,13 +11,15 @@ import { Alert, Heading, get } from 'pikcha-frame'
 
 const ListWrap = styled.div`
     background-color: white;
-    border-radius: 6px;
+    border-radius: ${get('radii.2')}px;
     box-shadow: ${get('shadows.md')};
 
     @media (max-width: 768px) {
         border-left: none;
         border-right: none;
         border-radius: 0;
+        border-bottom: 1px solid ${get('colors.gray.3')};
+        box-shadow: none;
     }
 `
 
@@ -27,7 +29,7 @@ const PageNumber = styled.div`
     text-align: center;
     overflow: hidden;
     position: relative;
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid ${get('colors.gray.3')};
 `
 
 const capitalize = (s) => {

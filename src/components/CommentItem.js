@@ -6,7 +6,7 @@ import { Dot, UserName, Time, Content } from './Base'
 const CommentList = styled.ul`
     padding: 0;
     margin: 0;
-    border-left: 3px solid #eceef1;
+    border-left: 3px solid ${get('colors.gray.2')};
     padding-left: 20px;
 `
 
@@ -24,7 +24,7 @@ const Comment = styled.div`
     display: flex;
     flex-wrap: wrap;
     text-decoration: none;
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid ${get('colors.gray.3')};
     padding-top: 12px;
 
     :hover {

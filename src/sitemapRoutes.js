@@ -8,5 +8,6 @@ export default (
         <Route path='/show/1' />
         <Route path='/ask/1' />
         <Route path='/jobs/1' />
+        <Route path='/about' />
     </Route>
 );

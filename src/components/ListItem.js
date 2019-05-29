@@ -9,7 +9,7 @@ import { MessageCircle, ThumbsUp } from 'react-feather'
 const List = styled.div`
     overflow: hidden;
     position: relative;
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid ${get('colors.gray.3')};
     padding-left: 16px;
     padding-right: 16px;
     display: flex;
@@ -101,7 +101,7 @@ const CommentLink = styled(Link)`
     padding-top: 4px;
     padding-bottom: 12px;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: ${get('radii.1')}px;
     transition: color 0.15s ease-in-out;
 
     :hover {
