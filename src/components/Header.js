@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components'
-import { Search } from 'react-feather'
+import { Search } from 'styled-icons/boxicons-regular'
 import { get } from 'pikcha-frame'
 
 const Nav = styled.nav`
