@@ -2,13 +2,12 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { fetchFeed } from '../actions/postsAction'
+import { Helmet } from 'react-helmet'
 import PropTypes from "prop-types";
 import styled from 'styled-components'
-import Loading from './Base/Loading'
 import ListItem from '../components/ListItem'
-import Pagination from '../components/Pagination'
+import { Loading, Pagination } from './Base'
 import { Alert, Heading, get } from 'pikcha-frame'
-import { Helmet } from 'react-helmet'
 
 const ListWrap = styled.div`
     background-color: white;

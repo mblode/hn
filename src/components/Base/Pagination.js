@@ -18,7 +18,6 @@ const PaginationWrap = styled.div`
 `
 
 const PrevNext = styled(Button)`
-    border-radius: 9999px;
     margin-left: 4px;
     margin-right: 4px;
 `

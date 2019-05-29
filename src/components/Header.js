@@ -2,11 +2,12 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components'
 import { Search } from 'react-feather'
+import { get } from 'pikcha-frame'
 
 const Nav = styled.nav`
-    background: #f68a30;
-    color: white;
+    background: white;
     overflow: hidden;
+    box-shadow: ${get('shadows.md')};
 `
 
 const Container = styled.div`
@@ -34,8 +35,8 @@ const BrandH1 = styled.h1`
 `
 
 const StyledBrand = styled(Link)`
-    color: white;
     font-weight: bold;
+    color: #f68a30;
     font-size: 24px;
     padding-right: 16px;
     line-height: 60px;
@@ -49,15 +50,14 @@ const StyledBrand = styled(Link)`
 
     :hover {
         text-decoration: none;
-        color: white;
+        color: #f68a30;
     }
 `;
 
 const StyledNavLink = styled(NavLink)`
-    color: rgba(255, 255, 255, 0.7);
+    color: ${get('colors.gray.5')};
     position: relative;
     padding: 0 16px;
-    font-weight: 500;
     font-size: 16px;
     text-decoration: none;
     line-height: 60px;
@@ -66,13 +66,13 @@ const StyledNavLink = styled(NavLink)`
 
     &.active {
         text-decoration: none;
-        color: white;
-        font-weight: bold;
+        color: ${get('colors.gray.8')};
+        font-weight: 500;
     }
 
     :hover {
         text-decoration: none;
-        color: white;
+        color: ${get('colors.gray.7')};
     }
 
     @media (max-width: 768px) {
@@ -97,7 +97,7 @@ const SearchIcon = styled(Search)`
     width: 24px;
     height: 24px;
     text-align: right;
-    color: white;
+    color: ${get('colors.gray.5')};
 `
 
 function Header() {

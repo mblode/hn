@@ -83,6 +83,7 @@ const CommentLink = styled(Link)`
     padding-top: 4px;
     padding-bottom: 12px;
     text-decoration: none;
+    border-radius: 4px;
 
     :hover {
         color: ${get('colors.gray.6')};
@@ -168,11 +169,6 @@ export default class ListItem extends Component {
                     href={`/item/${id}/`}
                     to={`/item/${id}`}
                 >
-                    <CommentItem>
-                        <MessageCircleIcon />
-                        <span>{comments_count}</span>
-                    </CommentItem>
-
                     {points &&
                         <CommentItem>
                             <ThumbsUpIcon />
@@ -180,6 +176,10 @@ export default class ListItem extends Component {
                         </CommentItem>
                     }
 
+                    <CommentItem>
+                        <MessageCircleIcon />
+                        <span>{comments_count}</span>
+                    </CommentItem>
                 </CommentLink>
             </List>
         )
