@@ -5,7 +5,8 @@ import { fetchFeed } from '../actions/postsAction'
 import { Helmet } from 'react-helmet'
 import PropTypes from "prop-types";
 import styled from 'styled-components'
-import ListItem from '../components/ListItem'
+import ListItem from './ListItem'
+import ScrollToTop from "./ScrollToTop";
 import { Loading, Pagination } from './Base'
 import { Alert, Heading, get } from 'pikcha-frame'
 
@@ -18,8 +19,6 @@ const ListWrap = styled.div`
         border-left: none;
         border-right: none;
         border-radius: 0;
-        border-bottom: 1px solid ${get('colors.gray.3')};
-        box-shadow: none;
     }
 `
 
@@ -75,7 +74,6 @@ class Feed extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.location !== prevProps.location) {
-            window.scrollTo(0, 0);
             let type = 'news';
             let page = 1;
 
@@ -112,6 +110,8 @@ class Feed extends Component {
                 <Helmet>
                     <title>Hacker News &middot; {capitalize(this.state.type)}</title>
                 </Helmet>
+
+                <ScrollToTop />
 
                 <ListWrap>
                     {this.state.page > 1 &&

@@ -157,7 +157,7 @@ export default class ListItem extends Component {
 
         if (url.includes("item?")) {
             linkTitle = (
-                <ListTitleAlt href={`/item/${id}/`} to={`/item/${id}`}>
+                <ListTitleAlt to={`/item/${id}`}>
                     {title}
                     <ListTitleInner>{title}</ListTitleInner>
                     <ListUrl>{this.parse(url)}</ListUrl>

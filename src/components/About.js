@@ -17,9 +17,13 @@ class About extends Component {
 
                     <Text>Hacker News web app built using React and Redux.</Text>
 
-                    <Link href="https://github.com/mblode/hn" target="_blank" rel="noopener noreferrer">
-                        Find out more on GitHub
-                    </Link>
+                    <Text>This project was inspired by HNPWA and HN.premii.com</Text>
+
+                    <Text>
+                        <Link href="https://github.com/mblode/hn" target="_blank" rel="noopener noreferrer">
+                            Find out more on GitHub
+                        </Link>
+                    </Text>
                 </Wrap>
             </Fragment>
         )

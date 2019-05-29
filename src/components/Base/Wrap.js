@@ -23,8 +23,6 @@ const Wrap = styled.div`
         border-left: none;
         border-right: none;
         border-radius: 0;
-        border-bottom: 1px solid ${get('colors.gray.3')};
-        box-shadow: none;
         min-height: ${props => props.minHeight ? "calc(100vh - 60px)" : "auto"};
     }
 
