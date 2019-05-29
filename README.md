@@ -4,11 +4,11 @@
 
 # Hacker News
 
+## Site deployed on Netlify: [hn.matthewblode.com](https://hn.matthewblode.com/)
+
 **Hacker News web app built using React and Redux.**
 
 My Hacker News client is inspired by [HNPWA](https://hnpwa.com/) and [HN Premii](hn.premii.com). It is built using the best-in-class front-end technologies including React, Redux, and React Router.
-
-### [hn.matthewblode.com](https://hn.matthewblode.com/)
 
 ## Local Installation
 
