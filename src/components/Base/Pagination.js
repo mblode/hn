@@ -26,11 +26,11 @@ class Pagination extends Component {
      render() {
         return (
             <PaginationWrap>
-                <Link to={`/${this.props.type}/${parseInt(this.props.page) - 1}`} onClick={window.scrollTo(0, 0)}>
+                <Link to={`/${this.props.type}/${parseInt(this.props.page) - 1}`}>
                     <PrevNext kind="secondary" disabled={parseInt(this.props.page) <= 1}>Prev</PrevNext>
                 </Link>
 
-                <Link to={`/${this.props.type}/${parseInt(this.props.page) + 1}`} onClick={window.scrollTo(0, 0)}>
+                <Link to={`/${this.props.type}/${parseInt(this.props.page) + 1}`}>
                     <PrevNext kind="secondary" disabled={this.props.type === "jobs"}>Next</PrevNext>
                 </Link>
             </PaginationWrap>
