@@ -3,8 +3,6 @@ import { get } from 'pikcha-frame'
 
 const Content = styled.div`
     color: ${get('colors.gray.7')};
-    margin-right: 4px;
-    margin-bottom: 8px;
     width: 100%;
 
     p {
@@ -22,6 +20,10 @@ const Content = styled.div`
         overflow-x: auto;
         word-wrap: break-word;
         text-align: justify;
+    }
+
+    *:last-child {
+        margin-bottom: 0;
     }
 `
 

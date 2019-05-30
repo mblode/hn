@@ -13,6 +13,7 @@ import { Helmet } from 'react-helmet'
 const PageTitle = styled.div`
     display: block;
     margin-bottom: 16px;
+    padding-bottom: 8px;
     border-bottom: 1px solid ${get('colors.gray.3')};
 `
 
@@ -23,7 +24,7 @@ const ListTitle = styled.a`
     width: 100%;
     color: ${get('colors.gray.6')};
     text-decoration: none;
-    padding-bottom: 4px;
+    padding-bottom: 8px;
     transition: color 0.15s ease-in-out;
 
     :hover {
@@ -133,7 +134,7 @@ class Item extends Component {
                         />
                     </PageTitle>
 
-                    <Heading as="h5" fontSize={2} mb={1} fontWeight={400}>{data.comments_count} comment{data.comments_count !== 1 ? "s" : ""}</Heading>
+                    <Heading as="h5" fontSize={2} mb={5} fontWeight={400}>{data.comments_count} comment{data.comments_count !== 1 ? "s" : ""}</Heading>
 
                     <CommentList>
                         { commentLoop }

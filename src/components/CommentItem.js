@@ -8,60 +8,69 @@ const CommentList = styled.ul`
     margin: 0;
     border-left: 3px solid ${get('colors.gray.2')};
     padding-left: 20px;
-    margin-bottom: 20px;
+    margin-top: 24px;
 
-    .nested {
+    li {
+        padding-top: 0;
+        padding-right: 0;
         border-top: none;
     }
 `
 
 const CommentWrap = styled.li`
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    border-top: 1px solid ${get('colors.gray.3')};
+    position: relative;
 
-    &.hidden ul {
+    &.toggled ul {
         display: none;
     }
 
-    :first-child > div {
+    :first-child {
         border-top: none;
+        padding-top: 0;
+    }
+
+    :last-child {
+        padding-bottom: 0;
     }
 `
 
 const Comment = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+    display: block;
     text-decoration: none;
-    border-top: 1px solid ${get('colors.gray.3')};
-    padding-top: 12px;
+    padding: 12px;
+    margin: -12px;
+
+    &.toggled {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 
     :hover {
         text-decoration: none;
     }
 `
 
-const Toggle = styled.div`
+const Toggle = styled.header`
     display: block;
     margin: -6px;
-    margin-bottom: 6px;
     padding: 6px;
+    margin-bottom: 10px;
     width: calc(100% + 12px);
     cursor: pointer;
     transition: background-color 0.15s ease-in-out;
-    border-radius: ${get('radii.2')}px;
 
     :hover {
-        background-color: ${get('colors.gray.0')};
-    }
-
-    :active {
         background-color: ${get('colors.gray.1')};
     }
 
     &.toggled {
         background-color: ${get('colors.gray.1')};
         opacity: 0.5;
+        margin-bottom: 0;
     }
 
     &.toggled:hover {
@@ -85,7 +94,7 @@ export default class CommentItem extends Component {
     }
 
     render() {
-        const { user, timeAgo, content, level, comments, postUser, className } = this.props;
+        const { user, timeAgo, content, level, comments, postUser } = this.props;
         const { hidden } = this.state;
 
         let commentLoop = null;
@@ -104,7 +113,6 @@ export default class CommentItem extends Component {
                                 id={ele.id}
                                 comments={ele.comments}
                                 postUser={postUser}
-                                className="nested"
                             />
                         );
                     })}
@@ -113,8 +121,8 @@ export default class CommentItem extends Component {
         }
 
         return (
-            <CommentWrap className={hidden ? "hidden" : ""}>
-                <Comment level={level} className={className}>
+            <CommentWrap className={hidden ? "toggled" : ""}>
+                <Comment level={level} className={hidden ? "toggled" : ""}>
                     <Toggle onClick={this.toggleHidden.bind(this)} className={hidden ? "toggled" : ""} onMouseDown={(e) => e.preventDefault()}>
                         <UserName
                             href={`/user/${user}/`}
