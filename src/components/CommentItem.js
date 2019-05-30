@@ -43,12 +43,13 @@ const Comment = styled.div`
 
 const Toggle = styled.div`
     display: block;
-    width: 100%;
-    padding: 6px;
     margin: -6px;
     margin-bottom: 6px;
+    padding: 6px;
+    width: calc(100% + 12px);
     cursor: pointer;
     transition: background-color 0.15s ease-in-out;
+    border-radius: ${get('radii.2')}px;
 
     :hover {
         background-color: ${get('colors.gray.0')};
@@ -89,23 +90,25 @@ export default class CommentItem extends Component {
 
         let commentLoop = null;
 
-        if (comments !== undefined) {
+        if (comments.length > 0) {
             commentLoop = (
-                comments.map(ele => {
-                    return (
-                        <CommentItem
-                            user={ele.user}
-                            timeAgo={ele.time_ago}
-                            content={ele.content}
-                            key={ele.id}
-                            level={ele.level}
-                            id={ele.id}
-                            comments={ele.comments}
-                            postUser={postUser}
-                            className="nested"
-                        />
-                    );
-                })
+                <CommentList>
+                    {comments.map(ele => {
+                        return (
+                            <CommentItem
+                                user={ele.user}
+                                timeAgo={ele.time_ago}
+                                content={ele.content}
+                                key={ele.id}
+                                level={ele.level}
+                                id={ele.id}
+                                comments={ele.comments}
+                                postUser={postUser}
+                                className="nested"
+                            />
+                        );
+                    })}
+                </CommentList>
             )
         }
 
@@ -132,9 +135,7 @@ export default class CommentItem extends Component {
                     }
                 </Comment>
 
-                <CommentList>
-                    { commentLoop }
-                </CommentList>
+                {commentLoop}
             </CommentWrap>
         )
     }
