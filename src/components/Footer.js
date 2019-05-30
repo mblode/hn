@@ -13,7 +13,7 @@ const Copy = styled.span`
     text-decoration: none;
 `;
 
-const Creator = styled.span`
+const Creator = styled.a`
     color: ${get('colors.gray.5')};
     text-decoration: none;
     transition: color 0.15s ease-in-out;
@@ -32,7 +32,9 @@ const Creator = styled.span`
 const Footer = () => {
     return (
         <FooterWrap>
-            <Copy>Created by <Creator href="https://matthewblode.com/" target="_blank" rel="noopener noreferrer">Matthew Blode</Creator></Copy>
+            <Copy>
+                Created by <Creator href="https://matthewblode.com/" target="_blank" rel="noopener noreferrer">Matthew Blode</Creator>
+            </Copy>
         </FooterWrap>
     )
 }

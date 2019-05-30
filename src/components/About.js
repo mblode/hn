@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Heading, Text, Link } from 'pikcha-frame'
+import { Heading } from 'pikcha-frame'
 import { Helmet } from 'react-helmet'
-import { Wrap } from './Base'
+import { Wrap, Content } from './Base'
 
 class About extends Component {
     render() {
@@ -15,15 +15,26 @@ class About extends Component {
                 <Wrap>
                     <Heading>About</Heading>
 
-                    <Text>Hacker News web app built using React and Redux.</Text>
+                    <Content>
+                        <p><strong><a href="https://news.ycombinator.com/" rel="nofollow">Hacker News</a> web app built using React and Redux.</strong></p>
 
-                    <Text>This project was inspired by HNPWA and HN.premii.com</Text>
+                        <p>My Hacker News client is inspired by <a href="https://hnpwa.com/" rel="nofollow">HNPWA</a> and <a href="/mblode/hn/blob/master/hn.premii.com">HN Premii</a>. It is built using the best-in-class front-end technologies including React, Redux, and React Router.</p>
 
-                    <Text>
-                        <Link href="https://github.com/mblode/hn" target="_blank" rel="noopener noreferrer">
-                            Find out more on GitHub
-                        </Link>
-                    </Text>
+                        <p><a href="https://github.com/mblode/hn" rel="nofollow">Find out more on GitHub</a></p>
+
+                        <h2>Creator</h2>
+
+                        <p><strong>Matthew Blode</strong></p>
+
+                        <ul>
+                            <li><a href="https://github.com/mblode">GitHub</a></li>
+                            <li><a href="https://codepen.io/mblode" rel="nofollow">CodePen</a></li>
+                        </ul>
+
+                        <h3>License</h3>
+
+                        <p>MIT © <a href="http://matthewblode.com" rel="nofollow">Matthew Blode</a></p>
+                    </Content>
                 </Wrap>
             </Fragment>
         )

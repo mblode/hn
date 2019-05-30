@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { get } from 'pikcha-frame'
 
 const Content = styled.div`
+    color: ${get('colors.gray.7')};
     margin-right: 4px;
     margin-bottom: 8px;
     width: 100%;
@@ -11,7 +12,7 @@ const Content = styled.div`
     }
 
     a {
-        color: ${get('colors.gray.6')};
+        color: ${get('colors.gray.7')};
         text-decoration: underline;
         word-wrap: break-word;
         word-break: break-all;
