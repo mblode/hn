@@ -8,6 +8,11 @@ const CommentList = styled.ul`
     margin: 0;
     border-left: 3px solid ${get('colors.gray.2')};
     padding-left: 20px;
+    margin-bottom: 20px;
+
+    .nested {
+        border-top: none;
+    }
 `
 
 const CommentWrap = styled.li`
@@ -18,13 +23,17 @@ const CommentWrap = styled.li`
     &.hidden ul {
         display: none;
     }
+
+    :first-child > div {
+        border-top: none;
+    }
 `
 
 const Comment = styled.div`
     display: flex;
     flex-wrap: wrap;
     text-decoration: none;
-    border-bottom: 1px solid ${get('colors.gray.3')};
+    border-top: 1px solid ${get('colors.gray.3')};
     padding-top: 12px;
 
     :hover {
@@ -75,7 +84,7 @@ export default class CommentItem extends Component {
     }
 
     render() {
-        const { user, timeAgo, content, level, comments, postUser } = this.props;
+        const { user, timeAgo, content, level, comments, postUser, className } = this.props;
         const { hidden } = this.state;
 
         let commentLoop = null;
@@ -93,6 +102,7 @@ export default class CommentItem extends Component {
                             id={ele.id}
                             comments={ele.comments}
                             postUser={postUser}
+                            className="nested"
                         />
                     );
                 })
@@ -101,7 +111,7 @@ export default class CommentItem extends Component {
 
         return (
             <CommentWrap className={hidden ? "hidden" : ""}>
-                <Comment level={level}>
+                <Comment level={level} className={className}>
                     <Toggle onClick={this.toggleHidden.bind(this)} className={hidden ? "toggled" : ""} onMouseDown={(e) => e.preventDefault()}>
                         <UserName
                             href={`/user/${user}/`}
