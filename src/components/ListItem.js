@@ -43,15 +43,15 @@ const ListTitleWrap = styled.span`
 `
 
 const ListTitle = styled.a`
-    color: ${get('colors.gray.6')};
+    color: ${get('colors.gray.7')};
     display: block;
     padding-top: 6px;
-    padding-bottom: 4px;
+    padding-bottom: 2px;
     transition: color 0.15s ease-in-out;
 
     :hover {
         text-decoration: none;
-        color: ${get('colors.gray.7')};
+        color: ${get('colors.gray.8')};
     }
 
     :active {
@@ -65,15 +65,15 @@ const ListTitle = styled.a`
 `
 
 const ListTitleAlt = styled(Link)`
-    color: ${get('colors.gray.6')};
+    color: ${get('colors.gray.7')};
     display: block;
     padding-top: 6px;
-    padding-bottom: 4px;
+    padding-bottom: 2px;
     transition: color 0.15s ease-in-out;
 
     :hover {
         text-decoration: none;
-        color: ${get('colors.gray.7')};
+        color: ${get('colors.gray.8')};
     }
 
     :active {
@@ -104,7 +104,7 @@ const CommentLink = styled(Link)`
     border-radius: ${get('radii.1')}px;
     transition: color 0.15s ease-in-out;
 
-    :hover {
+    :hover span {
         text-decoration: underline;
         color: ${get('colors.gray.6')};
     }

@@ -22,14 +22,14 @@ const ListTitle = styled.a`
     line-height: 1.3;
     display: block;
     width: 100%;
-    color: ${get('colors.gray.6')};
+    color: ${get('colors.gray.7')};
     text-decoration: none;
     padding-bottom: 8px;
     transition: color 0.15s ease-in-out;
 
     :hover {
         text-decoration: none;
-        color: ${get('colors.gray.7')};
+        color: ${get('colors.gray.8')};
     }
 
     :active {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components'
-import { Button } from 'pikcha-frame';
+import { Button, get } from 'pikcha-frame';
 
 const PaginationWrap = styled.div`
     display: flex;
@@ -20,6 +20,7 @@ const PaginationWrap = styled.div`
 const PrevNext = styled(Button)`
     margin-left: 4px;
     margin-right: 4px;
+    border-radius: ${get('radii.2')}px;
 `
 
 class Pagination extends Component {
