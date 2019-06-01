@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
 import { get } from 'pikcha-frame'
-import PropTypes from 'prop-types'
 import { space } from 'styled-system'
 
 const active = props =>
@@ -30,10 +29,6 @@ const UserName = styled(Link)`
     ${active}
     ${space}
 `;
-
-UserName.propTypes = {
-    parent: PropTypes.number
-}
 
 
 export default UserName

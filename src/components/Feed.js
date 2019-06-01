@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { fetchFeed } from '../actions/postsAction'
 import { Helmet } from 'react-helmet'
-import PropTypes from "prop-types";
 import styled from 'styled-components'
 import ListItem from './ListItem'
 import ScrollToTop from "./ScrollToTop";
@@ -37,12 +36,6 @@ const capitalize = (s) => {
 }
 
 class Feed extends Component {
-    static propTypes = {
-        match: PropTypes.object.isRequired,
-        location: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
-    };
-
     constructor(props) {
         super(props);
 

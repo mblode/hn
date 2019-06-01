@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import parseDomain from 'parse-domain';
 import { Dot, UserName, Time, ListUrl } from './Base'
 import { get } from 'pikcha-frame'
-import { MessageCircle, ThumbsUp } from 'react-feather'
+import { Like, Comment } from 'styled-icons/boxicons-regular'
 
 const List = styled.div`
     overflow: hidden;
@@ -122,13 +122,13 @@ const CommentItem = styled.span`
     padding-right: 16px;
 `;
 
-const ThumbsUpIcon = styled(ThumbsUp)`
+const PointsIcon = styled(Like)`
     width: 20px;
     height: 20px;
     padding-right: 4px;
 `;
 
-const MessageCircleIcon = styled(MessageCircle)`
+const CommentsIcon = styled(Comment)`
     width: 20px;
     height: 20px;
     padding-right: 4px;
@@ -194,13 +194,13 @@ export default class ListItem extends Component {
                 >
                     {points &&
                         <CommentItem>
-                            <ThumbsUpIcon />
+                            <PointsIcon />
                             <span>{points}</span>
                         </CommentItem>
                     }
 
                     <CommentItem>
-                        <MessageCircleIcon />
+                        <CommentsIcon />
                         <span>{comments_count}</span>
                     </CommentItem>
                 </CommentLink>
