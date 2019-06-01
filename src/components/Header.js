@@ -7,7 +7,7 @@ import { get } from 'pikcha-frame'
 const Nav = styled.nav`
     background: white;
     overflow: hidden;
-    box-shadow: 0 1px 0 rgba(12, 13, 14, 0.1), 0 1px 6px rgba(59, 64, 69, 0.1);
+    box-shadow: ${get('shadows.sm')};
     z-index: 10;
     position: relative;
 `
