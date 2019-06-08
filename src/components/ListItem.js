@@ -139,7 +139,6 @@ const PointsIcon = styled(Like)`
     height: 20px;
     padding-right: 4px;
     position: relative;
-    top: 1px;
 `;
 
 const CommentsIcon = styled(Comment)`
@@ -147,7 +146,6 @@ const CommentsIcon = styled(Comment)`
     height: 20px;
     padding-right: 4px;
     position: relative;
-    top: 1px;
 `;
 
 export default class ListItem extends Component {
