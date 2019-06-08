@@ -45,7 +45,7 @@ const StyledBrand = styled(Link)`
     display: block;
 
     @media (max-width: 768px) {
-        margin-left: 12px;
+        padding-left: 12px;
         line-height: 60px;
         padding-right: 12px;
     }
