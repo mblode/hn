@@ -42,6 +42,7 @@ const Comment = styled.div`
     display: block;
     text-decoration: none;
     padding: 12px;
+    padding-top: 6px;
     margin: -12px;
 
     &.toggled {
@@ -58,7 +59,7 @@ const Toggle = styled.header`
     display: block;
     margin: -6px;
     padding: 6px;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     width: calc(100% + 12px);
     cursor: pointer;
     transition: background-color 0.15s ease-in-out;

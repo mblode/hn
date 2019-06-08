@@ -45,7 +45,7 @@ const ListTitleWrap = styled.span`
 const ListTitle = styled.a`
     color: ${get('colors.gray.7')};
     display: block;
-    padding-top: 6px;
+    padding-top: 2px;
     padding-bottom: 2px;
     transition: color 0.15s ease-in-out;
 
@@ -67,7 +67,7 @@ const ListTitle = styled.a`
 const ListTitleAlt = styled(Link)`
     color: ${get('colors.gray.7')};
     display: block;
-    padding-top: 6px;
+    padding-top: 2px;
     padding-bottom: 2px;
     transition: color 0.15s ease-in-out;
 
@@ -98,8 +98,8 @@ const ListInfo = styled.div`
 const CommentLink = styled(Link)`
     color: ${get('colors.gray.5')};
     display: block;
-    padding-top: 4px;
-    padding-bottom: 12px;
+    padding-top: 1px;
+    padding-bottom: 8px;
     text-decoration: none;
     border-radius: ${get('radii.1')}px;
     transition: color 0.15s ease-in-out;
@@ -120,18 +120,34 @@ const CommentItem = styled.span`
     align-items: center;
     flex-direction: row;
     padding-right: 16px;
+    color: ${get('colors.gray.5')};
+    transition: color 0.15s ease-in-out;
+
+    :hover span {
+        text-decoration: underline;
+        color: ${get('colors.gray.6')};
+    }
+
+    :active {
+        text-decoration: underline;
+        color: ${get('colors.gray.7')};
+    }
 `;
 
 const PointsIcon = styled(Like)`
     width: 20px;
     height: 20px;
     padding-right: 4px;
+    position: relative;
+    top: 1px;
 `;
 
 const CommentsIcon = styled(Comment)`
     width: 20px;
     height: 20px;
     padding-right: 4px;
+    position: relative;
+    top: 1px;
 `;
 
 export default class ListItem extends Component {
@@ -172,7 +188,7 @@ export default class ListItem extends Component {
                             <UserName
                                 href={`/user/${user}/`}
                                 to={`/user/${user}`}
-                                pt={16}
+                                pt={12}
                             >
                                 {user}
                             </UserName>
@@ -181,7 +197,7 @@ export default class ListItem extends Component {
                         </span>
                     )}
 
-                    <Time pt={16}>{time_ago}</Time>
+                    <Time pt={12}>{time_ago}</Time>
                 </ListInfo>
 
                 <ListTitleWrap>

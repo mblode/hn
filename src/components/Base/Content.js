@@ -14,6 +14,15 @@ const Content = styled.div`
         text-decoration: underline;
         word-wrap: break-word;
         word-break: break-all;
+        transition: color 0.15s ease-in-out;
+    }
+
+    a:hover {
+        color: ${get('colors.gray.8')};
+    }
+
+    a:active {
+        color: ${get('colors.gray.8')};
     }
 
     pre {
