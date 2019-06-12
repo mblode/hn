@@ -44,6 +44,7 @@ const Comment = styled.div`
     padding: 12px;
     padding-top: 6px;
     margin: -12px;
+    padding-bottom: 8px;
 
     &.toggled {
         padding-top: 0;
