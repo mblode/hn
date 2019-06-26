@@ -9,12 +9,18 @@ import CommentItem from '../components/CommentItem';
 import { Alert, Heading, get } from 'pikcha-frame'
 import { Dot, UserName, Time, ListUrl, Content, Wrap } from '../components/Base'
 import { Helmet } from 'react-helmet'
+import HN from '../hnApi';
 
 const PageTitle = styled.div`
     display: block;
     margin-bottom: 16px;
     padding-bottom: 8px;
     border-bottom: 1px solid ${get('colors.gray.3')};
+`
+
+const CommentHeading = styled.div`
+    font-size: 16px;
+    margin-bottom: 20px;
 `
 
 const ListTitle = styled.a`
@@ -57,6 +63,8 @@ class Item extends Component {
     componentDidMount() {
         const id = this.props.match.params.id;
         this.props.dispatch(fetchComments(id));
+        console.log(id);
+        HN.getUpvoteURL(id);
     }
 
     parse(url) {
@@ -134,7 +142,7 @@ class Item extends Component {
                         />
                     </PageTitle>
 
-                    <Heading as="h5" fontSize={2} mb={5} fontWeight={400}>{data.comments_count} comment{data.comments_count !== 1 ? "s" : ""}</Heading>
+                    <CommentHeading>{data.comments_count} comment{data.comments_count !== 1 ? "s" : ""}</CommentHeading>
 
                     <CommentList>
                         { commentLoop }

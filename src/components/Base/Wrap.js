@@ -11,8 +11,8 @@ css`
 `
 
 const Wrap = styled.div`
-    background-color: white;
-    border-radius: ${get('radii.2')}px;
+    background-color: #fff;
+    border-radius: ${get('radii.1')}px;
     box-shadow: ${get('shadows.md')};
     padding: 24px 24px;
     text-align: ${props => props.align};

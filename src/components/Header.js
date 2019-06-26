@@ -5,7 +5,7 @@ import { Search } from 'styled-icons/boxicons-regular'
 import { get } from 'pikcha-frame'
 
 const Nav = styled.nav`
-    background: white;
+    background-color: #fff;
     overflow: hidden;
     box-shadow: ${get('shadows.sm')};
     z-index: 10;

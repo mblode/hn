@@ -20,7 +20,7 @@ const PaginationWrap = styled.div`
 const PrevNext = styled(Button)`
     margin-left: 4px;
     margin-right: 4px;
-    border-radius: ${get('radii.2')}px;
+    border-radius: ${get('radii.1')}px;
 `
 
 class Pagination extends Component {

@@ -10,8 +10,8 @@ import { Loading, Pagination } from './Base'
 import { Alert, Heading, get } from 'pikcha-frame'
 
 const ListWrap = styled.div`
-    background-color: white;
-    border-radius: ${get('radii.2')}px;
+    background-color: #fff;
+    border-radius: ${get('radii.1')}px;
     box-shadow: ${get('shadows.md')};
 
     @media (max-width: 768px) {
