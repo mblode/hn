@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import parseDomain from 'parse-domain';
 import Loading from './Base/Loading';
 import CommentItem from '../components/CommentItem';
-import { Alert, Heading, get } from 'pikcha-frame'
+import { Alert, get } from 'pikcha-frame'
 import { Dot, UserName, Time, ListUrl, Content, Wrap } from '../components/Base'
 import { Helmet } from 'react-helmet'
 import HN from '../hnApi';
