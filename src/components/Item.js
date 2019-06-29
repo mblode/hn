@@ -9,7 +9,6 @@ import CommentItem from '../components/CommentItem';
 import { Alert, get } from 'pikcha-frame'
 import { Dot, UserName, Time, ListUrl, Content, Wrap } from '../components/Base'
 import { Helmet } from 'react-helmet'
-import HN from '../hnApi';
 
 const PageTitle = styled.div`
     display: block;
@@ -63,8 +62,6 @@ class Item extends Component {
     componentDidMount() {
         const id = this.props.match.params.id;
         this.props.dispatch(fetchComments(id));
-        console.log(id);
-        HN.getUpvoteURL(id);
     }
 
     parse(url) {
