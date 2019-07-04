@@ -8,7 +8,7 @@
         "cheerio-without-node-native": "^1.0.0-rc.2",
         "connected-react-router": "^6.5.0",
         "parse-domain": "^2.3.1",
-        "pikcha-frame": "^1.1.0",
+        "pikcha-frame": "^1.1.1",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "react-helmet": "^5.2.1",
@@ -47,7 +47,7 @@
         ]
     },
     "devDependencies": {
-        "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+        "@babel/plugin-proposal-object-rest-spread": "^7.5.0",
         "babel-cli": "^6.26.0",
         "babel-preset-es2015": "^6.24.1",
         "babel-preset-react": "^6.24.1",

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import styled from 'styled-components'
 import { withRouter } from 'react-router-dom'
 import Header from './Header';
@@ -23,10 +22,6 @@ class App extends Component {
     render() {
         return (
             <AppWrap>
-                <Helmet>
-                    <style>{'body { background-color: #eceef1; }'}</style>
-                </Helmet>
-
                 <Header />
 
                 <MainSection>

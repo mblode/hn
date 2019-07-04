@@ -11,6 +11,7 @@ export default class Error extends Component {
                 <Helmet>
                     <title>Hacker News &middot; Page Not Found</title>
                 </Helmet>
+
                 <Wrap align="center">
                     <Heading as="h1" fontSize={8} mb={2}>Oops.</Heading>
                     <Heading as="h1" fontSize={4} mb={4}>Can't find that page...</Heading>

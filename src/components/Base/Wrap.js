@@ -11,7 +11,7 @@ css`
 `
 
 const Wrap = styled.div`
-    background-color: #fff;
+    background-color: ${get('colors.white')};
     border-radius: ${get('radii.1')}px;
     box-shadow: ${get('shadows.md')};
     padding: 24px 24px;
