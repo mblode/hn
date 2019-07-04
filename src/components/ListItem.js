@@ -88,6 +88,7 @@ const ListTitleAlt = styled(Link)`
 
 const ListTitleInner = styled.span`
     margin-right: 4px;
+    word-wrap: break-word;
 `
 
 const ListInfo = styled.div`

@@ -4,6 +4,7 @@ import { get } from 'pikcha-frame'
 const Content = styled.div`
     color: ${get('colors.gray.7')};
     width: 100%;
+    word-wrap: break-word;
 
     p {
         margin-bottom: 8px;

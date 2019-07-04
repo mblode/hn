@@ -45,6 +45,7 @@ const ListTitle = styled.a`
 
 const ListTitleInner = styled.span`
     margin-right: 4px;
+    word-wrap: break-word;
 `
 
 const CommentList = styled.ul`

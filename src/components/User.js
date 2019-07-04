@@ -23,6 +23,7 @@ const UserName = styled.div`
     color: ${get('colors.gray.6')};
     text-decoration: none;
     margin-bottom: 8px;
+    word-wrap: break-word;
 `
 
 const Details = styled.p`
