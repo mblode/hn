@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from "react-snapshot";
+import ReactDOM from 'react-dom';
 import { Provider, ReactReduxContext } from "react-redux";
 import { ConnectedRouter } from 'connected-react-router';
 import { history } from './store';
@@ -10,7 +10,7 @@ import { ThemeProvider } from 'pikcha-frame';
 
 const store = configureStore();
 
-render(
+ReactDOM.render(
     <ThemeProvider>
         <Provider store={store} context={ReactReduxContext}>
             <ConnectedRouter history={history} context={ReactReduxContext}>
