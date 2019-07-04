@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { get } from 'pikcha-frame'
 
 const FooterWrap = styled.footer`
-    padding-top: 16px;
+    padding: 16px 0;
     text-align: center;
 `;
 
