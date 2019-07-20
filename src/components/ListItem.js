@@ -102,7 +102,7 @@ const CommentLink = styled(Link)`
     padding-top: 1px;
     padding-bottom: 8px;
     text-decoration: none;
-    border-radius: ${get('radii.1')}px;
+    border-radius: ${get('radii.md')};
     transition: color 0.15s ease-in-out;
 
     :hover span {

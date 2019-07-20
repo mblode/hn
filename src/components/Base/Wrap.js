@@ -12,7 +12,7 @@ css`
 
 const Wrap = styled.div`
     background-color: ${get('colors.white')};
-    border-radius: ${get('radii.1')}px;
+    border-radius: ${get('radii.md')};
     box-shadow: ${get('shadows.md')};
     padding: 24px 24px;
     text-align: ${props => props.align};

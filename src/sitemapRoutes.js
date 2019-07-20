@@ -9,5 +9,6 @@ export default (
         <Route path='/ask' />
         <Route path='/jobs' />
         <Route path='/about' />
+        <Route path="/item/:id" />
     </Route>
 );

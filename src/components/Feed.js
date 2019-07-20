@@ -11,7 +11,7 @@ import { Alert, Heading, get } from 'pikcha-frame'
 
 const ListWrap = styled.div`
     background-color: ${get('colors.white')};
-    border-radius: ${get('radii.1')}px;
+    border-radius: ${get('radii.md')};
     box-shadow: ${get('shadows.md')};
 
     @media (max-width: 768px) {

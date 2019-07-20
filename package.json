@@ -8,7 +8,7 @@
         "cheerio-without-node-native": "^1.0.0-rc.2",
         "connected-react-router": "^6.5.0",
         "parse-domain": "^2.3.1",
-        "pikcha-frame": "^1.1.1",
+        "pikcha-frame": "^1.1.2",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "react-helmet": "^5.2.1",
@@ -25,7 +25,7 @@
     "scripts": {
         "analyze": "source-map-explorer 'build/static/js/*.js'",
         "start": "react-scripts start",
-        "build": "react-scripts build",
+        "build": "npm run sitemap && react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "sitemap": "babel-node src/sitemapGenerator.js",
