@@ -5,6 +5,7 @@ import { fetchComments } from '../actions/postsAction';
 import styled from 'styled-components'
 import parseDomain from 'parse-domain';
 import Loading from './Base/Loading';
+import ScrollToTop from "./ScrollToTop";
 import CommentItem from '../components/CommentItem';
 import { Alert, get } from 'pikcha-frame'
 import { Dot, UserName, Time, ListUrl, Content, Wrap } from '../components/Base'
@@ -113,6 +114,8 @@ class Item extends Component {
                 <Helmet>
                     <title>Hacker News &middot; {`${data.title}`}</title>
                 </Helmet>
+
+                <ScrollToTop />
 
                 <Wrap>
                     <PageTitle>

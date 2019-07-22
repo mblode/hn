@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { fetchUser } from '../actions/postsAction';
 import styled from 'styled-components'
 import Loading from './Base/Loading';
+import ScrollToTop from "./ScrollToTop";
 import { Alert, get } from 'pikcha-frame'
 import { Helmet } from 'react-helmet'
 import { Content, Wrap } from './Base'
@@ -53,6 +54,8 @@ class User extends Component {
                 <Helmet>
                     <title>Hacker News &middot; {`${user.id}`}</title>
                 </Helmet>
+
+                <ScrollToTop />
 
                 <Wrap>
                     <PageTitle>
