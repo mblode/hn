@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Wrap from './Wrap'
-import { Spinner } from 'pikcha-frame'
+import { Spinner } from 'roni'
 
 export default class Loading extends Component {
     render() {

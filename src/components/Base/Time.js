@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { space } from 'styled-system'
-import { get } from 'pikcha-frame'
+import { get } from 'roni'
 
 const Time = styled.span`
     margin-right: 4px;

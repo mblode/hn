@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import ListItem from './ListItem'
 import ScrollToTop from "./ScrollToTop";
 import { Loading, Pagination } from './Base'
-import { Alert, Heading, get } from 'pikcha-frame'
+import { Alert, Heading, get } from 'roni'
 
 const ListWrap = styled.div`
     background-color: ${get('colors.white')};

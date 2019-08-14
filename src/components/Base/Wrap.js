@@ -1,4 +1,4 @@
-import { get } from 'pikcha-frame'
+import { get } from 'roni'
 import styled, { css } from 'styled-components'
 
 const flex = props =>

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { get } from 'pikcha-frame'
+import { get } from 'roni'
 
 const Content = styled.div`
     color: ${get('colors.gray.7')};

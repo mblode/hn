@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { get } from 'pikcha-frame'
+import { get } from 'roni'
 
 const FooterWrap = styled.footer`
     padding: 16px 0;

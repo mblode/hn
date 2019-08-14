@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet'
-import { Heading, Button } from 'pikcha-frame'
+import { Heading, Button } from 'roni'
 import { Wrap } from './Base'
 
 export default class Error extends Component {

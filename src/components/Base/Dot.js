@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { get } from 'pikcha-frame'
+import { get } from 'roni'
 
 const Dot = styled.span`
     color: ${get('colors.gray.5')};

@@ -6,7 +6,7 @@ import { history } from './store';
 import configureStore from "./store";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
-import { ThemeProvider } from 'pikcha-frame';
+import { ThemeProvider } from 'roni';
 
 const store = configureStore();
 

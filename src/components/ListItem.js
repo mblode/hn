@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import parseDomain from 'parse-domain';
 import { Dot, UserName, Time, ListUrl } from './Base'
-import { get } from 'pikcha-frame'
+import { get } from 'roni'
 import { Like, Comment } from 'styled-icons/boxicons-regular'
 
 const List = styled.div`

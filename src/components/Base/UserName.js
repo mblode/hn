@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
-import { get } from 'pikcha-frame'
+import { get } from 'roni'
 import { space } from 'styled-system'
 
 const active = props =>

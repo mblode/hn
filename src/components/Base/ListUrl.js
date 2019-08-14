@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { get } from 'pikcha-frame'
+import { get } from 'roni'
 
 const ListUrl = styled.span`
     font-size: 14px;

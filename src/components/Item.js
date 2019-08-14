@@ -7,7 +7,7 @@ import parseDomain from 'parse-domain';
 import Loading from './Base/Loading';
 import ScrollToTop from "./ScrollToTop";
 import CommentItem from '../components/CommentItem';
-import { Alert, get } from 'pikcha-frame'
+import { Alert, get } from 'roni'
 import { Dot, UserName, Time, ListUrl, Content, Wrap } from '../components/Base'
 import { Helmet } from 'react-helmet'
 

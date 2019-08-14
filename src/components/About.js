@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Heading } from 'pikcha-frame'
+import { Heading } from 'roni'
 import { Helmet } from 'react-helmet'
 import { Wrap, Content } from './Base'
 

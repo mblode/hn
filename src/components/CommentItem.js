@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { get } from 'pikcha-frame'
+import { get } from 'roni'
 import { Dot, UserName, Time, Content } from './Base'
 
 const CommentList = styled.ul`

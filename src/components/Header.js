@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components'
 import { Search } from 'styled-icons/boxicons-regular'
-import { get } from 'pikcha-frame'
+import { get } from 'roni'
 
 const Nav = styled.nav`
     background-color: ${get('colors.white')};
