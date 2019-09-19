@@ -30,6 +30,8 @@ const Content = styled.div`
         overflow-x: auto;
         word-wrap: break-word;
         text-align: justify;
+        max-width: initial !important;
+        white-space: pre-wrap;
     }
 
     *:last-child {
