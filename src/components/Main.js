@@ -10,12 +10,12 @@ import Error from './Error';
 function Main() {
     return (
         <Switch>
-            <Route path="/" exact component={Feed} />
-            <Route path="/about" exact component={About} />
-            <Route path="/item/:id" exact component={Item} />
-            <Route path="/user/:id" exact component={User} />
-            <Route path="/:type/:page" component={Feed} />
-            <Route path="/:type" component={Feed} />
+            <Route path='/' exact component={Feed} />
+            <Route path='/about' exact component={About} />
+            <Route path='/item/:id' exact component={Item} />
+            <Route path='/user/:id' exact component={User} />
+            <Route path='/:type/:page' component={Feed} />
+            <Route path='/:type' component={Feed} />
 
             <Route component={Error} />
         </Switch>

@@ -1,13 +1,13 @@
-import styled, { css } from 'styled-components'
-import { Link } from 'react-router-dom'
-import { get } from 'roni'
-import { space } from 'styled-system'
+import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
+import { get } from 'roni';
+import { space } from 'styled-system';
 
 const active = props =>
-props.parent &&
-css`
-    color: #f68a30;
-`
+    props.parent &&
+    css`
+        color: #f68a30;
+    `;
 
 const UserName = styled(Link)`
     font-size: 14px;
@@ -30,5 +30,4 @@ const UserName = styled(Link)`
     ${space}
 `;
 
-
-export default UserName
+export default UserName;

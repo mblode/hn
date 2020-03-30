@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { get } from 'roni'
+import styled from 'styled-components';
+import { get } from 'roni';
 
 const Content = styled.div`
     color: ${get('colors.gray.7')};
@@ -37,6 +37,6 @@ const Content = styled.div`
     *:last-child {
         margin-bottom: 0;
     }
-`
+`;
 
 export default Content;

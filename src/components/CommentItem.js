@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { get } from 'roni'
-import { Dot, UserName, Time, Content } from './Base'
+import { get } from 'roni';
+import { Dot, UserName, Time, Content } from './Base';
 
 const CommentList = styled.ul`
     padding: 0;
@@ -15,7 +15,7 @@ const CommentList = styled.ul`
         padding-right: 0;
         border-top: none;
     }
-`
+`;
 
 const CommentWrap = styled.li`
     list-style: none;
@@ -36,7 +36,7 @@ const CommentWrap = styled.li`
     :last-child {
         padding-bottom: 0;
     }
-`
+`;
 
 const Comment = styled.div`
     display: block;
@@ -54,7 +54,7 @@ const Comment = styled.div`
     :hover {
         text-decoration: none;
     }
-`
+`;
 
 const Toggle = styled.header`
     display: block;
@@ -78,20 +78,20 @@ const Toggle = styled.header`
     &.toggled:hover {
         background-color: ${get('colors.gray.1')};
     }
-`
+`;
 
 export default class CommentItem extends Component {
     constructor() {
-        super()
+        super();
         this.state = {
             hidden: false
-        }
+        };
     }
 
     toggleHidden(e) {
         this.setState({
             hidden: !this.state.hidden
-        })
+        });
         e.stopPropagation();
     }
 
@@ -119,34 +119,28 @@ export default class CommentItem extends Component {
                         );
                     })}
                 </CommentList>
-            )
+            );
         }
 
         return (
-            <CommentWrap className={hidden ? "toggled" : ""}>
-                <Comment level={level} className={hidden ? "toggled" : ""}>
-                    <Toggle onClick={this.toggleHidden.bind(this)} className={hidden ? "toggled" : ""} onMouseDown={(e) => e.preventDefault()}>
-                        <UserName
-                            href={`/user/${user}/`}
-                            to={`/user/${user}`}
-                            parent={user === postUser ? 1 : 0}
-                        >
+            <CommentWrap className={hidden ? 'toggled' : ''}>
+                <Comment level={level} className={hidden ? 'toggled' : ''}>
+                    <Toggle
+                        onClick={this.toggleHidden.bind(this)}
+                        className={hidden ? 'toggled' : ''}
+                        onMouseDown={e => e.preventDefault()}>
+                        <UserName href={`/user/${user}/`} to={`/user/${user}`} parent={user === postUser ? 1 : 0}>
                             {user}
                         </UserName>
                         <Dot>•</Dot>
                         <Time>{timeAgo}</Time>
                     </Toggle>
 
-                    {
-                        !hidden &&
-                        <Content
-                            dangerouslySetInnerHTML={{ __html: content }}
-                        />
-                    }
+                    {!hidden && <Content dangerouslySetInnerHTML={{ __html: content }} />}
                 </Comment>
 
                 {commentLoop}
             </CommentWrap>
-        )
+        );
     }
 }

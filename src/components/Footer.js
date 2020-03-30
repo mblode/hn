@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import { get } from 'roni'
+import React from 'react';
+import styled from 'styled-components';
+import { get } from 'roni';
 
 const FooterWrap = styled.footer`
     padding: 16px 0;
@@ -33,10 +33,13 @@ const Footer = () => {
     return (
         <FooterWrap>
             <Copy>
-                Created by <Creator href="https://matthewblode.com/" target="_blank" rel="noopener noreferrer">Matthew Blode</Creator>
+                Created by{' '}
+                <Creator href='https://matthewblode.com/' target='_blank' rel='noopener noreferrer'>
+                    Matthew Blode
+                </Creator>
             </Copy>
         </FooterWrap>
-    )
-}
+    );
+};
 
-export default Footer
+export default Footer;

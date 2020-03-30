@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import styled from 'styled-components'
-import { Search } from 'styled-icons/boxicons-regular'
-import { get } from 'roni'
+import styled from 'styled-components';
+import { Search } from 'styled-icons/boxicons-regular';
+import { get } from 'roni';
 
 const Nav = styled.nav`
     background-color: ${get('colors.white')};
@@ -10,7 +10,7 @@ const Nav = styled.nav`
     box-shadow: ${get('shadows.sm')};
     z-index: 10;
     position: relative;
-`
+`;
 
 const Container = styled.div`
     max-width: 700px;
@@ -19,7 +19,7 @@ const Container = styled.div`
     display: flex;
     overflow-x: auto;
     justify-content: space-between;
-`
+`;
 
 const NavInner = styled.div`
     display: flex;
@@ -29,12 +29,12 @@ const NavInner = styled.div`
         padding-left: 4px;
         padding-right: 4px;
     }
-`
+`;
 
 const BrandH1 = styled.h1`
     font-size: 1rem;
     margin: 0;
-`
+`;
 
 const StyledBrand = styled(Link)`
     font-weight: bold;
@@ -93,7 +93,7 @@ const SearchWrap = styled.a`
         padding-left: 4px;
         padding-right: 16px;
     }
-`
+`;
 
 const SearchIcon = styled(Search)`
     width: 24px;
@@ -109,55 +109,38 @@ const SearchIcon = styled(Search)`
     :active {
         color: ${get('colors.gray.8')};
     }
-`
+`;
 
 function Header() {
     return (
         <Nav>
             <Container>
                 <NavInner>
-                    <BrandH1 itemscope="" itemtype="http://schema.org/Organization">
-                        <StyledBrand to="/">HN</StyledBrand>
+                    <BrandH1 itemscope='' itemtype='http://schema.org/Organization'>
+                        <StyledBrand to='/'>HN</StyledBrand>
                     </BrandH1>
 
-                    <StyledNavLink
-                        activeClassName="active"
-                        to="/"
-                        exact
-                    >
+                    <StyledNavLink activeClassName='active' to='/' exact>
                         Top
                     </StyledNavLink>
 
-                    <StyledNavLink
-                        activeClassName="active"
-                        to="/newest"
-                    >
+                    <StyledNavLink activeClassName='active' to='/newest'>
                         New
                     </StyledNavLink>
 
-                    <StyledNavLink
-                        activeClassName="active"
-                        to="/show"
-                    >
+                    <StyledNavLink activeClassName='active' to='/show'>
                         Show
                     </StyledNavLink>
 
-                    <StyledNavLink
-                        activeClassName="active"
-                        to="/ask"
-                    >
+                    <StyledNavLink activeClassName='active' to='/ask'>
                         Ask
                     </StyledNavLink>
 
-                    <StyledNavLink
-                        activeClassName="active"
-                        to="/jobs"
-                    >
+                    <StyledNavLink activeClassName='active' to='/jobs'>
                         Jobs
                     </StyledNavLink>
-
                 </NavInner>
-                <SearchWrap href="https://hn.algolia.com" target="_blank" rel="noopener noreferrer">
+                <SearchWrap href='https://hn.algolia.com' target='_blank' rel='noopener noreferrer'>
                     <SearchIcon />
                 </SearchWrap>
             </Container>

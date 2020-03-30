@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { get } from 'roni'
+import styled from 'styled-components';
+import { get } from 'roni';
 
 const ListUrl = styled.span`
     font-size: 14px;
@@ -21,6 +21,6 @@ const ListUrl = styled.span`
         color: ${get('colors.gray.7')};
         text-decoration: underline;
     }
-`
+`;
 
-export default ListUrl
+export default ListUrl;

@@ -1,13 +1,13 @@
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import { fetchFeed } from '../actions/postsAction'
-import { Helmet } from 'react-helmet'
-import styled from 'styled-components'
-import ListItem from './ListItem'
-import ScrollToTop from "./ScrollToTop";
-import { Loading, Pagination } from './Base'
-import { Alert, Heading, get } from 'roni'
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { fetchFeed } from '../actions/postsAction';
+import { Helmet } from 'react-helmet';
+import styled from 'styled-components';
+import ListItem from './ListItem';
+import ScrollToTop from './ScrollToTop';
+import { Loading, Pagination } from './Base';
+import { Alert, Heading, get } from 'roni';
 
 const ListWrap = styled.div`
     background-color: ${get('colors.white')};
@@ -19,7 +19,7 @@ const ListWrap = styled.div`
         border-right: none;
         border-radius: 0;
     }
-`
+`;
 
 const PageNumber = styled.div`
     padding: 20px 24px;
@@ -28,12 +28,12 @@ const PageNumber = styled.div`
     overflow: hidden;
     position: relative;
     border-bottom: 1px solid ${get('colors.gray.3')};
-`
+`;
 
-const capitalize = (s) => {
-    if (typeof s !== 'string') return ''
-    return s.charAt(0).toUpperCase() + s.slice(1)
-}
+const capitalize = s => {
+    if (typeof s !== 'string') return '';
+    return s.charAt(0).toUpperCase() + s.slice(1);
+};
 
 class Feed extends Component {
     constructor(props) {
@@ -91,7 +91,7 @@ class Feed extends Component {
         const { error, isFetching, feed } = this.props.posts;
 
         if (error) {
-            return (<Alert kind="danger">Failed to load posts</Alert>);
+            return <Alert kind='danger'>Failed to load posts</Alert>;
         }
 
         if (isFetching) {
@@ -107,11 +107,13 @@ class Feed extends Component {
                 <ScrollToTop />
 
                 <ListWrap>
-                    {this.state.page > 1 &&
+                    {this.state.page > 1 && (
                         <PageNumber>
-                            <Heading as="h3" fontSize={2}>Page {this.state.page}</Heading>
+                            <Heading as='h3' fontSize={2}>
+                                Page {this.state.page}
+                            </Heading>
                         </PageNumber>
-                    }
+                    )}
 
                     {feed[this.state.type].map((item, i) => (
                         <ListItem key={i} item={item} />
@@ -120,7 +122,7 @@ class Feed extends Component {
                     <Pagination type={this.state.type} page={this.state.page} />
                 </ListWrap>
             </Fragment>
-        )
+        );
     }
 }
 

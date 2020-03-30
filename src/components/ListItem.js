@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import parseDomain from 'parse-domain';
-import { Dot, UserName, Time, ListUrl } from './Base'
-import { get } from 'roni'
-import { Like, Comment } from 'styled-icons/boxicons-regular'
+import { Dot, UserName, Time, ListUrl } from './Base';
+import { get } from 'roni';
+import { Like, Comment } from 'styled-icons/boxicons-regular';
 
 const List = styled.div`
     overflow: hidden;
@@ -19,7 +19,7 @@ const List = styled.div`
     :hover {
         text-decoration: none;
     }
-`
+`;
 
 const ListTitleWrap = styled.span`
     font-size: 16px;
@@ -40,7 +40,7 @@ const ListTitleWrap = styled.span`
         text-decoration: none;
         color: ${get('colors.gray.8')};
     }
-`
+`;
 
 const ListTitle = styled.a`
     color: ${get('colors.gray.7')};
@@ -62,7 +62,7 @@ const ListTitle = styled.a`
     :visited {
         color: ${get('colors.gray.5')};
     }
-`
+`;
 
 const ListTitleAlt = styled(Link)`
     color: ${get('colors.gray.7')};
@@ -84,17 +84,17 @@ const ListTitleAlt = styled(Link)`
     :visited {
         color: ${get('colors.gray.5')};
     }
-`
+`;
 
 const ListTitleInner = styled.span`
     margin-right: 4px;
     word-wrap: break-word;
-`
+`;
 
 const ListInfo = styled.div`
     display: block;
     width: 100%;
-`
+`;
 
 const CommentLink = styled(Link)`
     color: ${get('colors.gray.5')};
@@ -114,7 +114,7 @@ const CommentLink = styled(Link)`
         text-decoration: underline;
         color: ${get('colors.gray.7')};
     }
-`
+`;
 
 const CommentItem = styled.span`
     display: inline-flex;
@@ -151,12 +151,12 @@ const CommentsIcon = styled(Comment)`
 
 export default class ListItem extends Component {
     parse(url) {
-        let link = parseDomain(url)
+        let link = parseDomain(url);
 
         if (link != null) {
-            return "(" + link.domain + "." + link.tld + ")";
+            return '(' + link.domain + '.' + link.tld + ')';
         } else {
-            return "";
+            return '';
         }
     }
 
@@ -164,13 +164,13 @@ export default class ListItem extends Component {
         const { comments_count, id, points, time_ago, title, url, user } = this.props.item;
 
         let linkTitle = (
-            <ListTitle href={url} target="_blank" rel="noopener noreferrer">
+            <ListTitle href={url} target='_blank' rel='noopener noreferrer'>
                 <ListTitleInner>{title}</ListTitleInner>
                 <ListUrl>{this.parse(url)}</ListUrl>
             </ListTitle>
         );
 
-        if (url.includes("item?")) {
+        if (url.includes('item?')) {
             linkTitle = (
                 <ListTitleAlt to={`/item/${id}`}>
                     <ListTitleInner>{title}</ListTitleInner>
@@ -184,11 +184,7 @@ export default class ListItem extends Component {
                 <ListInfo>
                     {user && (
                         <span>
-                            <UserName
-                                href={`/user/${user}/`}
-                                to={`/user/${user}`}
-                                pt={12}
-                            >
+                            <UserName href={`/user/${user}/`} to={`/user/${user}`} pt={12}>
                                 {user}
                             </UserName>
 
@@ -199,20 +195,15 @@ export default class ListItem extends Component {
                     <Time pt={12}>{time_ago}</Time>
                 </ListInfo>
 
-                <ListTitleWrap>
-                    {linkTitle}
-                </ListTitleWrap>
+                <ListTitleWrap>{linkTitle}</ListTitleWrap>
 
-                <CommentLink
-                    href={`/item/${id}/`}
-                    to={`/item/${id}`}
-                >
-                    {points &&
+                <CommentLink href={`/item/${id}/`} to={`/item/${id}`}>
+                    {points && (
                         <CommentItem>
                             <PointsIcon />
                             <span>{points}</span>
                         </CommentItem>
-                    }
+                    )}
 
                     <CommentItem>
                         <CommentsIcon />
@@ -220,6 +211,6 @@ export default class ListItem extends Component {
                     </CommentItem>
                 </CommentLink>
             </List>
-        )
+        );
     }
 }

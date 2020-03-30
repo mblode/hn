@@ -1,10 +1,10 @@
-require("babel-register")({
-    presets: ["es2015", "react"]
+require('babel-register')({
+    presets: ['es2015', 'react']
 });
 
 const axios = require('axios');
-const router = require("./sitemapRoutes").default;
-const Sitemap = require("react-router-sitemap").default;
+const router = require('./sitemapRoutes').default;
+const Sitemap = require('react-router-sitemap').default;
 
 async function generateSitemap() {
     try {
@@ -16,15 +16,13 @@ async function generateSitemap() {
         }
 
         const paramsConfig = {
-            "/item/:id": postMap
+            '/item/:id': postMap
         };
 
-        return (
-            new Sitemap(router)
-                .applyParams(paramsConfig)
-                .build("https://hn.matthewblode.com")
-                .save("./public/sitemap.xml")
-        );
+        return new Sitemap(router)
+            .applyParams(paramsConfig)
+            .build('https://hn.matthewblode.com')
+            .save('./public/sitemap.xml');
     } catch (e) {
         console.log(e);
     }

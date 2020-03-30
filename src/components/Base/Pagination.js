@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { Button } from 'roni';
 
 const PaginationWrap = styled.div`
@@ -15,15 +15,15 @@ const PaginationWrap = styled.div`
     @media (max-width: 768px) {
         padding: 16px 16px;
     }
-`
+`;
 
 const PrevNext = styled(Button)`
     margin-left: 4px;
     margin-right: 4px;
-`
+`;
 
 class Pagination extends Component {
-     render() {
+    render() {
         return (
             <PaginationWrap>
                 <Link to={`/${this.props.type}/${parseInt(this.props.page) - 1}`}>
@@ -31,15 +31,15 @@ class Pagination extends Component {
                 </Link>
 
                 <Link to={`/${this.props.type}/${parseInt(this.props.page) + 1}`}>
-                    <PrevNext disabled={this.props.type === "jobs"}>Next</PrevNext>
+                    <PrevNext disabled={this.props.type === 'jobs'}>Next</PrevNext>
                 </Link>
             </PaginationWrap>
-        )
+        );
     }
 }
 
 const mapStateToProps = state => ({
-	...state
+    ...state
 });
 
 export default connect(mapStateToProps)(Pagination);
