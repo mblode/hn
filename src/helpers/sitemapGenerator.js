@@ -1,5 +1,5 @@
 require('babel-register')({
-    presets: ['es2015', 'react']
+    presets: ['es2015', 'react'],
 });
 
 const axios = require('axios');
@@ -16,7 +16,7 @@ async function generateSitemap() {
         }
 
         const paramsConfig = {
-            '/item/:id': postMap
+            '/item/:id': postMap,
         };
 
         return new Sitemap(router)

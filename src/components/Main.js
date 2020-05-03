@@ -5,12 +5,14 @@ import Item from './Item';
 import About from './About';
 import User from './User';
 import Feed from './Feed';
+import Login from './Login';
 import Error from './Error';
 
 function Main() {
     return (
         <Switch>
             <Route path='/' exact component={Feed} />
+            <Route path='/login' exact component={Login} />
             <Route path='/about' exact component={About} />
             <Route path='/item/:id' exact component={Item} />
             <Route path='/user/:id' exact component={User} />

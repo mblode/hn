@@ -30,7 +30,7 @@ const PageNumber = styled.div`
     border-bottom: 1px solid ${get('colors.gray.3')};
 `;
 
-const capitalize = s => {
+const capitalize = (s) => {
     if (typeof s !== 'string') return '';
     return s.charAt(0).toUpperCase() + s.slice(1);
 };
@@ -41,7 +41,7 @@ class Feed extends Component {
 
         this.state = {
             type: 'news',
-            page: 1
+            page: 1,
         };
     }
 
@@ -59,7 +59,7 @@ class Feed extends Component {
 
         this.setState({
             type,
-            page
+            page,
         });
 
         this.props.dispatch(fetchFeed(type, page));
@@ -80,7 +80,7 @@ class Feed extends Component {
 
             this.setState({
                 type,
-                page
+                page,
             });
 
             this.props.dispatch(fetchFeed(type, page));
@@ -126,8 +126,8 @@ class Feed extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    ...state
+const mapStateToProps = (state) => ({
+    ...state,
 });
 
 export default withRouter(connect(mapStateToProps)(Feed));

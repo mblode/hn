@@ -84,13 +84,13 @@ export default class CommentItem extends Component {
     constructor() {
         super();
         this.state = {
-            hidden: false
+            hidden: false,
         };
     }
 
     toggleHidden(e) {
         this.setState({
-            hidden: !this.state.hidden
+            hidden: !this.state.hidden,
         });
         e.stopPropagation();
     }
@@ -104,7 +104,7 @@ export default class CommentItem extends Component {
         if (comments.length > 0) {
             commentLoop = (
                 <CommentList>
-                    {comments.map(ele => {
+                    {comments.map((ele) => {
                         return (
                             <CommentItem
                                 user={ele.user}
@@ -128,7 +128,7 @@ export default class CommentItem extends Component {
                     <Toggle
                         onClick={this.toggleHidden.bind(this)}
                         className={hidden ? 'toggled' : ''}
-                        onMouseDown={e => e.preventDefault()}>
+                        onMouseDown={(e) => e.preventDefault()}>
                         <UserName href={`/user/${user}/`} to={`/user/${user}`} parent={user === postUser ? 1 : 0}>
                             {user}
                         </UserName>

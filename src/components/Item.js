@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchComments } from '../actions/postsAction';
 import styled from 'styled-components';
-import parseDomain from 'parse-domain';
+import { parseDomain } from 'parse-domain';
 import Loading from './Base/Loading';
 import ScrollToTop from './ScrollToTop';
 import CommentItem from '../components/CommentItem';
@@ -94,7 +94,7 @@ class Item extends Component {
             </ListTitle>
         );
 
-        const commentLoop = data.comments.map(ele => {
+        const commentLoop = data.comments.map((ele) => {
             return (
                 <CommentItem
                     user={ele.user}
@@ -149,8 +149,8 @@ class Item extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    ...state
+const mapStateToProps = (state) => ({
+    ...state,
 });
 
 export default withRouter(connect(mapStateToProps)(Item));

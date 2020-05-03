@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import parseDomain from 'parse-domain';
+import { parseDomain } from 'parse-domain';
 import { Dot, UserName, Time, ListUrl } from './Base';
 import { get } from 'roni';
 import { Like, Comment } from 'styled-icons/boxicons-regular';
+import Upvote from './Upvote';
 
 const List = styled.div`
     overflow: hidden;
@@ -210,6 +211,8 @@ export default class ListItem extends Component {
                         <span>{comments_count}</span>
                     </CommentItem>
                 </CommentLink>
+
+                <Upvote id={id} />
             </List>
         );
     }

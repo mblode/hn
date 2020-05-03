@@ -1,4 +1,4 @@
-import { handleActions } from "redux-actions";
+import { handleActions } from 'redux-actions';
 
 export default handleActions(
     {
@@ -7,46 +7,46 @@ export default handleActions(
             isFetching: false,
             feed: {
                 ...state.feed,
-                [action.payload.type]: action.payload.data
-            }
+                [action.payload.type]: action.payload.data,
+            },
         }),
         FETCH_FEED_FAILURE: (state, action) => ({
             ...state,
             isFetching: false,
-            error: action.payload.error
+            error: action.payload.error,
         }),
         FETCH_FEED_STARTED: (state) => ({
             ...state,
-            isFetching: true
+            isFetching: true,
         }),
         FETCH_COMMENTS_SUCCESS: (state, action) => ({
             ...state,
             isFetching: false,
-            data: action.payload.data
+            data: action.payload.data,
         }),
         FETCH_COMMENTS_FAILURE: (state, action) => ({
             ...state,
             isFetching: false,
-            error: action.payload.error
+            error: action.payload.error,
         }),
         FETCH_COMMENTS_STARTED: (state) => ({
             ...state,
-            isFetching: true
+            isFetching: true,
         }),
         FETCH_USER_SUCCESS: (state, action) => ({
             ...state,
             isFetching: false,
-            user: action.payload.user
+            user: action.payload.user,
         }),
         FETCH_USER_FAILURE: (state, action) => ({
             ...state,
             isFetching: false,
-            error: action.payload.error
+            error: action.payload.error,
         }),
         FETCH_USER_STARTED: (state) => ({
             ...state,
-            isFetching: true
-        })
+            isFetching: true,
+        }),
     },
     {
         isFetching: false,
@@ -58,7 +58,7 @@ export default handleActions(
             jobs: [],
         },
         data: {
-            comments: []
+            comments: [],
         },
         user: {},
         error: null,
