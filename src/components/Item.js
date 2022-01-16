@@ -23,11 +23,9 @@ export const Item = () => {
         );
 
         const json = await response.json();
-        console.log(json);
         setData(json)
         setError(null)
       } catch (error) {
-        console.log('error', error);
         setData(null)
         setError(error)
       } finally {
@@ -47,7 +45,7 @@ export const Item = () => {
   }
 
   let title = (
-    <a href={data.url} target="_blank" rel="noopener noreferrer" className="text-xl block w-full text-gray-700 decoration-none pb-2 transition-colors hover:text-gray-800 active:text-gray-800">
+    <a href={data.url} target="_blank" rel="noopener noreferrer" className="block w-full pb-2 text-xl text-gray-700 transition-colors decoration-none hover:text-gray-800 active:text-gray-800">
       <span className="mr-1 break-words">{data.title}</span>
       <span className="list-url">{parse(data.url)}</span>
     </a>
@@ -75,7 +73,7 @@ export const Item = () => {
       </Helmet>
 
       <div className="wrap">
-        <div className="block mb-4 pb-2 border-b border-gray-300">
+        <div className="block pb-2 mb-4 border-b border-gray-300">
           <div className="block w-full pb-2">
             {data.user && (
               <span>
@@ -92,7 +90,7 @@ export const Item = () => {
               </span>
             )}
 
-            <span className="mr-1 text-gray-500 text-sm inline-block">{data.time_ago}</span>
+            <span className="inline-block mr-1 text-sm text-gray-500">{data.time_ago}</span>
           </div>
 
           {title}
@@ -100,7 +98,7 @@ export const Item = () => {
           <div className="content" dangerouslySetInnerHTML={{ __html: data.content }} />
         </div>
 
-        <div className="text-base mb-5">
+        <div className="mb-5 text-base">
           {data.comments_count} comment{data.comments_count !== 1 ? "s" : ""}
         </div>
 

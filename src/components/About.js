@@ -9,9 +9,9 @@ export const About = () => {
       </Helmet>
 
       <div className="wrap">
-        <h2 className="h2">About</h2>
-
         <div className="content">
+          <h1 className="mb-2 text-3xl font-medium">About</h1>
+
           <p>
             <strong>
               <a href="https://news.ycombinator.com/" rel="nofollow">
@@ -37,13 +37,13 @@ export const About = () => {
             </a>
           </p>
 
-          <h2>Creator</h2>
+          <h2 className="my-2 text-xl font-bold">Creator</h2>
 
           <p>
-            <strong>Matthew Blode</strong>
+            <em>Matthew Blode</em>
           </p>
 
-          <ul>
+          <ul className="list-disc list-inside">
             <li>
               <a href="https://github.com/mblode">GitHub</a>
             </li>
@@ -54,7 +54,7 @@ export const About = () => {
             </li>
           </ul>
 
-          <h3>License</h3>
+          <h3 className="my-2 text-xl font-bold">License</h3>
 
           <p>
             MIT ©{" "}

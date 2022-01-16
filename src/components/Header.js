@@ -12,23 +12,23 @@ export const Header = () => {
             <Link to="/" className="font-bold text-orange-500 text-2xl sm:pr-4 leading-[60px] block px-3 sm:pl-0 hover:text-orange-600">HN</Link>
           </h1>
 
-          <NavLink to="/" className={cn("nav-link", { isActive: "active" })}>
+          <NavLink to="/" className={({ isActive }) => cn("nav-link", { "active": isActive })}>
             Top
           </NavLink>
 
-          <NavLink to="/newest" className={cn("nav-link", { isActive: "active" })}>
+          <NavLink to="/newest" className={({ isActive }) => cn("nav-link", { "active": isActive })}>
             New
           </NavLink>
 
-          <NavLink to="/show" className={cn("nav-link", { isActive: "active" })}>
+          <NavLink to="/show" className={({ isActive }) => cn("nav-link", { "active": isActive })}>
             Show
           </NavLink>
 
-          <NavLink to="/ask" className={cn("nav-link", { isActive: "active" })}>
+          <NavLink to="/ask" className={({ isActive }) => cn("nav-link", { "active": isActive })}>
             Ask
           </NavLink>
 
-          <NavLink to="/jobs" className={cn("nav-link", { isActive: "active" })}>
+          <NavLink to="/jobs" className={({ isActive }) => cn("nav-link", { "active": isActive })}>
             Jobs
           </NavLink>
         </div>

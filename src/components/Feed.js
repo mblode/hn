@@ -22,9 +22,8 @@ export const Feed = () => {
 
   useEffect(() => {
     const getResults = async () => {
-      let newType = params.type ?? type;
-      let newPage = params.page ?? page;
-      console.log({ params, type, page, newType, newPage })
+      let newType = params.type || "news";
+      let newPage = params.page || 1;
 
       setType(newType)
       setPage(newPage)
@@ -39,7 +38,6 @@ export const Feed = () => {
         setPosts(json)
         setError(null)
       } catch (error) {
-        console.log('error', error);
         setPosts(null)
         setError(error)
       } finally {
@@ -55,7 +53,7 @@ export const Feed = () => {
     return <Alert kind="danger">Failed to load posts</Alert>;
   }
 
-  if (loading) {
+  if (loading || posts.length === 0) {
     return <Loading />;
   }
 
@@ -65,7 +63,7 @@ export const Feed = () => {
         <title>Hacker News &middot; {capitalize(type)}</title>
       </Helmet>
 
-      <div className="bg-white shadow-md sm:rounded">
+      <div className="bg-white shadow-md sm:rounded-lg">
         {page > 1 && (
           <div className="relative px-5 py-6 overflow-hidden text-center uppercase border-b border-gray-300 px-">
             <h3 className="text-sm">

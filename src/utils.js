@@ -1,10 +1,11 @@
-import { parseDomain } from "parse-domain";
+import extractDomain from "extract-domain";
 
 export const parse = (url) => {
-  let link = parseDomain(url);
+  let link = extractDomain(url);
+  console.log(link)
 
   if (link != null) {
-    return "(" + link.domain + "." + link.tld + ")";
+    return `(${link})`;
   } else {
     return "";
   }

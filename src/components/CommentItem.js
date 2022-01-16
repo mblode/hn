@@ -45,13 +45,14 @@ export const CommentItem = ({ user, timeAgo, content, level, comments, postUser 
             href={`https://news.ycombinator.com/user?id=${user}`}
             target="_blank"
             rel="noopener noreferrer"
-            parent={user === postUser ? 1 : 0}
-            className="username"
+            className={cn("username", {
+              "!text-orange-500": user === postUser
+            })}
           >
             {user}
           </a>
           <Dot>•</Dot>
-          <span className="mr-1 text-gray-500 text-sm inline-block">{timeAgo}</span>
+          <span className="inline-block mr-1 text-sm text-gray-500">{timeAgo}</span>
         </header>
 
         {!hidden && <div className="content" dangerouslySetInnerHTML={{ __html: content }} />}
