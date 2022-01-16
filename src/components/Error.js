@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { Button } from "./Base/Button"
 
 export const Error = () => {
   return (
@@ -9,15 +10,17 @@ export const Error = () => {
         <title>Hacker News &middot; Page Not Found</title>
       </Helmet>
 
-      <div className="wrap text-center">
-        <Heading as="h1" fontSize={8} mb={2}>
+      <div className="text-center wrap">
+        <h1 className="mb-2 text-2xl">
           Oops.
-        </Heading>
-        <Heading as="h1" fontSize={4} mb={4}>
+        </h1>
+
+        <h2 className="mb-4 text-xl">
           Can't find that page...
-        </Heading>
+        </h2>
+
         <Link to="/">
-          <Button kind="secondary">Go back home</Button>
+          <Button>Go back home</Button>
         </Link>
       </div>
     </>

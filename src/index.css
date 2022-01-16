@@ -41,12 +41,7 @@
 }
 
 .wrap {
-  @apply bg-white rounded shadow-sm p-6 flex justify-center items-center flex-col;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  @apply px-4 py-6 bg-white shadow-md sm:rounded sm:px-6;
 }
 
 .list-url {
@@ -180,9 +175,11 @@
 }
 
 .list {
+  @apply border-gray-300;
   overflow: hidden;
   position: relative;
-  border-bottom: 1px solid ${get("colors.gray.3")};
+  border-bottom-width: 1px;
+  border-style: solid;
   padding-left: 16px;
   padding-right: 16px;
   display: flex;
@@ -207,11 +204,11 @@
 }
 
 .list-title-wrap:hover {
-  @apply text-gray-700 decoration-none;
+  @apply text-gray-700 no-underline;
 }
 
 .list-title-wrap:active {
-  @apply text-gray-800 decoration-none;
+  @apply text-gray-800 no-underline;
 }
 
 .list-title {
@@ -225,11 +222,11 @@
 }
 
 .list-title:hover {
-  @apply text-gray-800 decoration-none;
+  @apply text-gray-800 no-underline;
 }
 
 .list-title:active {
-  @apply text-gray-800 decoration-none;
+  @apply text-gray-800 no-underline;
 }
 
 .list-title:visited {
@@ -247,11 +244,11 @@
 }
 
 .list-title-alt:hover {
-  @apply text-gray-800 decoration-none;
+  @apply text-gray-800 no-underline;
 }
 
 .list-title-alt:active {
-  @apply text-gray-800 decoration-none;
+  @apply text-gray-800 no-underline;
 }
 
 .list-title-alt:visited {
@@ -317,9 +314,13 @@
 }
 
 .nav-link.active {
-  @apply text-gray-800 no-underline font-medium;
+  @apply font-medium text-gray-800 no-underline;
 }
 
 .nav-link:hover {
   @apply text-gray-700 no-underline;
+}
+
+.btn {
+  @apply relative text-center transition-all duration-300 ease-out border select-none;
 }

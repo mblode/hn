@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Dot } from "./Base";
-import { Like } from './Icons/Like'
-import { Comment } from './Icons/Comment'
-import Upvote from "./Upvote";
+import { Dot } from "./Base/Dot";
+import Like from './Icons/Like'
+import Comment from './Icons/Comment'
 import { parse } from '../utils'
 
 export const ListItem = ({ item }) => {
@@ -30,9 +29,9 @@ export const ListItem = ({ item }) => {
       <div className="block w-full">
         {user && (
           <span>
-            <Link href={`/user/${user}/`} to={`/user/${user}`} className="username pt-3">
+            <a href={`https://news.ycombinator.com/user?id=${user}`} target="_blank" rel="noopener noreferrer" className="username pt-3">
               {user}
-            </Link>
+            </a>
 
             <Dot>•</Dot>
           </span>
@@ -56,8 +55,6 @@ export const ListItem = ({ item }) => {
           <span>{comments_count}</span>
         </span>
       </Link>
-
-      <Upvote id={id} />
     </div>
   );
 }

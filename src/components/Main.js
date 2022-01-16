@@ -1,25 +1,21 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
-import Item from "./Item";
-import About from "./About";
-import User from "./User";
-import Feed from "./Feed";
-import Login from "./Login";
-import Error from "./Error";
+import { Item } from "./Item";
+import { About } from "./About";
+import { Feed } from "./Feed";
+import { Error } from "./Error";
 
 export const Main = () => {
   return (
-    <Switch>
-      <Route path="/" exact component={Feed} />
-      <Route path="/login" exact component={Login} />
-      <Route path="/about" exact component={About} />
-      <Route path="/item/:id" exact component={Item} />
-      <Route path="/user/:id" exact component={User} />
-      <Route path="/:type/:page" component={Feed} />
-      <Route path="/:type" component={Feed} />
+    <Routes>
+      <Route path="/" index element={<Feed />} />
+      <Route path="/about" exact element={<About />} />
+      <Route path="/item/:id" exact element={<Item />} />
+      <Route path="/:type/:page" element={<Feed />} />
+      <Route path="/:type" element={<Feed />} />
 
-      <Route component={Error} />
-    </Switch>
+      <Route element={<Error />} />
+    </Routes>
   );
 }

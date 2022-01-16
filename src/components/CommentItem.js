@@ -1,4 +1,5 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
+import cn from "classnames"
 import { Dot } from './Base/Dot'
 
 export const CommentItem = ({ user, timeAgo, content, level, comments, postUser }) => {
@@ -7,7 +8,7 @@ export const CommentItem = ({ user, timeAgo, content, level, comments, postUser 
   const toggleHidden = useCallback((e) => {
     setHidden(!hidden)
     e.stopPropagation();
-  }, [])
+  }, [hidden])
 
   let commentLoop = null;
 
@@ -33,21 +34,22 @@ export const CommentItem = ({ user, timeAgo, content, level, comments, postUser 
   }
 
   return (
-    <li className={cn("comment-wrap", { hidden: "toggled" })}>
-      <div level={level} className={cn("comment", { hidden: "toggled" })}>
+    <li className={cn("comment-wrap", { "toggled": hidden })}>
+      <div level={level} className={cn("comment", { "toggled": hidden })}>
         <header
           onClick={toggleHidden}
-          className={cn("comment-toggle", { hidden: "toggled" })}
+          className={cn("comment-toggle", { "toggled": hidden })}
           onMouseDown={(e) => e.preventDefault()}
         >
-          <Link
-            href={`/user/${user}/`}
-            to={`/user/${user}`}
+          <a
+            href={`https://news.ycombinator.com/user?id=${user}`}
+            target="_blank"
+            rel="noopener noreferrer"
             parent={user === postUser ? 1 : 0}
             className="username"
           >
             {user}
-          </Link>
+          </a>
           <Dot>•</Dot>
           <span className="mr-1 text-gray-500 text-sm inline-block">{timeAgo}</span>
         </header>

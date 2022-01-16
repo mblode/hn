@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { Spinner } from "./Spinner";
+import Spinner from "../Icons/Spinner";
 
 export const Button = ({
   disabled,
@@ -12,10 +12,10 @@ export const Button = ({
   return (
     <button
       className={cn(
-        "btn px-5 py-3 text-base bg-green-500 border-green-500 text-white hover:bg-green-700 rounded-lg hover:border-green-700 hover:shadow-md focus:shadow-md",
+        "btn px-4 py-2 text-base bg-white border-gray-300 text-gray-700 hover:bg-gray-100 rounded-lg hover:border-gray-400 hover:shadow-md focus:shadow-md",
         {
           "cursor-wait": isLoading,
-          "!cursor-not-allowed !bg-gray-200 !text-gray-500 !shadow-none":
+          "!cursor-not-allowed !bg-white !text-gray-500 !shadow-none !border-gray-200":
             disabled,
           "block w-full": fullWidth,
           "inline-block": !fullWidth,
@@ -32,7 +32,7 @@ export const Button = ({
           className="absolute w-5 h-5 transform -translate-x-1/2 -translate-y-1/2 text- top-1/2 left-1/2"
           data-testid="button-loading"
         >
-          <Spinner />
+          <Spinner className="w-full h-full" />
         </div>
       )}
     </button>

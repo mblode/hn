@@ -1,43 +1,48 @@
-import React from "react";
-import Loading from "./Base/Loading";
-import CommentItem from "../components/CommentItem";
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import { Loading } from "./Base/Loading";
+import { CommentItem } from "../components/CommentItem";
 import { Alert } from "../components/Base/Alert";
 import { Dot } from "../components/Base/Dot";
 import { Helmet } from "react-helmet";
 import { parse } from '../utils'
 
-export const Item = ({ match }) => {
+export const Item = () => {
+  const { id } = useParams();
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState(null)
 
   useEffect(() => {
-    const id = match.params.id;
+    const getResults = async () => {
+      setLoading(true)
 
-    setLoading(true)
+      try {
+        const response = await fetch(
+          `https://api.hackerwebapp.com/item/${id}`
+        );
 
-    try {
-      const response = await fetch(
-        `https://api.hackerwebapp.com/item/${id}`
-      );
-
-      console.log(data);
-      setData(response.data)
-      setError(null)
-    } catch (error) {
-      console.log('error', error);
-      setData(null)
-      setError(error)
-    } finally {
-      setLoading(false)
+        const json = await response.json();
+        console.log(json);
+        setData(json)
+        setError(null)
+      } catch (error) {
+        console.log('error', error);
+        setData(null)
+        setError(error)
+      } finally {
+        setLoading(false)
+      }
     }
-  }, [])
+    getResults()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id])
 
   if (error) {
     return <Alert kind="danger">Error: {error}</Alert>;
   }
 
-  if (loading) {
+  if (loading || !data) {
     return <Loading />;
   }
 
@@ -74,13 +79,14 @@ export const Item = ({ match }) => {
           <div className="block w-full pb-2">
             {data.user && (
               <span>
-                <Link
-                  href={`/user/${data.user}/`}
-                  to={`/user/${data.user}`}
+                <a
+                  href={`https://news.ycombinator.com/user?id=${data.user}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="username"
                 >
                   {data.user}
-                </Link>
+                </a>
 
                 <Dot>•</Dot>
               </span>

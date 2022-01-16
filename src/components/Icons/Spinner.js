@@ -1,9 +1,11 @@
-export const Spinner = () => (
+
+const SvgSpinner = (props) => (
   <svg
-    className="w-full h-full"
     xmlns="http://www.w3.org/2000/svg"
+    width={100}
+    height={100}
     viewBox="0 0 100 100"
-    data-testid="spinner"
+    {...props}
   >
     <g fill="none" strokeLinecap="round" stroke="currentColor">
       <circle strokeWidth="10" className="opacity-25" cx="50" cy="50" r="45" />
@@ -17,3 +19,5 @@ export const Spinner = () => (
     </g>
   </svg>
 );
+
+export default SvgSpinner
