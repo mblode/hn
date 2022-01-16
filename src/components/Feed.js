@@ -1,133 +1,99 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { fetchFeed } from '../actions/postsAction';
-import { Helmet } from 'react-helmet';
-import styled from 'styled-components';
-import ListItem from './ListItem';
-import ScrollToTop from './ScrollToTop';
-import { Loading, Pagination } from './Base';
-import { Alert, Heading, get } from 'roni';
-
-const ListWrap = styled.div`
-    background-color: ${get('colors.white')};
-    border-radius: ${get('radii.md')};
-    box-shadow: ${get('shadows.md')};
-
-    @media (max-width: 768px) {
-        border-left: none;
-        border-right: none;
-        border-radius: 0;
-    }
-`;
-
-const PageNumber = styled.div`
-    padding: 20px 24px;
-    text-transform: uppercase;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-    border-bottom: 1px solid ${get('colors.gray.3')};
-`;
+import React, { useState } from "react";
+import { Helmet } from "react-helmet";
+import ListItem from "./ListItem";
+import { Alert } from "./Base/Alert";
+import { Loading } from "./Base/Loading";
+import { Pagination } from "./Base/Pagination";
 
 const capitalize = (s) => {
-    if (typeof s !== 'string') return '';
-    return s.charAt(0).toUpperCase() + s.slice(1);
+  if (typeof s !== "string") return "";
+  return s.charAt(0).toUpperCase() + s.slice(1);
 };
 
-class Feed extends Component {
-    constructor(props) {
-        super(props);
+export const Feed = ({ match }) => {
+  const [type, setType] = useState("news")
+  const [page, setPage] = useState(1)
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [posts, setPosts] = useState(null)
 
-        this.state = {
-            type: 'news',
-            page: 1,
-        };
+  useEffect(() => {
+    let newType = match.params.type || type;
+    let newPage = match.params.page || page;
+
+    setPage(newType)
+    setType(newPage)
+    setLoading(true)
+
+    try {
+      const response = await fetch(
+        `https://api.hackerwebapp.com/${newType}?page=${newType}`
+      );
+
+      console.log(data);
+      setPosts(response.data)
+      setError(null)
+    } catch (error) {
+      console.log('error', error);
+      setPosts(null)
+      setError(error)
+    } finally {
+      setLoading(false)
     }
+  }, [])
 
-    componentDidMount() {
-        let type = 'news';
-        let page = 1;
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.location !== prevProps.location) {
+  //     let type = "news";
+  //     let page = 1;
 
-        if (this.props.match.params.type !== undefined) {
-            type = this.props.match.params.type;
-        }
+  //     if (this.props.match.params.type !== undefined) {
+  //       type = this.props.match.params.type;
+  //     }
 
-        if (this.props.match.params.page !== undefined) {
-            page = this.props.match.params.page;
-        }
+  //     if (this.props.match.params.page !== undefined) {
+  //       page = this.props.match.params.page;
+  //     }
 
-        this.setState({
-            type,
-            page,
-        });
+  //     this.setState({
+  //       type,
+  //       page,
+  //     });
 
-        this.props.dispatch(fetchFeed(type, page));
-    }
+  //     this.props.dispatch(fetchFeed(type, page));
+  //   }
+  // }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.location !== prevProps.location) {
-            let type = 'news';
-            let page = 1;
 
-            if (this.props.match.params.type !== undefined) {
-                type = this.props.match.params.type;
-            }
+  if (error) {
+    return <Alert kind="danger">Failed to load posts</Alert>;
+  }
 
-            if (this.props.match.params.page !== undefined) {
-                page = this.props.match.params.page;
-            }
+  if (loading) {
+    return <Loading />;
+  }
 
-            this.setState({
-                type,
-                page,
-            });
+  return (
+    <>
+      <Helmet>
+        <title>Hacker News &middot; {capitalize(type)}</title>
+      </Helmet>
 
-            this.props.dispatch(fetchFeed(type, page));
-        }
-    }
+      <div className="bg-white sm:rounded shadow-sm ">
+        {page > 1 && (
+          <div className="px- px-5 py-6 uppercase text-center overflow-hidden relative border-b border-gray-300">
+            <h3 className="text-sm">
+              Page {page}
+            </h3>
+          </div>
+        )}
 
-    render() {
-        const { error, isFetching, feed } = this.props.posts;
+        {posts.map((item, i) => (
+          <ListItem key={i} item={item} />
+        ))}
 
-        if (error) {
-            return <Alert kind='danger'>Failed to load posts</Alert>;
-        }
-
-        if (isFetching) {
-            return <Loading />;
-        }
-
-        return (
-            <Fragment>
-                <Helmet>
-                    <title>Hacker News &middot; {capitalize(this.state.type)}</title>
-                </Helmet>
-
-                <ScrollToTop />
-
-                <ListWrap>
-                    {this.state.page > 1 && (
-                        <PageNumber>
-                            <Heading as='h3' fontSize={2}>
-                                Page {this.state.page}
-                            </Heading>
-                        </PageNumber>
-                    )}
-
-                    {feed[this.state.type].map((item, i) => (
-                        <ListItem key={i} item={item} />
-                    ))}
-
-                    <Pagination type={this.state.type} page={this.state.page} />
-                </ListWrap>
-            </Fragment>
-        );
-    }
+        <Pagination type={type} page={page} />
+      </div>
+    </>
+  );
 }
-
-const mapStateToProps = (state) => ({
-    ...state,
-});
-
-export default withRouter(connect(mapStateToProps)(Feed));

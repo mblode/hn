@@ -1,79 +1,59 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { fetchUser } from '../actions/postsAction';
-import styled from 'styled-components';
-import Loading from './Base/Loading';
-import ScrollToTop from './ScrollToTop';
-import { Alert, get } from 'roni';
-import { Helmet } from 'react-helmet';
-import { Content, Wrap } from './Base';
+import React from "react";
+import Loading from "./Base/Loading";
+import { Helmet } from "react-helmet";
+import { Wrap } from "./Base/Wrap";
+import { Alert } from "./Base/Alert";
 
-const PageTitle = styled.div`
-    display: block;
-    padding-bottom: 12px;
-    margin-bottom: 16px;
-    border-bottom: 1px solid ${get('colors.gray.3')};
-`;
+export const User = ({ match }) => {
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [user, setUser] = useState(null)
 
-const UserName = styled.div`
-    font-size: 22px;
-    line-height: 1.3;
-    display: block;
-    width: 100%;
-    color: ${get('colors.gray.6')};
-    text-decoration: none;
-    margin-bottom: 8px;
-    word-wrap: break-word;
-`;
+  useEffect(() => {
+    const id = match.params.id;
 
-const Details = styled.p`
-    color: ${get('colors.gray.5')};
-    margin-bottom: 6px;
-`;
+    setLoading(true)
 
-class User extends Component {
-    componentDidMount() {
-        const id = this.props.match.params.id;
-        this.props.dispatch(fetchUser(id));
+    try {
+      const response = await fetch(
+        `https://api.hackerwebapp.com/user/${id}`
+      );
+
+      console.log(data);
+      setUser(response.data)
+      setError(null)
+    } catch (error) {
+      console.log('error', error);
+      setUser(null)
+      setError(error)
+    } finally {
+      setLoading(false)
     }
+  }, [])
 
-    render() {
-        const { error, isFetching, user } = this.props.posts;
+  if (error) {
+    return <Alert kind="danger">Error: {error}</Alert>;
+  }
 
-        if (error) {
-            return <Alert kind='danger'>Error: {error}</Alert>;
-        }
+  if (loading) {
+    return <Loading />;
+  }
 
-        if (isFetching) {
-            return <Loading />;
-        }
+  return (
+    <>
+      <Helmet>
+        <title>Hacker News &middot; {`${user.id}`}</title>
+      </Helmet>
 
-        return (
-            <Fragment>
-                <Helmet>
-                    <title>Hacker News &middot; {`${user.id}`}</title>
-                </Helmet>
+      <Wrap>
+        <div className="block pb-3 mb-4 border-b border-gray-300">
+          <div className=" text-gray-600 text-xl block w-full decoration-none mb-2 break-words">{user.id}</div>
+          <p className="text-gray-500 mb-2">Created: {user.created}</p>
+          <p className="text-gray-500 mb-2">Karma: {user.karma}</p>
+        </div>
 
-                <ScrollToTop />
-
-                <Wrap>
-                    <PageTitle>
-                        <UserName>{user.id}</UserName>
-
-                        <Details>Created: {user.created}</Details>
-                        <Details>Karma: {user.karma}</Details>
-                    </PageTitle>
-
-                    <Content dangerouslySetInnerHTML={{ __html: user.about }} />
-                </Wrap>
-            </Fragment>
-        );
-    }
+        <div className="content" dangerouslySetInnerHTML={{ __html: user.about }} />
+      </Wrap>
+    </>
+  );
 }
-
-const mapStateToProps = state => ({
-    ...state
-});
-
-export default withRouter(connect(mapStateToProps)(User));

@@ -1,45 +1,21 @@
-import React from 'react';
-import styled from 'styled-components';
-import { get } from 'roni';
-
-const FooterWrap = styled.footer`
-    padding: 16px 0;
-    text-align: center;
-`;
-
-const Copy = styled.span`
-    font-size: 14px;
-    color: ${get('colors.gray.5')};
-    text-decoration: none;
-`;
-
-const Creator = styled.a`
-    color: ${get('colors.gray.5')};
-    text-decoration: none;
-    transition: color 0.15s ease-in-out;
-
-    :hover {
-        color: ${get('colors.gray.6')};
-        text-decoration: underline;
-    }
-
-    :active {
-        color: ${get('colors.gray.7')};
-        text-decoration: underline;
-    }
-`;
+import React from "react";
 
 const Footer = () => {
-    return (
-        <FooterWrap>
-            <Copy>
-                Created by{' '}
-                <Creator href='https://matthewblode.com/' target='_blank' rel='noopener noreferrer'>
-                    Matthew Blode
-                </Creator>
-            </Copy>
-        </FooterWrap>
-    );
+  return (
+    <footer className="py-4 text-center">
+      <span className="text-sm text-gray-500 decoration-none">
+        Created by{" "}
+        <a
+          href="https://matthewblode.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-500 transition-colors hover:underline hover:text-gray-700 active:underline active:text-gray-700"
+        >
+          Matthew Blode
+        </a>
+      </span>
+    </footer>
+  );
 };
 
 export default Footer;

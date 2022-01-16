@@ -1,156 +1,105 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { fetchComments } from '../actions/postsAction';
-import styled from 'styled-components';
-import { parseDomain } from 'parse-domain';
-import Loading from './Base/Loading';
-import ScrollToTop from './ScrollToTop';
-import CommentItem from '../components/CommentItem';
-import { Alert, get } from 'roni';
-import { Dot, UserName, Time, ListUrl, Content, Wrap } from '../components/Base';
-import { Helmet } from 'react-helmet';
+import React from "react";
+import Loading from "./Base/Loading";
+import CommentItem from "../components/CommentItem";
+import { Alert } from "../components/Base/Alert";
+import { Dot } from "../components/Base/Dot";
+import { Helmet } from "react-helmet";
+import { parse } from '../utils'
 
-const PageTitle = styled.div`
-    display: block;
-    margin-bottom: 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid ${get('colors.gray.3')};
-`;
+export const Item = ({ match }) => {
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [data, setData] = useState(null)
 
-const CommentHeading = styled.div`
-    font-size: 16px;
-    margin-bottom: 20px;
-`;
+  useEffect(() => {
+    const id = match.params.id;
 
-const ListTitle = styled.a`
-    font-size: 22px;
-    line-height: 1.3;
-    display: block;
-    width: 100%;
-    color: ${get('colors.gray.7')};
-    text-decoration: none;
-    padding-bottom: 8px;
-    transition: color 0.15s ease-in-out;
+    setLoading(true)
 
-    :hover {
-        text-decoration: none;
-        color: ${get('colors.gray.8')};
+    try {
+      const response = await fetch(
+        `https://api.hackerwebapp.com/item/${id}`
+      );
+
+      console.log(data);
+      setData(response.data)
+      setError(null)
+    } catch (error) {
+      console.log('error', error);
+      setData(null)
+      setError(error)
+    } finally {
+      setLoading(false)
     }
+  }, [])
 
-    :active {
-        text-decoration: none;
-        color: ${get('colors.gray.8')};
-    }
-`;
+  if (error) {
+    return <Alert kind="danger">Error: {error}</Alert>;
+  }
 
-const ListTitleInner = styled.span`
-    margin-right: 4px;
-    word-wrap: break-word;
-`;
+  if (loading) {
+    return <Loading />;
+  }
 
-const CommentList = styled.ul`
-    padding: 0;
-    margin: 0;
-`;
+  let title = (
+    <a href={data.url} target="_blank" rel="noopener noreferrer" className="text-xl block w-full text-gray-700 decoration-none pb-2 transition-colors hover:text-gray-800 active:text-gray-800">
+      <span className="mr-1 break-words">{data.title}</span>
+      <span className="list-url">{parse(data.url)}</span>
+    </a>
+  );
 
-const ListInfo = styled.div`
-    display: block;
-    width: 100%;
-    padding-bottom: 6px;
-`;
+  const commentLoop = data.comments.map((ele) => {
+    return (
+      <CommentItem
+        user={ele.user}
+        timeAgo={ele.time_ago}
+        content={ele.content}
+        key={ele.id}
+        level={ele.level}
+        id={ele.id}
+        comments={ele.comments}
+        postUser={data.user}
+      />
+    );
+  });
 
-class Item extends Component {
-    componentDidMount() {
-        const id = this.props.match.params.id;
-        this.props.dispatch(fetchComments(id));
-    }
+  return (
+    <>
+      <Helmet>
+        <title>Hacker News &middot; {`${data.title}`}</title>
+      </Helmet>
 
-    parse(url) {
-        let link = parseDomain(url);
+      <div className="wrap">
+        <div className="block mb-4 pb-2 border-b border-gray-300">
+          <div className="block w-full pb-2">
+            {data.user && (
+              <span>
+                <Link
+                  href={`/user/${data.user}/`}
+                  to={`/user/${data.user}`}
+                  className="username"
+                >
+                  {data.user}
+                </Link>
 
-        if (link != null) {
-            return '(' + link.domain + '.' + link.tld + ')';
-        } else {
-            return '';
-        }
-    }
+                <Dot>•</Dot>
+              </span>
+            )}
 
-    render() {
-        const { error, isFetching, data } = this.props.posts;
+            <span className="mr-1 text-gray-500 text-sm inline-block">{data.time_ago}</span>
+          </div>
 
-        if (error) {
-            return <Alert kind='danger'>Error: {error}</Alert>;
-        }
+          {title}
 
-        if (isFetching) {
-            return <Loading />;
-        }
+          <div className="content" dangerouslySetInnerHTML={{ __html: data.content }} />
+        </div>
 
-        let title = (
-            <ListTitle href={data.url} target='_blank' rel='noopener noreferrer'>
-                <ListTitleInner>{data.title}</ListTitleInner>
-                <ListUrl>{this.parse(data.url)}</ListUrl>
-            </ListTitle>
-        );
+        <div className="text-base mb-5">
+          {data.comments_count} comment{data.comments_count !== 1 ? "s" : ""}
+        </div>
 
-        const commentLoop = data.comments.map((ele) => {
-            return (
-                <CommentItem
-                    user={ele.user}
-                    timeAgo={ele.time_ago}
-                    content={ele.content}
-                    key={ele.id}
-                    level={ele.level}
-                    id={ele.id}
-                    comments={ele.comments}
-                    postUser={data.user}
-                />
-            );
-        });
-
-        return (
-            <Fragment>
-                <Helmet>
-                    <title>Hacker News &middot; {`${data.title}`}</title>
-                </Helmet>
-
-                <ScrollToTop />
-
-                <Wrap>
-                    <PageTitle>
-                        <ListInfo>
-                            {data.user && (
-                                <span>
-                                    <UserName href={`/user/${data.user}/`} to={`/user/${data.user}`}>
-                                        {data.user}
-                                    </UserName>
-
-                                    <Dot>•</Dot>
-                                </span>
-                            )}
-
-                            <Time>{data.time_ago}</Time>
-                        </ListInfo>
-
-                        {title}
-
-                        <Content dangerouslySetInnerHTML={{ __html: data.content }} />
-                    </PageTitle>
-
-                    <CommentHeading>
-                        {data.comments_count} comment{data.comments_count !== 1 ? 's' : ''}
-                    </CommentHeading>
-
-                    <CommentList>{commentLoop}</CommentList>
-                </Wrap>
-            </Fragment>
-        );
-    }
+        <ul className="p-0 m-0">{commentLoop}</ul>
+      </div>
+    </>
+  );
 }
-
-const mapStateToProps = (state) => ({
-    ...state,
-});
-
-export default withRouter(connect(mapStateToProps)(Item));

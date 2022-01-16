@@ -1,0 +1,325 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.content {
+  @apply text-gray-700;
+
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.content p {
+  margin-bottom: 8px;
+}
+
+.content a {
+  @apply text-gray-700;
+
+  text-decoration: underline;
+  word-wrap: break-word;
+  word-break: break-all;
+  transition: color 0.15s ease-in-out;
+}
+
+.content a:hover,
+.content a:active {
+  @apply text-gray-800;
+
+}
+
+.content pre {
+  overflow-x: auto;
+  word-wrap: break-word;
+  text-align: justify;
+  max-width: initial !important;
+  white-space: pre-wrap;
+}
+
+.content *:last-child {
+  margin-bottom: 0;
+}
+
+.wrap {
+  @apply bg-white rounded shadow-sm p-6 flex justify-center items-center flex-col;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.list-url {
+  @apply text-gray-500;
+
+  font-size: 14px;
+  width: 50px;
+  font-weight: 400;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  transition: color 0.15s ease-in-out;
+}
+
+.list-url:hover {
+  @apply text-gray-600;
+
+  text-decoration: underline;
+}
+
+.list-url:active {
+  @apply text-gray-700;
+
+  text-decoration: underline;
+}
+
+.username {
+  @apply text-gray-500;
+
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.15s ease-in-out;
+}
+
+.username:hover {
+  @apply text-gray-600;
+
+  text-decoration: underline;
+}
+
+.username:active {
+  @apply text-gray-700;
+
+  text-decoration: underline;
+}
+
+.comment-list {
+  @apply border-gray-200;
+
+  padding: 0;
+  margin: 0;
+  border-left-style: solid;
+  border-left-width: 3px;
+  padding-left: 20px;
+  margin-top: 24px;
+
+}
+
+.comment-list li {
+  padding-top: 0;
+  padding-right: 0;
+  border-top: none;
+}
+
+.comment-wrap {
+  @apply border-gray-300;
+
+  list-style: none;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  position: relative;
+}
+
+.comment-wrap.toggled ul {
+  display: none;
+}
+
+.comment-wrap:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.comment-wrap:last-child {
+  padding-bottom: 0;
+}
+
+.comment {
+  display: block;
+  text-decoration: none;
+  padding: 12px;
+  padding-top: 6px;
+  margin: -12px;
+  padding-bottom: 8px;
+}
+
+.comment.toggled {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.comment:hover {
+  text-decoration: none;
+}
+
+.comment-toggle {
+  display: block;
+  margin: -6px;
+  padding: 6px;
+  margin-bottom: 6px;
+  width: calc(100% + 12px);
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.comment-toggle:hover {
+  @apply bg-gray-100;
+}
+
+.comment-toggle.toggled {
+  @apply bg-gray-100;
+  opacity: 0.5;
+  margin-bottom: 0;
+}
+
+.comment-toggle.toggled:hover {
+  @apply bg-gray-100;
+}
+
+.list {
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid ${get("colors.gray.3")};
+  padding-left: 16px;
+  padding-right: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  text-decoration: none;
+}
+
+.list:hover {
+  text-decoration: none;
+}
+
+.list-title-wrap {
+  @apply text-gray-600;
+
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 500;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+
+.list-title-wrap:hover {
+  @apply text-gray-700 decoration-none;
+}
+
+.list-title-wrap:active {
+  @apply text-gray-800 decoration-none;
+}
+
+.list-title {
+  @apply text-gray-700;
+  
+  display: block;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  transition: color 0.15s ease-in-out;
+
+}
+
+.list-title:hover {
+  @apply text-gray-800 decoration-none;
+}
+
+.list-title:active {
+  @apply text-gray-800 decoration-none;
+}
+
+.list-title:visited {
+  @apply text-gray-500;
+}
+
+.list-title-alt {
+  @apply text-gray-700;
+  
+  display: block;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  transition: color 0.15s ease-in-out;
+
+}
+
+.list-title-alt:hover {
+  @apply text-gray-800 decoration-none;
+}
+
+.list-title-alt:active {
+  @apply text-gray-800 decoration-none;
+}
+
+.list-title-alt:visited {
+  @apply text-gray-500;
+}
+
+.list-title-inner {
+  margin-right: 4px;
+  word-wrap: break-word;
+}
+
+.list-comment-link {
+  @apply text-gray-500 rounded;
+
+  display: block;
+  padding-top: 1px;
+  padding-bottom: 8px;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+
+.list-comment-link:hover span {
+  @apply text-gray-600 underline;
+}
+
+.list-comment-link:active {
+  @apply text-gray-700 underline;
+}
+
+.list-comment-item {
+  @apply text-gray-500;
+  
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row;
+  padding-right: 16px;
+  transition: color 0.15s ease-in-out;
+}
+
+.list-comment-item:hover span {
+  @apply text-gray-600 underline;
+}
+
+.list-comment-item:active {
+  @apply text-gray-700 underline;
+}
+
+.nav-link {
+  @apply text-gray-500;
+
+  position: relative;
+  padding: 0 16px;
+  font-size: 16px;
+  text-decoration: none;
+  line-height: 60px;
+  display: block;
+  transition: color 0.15s ease-in-out;
+
+  @media (max-width: 768px) {
+    padding: 0 12px;
+    line-height: 60px;
+  }
+}
+
+.nav-link.active {
+  @apply text-gray-800 no-underline font-medium;
+}
+
+.nav-link:hover {
+  @apply text-gray-700 no-underline;
+}

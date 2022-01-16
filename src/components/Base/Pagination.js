@@ -1,45 +1,15 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
-import { Button } from 'roni';
+import { Link } from "react-router-dom";
 
-const PaginationWrap = styled.div`
-    display: flex;
-    align-items: center;
-    padding: 20px 24px;
-    overflow: hidden;
-    position: relative;
-    justify-content: center;
+export const Pagination = ({ page, type }) => {
+  return (
+    <div className="flex items-center px-4 py-4 overflow-hidden relative justify-center sm:px-5 sm:py-6">
+      <Link to={`/${type}/${parseInt(page) - 1}`}>
+        <Button disabled={parseInt(page) <= 1}>Prev</Button>
+      </Link>
 
-    @media (max-width: 768px) {
-        padding: 16px 16px;
-    }
-`;
-
-const PrevNext = styled(Button)`
-    margin-left: 4px;
-    margin-right: 4px;
-`;
-
-class Pagination extends Component {
-    render() {
-        return (
-            <PaginationWrap>
-                <Link to={`/${this.props.type}/${parseInt(this.props.page) - 1}`}>
-                    <PrevNext disabled={parseInt(this.props.page) <= 1}>Prev</PrevNext>
-                </Link>
-
-                <Link to={`/${this.props.type}/${parseInt(this.props.page) + 1}`}>
-                    <PrevNext disabled={this.props.type === 'jobs'}>Next</PrevNext>
-                </Link>
-            </PaginationWrap>
-        );
-    }
+      <Link to={`/${type}/${parseInt(page) + 1}`}>
+        <Button disabled={type === "jobs"}>Next</Button>
+      </Link>
+    </div>
+  );
 }
-
-const mapStateToProps = state => ({
-    ...state
-});
-
-export default connect(mapStateToProps)(Pagination);

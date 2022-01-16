@@ -1,27 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider, ReactReduxContext } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
-import { history } from './helpers/store';
-import configureStore from './helpers/store';
-import App from './components/App';
-import * as serviceWorker from './helpers/serviceWorker';
-import { ThemeProvider } from 'roni';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import App from "./components/App";
+import './index.css'
 
-const store = configureStore();
-
-function Index() {
-    return (
-        <ThemeProvider>
-            <Provider store={store} context={ReactReduxContext}>
-                <ConnectedRouter history={history} context={ReactReduxContext}>
-                    <App />
-                </ConnectedRouter>
-            </Provider>
-        </ThemeProvider>
-    );
+const Index = () => {
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
 }
 
-ReactDOM.render(<Index />, document.getElementById('root'));
+ReactDOM.render(
+  <React.StrictMode>
+    <Index />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
 
-serviceWorker.register();
+reportWebVitals();

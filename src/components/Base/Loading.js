@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
-import Wrap from './Wrap';
-import { Spinner } from 'roni';
+import React from "react";
+import { Spinner } from "./Spinner";
 
-export default class Loading extends Component {
-    render() {
-        return (
-            <Wrap align='center' minHeight flex>
-                <Spinner stroke='#f68a30' />
-            </Wrap>
-        );
-    }
+export const Loading = () => {
+  return (
+    <div className="wrap text-center min-h-full">
+      <Spinner />
+    </div>
+  );
 }

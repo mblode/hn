@@ -1,10 +1,7 @@
-import styled from 'styled-components';
-import { get } from 'roni';
+import React from 'react';
 
-const Dot = styled.span`
-    color: ${get('colors.gray.5')};
-    font-size: 14px;
-    padding: 0 6px;
-`;
-
-export default Dot;
+export const Dot = () => {
+  return (
+    <span className='text-gray-500 text-sm px-0 py-2'>•</span>
+  )
+}

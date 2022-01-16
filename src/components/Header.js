@@ -1,151 +1,46 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-import { Search } from 'styled-icons/boxicons-regular';
-import { get } from 'roni';
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import { Search } from "./Icons/Search";
 
-const Nav = styled.nav`
-    background-color: ${get('colors.white')};
-    overflow: hidden;
-    box-shadow: ${get('shadows.sm')};
-    z-index: 10;
-    position: relative;
-`;
+export const Header = () => {
+  return (
+    <nav className="bg-white shadow-sm overflow-hidden z-10 relative">
+      <div className="mx-auto max-w-[700px] h-full flex overflow-x-auto justify-between">
+        <div className="flex flex-nowrap px-1 sm:px-0">
+          <h1 itemscope="" itemtype="http://schema.org/Organization" className="font-base m-0">
+            <Link to="/" className="font-bold text-orange-500 text-2xl sm:pr-4 leading-[60px] block px-3 sm:pl-0 hover:text-orange-600">HN</Link>
+          </h1>
 
-const Container = styled.div`
-    max-width: 700px;
-    margin: 0 auto;
-    height: 100%;
-    display: flex;
-    overflow-x: auto;
-    justify-content: space-between;
-`;
+          <NavLink activeClassName="active" to="/" exact className="nav-link">
+            Top
+          </NavLink>
 
-const NavInner = styled.div`
-    display: flex;
-    flex-wrap: nowrap;
+          <NavLink activeClassName="active" to="/newest" className="nav-link">
+            New
+          </NavLink>
 
-    @media (max-width: 768px) {
-        padding-left: 4px;
-        padding-right: 4px;
-    }
-`;
+          <NavLink activeClassName="active" to="/show" className="nav-link">
+            Show
+          </NavLink>
 
-const BrandH1 = styled.h1`
-    font-size: 1rem;
-    margin: 0;
-`;
+          <NavLink activeClassName="active" to="/ask" className="nav-link">
+            Ask
+          </NavLink>
 
-const StyledBrand = styled(Link)`
-    font-weight: bold;
-    color: #f68a30;
-    font-size: 24px;
-    padding-right: 16px;
-    line-height: 60px;
-    display: block;
+          <NavLink activeClassName="active" to="/jobs" className="nav-link">
+            Jobs
+          </NavLink>
+        </div>
 
-    @media (max-width: 768px) {
-        padding-left: 12px;
-        line-height: 60px;
-        padding-right: 12px;
-    }
-
-    :hover {
-        text-decoration: none;
-        color: #f68a30;
-    }
-`;
-
-const StyledNavLink = styled(NavLink)`
-    color: ${get('colors.gray.5')};
-    position: relative;
-    padding: 0 16px;
-    font-size: 16px;
-    text-decoration: none;
-    line-height: 60px;
-    display: block;
-    transition: color 0.15s ease-in-out;
-
-    &.active {
-        text-decoration: none;
-        color: ${get('colors.gray.8')};
-        font-weight: 500;
-    }
-
-    :hover {
-        text-decoration: none;
-        color: ${get('colors.gray.7')};
-    }
-
-    @media (max-width: 768px) {
-        padding: 0 12px;
-        line-height: 60px;
-    }
-`;
-
-const SearchWrap = styled.a`
-    text-decoration: none;
-    line-height: 58px;
-    display: block;
-    transition: color 0.15s ease-in-out;
-
-    @media (max-width: 768px) {
-        padding-left: 4px;
-        padding-right: 16px;
-    }
-`;
-
-const SearchIcon = styled(Search)`
-    width: 24px;
-    height: 24px;
-    text-align: right;
-    color: ${get('colors.gray.5')};
-    transition: color 0.15s ease-in-out;
-
-    :hover {
-        color: ${get('colors.gray.7')};
-    }
-
-    :active {
-        color: ${get('colors.gray.8')};
-    }
-`;
-
-function Header() {
-    return (
-        <Nav>
-            <Container>
-                <NavInner>
-                    <BrandH1 itemscope='' itemtype='http://schema.org/Organization'>
-                        <StyledBrand to='/'>HN</StyledBrand>
-                    </BrandH1>
-
-                    <StyledNavLink activeClassName='active' to='/' exact>
-                        Top
-                    </StyledNavLink>
-
-                    <StyledNavLink activeClassName='active' to='/newest'>
-                        New
-                    </StyledNavLink>
-
-                    <StyledNavLink activeClassName='active' to='/show'>
-                        Show
-                    </StyledNavLink>
-
-                    <StyledNavLink activeClassName='active' to='/ask'>
-                        Ask
-                    </StyledNavLink>
-
-                    <StyledNavLink activeClassName='active' to='/jobs'>
-                        Jobs
-                    </StyledNavLink>
-                </NavInner>
-                <SearchWrap href='https://hn.algolia.com' target='_blank' rel='noopener noreferrer'>
-                    <SearchIcon />
-                </SearchWrap>
-            </Container>
-        </Nav>
-    );
+        <a
+          href="https://hn.algolia.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="no-underline leading-[58px] block transition-colors pl-1 pr-4 sm:px-0"
+        >
+          <Search className="w-6 h-6 text-right text-gray-500 transition-colors hover:text-gray-700 active:text-gray-800" />
+        </a>
+      </div>
+    </nav>
+  );
 }
-
-export default Header;
