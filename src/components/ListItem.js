@@ -29,7 +29,7 @@ export const ListItem = ({ item }) => {
       <div className="block w-full">
         {user && (
           <span>
-            <a href={`https://news.ycombinator.com/user?id=${user}`} target="_blank" rel="noopener noreferrer" className="username pt-3">
+            <a href={`https://news.ycombinator.com/user?id=${user}`} target="_blank" rel="noopener noreferrer" className="pt-3 username">
               {user}
             </a>
 
@@ -37,7 +37,7 @@ export const ListItem = ({ item }) => {
           </span>
         )}
 
-        <span className="mr-1 text-gray-500 text-sm inline-block pt-3">{time_ago}</span>
+        <span className="inline-block pt-3 mr-1 text-sm text-gray-500 dark:text-gray-400">{time_ago}</span>
       </div>
 
       <span className="list-title-wrap">{linkTitle}</span>
@@ -45,13 +45,13 @@ export const ListItem = ({ item }) => {
       <Link href={`/item/${id}/`} to={`/item/${id}`} className="list-comment-link">
         {points && (
           <span className="list-comment-item">
-            <Like className="w-5 h-5 pr-1 relative" />
+            <Like className="relative w-5 h-5 pr-1" />
             <span>{points}</span>
           </span>
         )}
 
         <span className="list-comment-item">
-          <Comment className="w-5 h-5 pr-1 relative" />
+          <Comment className="relative w-5 h-5 pr-1" />
           <span>{comments_count}</span>
         </span>
       </Link>

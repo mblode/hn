@@ -45,7 +45,7 @@ export const Item = () => {
   }
 
   let title = (
-    <a href={data.url} target="_blank" rel="noopener noreferrer" className="block w-full pb-2 text-xl text-gray-700 transition-colors decoration-none hover:text-gray-800 active:text-gray-800">
+    <a href={data.url} target="_blank" rel="noopener noreferrer" className="block w-full pb-2 text-xl text-gray-700 transition-colors dark:text-gray-200 decoration-none hover:text-gray-800 dark:hover:text-gray-100 active:text-gray-800 dark:active:text-gray-100">
       <span className="mr-1 break-words">{data.title}</span>
       <span className="list-url">{parse(data.url)}</span>
     </a>
@@ -90,7 +90,7 @@ export const Item = () => {
               </span>
             )}
 
-            <span className="inline-block mr-1 text-sm text-gray-500">{data.time_ago}</span>
+            <span className="inline-block mr-1 text-sm text-gray-500 dark:text-gray-400">{data.time_ago}</span>
           </div>
 
           {title}
@@ -98,7 +98,7 @@ export const Item = () => {
           <div className="content" dangerouslySetInnerHTML={{ __html: data.content }} />
         </div>
 
-        <div className="mb-5 text-base">
+        <div className="mb-5 text-base text-white dark:text-gray-100">
           {data.comments_count} comment{data.comments_count !== 1 ? "s" : ""}
         </div>
 

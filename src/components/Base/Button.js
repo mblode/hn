@@ -12,10 +12,10 @@ export const Button = ({
   return (
     <button
       className={cn(
-        "btn px-4 py-2 text-base bg-white border-gray-300 text-gray-700 hover:bg-gray-100 rounded-lg hover:border-gray-400 hover:shadow-md focus:shadow-md",
+        "btn px-4 py-2 text-base bg-white dark:bg-slate-700 border-gray-300 text-gray-700 dark:text-gray-200 hover:bg-gray-100 rounded-lg hover:border-gray-400 hover:shadow-md focus:shadow-md",
         {
           "cursor-wait": isLoading,
-          "!cursor-not-allowed !bg-white !text-gray-500 !shadow-none !border-gray-200":
+          "!cursor-not-allowed !bg-white !text-gray-500 !dark:text-gray-400 !shadow-none !border-gray-200 !dark:border-gray-400":
             disabled,
           "block w-full": fullWidth,
           "inline-block": !fullWidth,

@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-white dark:bg-slate-700;
+}
+
 .content {
-  @apply text-gray-700;
+  @apply text-gray-700 dark:text-gray-200;
 
   width: 100%;
   word-wrap: break-word;
@@ -14,7 +18,7 @@
 }
 
 .content a {
-  @apply text-gray-700;
+  @apply text-gray-700 dark:text-gray-200;
 
   text-decoration: underline;
   word-wrap: break-word;
@@ -24,7 +28,7 @@
 
 .content a:hover,
 .content a:active {
-  @apply text-gray-800;
+  @apply text-gray-800 dark:text-gray-100;
 
 }
 
@@ -41,11 +45,11 @@
 }
 
 .wrap {
-  @apply px-4 py-6 bg-white shadow-md sm:rounded-lg sm:px-6;
+  @apply px-4 py-6 bg-white shadow-md dark:bg-slate-900 sm:rounded-lg sm:px-6;
 }
 
 .list-url {
-  @apply text-gray-500;
+  @apply text-gray-500 dark:text-gray-400;
 
   font-size: 14px;
   width: 50px;
@@ -58,19 +62,19 @@
 }
 
 .list-url:hover {
-  @apply text-gray-600;
+  @apply text-gray-600 dark:text-gray-300;
 
   text-decoration: underline;
 }
 
 .list-url:active {
-  @apply text-gray-700;
+  @apply text-gray-700 dark:text-gray-200;
 
   text-decoration: underline;
 }
 
 .username {
-  @apply text-gray-500;
+  @apply text-gray-500 dark:text-gray-400;
 
   font-size: 14px;
   text-decoration: none;
@@ -79,19 +83,19 @@
 }
 
 .username:hover {
-  @apply text-gray-600;
+  @apply text-gray-600 dark:text-gray-300;
 
   text-decoration: underline;
 }
 
 .username:active {
-  @apply text-gray-700;
+  @apply text-gray-700 dark:text-gray-200;
 
   text-decoration: underline;
 }
 
 .comment-list {
-  @apply border-gray-200;
+  @apply border-gray-200 dark:border-slate-600;
 
   padding: 0;
   margin: 0;
@@ -161,17 +165,17 @@
 }
 
 .comment-toggle:hover {
-  @apply bg-gray-100;
+  @apply bg-gray-100 dark:bg-slate-700;
 }
 
 .comment-toggle.toggled {
-  @apply bg-gray-100;
+  @apply bg-gray-100 dark:bg-slate-700;
   opacity: 0.5;
   margin-bottom: 0;
 }
 
 .comment-toggle.toggled:hover {
-  @apply bg-gray-100;
+  @apply bg-gray-100 dark:bg-slate-700;
 }
 
 .list {
@@ -192,7 +196,7 @@
 }
 
 .list-title-wrap {
-  @apply text-gray-600;
+  @apply text-gray-600 dark:text-gray-300;
 
   font-size: 16px;
   line-height: 1.3;
@@ -204,15 +208,15 @@
 }
 
 .list-title-wrap:hover {
-  @apply text-gray-700 no-underline;
+  @apply text-gray-700 no-underline dark:text-gray-200;
 }
 
 .list-title-wrap:active {
-  @apply text-gray-800 no-underline;
+  @apply text-gray-800 no-underline dark:text-gray-100;
 }
 
 .list-title {
-  @apply text-gray-700;
+  @apply text-gray-700 dark:text-gray-200;
   
   display: block;
   padding-top: 2px;
@@ -222,19 +226,19 @@
 }
 
 .list-title:hover {
-  @apply text-gray-800 no-underline;
+  @apply text-gray-800 no-underline dark:text-gray-100;
 }
 
 .list-title:active {
-  @apply text-gray-800 no-underline;
+  @apply text-gray-800 no-underline dark:text-gray-100;
 }
 
 .list-title:visited {
-  @apply text-gray-500;
+  @apply text-gray-500 dark:text-gray-400;
 }
 
 .list-title-alt {
-  @apply text-gray-700;
+  @apply text-gray-700 dark:text-gray-200;
   
   display: block;
   padding-top: 2px;
@@ -244,15 +248,15 @@
 }
 
 .list-title-alt:hover {
-  @apply text-gray-800 no-underline;
+  @apply text-gray-800 no-underline dark:text-gray-100;
 }
 
 .list-title-alt:active {
-  @apply text-gray-800 no-underline;
+  @apply text-gray-800 no-underline dark:text-gray-100;
 }
 
 .list-title-alt:visited {
-  @apply text-gray-500;
+  @apply text-gray-500 dark:text-gray-400;
 }
 
 .list-title-inner {
@@ -261,7 +265,7 @@
 }
 
 .list-comment-link {
-  @apply text-gray-500 rounded-lg;
+  @apply text-gray-500 rounded-lg dark:text-gray-400;
 
   display: block;
   padding-top: 1px;
@@ -271,15 +275,15 @@
 }
 
 .list-comment-link:hover span {
-  @apply text-gray-600 underline;
+  @apply text-gray-600 underline dark:text-gray-300;
 }
 
 .list-comment-link:active {
-  @apply text-gray-700 underline;
+  @apply text-gray-700 underline dark:text-gray-200;
 }
 
 .list-comment-item {
-  @apply text-gray-500;
+  @apply text-gray-500 dark:text-gray-400;
   
   display: inline-flex;
   align-items: center;
@@ -289,15 +293,15 @@
 }
 
 .list-comment-item:hover span {
-  @apply text-gray-600 underline;
+  @apply text-gray-600 underline dark:text-gray-300;
 }
 
 .list-comment-item:active {
-  @apply text-gray-700 underline;
+  @apply text-gray-700 underline dark:text-gray-200;
 }
 
 .nav-link {
-  @apply text-gray-500;
+  @apply text-gray-500 dark:text-gray-400;
 
   position: relative;
   padding: 0 12px;
@@ -313,11 +317,11 @@
 }
 
 .nav-link.active {
-  @apply font-medium text-gray-800 no-underline;
+  @apply font-medium text-gray-800 no-underline dark:text-gray-100;
 }
 
 .nav-link:hover {
-  @apply text-gray-700 no-underline;
+  @apply text-gray-700 no-underline dark:text-gray-200;
 }
 
 .btn {
