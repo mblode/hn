@@ -53,7 +53,7 @@ export const CommentItem = ({ user, time, content, level, comments, postUser }) 
             {user}
           </a>
           <Dot>•</Dot>
-          <span className="inline-block mr-1 text-sm text-slate-500 dark:text-slate-400">{relativeTime(time)}</span>
+          <span className="inline-block mr-1 text-slate-500 dark:text-slate-400">{relativeTime(time)}</span>
         </header>
 
         {!hidden && <div className="content" dangerouslySetInnerHTML={{ __html: content }} />}

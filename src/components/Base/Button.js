@@ -12,7 +12,7 @@ export const Button = ({
   return (
     <button
       className={cn(
-        "btn px-4 rounded-lg py-2 text-base bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200",
+        "btn px-4 rounded-lg py-2 text-base bg-white transition-colors dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200",
         {
           "cursor-wait": isLoading,
           "cursor-not-allowed opacity-50":

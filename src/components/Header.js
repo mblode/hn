@@ -9,7 +9,7 @@ export const Header = () => {
       <div className="mx-auto max-w-[620px] h-full flex overflow-x-auto justify-between">
         <div className="flex px-1 flex-nowrap sm:px-0">
           <h1 itemScope="" itemType="http://schema.org/Organization" className="m-0 font-base">
-            <Link to="/" className="font-bold text-orange-500 text-2xl sm:pr-4 leading-[60px] block px-3 sm:pl-0 hover:text-orange-600">HN</Link>
+            <Link to="/" className="font-bold text-orange-500 transition-colors text-2xl sm:pr-4 leading-[60px] block px-3 sm:pl-0 hover:text-orange-600">HN</Link>
           </h1>
 
           <NavLink to="/" className={({ isActive }) => cn("nav-link", { "active": isActive })}>

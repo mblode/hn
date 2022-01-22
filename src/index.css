@@ -7,23 +7,15 @@ body {
 }
 
 .content {
-  @apply text-slate-700 dark:text-slate-200;
-
-  width: 100%;
-  word-wrap: break-word;
+  @apply w-full break-words text-slate-700 dark:text-slate-200;
 }
 
 .content p {
-  margin-bottom: 8px;
+  @apply mb-2;
 }
 
 .content a {
-  @apply text-slate-700 dark:text-slate-200;
-
-  text-decoration: underline;
-  word-wrap: break-word;
-  word-break: break-all;
-  transition: color 0.15s ease-in-out;
+  @apply underline break-words transition-colors text-slate-700 dark:text-slate-200;
 }
 
 .content a:hover,
@@ -32,15 +24,13 @@ body {
 }
 
 .content pre {
-  overflow-x: auto;
-  word-wrap: break-word;
-  text-align: justify;
+  @apply overflow-x-auto text-justify break-words whitespace-pre-wrap;
+
   max-width: initial !important;
-  white-space: pre-wrap;
 }
 
 .content *:last-child {
-  margin-bottom: 0;
+  @apply mb-0;
 }
 
 .wrap {
@@ -48,110 +38,63 @@ body {
 }
 
 .list-url {
-  max-width: 100px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-break: break-word;
-  display: inline-block;
+  @apply inline-block overflow-hidden break-words transition-colors whitespace-nowrap text-ellipsis;
 }
 
-.list-url:hover {
+.list-url:hover,
+.list-url:active {
   @apply underline text-slate-600 dark:text-slate-300;
 }
 
-.list-url:active {
-  @apply underline text-slate-700 dark:text-slate-200;
-}
-
 .username {
-  @apply text-slate-500 dark:text-slate-400;
-
-  font-size: 14px;
-  text-decoration: none;
-  display: inline-block;
-  transition: color 0.15s ease-in-out;
+  @apply inline-block no-underline transition-colors text-slate-500 dark:text-slate-400;
 }
 
-.username:hover {
-  @apply text-slate-600 dark:text-slate-300;
-
-  text-decoration: underline;
-}
-
+.username:hover,
 .username:active {
-  @apply text-slate-700 dark:text-slate-200;
-
-  text-decoration: underline;
+  @apply underline text-slate-600 dark:text-slate-300;
 }
 
 .comment-list {
-  @apply border-slate-200 dark:border-slate-600;
-
-  padding: 0;
-  margin: 0;
-  border-left-style: solid;
-  border-left-width: 3px;
-  padding-left: 20px;
-  margin-top: 24px;
+  @apply border-slate-200 dark:border-slate-600 p-0 m-0 border-l-[3px] pl-5 mt-6;
 }
 
 .comment-list li {
-  padding-top: 0;
-  padding-right: 0;
-  border-top: none;
+  @apply pt-0 pr-0 border-t-0;
 }
 
 .comment-wrap {
-  @apply border-slate-300;
-
-  list-style: none;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  position: relative;
+  @apply border-slate-300 list-none py-6 border-t-[1px] relative;
 }
 
 .comment-wrap.toggled ul {
-  display: none;
+  @apply hidden;
 }
 
 .comment-wrap:first-child {
-  border-top: none;
-  padding-top: 0;
+  @apply pt-0 border-t-0;
 }
 
 .comment-wrap:last-child {
-  padding-bottom: 0;
+  @apply pb-0;
 }
 
 .comment {
-  display: block;
-  text-decoration: none;
-  padding: 12px;
-  padding-top: 6px;
-  margin: -12px;
-  padding-bottom: 8px;
+  @apply block no-underline px-3 pt-[6px] pb-2 -m-3;
 }
 
 .comment.toggled {
-  padding-top: 0;
-  padding-bottom: 0;
+  @apply py-0;
 }
 
 .comment:hover {
-  text-decoration: none;
+  @apply no-underline;
 }
 
 .comment-toggle {
-  display: block;
-  margin: -6px;
-  padding: 6px;
-  margin-bottom: 6px;
+  @apply block -m-[6px] p-[6px] mb-[6px] cursor-pointer transition-colors text-sm;
+
   width: calc(100% + 12px);
-  cursor: pointer;
-  transition: background-color 0.15s ease-in-out;
 }
 
 .comment-toggle:hover {
@@ -159,9 +102,7 @@ body {
 }
 
 .comment-toggle.toggled {
-  @apply bg-slate-100 dark:bg-slate-700;
-  opacity: 0.5;
-  margin-bottom: 0;
+  @apply mb-0 transition-colors opacity-50 bg-slate-100 dark:bg-slate-700;
 }
 
 .comment-toggle.toggled:hover {
@@ -169,60 +110,34 @@ body {
 }
 
 .list-title {
-  @apply text-slate-700 dark:text-slate-200 block pt-[2px] pb-1;
+  @apply text-slate-700 dark:text-slate-200 block pt-[2px] pb-1 transition-colors;
 }
 
-.list-title:hover {
-  @apply no-underline text-slate-800 dark:text-slate-100;
-}
-
-.list-title:active {
-  @apply no-underline text-slate-800 dark:text-slate-100;
+.list-title:hover,
+.list-title:hover:visited,
+.list-title:active,
+.list-title:active:visited {
+  @apply underline text-slate-800 dark:text-slate-100;
 }
 
 .list-title:visited {
-  @apply text-slate-500 dark:text-slate-400;
+  @apply text-slate-500 dark:text-[#B0BCCD];
 }
 
 .list-title-inner {
-  margin-right: 4px;
-  word-wrap: break-word;
-}
-
-.list-link {
-  @apply flex flex-row items-center text-sm;
-}
-
-.list-link:hover span {
-  @apply text-slate-600 dark:text-slate-300;
-}
-
-.list-link:active {
-  @apply text-slate-700 dark:text-slate-200;
+  @apply mr-1 break-words;
 }
 
 .list-link-icon {
-  @apply flex flex-row items-center pl-3;
+  @apply flex flex-row items-center pr-3;
 }
 
 .nav-link {
-  @apply text-slate-500 dark:text-slate-400;
-
-  position: relative;
-  padding: 0 12px;
-  font-size: 16px;
-  text-decoration: none;
-  line-height: 60px;
-  display: block;
-  transition: color 0.15s ease-in-out;
-
-  @media (max-width: 768px) {
-    padding: 0 12px;
-  }
+  @apply text-slate-500 dark:text-slate-400 relative py-0 px-3 text-base no-underline leading-[60px] block transition-colors;
 }
 
 .nav-link.active {
-  @apply font-medium no-underline text-slate-800 dark:text-slate-100;
+  @apply font-medium no-underline transition-colors text-slate-700 dark:text-slate-200;
 }
 
 .nav-link:hover {

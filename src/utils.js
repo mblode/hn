@@ -8,25 +8,6 @@ export const parse = (url) => {
   return link ?? null
 }
 
-// moment.locale('en', {
-//   relativeTime: {
-//     future: 'in %s',
-//     past: '%s ago',
-//     s: '1s',
-//     ss: '%ss',
-//     m: '1m',
-//     mm: '%dm',
-//     h: '1h',
-//     hh: '%dh',
-//     d: '1d',
-//     dd: '%dd',
-//     M: '1M',
-//     MM: '%dM',
-//     y: '1Y',
-//     yy: '%dY'
-//   }
-// })
-
 const formatDistanceLocale = {
   lessThanXSeconds: '{{count}}s',
   xSeconds: '{{count}}s',
@@ -68,6 +49,5 @@ const locale = {
 };
 
 export const relativeTime = (time) => {
-  console.log(time * 1000, new Date(time * 1000), new Date())
   return formatDistanceStrict(new Date(time * 1000), new Date(), { locale });
 }

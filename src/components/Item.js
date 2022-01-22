@@ -47,9 +47,9 @@ export const Item = () => {
   const parsedUrl = parse(data.url)
 
   let title = (
-    <a href={data.url} target="_blank" rel="noopener noreferrer" className="flex items-baseline w-full pb-2 text-xl transition-colors text-slate-700 dark:text-slate-200 decoration-none hover:text-slate-800 dark:hover:text-slate-100 active:text-slate-800 dark:active:text-slate-100">
+    <a href={data.url} target="_blank" rel="noopener noreferrer" className="block pb-2 text-xl transition-colors first-letter:w-full text-slate-700 dark:text-slate-200 decoration-none hover:text-slate-800 dark:hover:text-slate-100 active:text-slate-800 dark:active:text-slate-100">
       <span className="mr-1 break-words">{data.title}</span>
-      {parsedUrl && <span className="pl-1 text-sm text-gray-500 dark:text-gray-400 list-url">{parsedUrl}</span>}
+      {parsedUrl && <span className="pl-1 text-sm text-gray-500 align-middle dark:text-gray-400 list-url">{parsedUrl}</span>}
     </a>
   );
 
@@ -76,7 +76,7 @@ export const Item = () => {
 
       <div className="wrap">
         <div className="block pb-2 mb-4 border-b border-slate-300 dark:border-slate-500">
-          <div className="block w-full pb-2">
+          <div className="block w-full pb-2 text-sm">
             {data.user && (
               <span>
                 <a

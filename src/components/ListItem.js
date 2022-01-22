@@ -28,49 +28,47 @@ export const ListItem = ({ item }) => {
 
   return (
     <div className="relative flex flex-wrap px-4 overflow-hidden border-b border-slate-300 dark:border-slate-500">
-      <span className="w-full mt-2 text-base font-medium text-slate-600 dark:text-slate-300">{linkTitle}</span>
+      <div className="flex flex-row items-center pt-3 pb-1 text-sm text-slate-500 dark:text-slate-400">
+        {parsedUrl && (
+          <>
+            <a href={url} target="_blank" rel="noopener noreferrer" className="list-url">{parsedUrl}</a>
+            {user && <Dot />}
+          </>
+        )}
 
-      <div className="flex flex-nowrap w-full items-center justify-between rounded-lg text-slate-500 dark:text-slate-400 pt-[1px] pb-3">
-        <div className="flex-wrap list-link">
-          {parsedUrl && (
-            <>
-              <a href={url} target="_blank" rel="noopener noreferrer" className="list-url">{parsedUrl}</a>
-              <Dot />
-            </>
-          )}
-
-          {user && (
-            <>
-              <a href={`https://news.ycombinator.com/user?id=${user}`} target="_blank" rel="noopener noreferrer" className="list-url">
-                {user}
-              </a>
-            </>
-          )}
-        </div>
-
-        <Link to={to} className="list-link">
-          {time && (
-            <span className="list-link-icon">
-              <Clock className="relative w-5 h-5 pr-1" />
-              <span>{relativeTime(time)}</span>
-            </span>
-          )}
-
-          {comments_count && (
-            <span className="list-link-icon">
-              <Comment className="relative w-5 h-5 pr-1" />
-              <span>{comments_count}</span>
-            </span>
-          )}
-
-          {points && (
-            <span className="list-link-icon">
-              <Like className="relative w-5 h-5 pr-1" />
-              <span>{points}</span>
-            </span>
-          )}
-        </Link>
+        {user && (
+          <>
+            <a href={`https://news.ycombinator.com/user?id=${user}`} target="_blank" rel="noopener noreferrer" className="list-url">
+              {user}
+            </a>
+          </>
+        )}
       </div>
+
+      <h3 className="w-full text-base font-medium">{linkTitle}</h3>
+
+      <Link to={to} className="flex flex-row items-center pt-1 pb-3 text-sm transition-colors text-slate-500 dark:text-slate-400 hover:text-slate-600 hover:dark:text-slate-300">
+        {time ? (
+          <span className="list-link-icon z">
+            <Clock className="relative w-5 h-5 pr-1" />
+            <span>{relativeTime(time)}</span>
+          </span>
+        ) : null}
+
+        {comments_count ? (
+          <span className="list-link-icon y">
+            <Comment className="relative w-5 h-5 pr-1" />
+            <span>{comments_count}</span>
+          </span>
+        ) : null}
+
+        {points ? (
+          <span className="list-link-icon x">
+            <Like className="relative w-5 h-5 pr-1" />
+            <span>{points}</span>
+          </span>
+        ) : null}
+      </Link>
     </div>
   );
 }
