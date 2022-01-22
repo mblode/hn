@@ -50,7 +50,7 @@ export const Feed = () => {
   }, [params])
 
   if (error) {
-    return <Alert kind="danger">Failed to load posts</Alert>;
+    return <Alert kind="negative">Failed to load posts</Alert>;
   }
 
   if (loading || posts.length === 0) {

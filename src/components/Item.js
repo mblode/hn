@@ -37,7 +37,7 @@ export const Item = () => {
   }, [id])
 
   if (error) {
-    return <Alert kind="danger">Error: {error}</Alert>;
+    return <Alert kind="negative">Error: {error}</Alert>;
   }
 
   if (loading || !data) {
@@ -47,10 +47,10 @@ export const Item = () => {
   const parsedUrl = parse(data.url)
 
   let title = (
-    <a href={data.url} target="_blank" rel="noopener noreferrer" className="block pb-2 text-xl transition-colors first-letter:w-full text-slate-700 dark:text-slate-200 decoration-none hover:text-slate-800 dark:hover:text-slate-100 active:text-slate-800 dark:active:text-slate-100">
-      <span className="mr-1 break-words">{data.title}</span>
-      {parsedUrl && <span className="pl-1 text-sm text-gray-500 align-middle dark:text-gray-400 list-url">{parsedUrl}</span>}
-    </a>
+    <div className="block pb-2 text-xl transition-colors first-letter:w-full text-slate-700 dark:text-slate-200 decoration-none hover:text-slate-800 dark:hover:text-slate-100 active:text-slate-800 dark:active:text-slate-100">
+      <a href={data.url} target="_blank" rel="noopener noreferrer" className="pr-1 mr-1 break-words">{data.title}</a>
+      {parsedUrl && <a href={`https://news.ycombinator.com/from?site=${parsedUrl}`} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 align-middle dark:text-gray-400 list-url">{parsedUrl}</a>}
+    </div>
   );
 
   const commentLoop = data.comments.map((ele) => {
@@ -75,7 +75,7 @@ export const Item = () => {
       </Helmet>
 
       <div className="wrap">
-        <div className="block pb-2 mb-4 border-b border-slate-300 dark:border-slate-500">
+        <div className="block pb-4 mb-4 border-b border-slate-300 dark:border-slate-500">
           <div className="block w-full pb-2 text-sm">
             {data.user && (
               <span>
