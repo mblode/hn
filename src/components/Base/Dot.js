@@ -2,6 +2,6 @@ import React from 'react';
 
 export const Dot = () => {
   return (
-    <span className='px-[6px] py-0 text-sm text-gray-500 dark:text-gray-400'>•</span>
+    <span className='inline-block px-1 text-sm text-slate-500 dark:text-slate-400'>•</span>
   )
 }

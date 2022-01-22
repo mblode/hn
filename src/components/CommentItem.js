@@ -1,8 +1,9 @@
 import React, { useCallback, useState } from "react";
 import cn from "classnames"
+import { relativeTime } from "../utils";
 import { Dot } from './Base/Dot'
 
-export const CommentItem = ({ user, timeAgo, content, level, comments, postUser }) => {
+export const CommentItem = ({ user, time, content, level, comments, postUser }) => {
   const [hidden, setHidden] = useState(false)
 
   const toggleHidden = useCallback((e) => {
@@ -19,7 +20,7 @@ export const CommentItem = ({ user, timeAgo, content, level, comments, postUser 
           return (
             <CommentItem
               user={ele.user}
-              timeAgo={ele.time_ago}
+              time={ele.time}
               content={ele.content}
               key={ele.id}
               level={ele.level}
@@ -52,7 +53,7 @@ export const CommentItem = ({ user, timeAgo, content, level, comments, postUser 
             {user}
           </a>
           <Dot>•</Dot>
-          <span className="inline-block mr-1 text-sm text-gray-500 dark:text-gray-400">{timeAgo}</span>
+          <span className="inline-block mr-1 text-sm text-slate-500 dark:text-slate-400">{relativeTime(time)}</span>
         </header>
 
         {!hidden && <div className="content" dangerouslySetInnerHTML={{ __html: content }} />}

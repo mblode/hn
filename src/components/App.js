@@ -9,7 +9,7 @@ export const App = () => {
       <Header />
 
       <section className="mt-3">
-        <div className="mx-auto max-w-[700px]">
+        <div className="mx-auto max-w-[620px]">
           <Main />
           <Footer />
         </div>

@@ -63,9 +63,9 @@ export const Feed = () => {
         <title>Hacker News &middot; {capitalize(type)}</title>
       </Helmet>
 
-      <div className="bg-white shadow-md dark:bg-slate-800 sm:rounded-lg">
+      <div className="bg-white shadow-xl dark:bg-slate-800 sm:rounded-lg">
         {page > 1 && (
-          <div className="relative px-5 py-6 overflow-hidden text-center uppercase border-b border-gray-300 px-">
+          <div className="relative p-5 overflow-hidden text-center border-b text-slate-900 dark:text-slate-200 border-slate-300 dark:border-slate-500">
             <h3 className="text-sm">
               Page {page}
             </h3>

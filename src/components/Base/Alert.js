@@ -3,7 +3,7 @@ import cn from "classnames";
 const classNames = {
   kind: {
     positive: "bg-green-200 text-green-700",
-    neutral: "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200",
+    neutral: "bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200",
     negative: "bg-red-200 text-red-700",
   },
 };

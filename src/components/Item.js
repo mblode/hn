@@ -5,7 +5,7 @@ import { CommentItem } from "../components/CommentItem";
 import { Alert } from "../components/Base/Alert";
 import { Dot } from "../components/Base/Dot";
 import { Helmet } from "react-helmet";
-import { parse } from '../utils'
+import { parse, relativeTime } from '../utils'
 
 export const Item = () => {
   const { id } = useParams();
@@ -44,10 +44,12 @@ export const Item = () => {
     return <Loading />;
   }
 
+  const parsedUrl = parse(data.url)
+
   let title = (
-    <a href={data.url} target="_blank" rel="noopener noreferrer" className="block w-full pb-2 text-xl text-gray-700 transition-colors dark:text-gray-200 decoration-none hover:text-gray-800 dark:hover:text-gray-100 active:text-gray-800 dark:active:text-gray-100">
+    <a href={data.url} target="_blank" rel="noopener noreferrer" className="flex items-baseline w-full pb-2 text-xl transition-colors text-slate-700 dark:text-slate-200 decoration-none hover:text-slate-800 dark:hover:text-slate-100 active:text-slate-800 dark:active:text-slate-100">
       <span className="mr-1 break-words">{data.title}</span>
-      <span className="list-url">{parse(data.url)}</span>
+      {parsedUrl && <span className="pl-1 text-sm text-gray-500 dark:text-gray-400 list-url">{parsedUrl}</span>}
     </a>
   );
 
@@ -55,7 +57,7 @@ export const Item = () => {
     return (
       <CommentItem
         user={ele.user}
-        timeAgo={ele.time_ago}
+        time={ele.time}
         content={ele.content}
         key={ele.id}
         level={ele.level}
@@ -73,7 +75,7 @@ export const Item = () => {
       </Helmet>
 
       <div className="wrap">
-        <div className="block pb-2 mb-4 border-b border-gray-300">
+        <div className="block pb-2 mb-4 border-b border-slate-300 dark:border-slate-500">
           <div className="block w-full pb-2">
             {data.user && (
               <span>
@@ -90,7 +92,7 @@ export const Item = () => {
               </span>
             )}
 
-            <span className="inline-block mr-1 text-sm text-gray-500 dark:text-gray-400">{data.time_ago}</span>
+            <span className="inline-block mr-1 text-sm text-slate-500 dark:text-slate-400">{relativeTime(data.time)}</span>
           </div>
 
           {title}
@@ -98,7 +100,7 @@ export const Item = () => {
           <div className="content" dangerouslySetInnerHTML={{ __html: data.content }} />
         </div>
 
-        <div className="mb-5 text-base text-white dark:text-gray-100">
+        <div className="mb-5 text-base text-slate-800 dark:text-slate-100">
           {data.comments_count} comment{data.comments_count !== 1 ? "s" : ""}
         </div>
 
