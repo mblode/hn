@@ -15,7 +15,7 @@ body {
 }
 
 .content p {
-  @apply mb-2;
+  @apply mb-2 break-words;
 }
 
 .content a {
