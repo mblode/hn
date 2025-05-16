@@ -4,7 +4,7 @@ import Like from "./icons/like";
 import Comment from "./icons/comment";
 import { parse, relativeTime } from "@/lib/utils";
 
-interface HackerNewsItem {
+type HackerNewsItem = {
   comments_count: number;
   id: number;
   points: number;
@@ -12,13 +12,13 @@ interface HackerNewsItem {
   title: string;
   url: string;
   user: string;
-}
+};
 
-interface ListItemProps {
+type Props = {
   item: HackerNewsItem;
-}
+};
 
-export const ListItem = ({ item }: ListItemProps) => {
+export const ListItem = ({ item }: Props) => {
   const { comments_count, id, points, time, title, url, user } = item;
 
   const to = `/item/${id}`;
@@ -85,17 +85,17 @@ export const ListItem = ({ item }: ListItemProps) => {
 
       <Link
         to={to}
-        className="flex flex-row items-center w-full pt-1 pb-3 text-sm transition-colors text-muted-foreground hover:text-muted-foreground"
+        className="flex flex-row items-center w-full pt-1 pb-3 text-sm transition-colors text-muted-foreground"
       >
         {points ? (
-          <span className="list-link-icon x">
+          <span className="list-link-icon">
             <Like className="relative w-5 h-5 pr-1" />
             <span>{points}</span>
           </span>
         ) : null}
 
         {comments_count ? (
-          <span className="list-link-icon y">
+          <span className="list-link-icon">
             <Comment className="relative w-5 h-5 pr-1" />
             <span>{comments_count}</span>
           </span>

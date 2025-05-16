@@ -6,7 +6,7 @@ import { Alert } from "./base/alert";
 import { Loading } from "./base/loading";
 import { Pagination } from "./base/pagination";
 
-interface HackerNewsItem {
+type HackerNewsItem = {
   comments_count: number;
   id: number;
   points: number;

@@ -9,12 +9,12 @@ const classNames = {
   },
 };
 
-interface AlertProps {
+type Props = {
   kind?: "positive" | "neutral" | "negative";
   children: ReactNode;
-}
+};
 
-export const Alert = ({ kind = "neutral", children }: AlertProps) => {
+export const Alert = ({ kind = "neutral", children }: Props) => {
   return (
     <div role="alert" className={cn("alert", classNames.kind[kind])}>
       {children}

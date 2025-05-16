@@ -7,7 +7,7 @@ import { Dot } from "./base/dot";
 import { Helmet } from "react-helmet";
 import { parse, relativeTime } from "@/lib/utils";
 
-interface Comment {
+type Comment = {
   id: string | number;
   user: string;
   time: number;
@@ -16,7 +16,7 @@ interface Comment {
   comments: Comment[];
 }
 
-interface ItemData {
+type ItemData = {
   id: number;
   title: string;
   points: number;

@@ -2,13 +2,13 @@ import cn from "classnames";
 import { Spinner } from "./spinner";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   disabled?: boolean;
   children: ReactNode;
   fullWidth?: boolean;
   onClick?: () => void;
   isLoading?: boolean;
-}
+};
 
 export const Button = ({
   disabled,
@@ -17,7 +17,7 @@ export const Button = ({
   onClick,
   isLoading,
   ...props
-}: ButtonProps) => {
+}: Props) => {
   return (
     <button
       className={cn(

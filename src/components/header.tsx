@@ -6,7 +6,7 @@ export const Header = () => {
   return (
     <nav className="relative z-10 overflow-hidden border-b border-border sm:border-0">
       <div className="mx-auto max-w-[620px] h-full flex overflow-x-auto justify-between">
-        <div className="flex px-1 flex-nowrap sm:px-0">
+        <div className="flex px-1 flex-nowrap sm:px-0 items-center">
           <h1
             itemScope={true}
             itemType="http://schema.org/Organization"
@@ -62,7 +62,7 @@ export const Header = () => {
           rel="noopener noreferrer"
           className="flex items-center pl-1 pr-4 no-underline transition-colors sm:px-0"
         >
-          <Search className="w-6 h-6 text-right transition-colors text-muted-foreground hover:text-muted-foreground active:text-accent-foreground" />
+          <Search className="w-6 h-6 text-right transition-colors text-muted-foreground hover:text-foreground active:text-foreground" />
         </a>
       </div>
     </nav>

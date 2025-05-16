@@ -3,16 +3,16 @@ import cn from "classnames";
 import { relativeTime } from "@/lib/utils";
 import { Dot } from "./base/dot.tsx";
 
-interface Comment {
+type Comment = {
   id: string | number;
   user: string;
   time: number;
   content: string;
   level: number;
   comments: Comment[];
-}
+};
 
-interface CommentItemProps {
+type Props = {
   user: string;
   time: number;
   content: string;
@@ -20,7 +20,7 @@ interface CommentItemProps {
   comments: Comment[];
   postUser: string;
   id?: string | number;
-}
+};
 
 export const CommentItem = ({
   user,
@@ -29,7 +29,7 @@ export const CommentItem = ({
   level,
   comments,
   postUser,
-}: CommentItemProps) => {
+}: Props) => {
   const [hidden, setHidden] = useState(false);
 
   const toggleHidden = useCallback(

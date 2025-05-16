@@ -2,12 +2,12 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "./button";
 
-interface PaginationProps {
+type Props = {
   page: string;
   type: string;
-}
+};
 
-export const Pagination = ({ page, type }: PaginationProps) => {
+export const Pagination = ({ page, type }: Props) => {
   const navigate = useNavigate();
 
   const onPrev = useCallback(() => {
