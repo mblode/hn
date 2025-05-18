@@ -14,7 +14,7 @@ type HackerNewsItem = {
   title: string;
   url: string;
   user: string;
-}
+};
 
 const capitalize = (s: string): string => {
   if (typeof s !== "string") return "";

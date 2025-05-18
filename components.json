@@ -1,19 +1,17 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "new-york",
-  "rsc": false,
-  "tsx": true,
+  "style": "default",
+  "rsc": true,
   "tailwind": {
     "config": "",
-    "css": "src/index.css",
+    "css": "app/globals.css",
     "baseColor": "gray",
-    "cssVariables": true,
-    "prefix": ""
+    "cssVariables": true
   },
   "aliases": {
     "components": "@/components",
     "utils": "@/lib/utils",
-    "ui": "@/components/ui",
+    "ui": "@/registry/new-york-v4/ui",
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
