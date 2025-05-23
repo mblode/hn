@@ -81,7 +81,7 @@ export const ListItem = ({ item }: Props) => {
         ) : null}
       </div>
 
-      <h3 className="w-full text-base font-medium">{linkTitle}</h3>
+      <h3 className="w-full text-base">{linkTitle}</h3>
 
       <Link
         to={to}
