@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import { Button } from "./base/button.tsx";
 
-export const Error = () => {
+export const ErrorRoute = () => {
   return (
     <>
       <Helmet>

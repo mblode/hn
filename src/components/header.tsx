@@ -1,6 +1,6 @@
+import cn from "classnames";
 import { Link, NavLink } from "react-router-dom";
 import Search from "./icons/search";
-import cn from "classnames";
 
 export const Header = () => {
   return (

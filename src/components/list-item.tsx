@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { Dot } from "./base/dot";
-import Like from "./icons/like";
-import Comment from "./icons/comment";
 import { parse, relativeTime } from "@/lib/utils";
+import { Dot } from "./base/dot";
+import Comment from "./icons/comment";
+import Like from "./icons/like";
 
 type HackerNewsItem = {
   comments_count: number;
@@ -61,17 +61,15 @@ export const ListItem = ({ item }: Props) => {
         ) : null}
 
         {user ? (
-          <>
-            <a
-              href={`https://news.ycombinator.com/user?id=${user}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="list-url"
-            >
-              {user}
-              {time && <Dot />}
-            </a>
-          </>
+          <a
+            href={`https://news.ycombinator.com/user?id=${user}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="list-url"
+          >
+            {user}
+            {time && <Dot />}
+          </a>
         ) : null}
 
         {time ? (

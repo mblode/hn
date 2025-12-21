@@ -1,9 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-
-import { Item } from "./item-route";
 import { About } from "./about-route";
+import { ErrorRoute } from "./error-route";
 import { Feed } from "./feed-route";
-import { Error } from "./error-route";
+import { Item } from "./item-route";
 
 export const RootRoutes = () => {
   return (
@@ -14,7 +13,7 @@ export const RootRoutes = () => {
       <Route path="/:type/:page" element={<Feed />} />
       <Route path="/:type" element={<Feed />} />
 
-      <Route element={<Error />} />
+      <Route path="*" element={<ErrorRoute />} />
     </Routes>
   );
 };

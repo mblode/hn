@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Loading } from "./base/loading";
-import { CommentItem } from "../components/comment-item";
-import { Alert } from "../components/base/alert";
-import { Dot } from "./base/dot";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
 import { parse, relativeTime } from "@/lib/utils";
+import { Alert } from "../components/base/alert";
+import { CommentItem } from "../components/comment-item";
+import { Dot } from "./base/dot";
+import { Loading } from "./base/loading";
 
 type Comment = {
   id: string | number;
@@ -14,7 +14,7 @@ type Comment = {
   content: string;
   level: number;
   comments: Comment[];
-}
+};
 
 type ItemData = {
   id: number;
@@ -28,7 +28,7 @@ type ItemData = {
   content: string;
   comments_count: number;
   comments: Comment[];
-}
+};
 
 export const Item = () => {
   const { id } = useParams<{ id: string }>();
@@ -61,7 +61,9 @@ export const Item = () => {
   }
 
   if (loading || !data) {
-    return <Loading />;
+    return (
+      <Loading variant="item" commentRows={data?.comments_count ?? 6} />
+    );
   }
 
   const parsedUrl = parse(data.url);
@@ -107,7 +109,7 @@ export const Item = () => {
   return (
     <>
       <Helmet>
-        <title>Hacker News &middot; {`${data.title}`}</title>
+        <title>Hacker News &middot; {data.title}</title>
       </Helmet>
 
       <div className="wrap">
@@ -137,6 +139,7 @@ export const Item = () => {
 
           <div
             className="content"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: HN content includes sanitized markup.
             dangerouslySetInnerHTML={{ __html: data.content }}
           />
         </div>

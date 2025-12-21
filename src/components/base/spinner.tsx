@@ -5,7 +5,7 @@ type Props = {
 
 export const Spinner = ({ size = 48, strokeWidth = 2 }: Props) => {
   return (
-    <div className="flex items-center justify-center">
+    <output className="flex items-center justify-center" aria-live="polite">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width={size}
@@ -13,6 +13,7 @@ export const Spinner = ({ size = 48, strokeWidth = 2 }: Props) => {
         stroke="currentColor"
         viewBox="0 0 40 40"
       >
+        <title>Loading</title>
         <g
           fill="none"
           fillRule="evenodd"
@@ -32,6 +33,6 @@ export const Spinner = ({ size = 48, strokeWidth = 2 }: Props) => {
           </path>
         </g>
       </svg>
-    </div>
+    </output>
   );
 };

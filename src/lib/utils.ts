@@ -1,8 +1,8 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { type ClassValue, clsx } from "clsx";
 import { formatDistanceStrict } from "date-fns";
 import { enAU } from "date-fns/locale";
 import extractDomain from "extract-domain";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -64,9 +64,9 @@ function formatDistance(
 
   if (options.addSuffix) {
     if (options.comparison && options.comparison > 0) {
-      return "in " + result;
+      return `in ${result}`;
     } else {
-      return result + " ago";
+      return `${result} ago`;
     }
   }
 

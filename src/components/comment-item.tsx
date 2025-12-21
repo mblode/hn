@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react";
 import cn from "classnames";
+import { useCallback, useState } from "react";
 import { relativeTime } from "@/lib/utils";
 import { Dot } from "./base/dot.tsx";
 
@@ -32,12 +32,29 @@ export const CommentItem = ({
 }: Props) => {
   const [hidden, setHidden] = useState(false);
 
-  const toggleHidden = useCallback(
-    (e: React.MouseEvent) => {
-      setHidden(!hidden);
-      e.stopPropagation();
+  const toggleHidden = useCallback(() => {
+    setHidden((current) => !current);
+  }, []);
+
+  const onToggleClick = useCallback(
+    (event: React.MouseEvent) => {
+      event.stopPropagation();
+      toggleHidden();
     },
-    [hidden],
+    [toggleHidden],
+  );
+
+  const onToggleKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      toggleHidden();
+    },
+    [toggleHidden],
   );
 
   let commentLoop = null;
@@ -66,10 +83,14 @@ export const CommentItem = ({
   return (
     <li className={cn("comment-wrap", { toggled: hidden })}>
       <div data-level={level} className={cn("comment", { toggled: hidden })}>
+        {/* biome-ignore lint/a11y/useSemanticElements: Header wraps a link; avoid nesting interactive elements. */}
         <header
-          onClick={toggleHidden}
+          role="button"
+          tabIndex={0}
+          aria-expanded={!hidden}
+          onClick={onToggleClick}
+          onKeyDown={onToggleKeyDown}
           className={cn("comment-toggle", { toggled: hidden })}
-          onMouseDown={(e: React.MouseEvent) => e.preventDefault()}
         >
           <a
             href={`https://news.ycombinator.com/user?id=${user}`}
@@ -90,6 +111,7 @@ export const CommentItem = ({
         {!hidden && (
           <div
             className="content"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: HN content includes sanitized markup.
             dangerouslySetInnerHTML={{ __html: content }}
           />
         )}

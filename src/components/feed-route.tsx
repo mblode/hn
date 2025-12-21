@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { ListItem } from "./list-item";
+import { useParams } from "react-router-dom";
 import { Alert } from "./base/alert";
 import { Loading } from "./base/loading";
 import { Pagination } from "./base/pagination";
+import { ListItem } from "./list-item";
 
 type HackerNewsItem = {
   comments_count: number;
@@ -22,7 +22,10 @@ const capitalize = (s: string): string => {
 };
 
 export const Feed = () => {
-  const params = useParams<{ type?: string; page?: string }>();
+  const { type: routeType, page: routePage } = useParams<{
+    type?: string;
+    page?: string;
+  }>();
 
   const [type, setType] = useState<string>("news");
   const [page, setPage] = useState<string>("1");
@@ -32,8 +35,8 @@ export const Feed = () => {
 
   useEffect(() => {
     const getResults = async () => {
-      const newType = params.type || "news";
-      const newPage = params.page || "1";
+      const newType = routeType || "news";
+      const newPage = routePage || "1";
 
       setType(newType);
       setPage(newPage);
@@ -56,14 +59,23 @@ export const Feed = () => {
     };
 
     getResults();
-  }, [params]);
+  }, [routePage, routeType]);
 
   if (error) {
     return <Alert kind="negative">Failed to load posts</Alert>;
   }
 
   if (loading || posts.length === 0) {
-    return <Loading />;
+    const pageNumber = Number.parseInt(page, 10);
+    const safePageNumber = Number.isNaN(pageNumber) ? 1 : pageNumber;
+
+    return (
+      <Loading
+        variant="feed"
+        rows={posts.length || 30}
+        showPageHeader={safePageNumber > 1}
+      />
+    );
   }
 
   return (
@@ -73,14 +85,14 @@ export const Feed = () => {
       </Helmet>
 
       <div className="bg-card shadow-xl border border-transparent sm:border-border sm:rounded-lg">
-        {parseInt(String(page)) > 1 && (
+        {Number.parseInt(page, 10) > 1 && (
           <div className="relative p-5 overflow-hidden text-center border-b text-foreground border-border">
             <h3 className="text-sm">Page {page}</h3>
           </div>
         )}
 
-        {posts.map((item: HackerNewsItem, i: number) => (
-          <ListItem key={i} item={item} />
+        {posts.map((item: HackerNewsItem) => (
+          <ListItem key={item.id} item={item} />
         ))}
 
         <Pagination type={type} page={String(page)} />

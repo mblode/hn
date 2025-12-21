@@ -1,6 +1,6 @@
 import cn from "classnames";
-import { Spinner } from "./spinner";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { Spinner } from "./spinner";
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   disabled?: boolean;
