@@ -61,9 +61,7 @@ export const Item = () => {
   }
 
   if (loading || !data) {
-    return (
-      <Loading variant="item" commentRows={data?.comments_count ?? 6} />
-    );
+    return <Loading variant="item" commentRows={data?.comments_count ?? 6} />;
   }
 
   const parsedUrl = parse(data.url);

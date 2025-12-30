@@ -26,6 +26,7 @@ const FeedSkeleton = ({ rows, showPageHeader }: FeedSkeletonProps) => {
 
       {Array.from({ length: rows }).map((_, index) => (
         <div
+          // biome-ignore lint/suspicious/noArrayIndexKey: Static skeleton loader with fixed order
           key={`feed-${index}`}
           className="relative flex flex-wrap px-4 overflow-hidden border-b border-border"
         >
@@ -95,7 +96,11 @@ const ItemSkeleton = ({ commentRows }: ItemSkeletonProps) => {
 
       <ul className="p-0 m-0">
         {Array.from({ length: commentRows }).map((_, index) => (
-          <li key={`comment-${index}`} className="comment-wrap">
+          <li
+            // biome-ignore lint/suspicious/noArrayIndexKey: Static skeleton loader with fixed order
+            key={`comment-${index}`}
+            className="comment-wrap"
+          >
             <div className="comment">
               <div className="comment-toggle">
                 <div className="flex items-center gap-2">
