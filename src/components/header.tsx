@@ -4,65 +4,65 @@ import Search from "./icons/search";
 
 export const Header = () => {
   return (
-    <nav className="relative z-10 overflow-hidden border-b border-border sm:border-0">
-      <div className="mx-auto max-w-[620px] h-full flex overflow-x-auto justify-between">
-        <div className="flex px-1 flex-nowrap sm:px-0 items-center">
+    <nav className="relative z-10 overflow-hidden border-border border-b sm:border-0">
+      <div className="mx-auto flex h-full max-w-[620px] justify-between overflow-x-auto">
+        <div className="flex flex-nowrap items-center px-1 sm:px-0">
           <h1
+            className="m-0 font-base"
             itemScope={true}
             itemType="http://schema.org/Organization"
-            className="m-0 font-base"
           >
             <Link
+              className="block px-3 font-bold text-2xl text-orange-500 leading-[60px] transition-colors hover:text-orange-600 sm:pr-4 sm:pl-0"
               to="/"
-              className="font-bold text-orange-500 transition-colors text-2xl sm:pr-4 leading-[60px] block px-3 sm:pl-0 hover:text-orange-600"
             >
               HN
             </Link>
           </h1>
 
           <NavLink
-            to="/"
             className={({ isActive }) => cn("nav-link", { active: isActive })}
+            to="/"
           >
             Top
           </NavLink>
 
           <NavLink
-            to="/newest"
             className={({ isActive }) => cn("nav-link", { active: isActive })}
+            to="/newest"
           >
             New
           </NavLink>
 
           <NavLink
-            to="/show"
             className={({ isActive }) => cn("nav-link", { active: isActive })}
+            to="/show"
           >
             Show
           </NavLink>
 
           <NavLink
-            to="/ask"
             className={({ isActive }) => cn("nav-link", { active: isActive })}
+            to="/ask"
           >
             Ask
           </NavLink>
 
           <NavLink
-            to="/jobs"
             className={({ isActive }) => cn("nav-link", { active: isActive })}
+            to="/jobs"
           >
             Jobs
           </NavLink>
         </div>
 
         <a
+          className="flex items-center pr-4 pl-1 no-underline transition-colors sm:px-0"
           href="https://hn.algolia.com"
-          target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center pl-1 pr-4 no-underline transition-colors sm:px-0"
+          target="_blank"
         >
-          <Search className="w-6 h-6 text-right transition-colors text-muted-foreground hover:text-foreground active:text-foreground" />
+          <Search className="h-6 w-6 text-right text-muted-foreground transition-colors hover:text-foreground active:text-foreground" />
         </a>
       </div>
     </nav>

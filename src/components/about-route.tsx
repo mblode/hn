@@ -9,7 +9,7 @@ export const About = () => {
 
       <div className="wrap">
         <div className="content">
-          <h1 className="mb-2 text-3xl font-medium">About</h1>
+          <h1 className="mb-2 font-medium text-3xl">About</h1>
 
           <p>
             <strong>
@@ -36,13 +36,13 @@ export const About = () => {
             </a>
           </p>
 
-          <h2 className="my-2 text-xl font-bold">Creator</h2>
+          <h2 className="my-2 font-bold text-xl">Creator</h2>
 
           <p>
             <em>Matthew Blode</em>
           </p>
 
-          <ul className="list-disc list-inside">
+          <ul className="list-inside list-disc">
             <li>
               <a href="https://github.com/mblode">GitHub</a>
             </li>
@@ -53,7 +53,7 @@ export const About = () => {
             </li>
           </ul>
 
-          <h3 className="my-2 text-xl font-bold">License</h3>
+          <h3 className="my-2 font-bold text-xl">License</h3>
 
           <p>
             MIT ©{" "}

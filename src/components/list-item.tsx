@@ -4,7 +4,7 @@ import { Dot } from "./base/dot";
 import Comment from "./icons/comment";
 import Like from "./icons/like";
 
-type HackerNewsItem = {
+interface HackerNewsItem {
   comments_count: number;
   id: number;
   points: number;
@@ -12,11 +12,11 @@ type HackerNewsItem = {
   title: string;
   url: string;
   user: string;
-};
+}
 
-type Props = {
+interface Props {
   item: HackerNewsItem;
-};
+}
 
 export const ListItem = ({ item }: Props) => {
   const { comments_count, id, points, time, title, url, user } = item;
@@ -26,10 +26,10 @@ export const ListItem = ({ item }: Props) => {
 
   let linkTitle = (
     <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
       className="list-title"
+      href={url}
+      rel="noopener noreferrer"
+      target="_blank"
     >
       <span className="list-title-inner">{title}</span>
     </a>
@@ -37,22 +37,22 @@ export const ListItem = ({ item }: Props) => {
 
   if (url.includes("item?")) {
     linkTitle = (
-      <Link to={to} className="list-title">
+      <Link className="list-title" to={to}>
         <span className="list-title-inner">{title}</span>
       </Link>
     );
   }
 
   return (
-    <div className="relative flex flex-wrap px-4 overflow-hidden border-b border-border">
+    <div className="relative flex flex-wrap overflow-hidden border-border border-b px-4">
       <div className="flex flex-row items-center pt-3 pb-1 text-sm">
         {parsedUrl ? (
           <>
             <a
-              href={`https://news.ycombinator.com/from?site=${parsedUrl}`}
-              target="_blank"
-              rel="noopener noreferrer"
               className="list-url"
+              href={`https://news.ycombinator.com/from?site=${parsedUrl}`}
+              rel="noopener noreferrer"
+              target="_blank"
             >
               {parsedUrl}
             </a>
@@ -62,10 +62,10 @@ export const ListItem = ({ item }: Props) => {
 
         {user ? (
           <a
-            href={`https://news.ycombinator.com/user?id=${user}`}
-            target="_blank"
-            rel="noopener noreferrer"
             className="list-url"
+            href={`https://news.ycombinator.com/user?id=${user}`}
+            rel="noopener noreferrer"
+            target="_blank"
           >
             {user}
             {time && <Dot />}
@@ -73,7 +73,7 @@ export const ListItem = ({ item }: Props) => {
         ) : null}
 
         {time ? (
-          <Link to={to} className="list-url">
+          <Link className="list-url" to={to}>
             {relativeTime(time)}
           </Link>
         ) : null}
@@ -82,19 +82,19 @@ export const ListItem = ({ item }: Props) => {
       <h3 className="w-full text-base">{linkTitle}</h3>
 
       <Link
+        className="flex w-full flex-row items-center pt-1 pb-3 text-muted-foreground text-sm transition-colors"
         to={to}
-        className="flex flex-row items-center w-full pt-1 pb-3 text-sm transition-colors text-muted-foreground"
       >
         {points ? (
           <span className="list-link-icon">
-            <Like className="relative w-5 h-5 pr-1" />
+            <Like className="relative h-5 w-5 pr-1" />
             <span>{points}</span>
           </span>
         ) : null}
 
         {comments_count ? (
           <span className="list-link-icon">
-            <Comment className="relative w-5 h-5 pr-1" />
+            <Comment className="relative h-5 w-5 pr-1" />
             <span>{comments_count}</span>
           </span>
         ) : null}

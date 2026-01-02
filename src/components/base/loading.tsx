@@ -1,34 +1,34 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-type Props = {
+interface Props {
   variant?: "feed" | "item";
   rows?: number;
   showPageHeader?: boolean;
   commentRows?: number;
-};
+}
 
 const FEED_PAGE_SIZE = 30;
 const DEFAULT_COMMENT_ROWS = 6;
 
-type FeedSkeletonProps = {
+interface FeedSkeletonProps {
   rows: number;
   showPageHeader?: boolean;
-};
+}
 
 const FeedSkeleton = ({ rows, showPageHeader }: FeedSkeletonProps) => {
   return (
-    <div className="bg-card shadow-xl border border-transparent sm:border-border sm:rounded-lg">
+    <div className="border border-transparent bg-card shadow-xl sm:rounded-lg sm:border-border">
       {showPageHeader && (
-        <div className="relative p-5 overflow-hidden text-center border-b text-foreground border-border">
-          <Skeleton className="h-5 w-20 mx-auto" />
+        <div className="relative overflow-hidden border-border border-b p-5 text-center text-foreground">
+          <Skeleton className="mx-auto h-5 w-20" />
         </div>
       )}
 
       {Array.from({ length: rows }).map((_, index) => (
         <div
+          className="relative flex flex-wrap overflow-hidden border-border border-b px-4"
           // biome-ignore lint/suspicious/noArrayIndexKey: Static skeleton loader with fixed order
           key={`feed-${index}`}
-          className="relative flex flex-wrap px-4 overflow-hidden border-b border-border"
         >
           <div className="flex flex-row items-center pt-3 pb-1 text-sm">
             <Skeleton className="h-5 w-24" />
@@ -44,7 +44,7 @@ const FeedSkeleton = ({ rows, showPageHeader }: FeedSkeletonProps) => {
             </div>
           </h3>
 
-          <div className="flex flex-row items-center w-full pt-1 pb-3 text-sm text-muted-foreground">
+          <div className="flex w-full flex-row items-center pt-1 pb-3 text-muted-foreground text-sm">
             <Skeleton className="h-5 w-12" />
             <span className="px-2" />
             <Skeleton className="h-5 w-12" />
@@ -52,7 +52,7 @@ const FeedSkeleton = ({ rows, showPageHeader }: FeedSkeletonProps) => {
         </div>
       ))}
 
-      <div className="relative flex items-center justify-center px-4 py-4 overflow-hidden sm:px-5 sm:py-6">
+      <div className="relative flex items-center justify-center overflow-hidden px-4 py-4 sm:px-5 sm:py-6">
         <div className="mx-1">
           <Skeleton className="h-10 w-20" />
         </div>
@@ -64,14 +64,14 @@ const FeedSkeleton = ({ rows, showPageHeader }: FeedSkeletonProps) => {
   );
 };
 
-type ItemSkeletonProps = {
+interface ItemSkeletonProps {
   commentRows: number;
-};
+}
 
 const ItemSkeleton = ({ commentRows }: ItemSkeletonProps) => {
   return (
     <div className="wrap">
-      <div className="block pb-4 mb-4 border-b border-border">
+      <div className="mb-4 block border-border border-b pb-4">
         <div className="block w-full pb-2 text-sm">
           <div className="flex items-center gap-2">
             <Skeleton className="h-5 w-24" />
@@ -79,13 +79,13 @@ const ItemSkeleton = ({ commentRows }: ItemSkeletonProps) => {
           </div>
         </div>
 
-        <div className="block pb-2 text-xl leading-[1.2] text-foreground">
+        <div className="block pb-2 text-foreground text-xl leading-[1.2]">
           <Skeleton className="h-6 w-4/5" />
         </div>
 
         <div className="content">
-          <Skeleton className="h-6 w-full mb-2" />
-          <Skeleton className="h-6 w-5/6 mb-2" />
+          <Skeleton className="mb-2 h-6 w-full" />
+          <Skeleton className="mb-2 h-6 w-5/6" />
           <Skeleton className="h-6 w-3/5" />
         </div>
       </div>
@@ -94,12 +94,12 @@ const ItemSkeleton = ({ commentRows }: ItemSkeletonProps) => {
         <Skeleton className="h-6 w-40" />
       </div>
 
-      <ul className="p-0 m-0">
+      <ul className="m-0 p-0">
         {Array.from({ length: commentRows }).map((_, index) => (
           <li
+            className="comment-wrap"
             // biome-ignore lint/suspicious/noArrayIndexKey: Static skeleton loader with fixed order
             key={`comment-${index}`}
-            className="comment-wrap"
           >
             <div className="comment">
               <div className="comment-toggle">
@@ -110,7 +110,7 @@ const ItemSkeleton = ({ commentRows }: ItemSkeletonProps) => {
               </div>
 
               <div className="content">
-                <Skeleton className="h-6 w-full mb-2" />
+                <Skeleton className="mb-2 h-6 w-full" />
                 <Skeleton className="h-6 w-5/6" />
               </div>
             </div>

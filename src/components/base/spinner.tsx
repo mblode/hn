@@ -1,17 +1,17 @@
-type Props = {
+interface Props {
   size?: number;
   strokeWidth?: number;
-};
+}
 
 export const Spinner = ({ size = 48, strokeWidth = 2 }: Props) => {
   return (
-    <output className="flex items-center justify-center" aria-live="polite">
+    <output aria-live="polite" className="flex items-center justify-center">
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width={size}
         height={size}
         stroke="currentColor"
         viewBox="0 0 40 40"
+        width={size}
+        xmlns="http://www.w3.org/2000/svg"
       >
         <title>Loading</title>
         <g

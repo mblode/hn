@@ -145,7 +145,6 @@
   .content pre {
     @apply overflow-x-auto text-justify break-words whitespace-pre-wrap;
 
-    /* biome-ignore lint/complexity/noImportantStyles: Override inherited pre max-width from HN content. */
     max-width: initial !important;
   }
 

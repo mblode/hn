@@ -1,13 +1,13 @@
 export const Footer = () => {
   return (
     <footer className="py-4 text-center">
-      <span className="text-sm text-muted-foreground decoration-none">
+      <span className="text-muted-foreground text-sm decoration-none">
         Created by{" "}
         <a
+          className="text-muted-foreground transition-colors hover:text-muted-foreground hover:underline active:text-muted-foreground active:underline"
           href="https://matthewblode.com/"
-          target="_blank"
           rel="noopener noreferrer"
-          className="text-muted-foreground transition-colors hover:underline hover:text-muted-foreground active:underline active:text-muted-foreground"
+          target="_blank"
         >
           Matthew Blode
         </a>

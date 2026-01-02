@@ -2,10 +2,10 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "./button";
 
-type Props = {
+interface Props {
   page: string;
   type: string;
-};
+}
 
 export const Pagination = ({ page, type }: Props) => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export const Pagination = ({ page, type }: Props) => {
   }, [navigate, safePageNumber, type]);
 
   return (
-    <div className="relative flex items-center justify-center px-4 py-4 overflow-hidden sm:px-5 sm:py-6">
+    <div className="relative flex items-center justify-center overflow-hidden px-4 py-4 sm:px-5 sm:py-6">
       <div className="mx-1">
         <Button disabled={safePageNumber <= 1} onClick={onPrev}>
           Prev

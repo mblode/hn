@@ -7,16 +7,16 @@ import { CommentItem } from "../components/comment-item";
 import { Dot } from "./base/dot";
 import { Loading } from "./base/loading";
 
-type Comment = {
+interface Comment {
   id: string | number;
   user: string;
   time: number;
   content: string;
   level: number;
   comments: Comment[];
-};
+}
 
-type ItemData = {
+interface ItemData {
   id: number;
   title: string;
   points: number;
@@ -28,7 +28,7 @@ type ItemData = {
   content: string;
   comments_count: number;
   comments: Comment[];
-};
+}
 
 export const Item = () => {
   const { id } = useParams<{ id: string }>();
@@ -61,27 +61,27 @@ export const Item = () => {
   }
 
   if (loading || !data) {
-    return <Loading variant="item" commentRows={data?.comments_count ?? 6} />;
+    return <Loading commentRows={data?.comments_count ?? 6} variant="item" />;
   }
 
   const parsedUrl = parse(data.url);
 
   const title = (
-    <div className="block pb-2 text-xl transition-colors leading-[1.2] first-letter:w-full text-foreground decoration-none">
+    <div className="block pb-2 text-foreground text-xl leading-[1.2] decoration-none transition-colors first-letter:w-full">
       <a
+        className="mr-1 break-words pr-1 hover:underline"
         href={data.url}
-        target="_blank"
         rel="noopener noreferrer"
-        className="pr-1 mr-1 break-words hover:underline"
+        target="_blank"
       >
         {data.title}
       </a>
       {parsedUrl && (
         <a
+          className="list-url align-middle text-muted-foreground text-sm hover:text-foreground hover:underline"
           href={`https://news.ycombinator.com/from?site=${parsedUrl}`}
-          target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-muted-foreground hover:underline hover:text-foreground align-middle list-url"
+          target="_blank"
         >
           {parsedUrl}
         </a>
@@ -92,14 +92,14 @@ export const Item = () => {
   const commentLoop = data.comments.map((ele: Comment) => {
     return (
       <CommentItem
-        user={ele.user}
-        time={ele.time}
+        comments={ele.comments}
         content={ele.content}
+        id={ele.id}
         key={ele.id}
         level={ele.level}
-        id={ele.id}
-        comments={ele.comments}
         postUser={data.user}
+        time={ele.time}
+        user={ele.user}
       />
     );
   });
@@ -111,15 +111,15 @@ export const Item = () => {
       </Helmet>
 
       <div className="wrap">
-        <div className="block pb-4 mb-4 border-b border-border">
+        <div className="mb-4 block border-border border-b pb-4">
           <div className="block w-full pb-2 text-sm">
             {data.user && (
               <span>
                 <a
-                  href={`https://news.ycombinator.com/user?id=${data.user}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="username"
+                  href={`https://news.ycombinator.com/user?id=${data.user}`}
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   {data.user}
                 </a>
@@ -128,7 +128,7 @@ export const Item = () => {
               </span>
             )}
 
-            <span className="inline-block mr-1 text-sm text-muted-foreground">
+            <span className="mr-1 inline-block text-muted-foreground text-sm">
               {relativeTime(data.time)}
             </span>
           </div>
@@ -146,7 +146,7 @@ export const Item = () => {
           {data.comments_count} comment{data.comments_count !== 1 ? "s" : ""}
         </div>
 
-        <ul className="p-0 m-0">{commentLoop}</ul>
+        <ul className="m-0 p-0">{commentLoop}</ul>
       </div>
     </>
   );

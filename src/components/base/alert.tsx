@@ -9,14 +9,14 @@ const classNames = {
   },
 };
 
-type Props = {
+interface Props {
   kind?: "positive" | "neutral" | "negative";
   children: ReactNode;
-};
+}
 
 export const Alert = ({ kind = "neutral", children }: Props) => {
   return (
-    <div role="alert" className={cn("alert", classNames.kind[kind])}>
+    <div className={cn("alert", classNames.kind[kind])} role="alert">
       {children}
     </div>
   );

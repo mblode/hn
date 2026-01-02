@@ -6,7 +6,7 @@ import { Loading } from "./base/loading";
 import { Pagination } from "./base/pagination";
 import { ListItem } from "./list-item";
 
-type HackerNewsItem = {
+interface HackerNewsItem {
   comments_count: number;
   id: number;
   points: number;
@@ -14,10 +14,12 @@ type HackerNewsItem = {
   title: string;
   url: string;
   user: string;
-};
+}
 
 const capitalize = (s: string): string => {
-  if (typeof s !== "string") return "";
+  if (typeof s !== "string") {
+    return "";
+  }
   return s.charAt(0).toUpperCase() + s.slice(1);
 };
 
@@ -44,7 +46,7 @@ export const Feed = () => {
 
       try {
         const response = await fetch(
-          `https://api.hackerwebapp.com/${newType}?page=${newPage}`,
+          `https://api.hackerwebapp.com/${newType}?page=${newPage}`
         );
 
         const json = await response.json();
@@ -71,9 +73,9 @@ export const Feed = () => {
 
     return (
       <Loading
-        variant="feed"
         rows={posts.length || 30}
         showPageHeader={safePageNumber > 1}
+        variant="feed"
       />
     );
   }
@@ -84,18 +86,18 @@ export const Feed = () => {
         <title>Hacker News &middot; {capitalize(type)}</title>
       </Helmet>
 
-      <div className="bg-card shadow-xl border border-transparent sm:border-border sm:rounded-lg">
+      <div className="border border-transparent bg-card shadow-xl sm:rounded-lg sm:border-border">
         {Number.parseInt(page, 10) > 1 && (
-          <div className="relative p-5 overflow-hidden text-center border-b text-foreground border-border">
+          <div className="relative overflow-hidden border-border border-b p-5 text-center text-foreground">
             <h3 className="text-sm">Page {page}</h3>
           </div>
         )}
 
         {posts.map((item: HackerNewsItem) => (
-          <ListItem key={item.id} item={item} />
+          <ListItem item={item} key={item.id} />
         ))}
 
-        <Pagination type={type} page={String(page)} />
+        <Pagination page={String(page)} type={type} />
       </div>
     </>
   );

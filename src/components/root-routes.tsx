@@ -7,13 +7,13 @@ import { Item } from "./item-route";
 export const RootRoutes = () => {
   return (
     <Routes>
-      <Route path="/" index element={<Feed />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/item/:id" element={<Item />} />
-      <Route path="/:type/:page" element={<Feed />} />
-      <Route path="/:type" element={<Feed />} />
+      <Route element={<Feed />} index path="/" />
+      <Route element={<About />} path="/about" />
+      <Route element={<Item />} path="/item/:id" />
+      <Route element={<Feed />} path="/:type/:page" />
+      <Route element={<Feed />} path="/:type" />
 
-      <Route path="*" element={<ErrorRoute />} />
+      <Route element={<ErrorRoute />} path="*" />
     </Routes>
   );
 };

@@ -14,7 +14,7 @@ export const parse = (url: string) => {
   return link ?? null;
 };
 
-type FormatDistanceLocale = {
+interface FormatDistanceLocale {
   lessThanXSeconds: string;
   xSeconds: string;
   halfAMinute: string;
@@ -31,7 +31,7 @@ type FormatDistanceLocale = {
   xYears: string;
   overXYears: string;
   almostXYears: string;
-};
+}
 
 const formatDistanceLocale: FormatDistanceLocale = {
   lessThanXSeconds: "{{count}}s",
@@ -55,19 +55,18 @@ const formatDistanceLocale: FormatDistanceLocale = {
 function formatDistance(
   token: keyof FormatDistanceLocale,
   count: string | number,
-  options: { addSuffix?: boolean; comparison?: number } = {},
+  options: { addSuffix?: boolean; comparison?: number } = {}
 ) {
   const result = formatDistanceLocale[token].replace(
     "{{count}}",
-    count.toString(),
+    count.toString()
   );
 
   if (options.addSuffix) {
     if (options.comparison && options.comparison > 0) {
       return `in ${result}`;
-    } else {
-      return `${result} ago`;
     }
+    return `${result} ago`;
   }
 
   return result;

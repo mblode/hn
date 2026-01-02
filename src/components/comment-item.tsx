@@ -1,18 +1,18 @@
 import cn from "classnames";
-import { useCallback, useState } from "react";
+import { type ReactElement, useCallback, useState } from "react";
 import { relativeTime } from "@/lib/utils";
 import { Dot } from "./base/dot.tsx";
 
-type Comment = {
+interface Comment {
   id: string | number;
   user: string;
   time: number;
   content: string;
   level: number;
   comments: Comment[];
-};
+}
 
-type Props = {
+interface Props {
   user: string;
   time: number;
   content: string;
@@ -20,7 +20,7 @@ type Props = {
   comments: Comment[];
   postUser: string;
   id?: string | number;
-};
+}
 
 export const CommentItem = ({
   user,
@@ -41,7 +41,7 @@ export const CommentItem = ({
       event.stopPropagation();
       toggleHidden();
     },
-    [toggleHidden],
+    [toggleHidden]
   );
 
   const onToggleKeyDown = useCallback(
@@ -54,10 +54,10 @@ export const CommentItem = ({
       event.stopPropagation();
       toggleHidden();
     },
-    [toggleHidden],
+    [toggleHidden]
   );
 
-  let commentLoop = null;
+  let commentLoop: ReactElement | null = null;
 
   if (comments.length > 0) {
     commentLoop = (
@@ -65,14 +65,14 @@ export const CommentItem = ({
         {comments.map((ele) => {
           return (
             <CommentItem
-              user={ele.user}
-              time={ele.time}
+              comments={ele.comments}
               content={ele.content}
+              id={ele.id}
               key={ele.id}
               level={ele.level}
-              id={ele.id}
-              comments={ele.comments}
               postUser={postUser}
+              time={ele.time}
+              user={ele.user}
             />
           );
         })}
@@ -82,28 +82,28 @@ export const CommentItem = ({
 
   return (
     <li className={cn("comment-wrap", { toggled: hidden })}>
-      <div data-level={level} className={cn("comment", { toggled: hidden })}>
+      <div className={cn("comment", { toggled: hidden })} data-level={level}>
         {/* biome-ignore lint/a11y/useSemanticElements: Header wraps a link; avoid nesting interactive elements. */}
         <header
-          role="button"
-          tabIndex={0}
           aria-expanded={!hidden}
+          className={cn("comment-toggle", { toggled: hidden })}
           onClick={onToggleClick}
           onKeyDown={onToggleKeyDown}
-          className={cn("comment-toggle", { toggled: hidden })}
+          role="button"
+          tabIndex={0}
         >
           <a
-            href={`https://news.ycombinator.com/user?id=${user}`}
-            target="_blank"
-            rel="noopener noreferrer"
             className={cn("username", {
               "text-orange-500!": user === postUser,
             })}
+            href={`https://news.ycombinator.com/user?id=${user}`}
+            rel="noopener noreferrer"
+            target="_blank"
           >
             {user}
           </a>
           <Dot />
-          <span className="inline-block mr-1 text-muted-foreground">
+          <span className="mr-1 inline-block text-muted-foreground">
             {relativeTime(time)}
           </span>
         </header>
