@@ -1,5 +1,3 @@
-# www.robotstxt.org/
-
-# Allow crawling of all content
+# Keep crawling allowed so search engines can see noindex directives.
 User-agent: *
 Disallow:

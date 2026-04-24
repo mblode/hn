@@ -7,6 +7,8 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
       name="viewport"
     >
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -77,12 +79,19 @@
       hreflang="x-default"
     >
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NDQ1TJ27CB"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-NDQ1TJ27CB"
+    ></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-NDQ1TJ27CB', { send_page_view: false });
+    "use strict";
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(...args) {
+      window.dataLayer.push(args);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-NDQ1TJ27CB", { send_page_view: false });
     </script>
   </head>
 
