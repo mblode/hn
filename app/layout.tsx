@@ -1,6 +1,7 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { CraftedBy } from "@/components/crafted-by";
 import { DevTools } from "@/components/dev-tools";
 import { JsonLd } from "@/components/json-ld";
 import { QueryProvider } from "@/components/query-provider";
@@ -83,6 +84,11 @@ export default function RootLayout({
           }}
         />
         <QueryProvider>{children}</QueryProvider>
+        <footer className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center p-2">
+          <span className="pointer-events-auto rounded-full bg-background/70 px-3 py-1 backdrop-blur">
+            <CraftedBy />
+          </span>
+        </footer>
         <DevTools />
       </body>
       <GoogleAnalytics gaId="G-6PS2ZMFJVC" />
