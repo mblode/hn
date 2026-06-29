@@ -5,8 +5,9 @@ import { deduplicateStories, fetchFeed } from "@/lib/hn-live";
 import type { CandidateStory } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "News",
-  description: "Browse the latest Hacker News stories.",
+  title: { absolute: "HackerTok — Hacker News as a TikTok-Style Feed" },
+  description:
+    "Swipe through the top Hacker News stories in a TikTok-style feed. HackerTok ranks tech news, Show HN, Ask HN, and jobs by your reading habits.",
 };
 
 interface HomePageProps {
