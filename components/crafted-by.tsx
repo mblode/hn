@@ -1,22 +1,21 @@
 export function CraftedBy() {
   return (
     <a
-      className="inline-flex items-center gap-2 text-muted-foreground text-sm transition-colors hover:text-foreground"
+      className="inline-flex min-w-0 items-center gap-1.5 text-muted-foreground text-xs transition-colors hover:text-foreground"
       href="https://matthewblode.com"
       rel="author noopener"
       target="_blank"
     >
-      <span>Crafted by</span>
       {/* biome-ignore lint/performance/noImgElement: external avatar, intentional plain img */}
       <img
         alt="Matthew Blode"
-        className="rounded-full"
-        height={20}
+        className="shrink-0 rounded-full"
+        height={16}
         loading="lazy"
         src="https://matthewblode.com/avatar-sm.png"
-        width={20}
+        width={16}
       />
-      <span>Matthew Blode</span>
+      <span className="truncate">Crafted by Matthew Blode</span>
     </a>
   );
 }
