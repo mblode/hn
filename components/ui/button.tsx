@@ -64,6 +64,7 @@ function Button({
         data-slot="button"
         data-variant={variant}
         disabled
+        type="button"
         {...props}
       >
         <span className="invisible opacity-0">{children}</span>
