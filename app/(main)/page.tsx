@@ -6,9 +6,9 @@ import { deduplicateStories, fetchFeed } from "@/lib/hn-live";
 import type { CandidateStory } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: { absolute: "HN: Hacker News as a Swipeable Feed" },
+  title: { absolute: "HN: A Fast Hacker News Client" },
   description:
-    "Swipe through the top Hacker News stories in a fast, swipeable feed. HN ranks tech news, Show HN, Ask HN, and jobs by your reading habits.",
+    "A fast, keyboard-friendly Hacker News client. Browse Top, New, Show HN, Ask HN, and jobs, read comment threads, and sign in to vote, comment, and submit.",
 };
 
 interface HomePageProps {

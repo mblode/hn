@@ -1,19 +1,19 @@
 # HN
 
-Hacker News as a fast, swipeable feed: browse top stories, Show HN, Ask HN, and jobs, ranked by how you actually read.
+A fast, modern Hacker News client. Browse the feeds, read and reply to threads, and sign in to vote and submit, with your reading history kept on your device.
 
 Live at **[hn.blode.co](https://hn.blode.co)**.
 
 ## Features
 
-- **Swipeable feed:** move through stories one at a time with swipe gestures or the keyboard, instead of scanning a dense list.
-- **Ranked by your reading habits:** dwell time, opens, and votes feed an on-device model (time decay, topic and domain affinity, diversity spacing) that reorders the feed toward what you read.
-- **Private by default:** your reading history and ranking live in the browser (IndexedDB) and never leave the device.
-- **Every HN feed:** top news, newest, Show HN, Ask HN, and jobs, switchable in one tap.
-- **Read and reply inline:** open comment threads without leaving the feed.
+- **Every HN feed:** Top, New, Show HN, Ask HN, and jobs, switchable from the feed tabs.
+- **Fast reading:** open any story to read the article and full comment thread, and move between stories with the keyboard.
+- **For you:** an optional personalized feed that reorders stories from your reading habits (dwell time, opens, votes) using an on-device model (time decay, topic and domain affinity, diversity spacing).
+- **Private by default:** your reading history and personalization live in the browser (IndexedDB) and never leave the device.
 - **Sign in with your HN account:** upvote, comment, and submit directly from the app.
+- **Likes and bookmarks:** save stories to read or revisit later.
 - **Search:** full-text story search (Algolia HN) with recent-search history.
-- **Command palette and shortcuts:** `Cmd/Ctrl+K` opens the palette, `j`/`k` move between stories, and `Cmd/Ctrl+/` lists every shortcut.
+- **Command palette and shortcuts:** `Cmd/Ctrl+K` opens the command palette, plus keyboard shortcuts for moving between stories and feeds.
 
 ## Getting started
 

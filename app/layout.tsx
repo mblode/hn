@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 const SITE_URL = "https://hn.blode.co";
 const SITE_NAME = "HN";
 const SITE_DESCRIPTION =
-  "HN turns Hacker News into a fast, swipeable feed. Browse top tech stories, Show HN, Ask HN, and jobs, ranked by your reading habits.";
+  "HN is a fast, modern Hacker News client. Browse Top, New, Show HN, Ask HN, and jobs, read and reply to threads, and sign in to vote, comment, and submit.";
 
 export const metadata: Metadata = {
   title: {
