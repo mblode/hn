@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 import { CollectionView } from "@/components/collection-view";
 
-export const metadata = { title: "Likes — HN" };
+export const metadata = { title: "Likes | HN" };
 
 export default function LikesPage() {
   return (
