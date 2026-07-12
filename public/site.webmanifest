@@ -1,7 +1,7 @@
 {
   "name": "HN",
   "short_name": "HN",
-  "description": "Swipe through the best Hacker News stories",
+  "description": "A fast, modern Hacker News client",
   "start_url": "/",
   "icons": [
     {
