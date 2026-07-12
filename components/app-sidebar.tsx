@@ -10,9 +10,9 @@ import {
   Search,
   Sparkle,
 } from "lucide-react";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import { CraftedBy } from "@/components/crafted-by";
 import { KeyboardShortcutsDialog } from "@/components/keyboard-shortcuts-dialog";
 import { Button } from "@/components/ui/button";
@@ -72,7 +72,7 @@ export const AppSidebar = ({
             href="/"
             onClick={handleLinkClick}
           >
-            HackerTok
+            HN
           </Link>
           <Button asChild size="icon-sm" variant="ghost">
             <Link href="/search" onClick={handleLinkClick}>

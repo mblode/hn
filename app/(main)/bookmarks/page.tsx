@@ -1,7 +1,8 @@
 import { Suspense } from "react";
+
 import { CollectionView } from "@/components/collection-view";
 
-export const metadata = { title: "Bookmarks — HackerTok" };
+export const metadata = { title: "Bookmarks — HN" };
 
 export default function BookmarksPage() {
   return (

@@ -1,9 +1,11 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
 import { DevTools } from "@/components/dev-tools";
 import { JsonLd } from "@/components/json-ld";
 import { QueryProvider } from "@/components/query-provider";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,10 +18,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://hackertok.blode.co";
-const SITE_NAME = "HackerTok";
+const SITE_URL = "https://hn.blode.co";
+const SITE_NAME = "HN";
 const SITE_DESCRIPTION =
-  "HackerTok turns Hacker News into a fast, swipeable feed — browse top tech stories, Show HN, Ask HN, and jobs, ranked by your reading habits.";
+  "HN turns Hacker News into a fast, swipeable feed — browse top tech stories, Show HN, Ask HN, and jobs, ranked by your reading habits.";
 
 export const metadata: Metadata = {
   title: {
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   other: {
-    "apple-mobile-web-app-title": "HackerTok",
+    "apple-mobile-web-app-title": "HN",
   },
 };
 
