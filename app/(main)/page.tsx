@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+
 import { NewsFeed } from "@/components/news-feed";
 import type { FeedType } from "@/hooks/use-news-feed";
 import { deduplicateStories, fetchFeed } from "@/lib/hn-live";
 import type { CandidateStory } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: { absolute: "HackerTok — Hacker News as a TikTok-Style Feed" },
+  title: { absolute: "HN — Hacker News as a TikTok-Style Feed" },
   description:
-    "Swipe through the top Hacker News stories in a TikTok-style feed. HackerTok ranks tech news, Show HN, Ask HN, and jobs by your reading habits.",
+    "Swipe through the top Hacker News stories in a TikTok-style feed. HN ranks tech news, Show HN, Ask HN, and jobs by your reading habits.",
 };
 
 interface HomePageProps {

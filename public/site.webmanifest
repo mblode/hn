@@ -1,6 +1,6 @@
 {
-  "name": "HackerTok",
-  "short_name": "HackerTok",
+  "name": "HN",
+  "short_name": "HN",
   "description": "Swipe through the best Hacker News stories",
   "start_url": "/",
   "icons": [

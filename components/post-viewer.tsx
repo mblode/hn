@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
+
 import { FeedSkeleton } from "@/components/feed-skeleton";
 import { PostCard } from "@/components/post-card";
 import { Button } from "@/components/ui/button";
@@ -502,7 +503,7 @@ export const PostViewer = ({
             <ArrowLeft />
           </Button>
         )}
-        <h1 className="sr-only">HackerTok</h1>
+        <h1 className="sr-only">HN</h1>
         <div className="flex items-center">
           <Button
             aria-label="Bookmark post"

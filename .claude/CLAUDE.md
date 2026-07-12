@@ -1,4 +1,4 @@
-# Hacker-Tok
+# HN
 
 Hacker News stories in a TikTok-style swipeable UI.
 
