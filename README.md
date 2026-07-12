@@ -1,39 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HN
 
-## Getting Started
+Hacker News as a fast, swipeable feed: browse top stories, Show HN, Ask HN, and jobs, ranked by how you actually read.
 
-First, run the development server:
+Live at **[hn.blode.co](https://hn.blode.co)**.
+
+## Features
+
+- **Swipeable feed:** move through stories one at a time with swipe gestures or the keyboard, instead of scanning a dense list.
+- **Ranked by your reading habits:** dwell time, opens, and votes feed an on-device model (time decay, topic and domain affinity, diversity spacing) that reorders the feed toward what you read.
+- **Private by default:** your reading history and ranking live in the browser (IndexedDB) and never leave the device.
+- **Every HN feed:** top news, newest, Show HN, Ask HN, and jobs, switchable in one tap.
+- **Read and reply inline:** open comment threads without leaving the feed.
+- **Sign in with your HN account:** upvote, comment, and submit directly from the app.
+- **Search:** full-text story search (Algolia HN) with recent-search history.
+- **Command palette and shortcuts:** `Cmd/Ctrl+K` for the palette, single keys for navigation, `?` for the shortcut list.
+
+## Getting started
 
 ```bash
+git clone https://github.com/mblode/hn.git
+cd hn
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). The feed, ranking, search, and comments all work with no configuration: story data comes from public Hacker News APIs.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Signing in to HN
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Upvoting, commenting, and submitting require signing in with a Hacker News account. The app proxies HN and stores your session in a cookie encrypted server-side, so it needs one secret:
 
-## Learn More
+```bash
+# 32-byte key as 64 hex characters
+echo "HN_SESSION_SECRET=$(openssl rand -hex 32)" >> .env.local
+```
 
-To learn more about Next.js, take a look at the following resources:
+Restart the dev server after setting it. Without it, the app runs fine read-only; only authenticated actions are disabled.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Data pipeline
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The personalized ranking draws on a candidate corpus (`lib/candidates.json`) distilled from the full Hacker News archive. Both files are committed, so you only need this to refresh the corpus:
 
-## Deploy on Vercel
+```bash
+npm run download-hn         # pull the HN archive from BigQuery into data/*.ndjson
+npm run process-candidates  # distill the top stories into lib/candidates.json
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`download-hn` queries the public `bigquery-public-data.hacker_news` dataset and needs Google Cloud credentials (`gcloud auth application-default login`) plus a billing-enabled project. `process-candidates` is offline: it reads `data/` and keeps stories above a score threshold.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Scripts
+
+| Script | What it does |
+|--------|--------------|
+| `npm run dev` | Start the dev server on port 3000 |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm test` | Run the Vitest suite (`npm run test:watch` to watch) |
+| `npm run check` | Lint and format check (Ultracite: Oxlint + Oxfmt) |
+| `npm run fix` | Auto-fix lint and formatting |
+| `npm run check-types` | Type-check with `tsc --noEmit` |
+| `npm run knip` | Report unused files, exports, and dependencies |
+
+## Tech
+
+Next.js 16 (App Router, React Compiler) and React 19, Tailwind CSS 4, TanStack Query for data fetching, Dexie for local IndexedDB storage, and Radix UI + cmdk for the interface. Requires Node.js 24+.
 
 ---
 
