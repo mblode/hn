@@ -1,8 +1,15 @@
-# This app's canonical deployment is https://hn.blode.co (hosted on Vercel,
-# which ignores this file). The legacy Netlify project "mblode-hn" serves the
-# old hn.matthewblode.com domain and is wired to this repo, so the rule below
-# permanently redirects that domain to the canonical one instead of running a
-# second copy of the app. Only Netlify reads netlify.toml.
+# The canonical deployment of this app is https://hn.blode.co (hosted on
+# Vercel, which ignores this file). This legacy Netlify project ("mblode-hn")
+# still serves the old hn.matthewblode.com domain from this repo. Rather than
+# build and serve the app a second time, override the build to publish a single
+# _redirects file that permanently sends every path to the canonical domain.
+#
+# Netlify processes _redirects before [[redirects]], so the generated file is
+# what actually takes effect; the [[redirects]] block below is a backstop.
+[build]
+  command = "rm -rf dist && mkdir dist && echo '/*  https://hn.blode.co/:splat  301!' > dist/_redirects"
+  publish = "dist"
+
 [[redirects]]
   from = "/*"
   to = "https://hn.blode.co/:splat"
