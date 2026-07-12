@@ -3,7 +3,7 @@ export function CraftedBy() {
     <a
       className="inline-flex min-w-0 items-center gap-1.5 text-muted-foreground text-xs transition-colors hover:text-foreground"
       href="https://matthewblode.com"
-      rel="author noopener"
+      rel="author noopener noreferrer"
       target="_blank"
     >
       {/* biome-ignore lint/performance/noImgElement: external avatar, intentional plain img */}
