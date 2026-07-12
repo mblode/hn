@@ -1,0 +1,26 @@
+# Legacy hn.matthewblode.com (old React Router app) -> hn.blode.co (this app).
+# Map the old URL scheme onto the new routes, then send everything else through.
+# Rules are first-match, so specific mappings come before the catch-all.
+
+# Individual posts: old /item/:id  ->  new /post/:id
+/item/:id      https://hn.blode.co/post/:id       301!
+
+# Paginated feeds: old /:type/:page  ->  new /?type=:type (new app paginates via scroll)
+/news/*        https://hn.blode.co/?type=news      301!
+/newest/*      https://hn.blode.co/?type=newest    301!
+/show/*        https://hn.blode.co/?type=show       301!
+/ask/*         https://hn.blode.co/?type=ask        301!
+/jobs/*        https://hn.blode.co/?type=jobs        301!
+
+# Feed types: old /:type  ->  new /?type=:type
+/news          https://hn.blode.co/?type=news       301!
+/newest        https://hn.blode.co/?type=newest     301!
+/show          https://hn.blode.co/?type=show        301!
+/ask           https://hn.blode.co/?type=ask         301!
+/jobs          https://hn.blode.co/?type=jobs         301!
+
+# Old /about had no equivalent; send it home.
+/about         https://hn.blode.co/                  301!
+
+# Everything else (home, unknown paths) keeps its path on the canonical domain.
+/*             https://hn.blode.co/:splat            301!

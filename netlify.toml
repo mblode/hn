@@ -1,17 +1,8 @@
 # The canonical deployment of this app is https://hn.blode.co (hosted on
 # Vercel, which ignores this file). This legacy Netlify project ("mblode-hn")
-# still serves the old hn.matthewblode.com domain from this repo. Rather than
-# build and serve the app a second time, override the build to publish a single
-# _redirects file that permanently sends every path to the canonical domain.
-#
-# Netlify processes _redirects before [[redirects]], so the generated file is
-# what actually takes effect; the [[redirects]] block below is a backstop.
+# still serves the old hn.matthewblode.com domain from this repo. Instead of
+# building and serving the app a second time, publish a redirect-only directory
+# whose _redirects maps the old URL scheme onto the canonical domain.
 [build]
-  command = "rm -rf dist && mkdir dist && echo '/*  https://hn.blode.co/:splat  301!' > dist/_redirects"
-  publish = "dist"
-
-[[redirects]]
-  from = "/*"
-  to = "https://hn.blode.co/:splat"
-  status = 301
-  force = true
+  command = "echo 'Redirect-only deploy; rules live in netlify-site/_redirects'"
+  publish = "netlify-site"
