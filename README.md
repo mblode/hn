@@ -13,7 +13,7 @@ Live at **[hn.blode.co](https://hn.blode.co)**.
 - **Read and reply inline:** open comment threads without leaving the feed.
 - **Sign in with your HN account:** upvote, comment, and submit directly from the app.
 - **Search:** full-text story search (Algolia HN) with recent-search history.
-- **Command palette and shortcuts:** `Cmd/Ctrl+K` for the palette, single keys for navigation, `?` for the shortcut list.
+- **Command palette and shortcuts:** `Cmd/Ctrl+K` opens the palette, `j`/`k` move between stories, and `Cmd/Ctrl+/` lists every shortcut.
 
 ## Getting started
 
