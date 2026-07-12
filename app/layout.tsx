@@ -21,12 +21,12 @@ const geistMono = Geist_Mono({
 const SITE_URL = "https://hn.blode.co";
 const SITE_NAME = "HN";
 const SITE_DESCRIPTION =
-  "HN turns Hacker News into a fast, swipeable feed — browse top tech stories, Show HN, Ask HN, and jobs, ranked by your reading habits.";
+  "HN turns Hacker News into a fast, swipeable feed. Browse top tech stories, Show HN, Ask HN, and jobs, ranked by your reading habits.";
 
 export const metadata: Metadata = {
   title: {
     default: SITE_NAME,
-    template: `%s — ${SITE_NAME}`,
+    template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   metadataBase: new URL(SITE_URL),
