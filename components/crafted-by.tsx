@@ -6,13 +6,13 @@ export function CraftedBy() {
       rel="author noopener noreferrer"
       target="_blank"
     >
-      {/* biome-ignore lint/performance/noImgElement: external avatar, intentional plain img */}
+      {/* biome-ignore lint/performance/noImgElement: self-hosted 20px avatar, plain img avoids next/image overhead */}
       <img
         alt="Matthew Blode"
         className="shrink-0 rounded-full"
         height={16}
         loading="lazy"
-        src="https://matthewblode.com/avatar-sm.png"
+        src="/avatar-sm.png"
         width={16}
       />
       <span className="truncate">Crafted by Matthew Blode</span>
