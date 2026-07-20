@@ -11,6 +11,14 @@ const nextConfig: NextConfig = {
   redirects: async () => [
     { source: "/news", destination: "/", permanent: true },
   ],
+  // Keep this Hacker News client fully usable but out of Google's index: a
+  // sitewide noindex stops the mirror ranking for HN queries it can't own.
+  headers: async () => [
+    {
+      source: "/:path*",
+      headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+    },
+  ],
 };
 
 export default nextConfig;
