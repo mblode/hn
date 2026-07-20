@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+
 import { PostViewer } from "@/components/post-viewer";
 import { fetchItem } from "@/lib/hn-api";
 import { fetchFeed } from "@/lib/hn-live";
@@ -43,6 +44,7 @@ export async function generateMetadata({
   }
   return {
     title: item.title,
+    robots: { index: false },
     openGraph: {
       title: item.title,
       url: `/post/${id}`,
