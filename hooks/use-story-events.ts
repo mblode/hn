@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import { EVENTS_CHANGED_EVENT, getPostEventIdsByType } from "@/lib/events";
 
 interface UseStoryEventsResult {

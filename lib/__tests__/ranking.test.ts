@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { extractDomain, extractKeywords, rankCandidates } from "@/lib/ranking";
 import type { CandidateStory, UserEvent } from "@/lib/types";
 

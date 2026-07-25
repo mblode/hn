@@ -2,6 +2,7 @@
 
 import { Bookmark, Heart, Loader2 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+
 import { PostViewer } from "@/components/post-viewer";
 import { StoryListItem } from "@/components/story-list-item";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ import {
 } from "@/lib/events";
 import type { CandidateStory, EventType, UserEvent } from "@/lib/types";
 import { relativeTime } from "@/lib/utils";
+
 import { Dot } from "./dot";
 
 const toCandidateStory = (e: UserEvent): CandidateStory => ({

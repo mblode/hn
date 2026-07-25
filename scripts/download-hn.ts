@@ -7,6 +7,7 @@ import {
 import { dirname, join } from "node:path";
 import { createInterface } from "node:readline";
 import { fileURLToPath } from "node:url";
+
 import { BigQuery } from "@google-cloud/bigquery";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));

@@ -1,6 +1,7 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
+
 import { deduplicateStories, fetchFeed } from "@/lib/hn-live";
 import type { CandidateStory } from "@/lib/types";
 

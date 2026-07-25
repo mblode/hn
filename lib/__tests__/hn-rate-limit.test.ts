@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
 import { checkRateLimit } from "@/lib/hn-rate-limit";
 
 describe("hn-rate-limit", () => {

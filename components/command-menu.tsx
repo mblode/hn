@@ -12,10 +12,10 @@ import {
   Search,
   Sparkle,
 } from "lucide-react";
-
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
+
 import {
   CommandDialog,
   CommandEmpty,
