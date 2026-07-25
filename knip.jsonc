@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unjs.io/schema/knip.json",
+  // `components/ui/**` is vendored shadcn/ui. Those files deliberately re-export
+  // the full primitive surface (DialogPortal, SidebarMenuSub, buttonVariants, …)
+  // whether or not this app consumes it yet, and `shadcn add` regenerates them —
+  // so trimming the exports is both wrong and futile. Treating them as entry
+  // points keeps knip's output limited to our own dead code.
+  "entry": ["components/ui/**"],
+}
