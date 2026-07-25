@@ -4,11 +4,13 @@ import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
+
 import { PostViewer } from "@/components/post-viewer";
 import { StoryActionItem } from "@/components/story-action-item";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { isChordActive } from "@/hooks/use-global-shortcuts";
+import { useInfiniteScroll } from "@/hooks/use-infinite-scroll";
 import { useNavReset } from "@/hooks/use-nav-reset";
 import { type FeedType, useNewsFeed } from "@/hooks/use-news-feed";
 import { useStoryEvents } from "@/hooks/use-story-events";
@@ -35,7 +37,11 @@ export const NewsFeed = ({ type, initialStories }: NewsFeedProps) => {
   const storyIds = useMemo(() => stories.map((story) => story.id), [stories]);
   const { likedPostIds, bookmarkedPostIds } = useStoryEvents(storyIds);
 
-  const sentinelRef = useRef<HTMLDivElement>(null);
+  const { scrollRef, sentinelRef } = useInfiniteScroll({
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+  });
   const previousTypeRef = useRef<FeedType | null>(null);
 
   useNavReset(useCallback(() => setSelectedIndex(null), []));
@@ -97,26 +103,6 @@ export const NewsFeed = ({ type, initialStories }: NewsFeedProps) => {
     previousTypeRef.current = type;
   }, [type]);
 
-  // Infinite scroll observer
-  useEffect(() => {
-    const sentinel = sentinelRef.current;
-    if (!sentinel) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting && hasNextPage && !isFetchingNextPage) {
-          fetchNextPage();
-        }
-      },
-      { rootMargin: "200px" }
-    );
-
-    observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
-
   const handleTabChange = (value: string) => {
     if (value === "news") {
       router.push("/");
@@ -158,7 +144,7 @@ export const NewsFeed = ({ type, initialStories }: NewsFeedProps) => {
           </Tabs>
         </div>
       </header>
-      <main className="min-h-0 flex-1 overflow-y-scroll">
+      <main className="min-h-0 flex-1 overflow-y-scroll" ref={scrollRef}>
         {isLoading && (
           <div className="flex items-center justify-center p-8">
             <div className="animate-spin">

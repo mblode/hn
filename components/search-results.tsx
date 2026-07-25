@@ -3,11 +3,13 @@
 import { Loader2, Search, X } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
 import { PostViewer } from "@/components/post-viewer";
 import { StoryActionItem } from "@/components/story-action-item";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useInfiniteScroll } from "@/hooks/use-infinite-scroll";
 import { useSearch } from "@/hooks/use-search";
 import { useSearchHistory } from "@/hooks/use-search-history";
 import { useStoryEvents } from "@/hooks/use-story-events";
@@ -37,12 +39,23 @@ export const SearchResults = ({ query, sort }: SearchResultsProps) => {
   const { likedPostIds, bookmarkedPostIds } = useStoryEvents(resultIds);
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const sentinelRef = useRef<HTMLDivElement>(null);
   const previousSearchRef = useRef<{ query: string; sort: SearchSort } | null>(
     null
   );
   const [autoLoadCount, setAutoLoadCount] = useState(0);
   const showButton = autoLoadCount >= AUTO_LOAD_LIMIT;
+
+  const autoLoadNextPage = useCallback(() => {
+    setAutoLoadCount((c) => c + 1);
+    fetchNextPage();
+  }, [fetchNextPage]);
+
+  const { scrollRef, sentinelRef } = useInfiniteScroll({
+    enabled: !showButton,
+    fetchNextPage: autoLoadNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  });
 
   // Sync input with query prop
   useEffect(() => {
@@ -74,27 +87,6 @@ export const SearchResults = ({ query, sort }: SearchResultsProps) => {
       setSelectedIndex(null);
     }
   }, [query, sort]);
-
-  // Infinite scroll observer (disabled after AUTO_LOAD_LIMIT auto-loads)
-  useEffect(() => {
-    const sentinel = sentinelRef.current;
-    if (!sentinel || showButton) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting && hasNextPage && !isFetchingNextPage) {
-          setAutoLoadCount((c) => c + 1);
-          fetchNextPage();
-        }
-      },
-      { rootMargin: "200px" }
-    );
-
-    observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage, showButton]);
 
   const handleLoadMore = useCallback(() => {
     setAutoLoadCount(0);
@@ -194,7 +186,7 @@ export const SearchResults = ({ query, sort }: SearchResultsProps) => {
           </Tabs>
         </div>
       )}
-      <main className="min-h-0 flex-1 overflow-y-scroll">
+      <main className="min-h-0 flex-1 overflow-y-scroll" ref={scrollRef}>
         {isLoading && (
           <div className="flex items-center justify-center p-8">
             <div className="animate-spin">
@@ -228,7 +220,7 @@ export const SearchResults = ({ query, sort }: SearchResultsProps) => {
                 story={story}
               />
             ))}
-            {!showButton && <div ref={sentinelRef} />}
+            <div ref={sentinelRef} />
             {isFetchingNextPage && (
               <div className="flex items-center justify-center py-4">
                 <div className="animate-spin">

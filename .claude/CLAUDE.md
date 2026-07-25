@@ -27,6 +27,14 @@ React Compiler is enabled (`babel-plugin-react-compiler`).
 
 This project uses **Ultracite** (Biome under the hood). Run `npm run fix` before committing.
 
+## Available Context
+
+Additional context is available in the files below. Consult the relevant file when working in a related area — see each description for scope.
+
+- `knowledge/local-dev-setup.md` — Local Development Setup: How to set up, run, and work with this project locally. Non-obvious dependencies, environment config, common setup issues.
+- `knowledge/architecture-boundaries.md` — Architecture & System Boundaries: Key architectural decisions, service boundaries, data flow, integration points, and why things are the way they are.
+- `knowledge/testing-patterns.md` — Testing Patterns: Testing strategies, test infrastructure quirks, how to run/debug specific test suites, mocking conventions.
+
 ## Conventions
 
 - Use Next.js `<Image>` over `<img>`
