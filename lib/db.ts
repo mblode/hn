@@ -15,8 +15,8 @@ db.version(2).stores({
     "++id, type, postId, commentId, timestamp, [type+postId], [type+commentId]",
 });
 
-export const READ_TIMEOUT = 3000;
-export const WRITE_TIMEOUT = 5000;
+const READ_TIMEOUT = 3000;
+const WRITE_TIMEOUT = 5000;
 
 /** Race a promise against a timeout. Resolves with the fallback on timeout or error. */
 export function withTimeout<T>(

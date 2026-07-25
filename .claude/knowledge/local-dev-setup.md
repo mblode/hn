@@ -2,28 +2,44 @@
 
 How to set up, run, and work with this project locally. Non-obvious dependencies, environment config, common setup issues.
 
-## The auto-format hook reformats the entire repo on every edit
+## Do not "fix" the repo-wide auto-format hook
 
 `.claude/settings.json` registers a `PostToolUse` hook on `Write|Edit` that runs
-`npx ultracite fix` with **no file argument**, so it formats the whole working
-tree — not just the file that changed. `HEAD` is not currently ultracite-clean
-(import grouping, `netlify.toml` indentation), so a single one-line edit shows up
-as ~40 modified files.
+`npx ultracite fix` with **no path argument**, so it formats the whole tree. This
+looks like a bug and is not — it is verbatim what `ultracite init` generates for
+Claude Code, and ultracite only passes a file list when the underlying linter is
+biome, never for oxlint. Rewriting it to scope to the edited file just gets
+clobbered the next time anyone runs `ultracite init`.
 
-Always run `git status --short` after editing and restore everything outside your
-change before staging:
+It is safe because oxfmt is fast (~150ms across ~100 files) and because a
+formatter-clean tree makes it a no-op.
+
+If it ever starts touching dozens of unrelated files, the tree has **drifted**
+from the formatter — that is the actual fault. Fix the drift rather than the hook:
+
+```bash
+npx ultracite fix && git add -u && git commit -m "Bring the repo in line with the ultracite formatter"
+```
+
+Until that lands, `git status --short` after every edit and restore the collateral
+before staging, or the real change is buried:
 
 ```bash
 git status --short | awk '$1=="M" && $2!="<your/file>" {print $2}' | xargs -r git restore --
 ```
 
-Scoping the hook to the edited file (`npx ultracite fix "$CLAUDE_FILE_PATHS"`)
-would fix this at the source. The `lefthook` pre-commit job is already correctly
-scoped (`npx ultracite fix {staged_files}`), so only the Claude hook is at fault.
+The `lefthook` pre-commit job is separately scoped (`npx ultracite fix
+{staged_files}` with `stage_fixed: true`), so commits only ever format staged files.
 
-## Lint command names in CLAUDE.md are stale
+## `type: module` silences the config warnings
 
-`npm run lint` runs **oxlint**, not Biome. It prints a
-`MODULE_TYPELESS_PACKAGE_JSON` warning about `oxlint.config.ts` on every run —
-that is noise, not a failure. `npm run check-types` is the authoritative type
-gate, because `next.config.ts` sets `typescript.ignoreBuildErrors: true`.
+`package.json` sets `"type": "module"`. Without it, every `lint`, `format`, and
+`git commit` printed a `MODULE_TYPELESS_PACKAGE_JSON` warning for
+`oxlint.config.ts` / `oxfmt.config.ts`. Safe here because the repo has no `.js` or
+`.cjs` files — all configs are `.ts` or `.mjs`.
+
+## Verifying the setup
+
+`npx ultracite doctor` checks that oxlint/oxfmt are installed, that
+`oxlint.config.ts` and `oxfmt.config.ts` extend the ultracite configs, and that no
+conflicting formatters are present.

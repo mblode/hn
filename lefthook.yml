@@ -2,6 +2,18 @@ pre-commit:
   parallel: true
   jobs:
     - name: ultracite
-      glob: "*.{js,jsx,ts,tsx,json,jsonc,css}"
+      # Recursive patterns, matching ultracite's own generated template — a bare
+      # `*.ts` is ambiguous about whether it crosses path separators.
+      glob:
+        - "**/*.js"
+        - "**/*.jsx"
+        - "**/*.ts"
+        - "**/*.tsx"
+        - "**/*.json"
+        - "**/*.jsonc"
+        - "**/*.css"
+      # `{staged_files}` keeps the fix scoped to the commit. ultracite's
+      # `fix [files...]` accepts paths, and this is what stops a commit from
+      # reformatting files the change never touched.
       run: npx ultracite fix {staged_files}
       stage_fixed: true

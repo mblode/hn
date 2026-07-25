@@ -1,10 +1,15 @@
 # HN
 
-Hacker News stories in a TikTok-style swipeable UI.
+A fast, keyboard-friendly Hacker News client. Live at [hn.blode.co](https://hn.blode.co) (Vercel).
 
 ## Stack
 
-Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, shadcn/ui (Radix), Recharts, React Hook Form + Zod.
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, shadcn/ui (Radix).
+
+- **Data:** TanStack Query (`useInfiniteQuery` for every paginated feed)
+- **Local state:** Dexie (IndexedDB) for reading history, likes, and bookmarks — never leaves the device
+- **UI:** cmdk (command palette), react-hotkeys-hook (shortcuts), date-fns
+- **HN auth:** cheerio + dompurify, server-side in `app/api/hn/*`
 
 React Compiler is enabled (`babel-plugin-react-compiler`).
 
@@ -12,20 +17,32 @@ React Compiler is enabled (`babel-plugin-react-compiler`).
 
 - `npm run dev` — local dev server
 - `npm run build` — production build
-- `npm run lint` — Biome check
+- `npm run start` — serve a production build
+- `npm run lint` — oxlint
 - `npm run lint:fix` — auto-fix lint issues
-- `npm run format` — auto-format with Biome
+- `npm run format` — auto-format with oxfmt
 - `npm run format:check` — check formatting without writing
+- `npm run check` — ultracite check (lint + format, no writes)
+- `npm run fix` — auto-fix lint/format via ultracite
 - `npm run check-types` — TypeScript type checking
-- `npm run fix` — auto-fix lint/format via Ultracite
+- `npm run knip` — find unused files, exports, and dependencies
 - `npm run download-hn` — fetch HN data (`scripts/download-hn.ts`)
 - `npm run process-candidates` — process candidate stories (`scripts/process-candidates.ts`)
 - `npm run test` — run tests (Vitest)
 - `npm run test:watch` — run tests in watch mode
 
+`npm run check-types` is the authoritative type gate: `next.config.ts` sets
+`typescript.ignoreBuildErrors: true`, so `npm run build` will not fail on type errors.
+
 ## Lint & Format
 
-This project uses **Ultracite** (Biome under the hood). Run `npm run fix` before committing.
+This project uses **Ultracite** — oxlint + oxfmt under the hood (not Biome). Run
+`npm run fix` before committing, and `npx ultracite doctor` to verify the setup.
+
+A `PostToolUse` hook in `.claude/settings.json` runs `npx ultracite fix` after every
+`Write`/`Edit`. This is ultracite's own generated hook and is intentionally repo-wide
+— leave it alone. It is a fast no-op as long as the tree stays formatter-clean; see
+`knowledge/local-dev-setup.md` if you ever see it touch unrelated files.
 
 ## Available Context
 
