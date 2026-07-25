@@ -1,5 +1,6 @@
 import "fake-indexeddb/auto";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { _db } from "@/lib/db";
 import {
   addEvent,

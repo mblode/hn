@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+
 import { FeedSkeleton } from "@/components/feed-skeleton";
 import { PostViewer } from "@/components/post-viewer";
 import { fetchFeed } from "@/lib/hn-live";

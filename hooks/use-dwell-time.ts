@@ -2,6 +2,7 @@
 
 import type React from "react";
 import { useEffect, useRef } from "react";
+
 import { addEvent } from "@/lib/events";
 
 export const useDwellTime = (

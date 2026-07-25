@@ -2,6 +2,7 @@ import { createReadStream, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { createInterface } from "node:readline";
 import { fileURLToPath } from "node:url";
+
 import type { CandidateStory } from "../lib/types";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));

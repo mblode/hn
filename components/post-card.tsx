@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+
 import { CommentThread } from "@/components/comment-thread";
 import { Dot } from "@/components/dot";
 import { fetchItem } from "@/lib/hn-api";

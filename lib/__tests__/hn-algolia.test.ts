@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
+
 import { searchStories } from "@/lib/hn-algolia";
 
 const makeHit = (overrides: Record<string, unknown> = {}) => ({

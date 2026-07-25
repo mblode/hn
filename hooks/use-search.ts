@@ -1,6 +1,7 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
+
 import { type SearchSort, searchStories } from "@/lib/hn-algolia";
 import type { CandidateStory } from "@/lib/types";
 

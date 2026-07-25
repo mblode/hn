@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { clearHnSession } from "@/lib/hn-session";
 
 export function POST() {

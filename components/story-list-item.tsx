@@ -1,6 +1,7 @@
 import { extractDomain } from "@/lib/ranking";
 import type { CandidateStory } from "@/lib/types";
 import { relativeTime } from "@/lib/utils";
+
 import { Dot } from "./dot";
 
 interface StoryListItemProps {

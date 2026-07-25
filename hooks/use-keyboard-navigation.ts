@@ -1,6 +1,7 @@
 "use client";
 
 import { useHotkeys } from "react-hotkeys-hook";
+
 import { isChordActive } from "@/hooks/use-global-shortcuts";
 
 interface KeyboardHandlers {

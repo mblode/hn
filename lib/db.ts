@@ -1,4 +1,5 @@
 import Dexie from "dexie";
+
 import type { UserEvent } from "@/lib/types";
 
 const db = new Dexie("hackertok") as Dexie & {
