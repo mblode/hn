@@ -5,6 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { DevTools } from "@/components/dev-tools";
 import { JsonLd } from "@/components/json-ld";
 import { QueryProvider } from "@/components/query-provider";
+import { BASE_PATH, SITE_ORIGIN, SITE_URL } from "@/lib/site";
 
 import "./globals.css";
 
@@ -18,8 +19,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://blode.co/hn";
-const SITE_ORIGIN = "https://blode.co";
 const SITE_NAME = "HN";
 const SITE_DESCRIPTION =
   "HN is a fast, modern Hacker News client. Browse Top, New, Show HN, Ask HN, and jobs, read and reply to threads, and sign in to vote, comment, and submit.";
@@ -38,18 +37,20 @@ export const metadata: Metadata = {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
-    images: [{ url: "/hn/opengraph-image.png", width: 1200, height: 630 }],
+    images: [
+      { url: `${BASE_PATH}/opengraph-image.png`, width: 1200, height: 630 },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: ["/hn/opengraph-image.png"],
+    images: [`${BASE_PATH}/opengraph-image.png`],
   },
   verification: {
     google: "mFwyBIbXTaKK4uF_NA0MzVWFyY40hPgBjFObg3rje04",
   },
-  manifest: "/hn/manifest.json",
+  manifest: `${BASE_PATH}/manifest.json`,
   other: {
     "apple-mobile-web-app-title": "HN",
   },

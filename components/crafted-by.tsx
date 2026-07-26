@@ -1,3 +1,5 @@
+import { BASE_PATH } from "@/lib/site";
+
 export function CraftedBy() {
   return (
     <a
@@ -12,7 +14,7 @@ export function CraftedBy() {
         className="shrink-0 rounded-full"
         height={16}
         loading="lazy"
-        src="/hn/avatar-sm.png"
+        src={`${BASE_PATH}/avatar-sm.png`}
         width={16}
       />
       <span className="truncate">Crafted by Matthew Blode</span>

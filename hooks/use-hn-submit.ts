@@ -2,6 +2,8 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { APP_API_BASE } from "@/lib/hn-api";
+
 export function useHnSubmit() {
   const queryClient = useQueryClient();
 
@@ -11,7 +13,7 @@ export function useHnSubmit() {
       url?: string;
       text?: string;
     }): Promise<{ success: boolean; error?: string }> => {
-      const res = await fetch("/hn/api/hn/submit", {
+      const res = await fetch(`${APP_API_BASE}/submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
