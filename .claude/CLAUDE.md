@@ -51,6 +51,7 @@ Additional context is available in the files below. Consult the relevant file wh
 - `knowledge/local-dev-setup.md` — Local Development Setup: How to set up, run, and work with this project locally. Non-obvious dependencies, environment config, common setup issues.
 - `knowledge/architecture-boundaries.md` — Architecture & System Boundaries: Key architectural decisions, service boundaries, data flow, integration points, and why things are the way they are.
 - `knowledge/testing-patterns.md` — Testing Patterns: Testing strategies, test infrastructure quirks, how to run/debug specific test suites, mocking conventions.
+- `knowledge/deployment-release.md` — Deployment & Release: How code gets to production. Release processes, environment promotion, rollback procedures, gotchas.
 
 ## Conventions
 
