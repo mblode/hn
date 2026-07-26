@@ -11,7 +11,7 @@ export function useHnSubmit() {
       url?: string;
       text?: string;
     }): Promise<{ success: boolean; error?: string }> => {
-      const res = await fetch("/api/hn/submit", {
+      const res = await fetch("/hn/api/hn/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

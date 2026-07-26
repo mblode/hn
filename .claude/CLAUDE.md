@@ -1,6 +1,6 @@
 # HN
 
-A fast, keyboard-friendly Hacker News client. Live at [hn.blode.co](https://hn.blode.co) (Vercel).
+A fast, keyboard-friendly Hacker News client. Live at [blode.co/hn](https://blode.co/hn) (Vercel).
 
 ## Stack
 

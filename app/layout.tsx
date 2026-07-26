@@ -18,7 +18,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://hn.blode.co";
+const SITE_URL = "https://blode.co/hn";
+const SITE_ORIGIN = "https://blode.co";
 const SITE_NAME = "HN";
 const SITE_DESCRIPTION =
   "HN is a fast, modern Hacker News client. Browse Top, New, Show HN, Ask HN, and jobs, read and reply to threads, and sign in to vote, comment, and submit.";
@@ -29,26 +30,26 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
-  metadataBase: new URL(SITE_URL),
-  alternates: { canonical: "/" },
+  metadataBase: new URL(SITE_ORIGIN),
+  alternates: { canonical: SITE_URL },
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/hn/opengraph-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: ["/opengraph-image.png"],
+    images: ["/hn/opengraph-image.png"],
   },
   verification: {
     google: "mFwyBIbXTaKK4uF_NA0MzVWFyY40hPgBjFObg3rje04",
   },
-  manifest: "/manifest.json",
+  manifest: "/hn/manifest.json",
   other: {
     "apple-mobile-web-app-title": "HN",
   },
@@ -87,7 +88,7 @@ export default function RootLayout({
         <QueryProvider>{children}</QueryProvider>
         <DevTools />
       </body>
-      <GoogleAnalytics gaId="G-6PS2ZMFJVC" />
+      <GoogleAnalytics gaId="G-DZD6C8C6HT" />
     </html>
   );
 }

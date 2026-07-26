@@ -38,7 +38,7 @@ async function fetchMe(): Promise<{
   username?: string;
   karma?: number;
 }> {
-  const res = await fetch("/api/hn/me");
+  const res = await fetch("/hn/api/hn/me");
   if (!res.ok) {
     return { authenticated: false };
   }
@@ -60,7 +60,7 @@ export function HnAuthProvider({ children }: { children: ReactNode }) {
       username: string;
       password: string;
     }): Promise<{ success: boolean; error?: string }> => {
-      const res = await fetch("/api/hn/login", {
+      const res = await fetch("/hn/api/hn/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(credentials),
@@ -85,7 +85,7 @@ export function HnAuthProvider({ children }: { children: ReactNode }) {
   );
 
   const logout = useCallback(async () => {
-    await fetch("/api/hn/logout", { method: "POST" });
+    await fetch("/hn/api/hn/logout", { method: "POST" });
     queryClient.setQueryData(["hn-me"], { authenticated: false });
   }, [queryClient]);
 

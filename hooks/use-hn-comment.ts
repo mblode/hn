@@ -13,7 +13,7 @@ export function useHnComment(postId: number) {
       parentId: number;
       text: string;
     }): Promise<{ success: boolean; error?: string }> => {
-      const res = await fetch("/api/hn/comment", {
+      const res = await fetch("/hn/api/hn/comment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ parentId, text }),

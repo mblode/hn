@@ -1,4 +1,4 @@
-# The canonical deployment of this app is https://hn.blode.co (hosted on
+# The canonical deployment of this app is https://blode.co/hn (hosted on
 # Vercel, which ignores this file). This legacy Netlify project ("mblode-hn")
 # still serves the old hn.matthewblode.com domain from this repo. Instead of
 # building and serving the app a second time, publish a redirect-only directory

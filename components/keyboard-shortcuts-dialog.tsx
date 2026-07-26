@@ -150,7 +150,7 @@ export const KeyboardShortcutsDialog = ({
           Created by{" "}
           <a
             className="underline hover:text-foreground"
-            href="https://matthewblode.com"
+            href="https://blode.co"
             rel="noopener noreferrer"
             target="_blank"
           >
