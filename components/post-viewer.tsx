@@ -28,6 +28,7 @@ import {
 } from "@/lib/events";
 import { deduplicateStories, fetchFeed } from "@/lib/hn-live";
 import { extractDomain, rankCandidates } from "@/lib/ranking";
+import { withBasePath } from "@/lib/site";
 import { classifyTopics } from "@/lib/topics";
 import type { CandidateStory, EventType } from "@/lib/types";
 
@@ -372,7 +373,7 @@ export const PostViewer = ({
     }
 
     if (originPath) {
-      window.history.replaceState(null, "", originPath);
+      window.history.replaceState(null, "", withBasePath(originPath));
     }
     onBack?.();
   }, [onBack, originPath]);
@@ -388,7 +389,7 @@ export const PostViewer = ({
         return;
       }
 
-      const target = new URL(originPath, window.location.origin);
+      const target = new URL(withBasePath(originPath), window.location.origin);
       const atOriginPath =
         window.location.pathname === target.pathname &&
         window.location.search === target.search;
@@ -411,7 +412,7 @@ export const PostViewer = ({
       return;
     }
 
-    const postPath = `/post/${currentStoryId}`;
+    const postPath = withBasePath(`/post/${currentStoryId}`);
 
     if (onBack && originPath && !hasPushedHistoryEntry.current) {
       window.history.pushState(null, "", postPath);
@@ -448,7 +449,7 @@ export const PostViewer = ({
       if (input) {
         input.focus();
       } else {
-        window.location.href = "/search";
+        window.location.href = withBasePath("/search");
       }
     },
   });
