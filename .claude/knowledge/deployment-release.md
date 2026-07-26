@@ -21,11 +21,13 @@ Consequences to keep in mind:
   `blode.co/hn` via host-matched `redirects()` in `next.config.ts`. Never point
   the parent's zone `origin` at those hosts — the redirect would loop. The zone
   origin must stay `hn.zone.blode.co`, which has no host rule.
-- `basePath` does **not** rewrite `fetch()` URLs, raw `<img src>`, manifest
-  contents, or hand-written asset paths. Those are hardcoded with the `/hn`
-  prefix (`hooks/use-hn-*.ts`, `app/manifest.json`, `components/crafted-by.tsx`,
-  `public/*`). Adding a new API call or static asset means writing `/hn/...`
-  yourself.
+- `basePath` does **not** rewrite `fetch()` URLs, raw `<img src>`, or absolute
+  URLs in metadata. `lib/site.ts` holds the single source of truth
+  (`BASE_PATH`, `SITE_ORIGIN`, `SITE_URL`) and `next.config.ts` imports it, so
+  `basePath` cannot drift from the metadata URLs. New client calls go through
+  `APP_API_BASE` in `lib/hn-api.ts`; new asset references prefix with
+  `BASE_PATH`. `app/manifest.json` is static JSON and is the one place the
+  prefix is still written out literally.
 
 Verify a deploy with all three layers, not just one:
 
