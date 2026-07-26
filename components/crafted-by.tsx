@@ -2,7 +2,7 @@ export function CraftedBy() {
   return (
     <a
       className="inline-flex min-w-0 items-center gap-1.5 text-muted-foreground text-xs transition-colors hover:text-foreground"
-      href="https://matthewblode.com"
+      href="https://blode.co"
       rel="author noopener noreferrer"
       target="_blank"
     >
@@ -12,7 +12,7 @@ export function CraftedBy() {
         className="shrink-0 rounded-full"
         height={16}
         loading="lazy"
-        src="/avatar-sm.png"
+        src="/hn/avatar-sm.png"
         width={16}
       />
       <span className="truncate">Crafted by Matthew Blode</span>

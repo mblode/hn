@@ -1,15 +1,17 @@
 {
   "name": "HN",
   "short_name": "HN",
+  "start_url": "/hn",
+  "scope": "/hn/",
   "icons": [
     {
-      "src": "/web-app-manifest-192x192.png",
+      "src": "/hn/web-app-manifest-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/web-app-manifest-512x512.png",
+      "src": "/hn/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

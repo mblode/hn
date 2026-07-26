@@ -13,7 +13,7 @@ export function useHnVote() {
       itemId: number;
       direction: "up" | "down";
     }): Promise<{ success: boolean; error?: string }> => {
-      const res = await fetch("/api/hn/vote", {
+      const res = await fetch("/hn/api/hn/vote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ itemId, direction }),
