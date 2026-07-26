@@ -12,3 +12,21 @@
 export const SITE_ORIGIN = "https://blode.co";
 export const BASE_PATH = "/hn";
 export const SITE_URL = `${SITE_ORIGIN}${BASE_PATH}`;
+
+/**
+ * Prefix an app-relative URL for raw browser APIs (`history.pushState`,
+ * `location.href`, plain `<a href>`) that Next.js does not rewrite.
+ *
+ * The zone root maps to bare `BASE_PATH` (no trailing slash) so results
+ * compare equal to `location.pathname`, which is what the browser reports
+ * at `blode.co/hn`.
+ */
+export const withBasePath = (path: string): string => {
+  if (path === "/") {
+    return BASE_PATH || "/";
+  }
+  if (path.startsWith("/?")) {
+    return `${BASE_PATH}${path.slice(1)}`;
+  }
+  return `${BASE_PATH}${path}`;
+};
