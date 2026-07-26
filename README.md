@@ -2,7 +2,7 @@
 
 A fast, modern Hacker News client. Browse the feeds, read and reply to threads, and sign in to vote and submit, with your reading history kept on your device.
 
-Live at **[hn.blode.co](https://hn.blode.co)**.
+Live at **[blode.co/hn](https://blode.co/hn)**.
 
 ## Features
 
@@ -67,4 +67,4 @@ Next.js 16 (App Router, React Compiler) and React 19, Tailwind CSS 4, TanStack Q
 
 ---
 
-Crafted by [<img src="https://matthewblode.com/avatar-circle.png" width="20" align="top" />](https://matthewblode.com) [Matthew Blode](https://matthewblode.com)
+Crafted by [<img src="https://blode.co/avatar-circle.png" width="20" align="top" />](https://blode.co) [Matthew Blode](https://blode.co)
