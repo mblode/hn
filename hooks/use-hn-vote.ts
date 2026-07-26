@@ -2,6 +2,8 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { APP_API_BASE } from "@/lib/hn-api";
+
 export function useHnVote() {
   const queryClient = useQueryClient();
 
@@ -13,7 +15,7 @@ export function useHnVote() {
       itemId: number;
       direction: "up" | "down";
     }): Promise<{ success: boolean; error?: string }> => {
-      const res = await fetch("/hn/api/hn/vote", {
+      const res = await fetch(`${APP_API_BASE}/vote`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ itemId, direction }),

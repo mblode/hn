@@ -14,6 +14,8 @@ import {
   useContext,
 } from "react";
 
+import { APP_API_BASE } from "@/lib/hn-api";
+
 interface HnAuthState {
   isAuthenticated: boolean;
   username: string | null;
@@ -38,7 +40,7 @@ async function fetchMe(): Promise<{
   username?: string;
   karma?: number;
 }> {
-  const res = await fetch("/hn/api/hn/me");
+  const res = await fetch(`${APP_API_BASE}/me`);
   if (!res.ok) {
     return { authenticated: false };
   }
@@ -60,7 +62,7 @@ export function HnAuthProvider({ children }: { children: ReactNode }) {
       username: string;
       password: string;
     }): Promise<{ success: boolean; error?: string }> => {
-      const res = await fetch("/hn/api/hn/login", {
+      const res = await fetch(`${APP_API_BASE}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(credentials),
@@ -85,7 +87,7 @@ export function HnAuthProvider({ children }: { children: ReactNode }) {
   );
 
   const logout = useCallback(async () => {
-    await fetch("/hn/api/hn/logout", { method: "POST" });
+    await fetch(`${APP_API_BASE}/logout`, { method: "POST" });
     queryClient.setQueryData(["hn-me"], { authenticated: false });
   }, [queryClient]);
 

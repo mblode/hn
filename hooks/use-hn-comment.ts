@@ -2,6 +2,8 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { APP_API_BASE } from "@/lib/hn-api";
+
 export function useHnComment(postId: number) {
   const queryClient = useQueryClient();
 
@@ -13,7 +15,7 @@ export function useHnComment(postId: number) {
       parentId: number;
       text: string;
     }): Promise<{ success: boolean; error?: string }> => {
-      const res = await fetch("/hn/api/hn/comment", {
+      const res = await fetch(`${APP_API_BASE}/comment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ parentId, text }),
