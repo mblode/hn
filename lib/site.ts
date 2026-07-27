@@ -12,3 +12,12 @@
 export const SITE_ORIGIN = "https://blode.co";
 export const BASE_PATH = "/hn";
 export const SITE_URL = `${SITE_ORIGIN}${BASE_PATH}`;
+
+/**
+ * Prefix a root-relative path with the `basePath`.
+ *
+ * Use it anywhere Next does not: raw `<a href>`, `window.location`, the
+ * History API, `fetch()`, and metadata URLs. Never on `<Link href>`, which
+ * already gets the prefix and would end up with it twice.
+ */
+export const asset = (path: string) => `${BASE_PATH}${path}`;

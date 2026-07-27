@@ -14,6 +14,7 @@ import { useSearch } from "@/hooks/use-search";
 import { useSearchHistory } from "@/hooks/use-search-history";
 import { useStoryEvents } from "@/hooks/use-story-events";
 import type { SearchSort } from "@/lib/hn-algolia";
+import { asset } from "@/lib/site";
 
 const AUTO_LOAD_LIMIT = 3;
 
@@ -151,6 +152,7 @@ export const SearchResults = ({ query, sort }: SearchResultsProps) => {
     <>
       <header className="flex shrink-0 items-center gap-2 border-border border-b px-4 py-2">
         <SidebarTrigger className="md:hidden" />
+        <h1 className="sr-only">Search Hacker News stories</h1>
         <form
           className="flex flex-1 items-center gap-2"
           onSubmit={handleSubmit}
@@ -283,7 +285,7 @@ const RecentSearches = ({
         >
           <a
             className="flex flex-1 cursor-pointer items-center gap-3 px-4 py-3 text-sm"
-            href={`/search?q=${encodeURIComponent(query)}`}
+            href={asset(`/search?q=${encodeURIComponent(query)}`)}
             onClick={(e) => {
               if (!(e.metaKey || e.ctrlKey)) {
                 e.preventDefault();
