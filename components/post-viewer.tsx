@@ -28,7 +28,7 @@ import {
 } from "@/lib/events";
 import { deduplicateStories, fetchFeed } from "@/lib/hn-live";
 import { extractDomain, rankCandidates } from "@/lib/ranking";
-import { withBasePath } from "@/lib/site";
+import { asset } from "@/lib/site";
 import { classifyTopics } from "@/lib/topics";
 import type { CandidateStory, EventType } from "@/lib/types";
 
@@ -43,6 +43,8 @@ interface PostViewerProps {
   onBack?: () => void;
   onLoadMore?: () => void;
   originPath?: string;
+  /** Pass `null` when the surrounding page already renders its own `<h1>`. */
+  heading?: string | null;
 }
 
 export const PostViewer = ({
@@ -53,8 +55,10 @@ export const PostViewer = ({
   onBack,
   onLoadMore,
   originPath,
+  heading = "HN",
 }: PostViewerProps) => {
   const isCollectionMode = mode === "collection";
+  const originUrl = originPath ? asset(originPath) : undefined;
   const { isAuthenticated } = useHnAuth();
   const { vote } = useHnVote();
 
@@ -372,11 +376,11 @@ export const PostViewer = ({
       return;
     }
 
-    if (originPath) {
-      window.history.replaceState(null, "", withBasePath(originPath));
+    if (originUrl) {
+      window.history.replaceState(null, "", originUrl);
     }
     onBack?.();
-  }, [onBack, originPath]);
+  }, [onBack, originUrl]);
 
   useEffect(() => {
     if (!onBack) {
@@ -384,12 +388,12 @@ export const PostViewer = ({
     }
 
     const handlePopState = () => {
-      if (!originPath) {
+      if (!originUrl) {
         onBack();
         return;
       }
 
-      const target = new URL(withBasePath(originPath), window.location.origin);
+      const target = new URL(originUrl, window.location.origin);
       const atOriginPath =
         window.location.pathname === target.pathname &&
         window.location.search === target.search;
@@ -404,7 +408,7 @@ export const PostViewer = ({
     return () => {
       window.removeEventListener("popstate", handlePopState);
     };
-  }, [onBack, originPath]);
+  }, [onBack, originUrl]);
 
   const currentStoryId = currentStory?.id;
   useEffect(() => {
@@ -412,9 +416,9 @@ export const PostViewer = ({
       return;
     }
 
-    const postPath = withBasePath(`/post/${currentStoryId}`);
+    const postPath = asset(`/post/${currentStoryId}`);
 
-    if (onBack && originPath && !hasPushedHistoryEntry.current) {
+    if (onBack && originUrl && !hasPushedHistoryEntry.current) {
       window.history.pushState(null, "", postPath);
       hasPushedHistoryEntry.current = true;
       return;
@@ -424,7 +428,7 @@ export const PostViewer = ({
     }
 
     window.history.replaceState(null, "", postPath);
-  }, [currentStoryId, mode, onBack, originPath]);
+  }, [currentStoryId, mode, onBack, originUrl]);
 
   useKeyboardNavigation({
     onNext: handleNext,
@@ -449,7 +453,7 @@ export const PostViewer = ({
       if (input) {
         input.focus();
       } else {
-        window.location.href = withBasePath("/search");
+        window.location.href = asset("/search");
       }
     },
   });
@@ -504,7 +508,7 @@ export const PostViewer = ({
             <ArrowLeft />
           </Button>
         )}
-        <h1 className="sr-only">HN</h1>
+        {heading && <h1 className="sr-only">{heading}</h1>}
         <div className="flex items-center">
           <Button
             aria-label="Bookmark post"

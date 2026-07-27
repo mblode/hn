@@ -10,7 +10,7 @@
     "lint": "oxlint .",
     "lint:fix": "oxlint --fix .",
     "format": "oxfmt --write .",
-    "format:check": "oxfmt .",
+    "format:check": "oxfmt --check .",
     "check-types": "tsc --noEmit",
     "check": "ultracite check",
     "fix": "ultracite fix",
@@ -22,7 +22,6 @@
     "knip": "knip"
   },
   "dependencies": {
-    "@next/third-parties": "^16.2.10",
     "@tanstack/react-query": "^5.101.2",
     "cheerio": "^1.2.0",
     "class-variance-authority": "^0.7.1",
@@ -33,6 +32,7 @@
     "dompurify": "^3.4.12",
     "lucide-react": "^1.24.0",
     "next": "^16.2.10",
+    "posthog-js": "^1.407.2",
     "radix-ui": "^1.6.2",
     "react": "19.2.7",
     "react-dom": "19.2.7",

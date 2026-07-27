@@ -1,11 +1,10 @@
-import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { DevTools } from "@/components/dev-tools";
 import { JsonLd } from "@/components/json-ld";
 import { QueryProvider } from "@/components/query-provider";
-import { BASE_PATH, SITE_ORIGIN, SITE_URL } from "@/lib/site";
+import { BASE_PATH, SITE_NAME, SITE_ORIGIN, SITE_URL } from "@/lib/site";
 
 import "./globals.css";
 
@@ -19,7 +18,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_NAME = "HN";
 const SITE_DESCRIPTION =
   "HN is a fast, modern Hacker News client. Browse Top, New, Show HN, Ask HN, and jobs, read and reply to threads, and sign in to vote, comment, and submit.";
 
@@ -63,6 +61,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link href="https://us.i.posthog.com" rel="preconnect" />
+        <link href="https://us-assets.i.posthog.com" rel="dns-prefetch" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -89,7 +91,6 @@ export default function RootLayout({
         <QueryProvider>{children}</QueryProvider>
         <DevTools />
       </body>
-      <GoogleAnalytics gaId="G-DZD6C8C6HT" />
     </html>
   );
 }

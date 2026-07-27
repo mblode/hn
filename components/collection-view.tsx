@@ -17,7 +17,7 @@ import {
   removeEventsByTypeAndComment,
   removeEventsByTypeAndPost,
 } from "@/lib/events";
-import { withBasePath } from "@/lib/site";
+import { asset } from "@/lib/site";
 import type { CandidateStory, EventType, UserEvent } from "@/lib/types";
 import { relativeTime } from "@/lib/utils";
 
@@ -389,7 +389,7 @@ const CommentCollectionItem = ({
                 on:{" "}
                 <a
                   className="hover:underline"
-                  href={withBasePath(`/post/${comment.postId}`)}
+                  href={asset(`/post/${comment.postId}`)}
                 >
                   {comment.postTitle}
                 </a>
