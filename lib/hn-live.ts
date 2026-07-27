@@ -29,12 +29,19 @@ export const fetchFeed = async (
   type: string,
   page: number
 ): Promise<CandidateStory[]> => {
-  const res = await fetch(`${HN_API}/${type}?page=${page}`);
-  if (!res.ok) {
+  try {
+    const res = await fetch(`${HN_API}/${type}?page=${page}`);
+    if (!res.ok) {
+      return [];
+    }
+    const items: HNApiStory[] = await res.json();
+    return items.map(toCandidate);
+  } catch {
+    // A dropped request (e.g. a Mobile Safari network abort) rejects the fetch.
+    // These callers are background/pagination prefetches, so degrade silently
+    // to an empty feed rather than surfacing an unhandled promise rejection.
     return [];
   }
-  const items: HNApiStory[] = await res.json();
-  return items.map(toCandidate);
 };
 
 export const deduplicateStories = (
