@@ -19,7 +19,20 @@ export const SITE_URL = `${SITE_ORIGIN}${BASE_PATH}`;
  * Use it anywhere Next does not: raw `<a href>`, `window.location`, the
  * History API, `fetch()`, and metadata URLs. Never on `<Link href>`, which
  * already gets the prefix and would end up with it twice.
+ *
+ * The zone root maps to bare `BASE_PATH` (no trailing slash) so results
+ * compare equal to `location.pathname`, which is what the browser reports
+ * at `blode.co/hn` — a trailing slash would break PostViewer's popstate
+ * origin check and strand the post view after back navigation.
  */
-export const asset = (path: string) => `${BASE_PATH}${path}`;
+export const asset = (path: string): string => {
+  if (path === "/") {
+    return BASE_PATH || "/";
+  }
+  if (path.startsWith("/?")) {
+    return `${BASE_PATH}${path.slice(1)}`;
+  }
+  return `${BASE_PATH}${path}`;
+};
 
 export const SITE_NAME = "HN";
