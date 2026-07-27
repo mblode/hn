@@ -17,6 +17,7 @@ import {
   removeEventsByTypeAndComment,
   removeEventsByTypeAndPost,
 } from "@/lib/events";
+import { asset } from "@/lib/site";
 import type { CandidateStory, EventType, UserEvent } from "@/lib/types";
 import { relativeTime } from "@/lib/utils";
 
@@ -386,7 +387,10 @@ const CommentCollectionItem = ({
               <Dot />
               <span>
                 on:{" "}
-                <a className="hover:underline" href={`/post/${comment.postId}`}>
+                <a
+                  className="hover:underline"
+                  href={asset(`/post/${comment.postId}`)}
+                >
                   {comment.postTitle}
                 </a>
               </span>

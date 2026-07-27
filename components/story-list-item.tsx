@@ -1,4 +1,5 @@
 import { extractDomain } from "@/lib/ranking";
+import { asset } from "@/lib/site";
 import type { CandidateStory } from "@/lib/types";
 import { relativeTime } from "@/lib/utils";
 
@@ -70,7 +71,7 @@ export const StoryListItem = ({
         ) : (
           <a
             className="block cursor-pointer hover:underline"
-            href={`/post/${story.id}`}
+            href={asset(`/post/${story.id}`)}
             onClick={handleClick}
           >
             {story.title}
@@ -79,7 +80,7 @@ export const StoryListItem = ({
         {(story.score > 0 || story.descendants > 0) && (
           <a
             className="flex cursor-pointer items-center gap-x-3 pt-1 text-muted-foreground text-xs transition-colors hover:text-foreground hover:underline"
-            href={`/post/${story.id}`}
+            href={asset(`/post/${story.id}`)}
             onClick={handleClick}
           >
             {story.score > 0 && (

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { PostViewer } from "@/components/post-viewer";
 import { fetchItem } from "@/lib/hn-api";
 import { fetchFeed } from "@/lib/hn-live";
+import { asset } from "@/lib/site";
 import type { CandidateStory } from "@/lib/types";
 
 interface PostPageProps {
@@ -47,7 +48,7 @@ export async function generateMetadata({
     robots: { index: false },
     openGraph: {
       title: item.title,
-      url: `/post/${id}`,
+      url: asset(`/post/${id}`),
     },
   };
 }
