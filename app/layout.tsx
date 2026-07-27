@@ -1,4 +1,3 @@
-import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
@@ -89,7 +88,6 @@ export default function RootLayout({
         <QueryProvider>{children}</QueryProvider>
         <DevTools />
       </body>
-      <GoogleAnalytics gaId="G-DZD6C8C6HT" />
     </html>
   );
 }
