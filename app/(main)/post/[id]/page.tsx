@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { PostViewer } from "@/components/post-viewer";
 import { fetchItem } from "@/lib/hn-api";
 import { fetchFeed } from "@/lib/hn-live";
-import { asset } from "@/lib/site";
+import { asset, BASE_PATH, SITE_NAME } from "@/lib/site";
 import type { CandidateStory } from "@/lib/types";
 
 interface PostPageProps {
@@ -46,9 +46,17 @@ export async function generateMetadata({
   return {
     title: item.title,
     robots: { index: false },
+    // A child `openGraph` replaces the layout's rather than merging into it, so
+    // siteName, type and the image have to be restated or every post loses its
+    // share preview.
     openGraph: {
+      type: "article",
+      siteName: SITE_NAME,
       title: item.title,
       url: asset(`/post/${id}`),
+      images: [
+        { url: `${BASE_PATH}/opengraph-image.png`, width: 1200, height: 630 },
+      ],
     },
   };
 }

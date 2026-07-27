@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { DevTools } from "@/components/dev-tools";
 import { JsonLd } from "@/components/json-ld";
 import { QueryProvider } from "@/components/query-provider";
-import { BASE_PATH, SITE_ORIGIN, SITE_URL } from "@/lib/site";
+import { BASE_PATH, SITE_NAME, SITE_ORIGIN, SITE_URL } from "@/lib/site";
 
 import "./globals.css";
 
@@ -18,7 +18,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_NAME = "HN";
 const SITE_DESCRIPTION =
   "HN is a fast, modern Hacker News client. Browse Top, New, Show HN, Ask HN, and jobs, read and reply to threads, and sign in to vote, comment, and submit.";
 

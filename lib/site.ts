@@ -21,3 +21,5 @@ export const SITE_URL = `${SITE_ORIGIN}${BASE_PATH}`;
  * already gets the prefix and would end up with it twice.
  */
 export const asset = (path: string) => `${BASE_PATH}${path}`;
+
+export const SITE_NAME = "HN";
