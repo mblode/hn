@@ -28,6 +28,11 @@ React Compiler is enabled (`babel-plugin-react-compiler`).
 - `npm run knip` — find unused files, exports, and dependencies
 - `npm run download-hn` — fetch HN data (`scripts/download-hn.ts`)
 - `npm run process-candidates` — process candidate stories (`scripts/process-candidates.ts`)
+
+Those two write NDJSON into `data/`, which is gitignored and reaches tens of
+gigabytes locally. Nothing in the app reads it at runtime and a fresh clone has
+none of it, so treat a missing `data/` as normal rather than as broken setup, and
+never stage it.
 - `npm run test` — run tests (Vitest)
 - `npm run test:watch` — run tests in watch mode
 
@@ -42,16 +47,16 @@ This project uses **Ultracite** — oxlint + oxfmt under the hood (not Biome). R
 A `PostToolUse` hook in `.claude/settings.json` runs `npx ultracite fix` after every
 `Write`/`Edit`. This is ultracite's own generated hook and is intentionally repo-wide
 — leave it alone. It is a fast no-op as long as the tree stays formatter-clean; see
-`knowledge/local-dev-setup.md` if you ever see it touch unrelated files.
+`.claude/knowledge/local-dev-setup.md` if you ever see it touch unrelated files.
 
 ## Available Context
 
 Additional context is available in the files below. Consult the relevant file when working in a related area — see each description for scope.
 
-- `knowledge/local-dev-setup.md` — Local Development Setup: How to set up, run, and work with this project locally. Non-obvious dependencies, environment config, common setup issues.
-- `knowledge/architecture-boundaries.md` — Architecture & System Boundaries: Key architectural decisions, service boundaries, data flow, integration points, and why things are the way they are.
-- `knowledge/testing-patterns.md` — Testing Patterns: Testing strategies, test infrastructure quirks, how to run/debug specific test suites, mocking conventions.
-- `knowledge/deployment-release.md` — Deployment & Release: How code gets to production. Release processes, environment promotion, rollback procedures, gotchas.
+- `.claude/knowledge/local-dev-setup.md` — Local Development Setup: How to set up, run, and work with this project locally. Non-obvious dependencies, environment config, common setup issues.
+- `.claude/knowledge/architecture-boundaries.md` — Architecture & System Boundaries: Key architectural decisions, service boundaries, data flow, integration points, and why things are the way they are.
+- `.claude/knowledge/testing-patterns.md` — Testing Patterns: Testing strategies, test infrastructure quirks, how to run/debug specific test suites, mocking conventions.
+- `.claude/knowledge/deployment-release.md` — Deployment & Release: How code gets to production. Release processes, environment promotion, rollback procedures, gotchas.
 
 ## Conventions
 
