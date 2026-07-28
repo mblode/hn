@@ -79,10 +79,20 @@ export default async function PostPage({ params }: PostPageProps) {
   const candidate = toCandidateStory(item);
   const rest = feedStories.filter((s) => s.id !== numId);
   return (
-    <PostViewer
-      initialCandidates={[candidate, ...rest]}
-      originPath="/"
-      pinnedId={numId}
-    />
+    <>
+      {/*
+        Rendered here rather than left to PostViewer's own `heading`, which
+        returns a skeleton until it is ready on the client — so the served HTML
+        had no h1 at all. The post's title is the right heading for the page
+        anyway; PostViewer's generic "HN" was never it.
+      */}
+      <h1 className="sr-only">{item.title}</h1>
+      <PostViewer
+        heading={null}
+        initialCandidates={[candidate, ...rest]}
+        originPath="/"
+        pinnedId={numId}
+      />
+    </>
   );
 }
