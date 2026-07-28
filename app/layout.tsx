@@ -79,12 +79,22 @@ export default function RootLayout({
         <JsonLd
           data={{
             "@context": "https://schema.org",
-            "@type": "WebApplication",
+            // A WebPage, not a WebApplication. WebApplication is a
+            // SoftwareApplication subtype, which validators hold to Google's
+            // Software App rich result: that requires aggregateRating or review,
+            // and the only ratings available here would be ones we wrote about
+            // our own tool, which Google's review policy forbids.
+            "@type": "WebPage",
             name: SITE_NAME,
             url: SITE_URL,
-            applicationCategory: "NewsApplication",
-            operatingSystem: "Any",
             description: SITE_DESCRIPTION,
+            keywords: ["Hacker News", "News reader", "Client-side"],
+            offers: {
+              "@type": "Offer",
+              category: "Free",
+              price: "0",
+              priceCurrency: "USD",
+            },
           }}
         />
         <QueryProvider>{children}</QueryProvider>
