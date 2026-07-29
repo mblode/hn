@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { PostViewer } from "@/components/post-viewer";
 import { fetchItem } from "@/lib/hn-api";
 import { fetchFeed } from "@/lib/hn-live";
-import { asset, BASE_PATH, SITE_NAME } from "@/lib/site";
+import { asset, BASE_PATH, fitTitle, SITE_NAME } from "@/lib/site";
 import type { CandidateStory } from "@/lib/types";
 
 interface PostPageProps {
@@ -44,8 +44,13 @@ export async function generateMetadata({
     return {};
   }
   return {
-    title: item.title,
-    robots: { index: false },
+    // Trimmed to fit the layout's `%s | HN` template. The suffix stays: it is
+    // what identifies the result, and the story title is the expendable half.
+    title: fitTitle(item.title),
+    // No `robots` here on purpose. Thread pages stay `noindex`, but the signal
+    // comes from the `X-Robots-Tag` header in `next.config.ts`, which also
+    // covers the non-HTML responses under this route. Emitting both had every
+    // post reported as a duplicate directive.
     // A child `openGraph` replaces the layout's rather than merging into it, so
     // siteName, type and the image have to be restated or every post loses its
     // share preview.

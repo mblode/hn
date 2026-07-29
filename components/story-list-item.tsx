@@ -73,6 +73,9 @@ export const StoryListItem = ({
             className="block cursor-pointer hover:underline"
             href={asset(`/post/${story.id}`)}
             onClick={handleClick}
+            // Thread pages are noindex by design, so there is nothing for a
+            // crawler to gain by walking one URL per story off every feed.
+            rel="nofollow"
           >
             {story.title}
           </a>
@@ -82,6 +85,7 @@ export const StoryListItem = ({
             className="flex cursor-pointer items-center gap-x-3 pt-1 text-muted-foreground text-xs transition-colors hover:text-foreground hover:underline"
             href={asset(`/post/${story.id}`)}
             onClick={handleClick}
+            rel="nofollow"
           >
             {story.score > 0 && (
               <span>{story.score.toLocaleString()} likes</span>
