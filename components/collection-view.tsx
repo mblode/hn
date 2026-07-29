@@ -390,6 +390,7 @@ const CommentCollectionItem = ({
                 <a
                   className="hover:underline"
                   href={asset(`/post/${comment.postId}`)}
+                  rel="nofollow"
                 >
                   {comment.postTitle}
                 </a>

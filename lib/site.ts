@@ -36,3 +36,33 @@ export const asset = (path: string): string => {
 };
 
 export const SITE_NAME = "HN";
+
+/**
+ * Character budget for a whole `<title>`, suffix included.
+ *
+ * Search results are truncated by pixel width rather than character count, so
+ * this is the usual conservative stand-in, not a hard limit.
+ */
+const MAX_TITLE_LENGTH = 60;
+
+/**
+ * Fit a story title into the root layout's `%s | HN` template.
+ *
+ * The suffix is what makes a result identifiable in a list, so the story title
+ * yields to it instead of the other way round. Cuts land on a word boundary
+ * with an ellipsis; a title that already fits is returned untouched, including
+ * a genuinely short one.
+ */
+export const fitTitle = (title: string): string => {
+  const budget = MAX_TITLE_LENGTH - ` | ${SITE_NAME}`.length;
+  if (title.length <= budget) {
+    return title;
+  }
+
+  // One character of the budget goes to the ellipsis itself.
+  const clipped = title.slice(0, budget - 1);
+  const lastSpace = clipped.lastIndexOf(" ");
+  const head = lastSpace > 0 ? clipped.slice(0, lastSpace) : clipped;
+
+  return `${head.trimEnd()}…`;
+};

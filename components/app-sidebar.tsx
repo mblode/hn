@@ -75,7 +75,7 @@ export const AppSidebar = ({
             HN
           </Link>
           <Button asChild size="icon-sm" variant="ghost">
-            <Link href="/search" onClick={handleLinkClick}>
+            <Link href="/search" onClick={handleLinkClick} rel="nofollow">
               <Search className="size-4" />
               <span className="sr-only">Search</span>
             </Link>
@@ -96,7 +96,11 @@ export const AppSidebar = ({
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild isActive={isForYou}>
-                  <Link href="/for-you" onClick={handleLinkClick}>
+                  <Link
+                    href="/for-you"
+                    onClick={handleLinkClick}
+                    rel="nofollow"
+                  >
                     <Sparkle />
                     For you
                   </Link>
@@ -104,7 +108,7 @@ export const AppSidebar = ({
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild isActive={isLikes}>
-                  <Link href="/likes" onClick={handleLinkClick}>
+                  <Link href="/likes" onClick={handleLinkClick} rel="nofollow">
                     <Heart />
                     Likes
                   </Link>
@@ -112,7 +116,11 @@ export const AppSidebar = ({
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild isActive={isBookmarks}>
-                  <Link href="/bookmarks" onClick={handleLinkClick}>
+                  <Link
+                    href="/bookmarks"
+                    onClick={handleLinkClick}
+                    rel="nofollow"
+                  >
                     <Bookmark />
                     Bookmarks
                   </Link>
