@@ -379,7 +379,7 @@ const CommentCollectionItem = ({
           {timeAgo && (
             <>
               <Dot />
-              <span>{timeAgo}</span>
+              <span suppressHydrationWarning>{timeAgo}</span>
             </>
           )}
           {comment.postTitle && (

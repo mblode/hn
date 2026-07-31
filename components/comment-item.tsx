@@ -189,7 +189,10 @@ export const CommentItem = ({
               <span className="ml-1 text-blue-500 text-xs">You</span>
             )}
             <Dot />
-            <span className="mr-1 inline-block text-muted-foreground">
+            <span
+              className="mr-1 inline-block text-muted-foreground"
+              suppressHydrationWarning
+            >
               {relativeTime(time)}
             </span>
           </div>

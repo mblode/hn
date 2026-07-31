@@ -48,6 +48,6 @@ function formatDistance(
 
 const locale = { ...enAU, formatDistance };
 
-export const relativeTime = (time: number) => {
-  return formatDistanceStrict(new Date(time * 1000), new Date(), { locale });
+export const relativeTime = (time: number, now: number = Date.now()) => {
+  return formatDistanceStrict(new Date(time * 1000), new Date(now), { locale });
 };
