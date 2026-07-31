@@ -57,7 +57,7 @@ export const StoryListItem = ({
               <Dot />
             </>
           )}
-          <span>{timeAgo}</span>
+          <span suppressHydrationWarning>{timeAgo}</span>
         </div>
         {story.url ? (
           <a

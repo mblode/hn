@@ -51,7 +51,10 @@ export const PostCard = ({ story, onLinkClick }: PostCardProps) => {
             {story.by}
           </a>
           <Dot />
-          <span className="inline-block text-muted-foreground text-sm">
+          <span
+            className="inline-block text-muted-foreground text-sm"
+            suppressHydrationWarning
+          >
             {relativeTime(story.time)}
           </span>
           <Dot />
