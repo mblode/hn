@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
   typescript: { ignoreBuildErrors: true },
   experimental: {
     optimizePackageImports: ["lucide-react", "date-fns", "radix-ui"],
+    turbopackRustReactCompiler: true,
   },
   redirects: async () => [
     { source: "/news", destination: "/", permanent: true },

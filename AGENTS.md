@@ -11,7 +11,8 @@ Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, shadcn/ui (Radix
 - **UI:** cmdk (command palette), react-hotkeys-hook (shortcuts), date-fns
 - **HN auth:** cheerio + dompurify, server-side in `app/api/hn/*`
 
-React Compiler is enabled (`babel-plugin-react-compiler`).
+React Compiler is enabled, via the Rust port that ships with Turbopack
+(`experimental.turbopackRustReactCompiler`), so there is no Babel plugin.
 
 ## Commands
 
