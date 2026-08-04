@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
   assetPrefix: BASE_PATH,
   basePath: BASE_PATH,
   reactCompiler: true,
-  // TypeScript 7 moved its compiler API; the standalone check-types script is
-  // the authoritative type gate while Next's redundant inline check is skipped.
-  typescript: { ignoreBuildErrors: true },
   experimental: {
     optimizePackageImports: ["lucide-react", "date-fns", "radix-ui"],
     turbopackRustReactCompiler: true,
