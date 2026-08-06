@@ -40,6 +40,34 @@ never stage it.
 `npm run check-types` is the authoritative type gate: `next.config.ts` sets
 `typescript.ignoreBuildErrors: true`, so `npm run build` will not fail on type errors.
 
+## Environment
+
+Upvoting, commenting, and submitting proxy HN server-side and store the session in a
+cookie encrypted with one secret:
+
+```bash
+# 32-byte key as 64 hex characters
+echo "HN_SESSION_SECRET=$(openssl rand -hex 32)" >> .env.local
+```
+
+Restart the dev server after setting it. Without it the app runs read-only; only the
+authenticated actions are disabled.
+
+## Data pipeline
+
+The personalized ranking reads a candidate corpus (`lib/candidates.json`) distilled from
+the full Hacker News archive. It is committed, so this is only needed to refresh it:
+
+```bash
+npm run download-hn         # pull the HN archive from BigQuery into data/*.ndjson
+npm run process-candidates  # distill the top stories into lib/candidates.json
+```
+
+`download-hn` queries the public `bigquery-public-data.hacker_news` dataset and needs
+Google Cloud credentials (`gcloud auth application-default login`) plus a billing-enabled
+project. `process-candidates` is offline: it reads `data/` and keeps stories above a score
+threshold.
+
 ## Lint & Format
 
 This project uses **Ultracite** — oxlint + oxfmt under the hood (not Biome). Run
