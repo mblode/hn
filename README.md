@@ -18,7 +18,7 @@ Open the client and read Hacker News, no account needed.
 
 <p>
 <a href="https://blode.co/hn">
-<img alt="View demo" src=".github/assets/demo.svg" width="200" />
+<img alt="Open the app" src=".github/assets/demo.svg" width="200" />
 </a>
 </p>
 
