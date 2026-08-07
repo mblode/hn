@@ -148,11 +148,11 @@ export const KeyboardShortcutsDialog = ({
         </div>
         <p className="text-center text-muted-foreground text-xs">
           Created by{" "}
+          {/* Same origin behind a rewrite, so same tab and rel=author only. */}
           <a
             className="underline hover:text-foreground"
             href="https://blode.co"
-            rel="noopener noreferrer"
-            target="_blank"
+            rel="author"
           >
             Matthew Blode
           </a>

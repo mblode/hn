@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { DevTools } from "@/components/dev-tools";
 import { JsonLd } from "@/components/json-ld";
 import { QueryProvider } from "@/components/query-provider";
+import { siteGraph } from "@/lib/schema";
 import { BASE_PATH, SITE_NAME, SITE_ORIGIN, SITE_URL } from "@/lib/site";
 
 import "./globals.css";
@@ -67,36 +68,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <JsonLd
-          data={{
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: SITE_NAME,
-            url: SITE_URL,
-            description: SITE_DESCRIPTION,
-          }}
-        />
-        <JsonLd
-          data={{
-            "@context": "https://schema.org",
-            // A WebPage, not a WebApplication. WebApplication is a
-            // SoftwareApplication subtype, which validators hold to Google's
-            // Software App rich result: that requires aggregateRating or review,
-            // and the only ratings available here would be ones we wrote about
-            // our own tool, which Google's review policy forbids.
-            "@type": "WebPage",
-            name: SITE_NAME,
-            url: SITE_URL,
-            description: SITE_DESCRIPTION,
-            keywords: ["Hacker News", "News reader", "Client-side"],
-            offers: {
-              "@type": "Offer",
-              category: "Free",
-              price: "0",
-              priceCurrency: "USD",
-            },
-          }}
-        />
+        <JsonLd data={siteGraph(SITE_DESCRIPTION)} />
         <QueryProvider>{children}</QueryProvider>
         <DevTools />
       </body>
