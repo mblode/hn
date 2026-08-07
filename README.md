@@ -8,6 +8,10 @@ Browse the feeds, read and reply to threads, and sign in to vote and submit.
 
 </div>
 
+<p align="center">
+  <img alt="The Top feed, with source, points and comment counts per story" src=".github/assets/screenshot.jpg" width="800" />
+</p>
+
 ## Demo
 
 Open the client and read Hacker News, no account needed.
