@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
 import { DevTools } from "@/components/dev-tools";
 import { JsonLd } from "@/components/json-ld";
@@ -9,14 +9,21 @@ import { BASE_PATH, SITE_NAME, SITE_ORIGIN, SITE_URL } from "@/lib/site";
 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const glide = localFont({
+  src: [
+    { path: "./fonts/glide-variable.woff2", style: "normal" },
+    { path: "./fonts/glide-variable-italic.woff2", style: "italic" },
+  ],
+  variable: "--font-glide",
+  weight: "100 950",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const glideMono = localFont({
+  src: "./fonts/glide-mono.woff2",
+  variable: "--font-glide-mono",
+  weight: "400",
+  display: "swap",
 });
 
 const SITE_DESCRIPTION =
@@ -60,14 +67,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  /*
+   * The font variables go on <html>, not <body>: Tailwind's preflight sets the
+   * page family on the html element, so a variable scoped to body is invisible
+   * to it and every face silently falls back to the system sans.
+   */
   return (
-    <html lang="en">
+    <html className={`${glide.variable} ${glideMono.variable}`} lang="en">
       <head>
         <link href={process.env.NEXT_PUBLIC_POSTHOG_HOST} rel="preconnect" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className="antialiased">
         <JsonLd data={siteGraph(SITE_DESCRIPTION)} />
         <QueryProvider>{children}</QueryProvider>
         <DevTools />
