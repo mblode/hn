@@ -54,7 +54,7 @@ export const siteGraph = (description: string) => ({
         {
           "@type": "ListItem",
           item: `${SITE_ORIGIN}/`,
-          name: "Home",
+          name: "Matthew Blode",
           position: 1,
         },
         {
@@ -66,7 +66,7 @@ export const siteGraph = (description: string) => ({
         {
           "@type": "ListItem",
           item: SITE_URL,
-          name: "HackerTok",
+          name: "HN",
           position: 3,
         },
       ],
