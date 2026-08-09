@@ -9,6 +9,7 @@ import { PostViewer } from "@/components/post-viewer";
 import { StoryActionItem } from "@/components/story-action-item";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ZoneBreadcrumb } from "@/components/zone-breadcrumb";
 import { isChordActive } from "@/hooks/use-global-shortcuts";
 import { useInfiniteScroll } from "@/hooks/use-infinite-scroll";
 import { useNavReset } from "@/hooks/use-nav-reset";
@@ -129,6 +130,14 @@ export const NewsFeed = ({ type, initialStories }: NewsFeedProps) => {
 
   return (
     <>
+      {/*
+       * The trail back to the hub. This is the zone's root page, and it is the
+       * only route that gets one — it sits above the feed header rather than in
+       * its own bar so the two read as one top area.
+       */}
+      <div className="shrink-0 px-4 pt-2">
+        <ZoneBreadcrumb product="HN" />
+      </div>
       <header className="flex shrink-0 items-center gap-2 border-border border-b px-4 py-2">
         <SidebarTrigger className="md:hidden" />
         <h1 className="font-medium">News</h1>
