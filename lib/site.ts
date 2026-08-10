@@ -38,6 +38,30 @@ export const asset = (path: string): string => {
 export const SITE_NAME = "HN";
 
 /**
+ * What `og:site_name` says, on this zone and on every other blode.co path.
+ *
+ * Not the product. The 33 zones are one site, and the product name is already
+ * in `og:title`, so this is the only slot in the card left to say who made the
+ * thing: a share of a thread should read the story over *Matthew Blode*, not
+ * the story over *HN*. `donebear.com` and `blode.md` are genuinely separate
+ * sites and keep their own. Contract:
+ * blode-co/apps/web/.claude/knowledge/zone-conventions.md, rule 9.
+ */
+export const SITE_AUTHOR = "Matthew Blode";
+
+/**
+ * Card titles carry the product, because `og:site_name` no longer does.
+ *
+ * `title.template` reaches `<title>` only — Next resolves the card title
+ * through a separate mechanism — so the two have to be declared side by side
+ * or an inner page's card silently stops naming HN.
+ */
+export const cardTitle = {
+  default: SITE_NAME,
+  template: `%s | ${SITE_NAME}`,
+} as const;
+
+/**
  * Character budget for a whole `<title>`, suffix included.
  *
  * Search results are truncated by pixel width rather than character count, so

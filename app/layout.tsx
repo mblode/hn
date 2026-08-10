@@ -5,7 +5,14 @@ import { DevTools } from "@/components/dev-tools";
 import { JsonLd } from "@/components/json-ld";
 import { QueryProvider } from "@/components/query-provider";
 import { siteGraph } from "@/lib/schema";
-import { BASE_PATH, SITE_NAME, SITE_ORIGIN, SITE_URL } from "@/lib/site";
+import {
+  BASE_PATH,
+  cardTitle,
+  SITE_AUTHOR,
+  SITE_NAME,
+  SITE_ORIGIN,
+  SITE_URL,
+} from "@/lib/site";
 
 import "./globals.css";
 
@@ -39,8 +46,8 @@ export const metadata: Metadata = {
   alternates: { canonical: SITE_URL },
   openGraph: {
     type: "website",
-    siteName: SITE_NAME,
-    title: SITE_NAME,
+    siteName: SITE_AUTHOR,
+    title: cardTitle,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     images: [
@@ -49,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: SITE_NAME,
+    title: cardTitle,
     description: SITE_DESCRIPTION,
     images: [`${BASE_PATH}/opengraph-image.png`],
   },

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { PostViewer } from "@/components/post-viewer";
 import { fetchItem } from "@/lib/hn-api";
 import { fetchFeed } from "@/lib/hn-live";
-import { asset, BASE_PATH, fitTitle, SITE_NAME } from "@/lib/site";
+import { asset, BASE_PATH, fitTitle, SITE_AUTHOR } from "@/lib/site";
 import type { CandidateStory } from "@/lib/types";
 
 interface PostPageProps {
@@ -43,6 +43,12 @@ export async function generateMetadata({
   if (!item) {
     return {};
   }
+  const image = {
+    url: `${BASE_PATH}/opengraph-image.png`,
+    width: 1200,
+    height: 630,
+  };
+
   return {
     // Trimmed to fit the layout's `%s | HN` template. The suffix stays: it is
     // what identifies the result, and the story title is the expendable half.
@@ -53,15 +59,25 @@ export async function generateMetadata({
     // post reported as a duplicate directive.
     // A child `openGraph` replaces the layout's rather than merging into it, so
     // siteName, type and the image have to be restated or every post loses its
-    // share preview.
+    // share preview. `twitter` is replaced the same way, and X prefers it over
+    // the `og:` tags, so it gets the story too rather than inheriting a card
+    // that says only "HN".
+    //
+    // Both titles are bare. `og:site_name` is the person now, so the product
+    // has to come from the layout's card template — which, unlike the document
+    // `title.template`, does reach an explicit string in a child. Adding the
+    // suffix here as well served "Y Combinator | HN | HN".
     openGraph: {
       type: "article",
-      siteName: SITE_NAME,
+      siteName: SITE_AUTHOR,
       title: item.title,
       url: asset(`/post/${id}`),
-      images: [
-        { url: `${BASE_PATH}/opengraph-image.png`, width: 1200, height: 630 },
-      ],
+      images: [image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: item.title,
+      images: [image.url],
     },
   };
 }
