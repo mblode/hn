@@ -63,11 +63,11 @@ export const PostCard = ({ story, onLinkClick }: PostCardProps) => {
             {story.descendants !== 1 ? "s" : ""}
           </span>
         </div>
-        <h2 className="block pb-2 text-foreground text-xl leading-[1.2]">
+        <h2 className="block text-pretty pb-2 text-foreground text-xl leading-tight">
           {url ? (
             <>
               <a
-                className="post-link mr-1 break-words pr-1 hover:underline"
+                className="mr-1 break-words pr-1 hover:underline"
                 href={url}
                 onClick={onLinkClick}
                 rel="noopener noreferrer"
@@ -89,7 +89,7 @@ export const PostCard = ({ story, onLinkClick }: PostCardProps) => {
             </>
           ) : (
             <a
-              className="post-link mr-1 break-words pr-1 hover:underline"
+              className="mr-1 break-words pr-1 hover:underline"
               href={`https://news.ycombinator.com/item?id=${story.id}`}
               rel="noopener noreferrer"
               target="_blank"

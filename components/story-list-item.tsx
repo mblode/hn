@@ -5,6 +5,10 @@ import { relativeTime } from "@/lib/utils";
 
 import { Dot } from "./dot";
 
+// Both branches render the same headline; they differ only in where it points.
+const TITLE_CLASS =
+  "block cursor-pointer text-pretty pt-0.5 leading-snug hover:underline";
+
 interface StoryListItemProps {
   story: CandidateStory;
   onSelect: () => void;
@@ -61,7 +65,7 @@ export const StoryListItem = ({
         </div>
         {story.url ? (
           <a
-            className="block cursor-pointer hover:underline"
+            className={TITLE_CLASS}
             href={story.url}
             rel="noopener noreferrer"
             target="_blank"
@@ -70,7 +74,7 @@ export const StoryListItem = ({
           </a>
         ) : (
           <a
-            className="block cursor-pointer hover:underline"
+            className={TITLE_CLASS}
             href={asset(`/post/${story.id}`)}
             onClick={handleClick}
             // Thread pages are noindex by design, so there is nothing for a
