@@ -33,9 +33,6 @@ export function CraftedBy() {
         />
         <span className="truncate">Crafted by Matthew Blode</span>
       </a>
-      <a className={linkClass} href="https://blode.co/projects">
-        <span className="truncate">All projects</span>
-      </a>
     </footer>
   );
 }
