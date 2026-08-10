@@ -6,7 +6,6 @@ import { JsonLd } from "@/components/json-ld";
 import { QueryProvider } from "@/components/query-provider";
 import { siteGraph } from "@/lib/schema";
 import {
-  BASE_PATH,
   cardTitle,
   SITE_AUTHOR,
   SITE_NAME,
@@ -72,29 +71,33 @@ export const metadata: Metadata = {
   // JSON-LD, neither of which a meta reader looks at.
   authors: [{ name: SITE_AUTHOR, url: SITE_ORIGIN }],
   creator: SITE_AUTHOR,
-  metadataBase: new URL(SITE_ORIGIN),
+  // The zone URL, not the bare origin (Rule 11). Only correct because the card
+  // is a generated `opengraph-image.tsx` route: Next does not prefix those with
+  // `basePath`, so `metadataBase` supplies the prefix exactly once. Against the
+  // static PNG this replaced, the two would have stacked into `/hn/hn/…`.
+  metadataBase: new URL(SITE_URL),
   alternates: { canonical: SITE_URL },
+  // No `images` here: `app/opengraph-image.tsx` is the card. Next reuses it for
+  // `twitter:image` too when there is no `twitter-image` file.
   openGraph: {
     type: "website",
     siteName: SITE_AUTHOR,
     title: cardTitle,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
-    images: [
-      { url: `${BASE_PATH}/opengraph-image.png`, width: 1200, height: 630 },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     creator: TWITTER_HANDLE,
     title: cardTitle,
     description: SITE_DESCRIPTION,
-    images: [`${BASE_PATH}/opengraph-image.png`],
   },
   verification: {
     google: "mFwyBIbXTaKK4uF_NA0MzVWFyY40hPgBjFObg3rje04",
   },
-  manifest: `${BASE_PATH}/manifest.json`,
+  // Path without `/hn`: `metadataBase` already carries the zone, and Next joins
+  // rather than replaces, so spelling the prefix here would double it.
+  manifest: "/manifest.json",
   other: {
     "apple-mobile-web-app-title": "HN",
   },

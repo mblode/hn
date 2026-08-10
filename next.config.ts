@@ -93,13 +93,7 @@ const nextConfig: NextConfig = {
       // The share card is fetched by other origins, so it opts out of the
       // same-origin CORP the catch-all sets.
       {
-        source: "/opengraph-image.png",
-        headers: [
-          { key: "Cross-Origin-Resource-Policy", value: "cross-origin" },
-        ],
-      },
-      {
-        source: "/twitter-image.png",
+        source: "/opengraph-image",
         headers: [
           { key: "Cross-Origin-Resource-Policy", value: "cross-origin" },
         ],

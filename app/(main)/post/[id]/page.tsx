@@ -4,13 +4,7 @@ import { notFound } from "next/navigation";
 import { PostViewer } from "@/components/post-viewer";
 import { fetchItem } from "@/lib/hn-api";
 import { fetchFeed } from "@/lib/hn-live";
-import {
-  asset,
-  BASE_PATH,
-  fitTitle,
-  SITE_AUTHOR,
-  TWITTER_HANDLE,
-} from "@/lib/site";
+import { fitTitle, SITE_AUTHOR, SITE_URL, TWITTER_HANDLE } from "@/lib/site";
 import type { CandidateStory } from "@/lib/types";
 
 interface PostPageProps {
@@ -49,8 +43,10 @@ export async function generateMetadata({
   if (!item) {
     return {};
   }
+  // Path without `/hn`: layout `metadataBase` is the zone URL, and Next joins
+  // rather than replaces. The house card route is extensionless.
   const image = {
-    url: `${BASE_PATH}/opengraph-image.png`,
+    url: "/opengraph-image",
     width: 1200,
     height: 630,
   };
@@ -77,7 +73,8 @@ export async function generateMetadata({
       type: "article",
       siteName: SITE_AUTHOR,
       title: item.title,
-      url: asset(`/post/${id}`),
+      // Absolute: a relative `/hn/post/…` would stack on zone `metadataBase`.
+      url: `${SITE_URL}/post/${id}`,
       images: [image],
     },
     twitter: {
