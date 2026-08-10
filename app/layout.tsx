@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Geist, Geist_Mono } from "next/font/google";
 
 import { DevTools } from "@/components/dev-tools";
 import { JsonLd } from "@/components/json-ld";
@@ -20,13 +20,9 @@ import "./globals.css";
 // point at these. Without one, next/font's generated face takes over, and it is
 // metric-matched to Arial — passable for the sans, proportional for the mono.
 // The lists have to be inline: the font loader only accepts written literals.
-const glide = localFont({
-  src: [
-    { path: "./fonts/glide-variable.woff2", style: "normal" },
-    { path: "./fonts/glide-variable-italic.woff2", style: "italic" },
-  ],
-  variable: "--font-glide",
-  weight: "100 950",
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
   display: "swap",
   adjustFontFallback: false,
   fallback: [
@@ -40,10 +36,9 @@ const glide = localFont({
   ],
 });
 
-const glideMono = localFont({
-  src: "./fonts/glide-mono.woff2",
-  variable: "--font-glide-mono",
-  weight: "400",
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
   display: "swap",
   adjustFontFallback: false,
   fallback: [
@@ -114,7 +109,7 @@ export default function RootLayout({
    * to it and every face silently falls back to the system sans.
    */
   return (
-    <html className={`${glide.variable} ${glideMono.variable}`} lang="en">
+    <html className={`${geistSans.variable} ${geistMono.variable}`} lang="en">
       <head>
         <link href={process.env.NEXT_PUBLIC_POSTHOG_HOST} rel="preconnect" />
       </head>
