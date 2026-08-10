@@ -50,6 +50,15 @@ export const SITE_NAME = "HN";
 export const SITE_AUTHOR = "Matthew Blode";
 
 /**
+ * The X account the card is attributed to.
+ *
+ * A child `twitter` block replaces the parent's rather than merging into it,
+ * so any route that declares one has to restate this or the attribution is
+ * simply absent there.
+ */
+export const TWITTER_HANDLE = "@mattblode";
+
+/**
  * Card titles carry the product, because `og:site_name` no longer does.
  *
  * `title.template` reaches `<title>` only — Next resolves the card title

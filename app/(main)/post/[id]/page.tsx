@@ -4,7 +4,13 @@ import { notFound } from "next/navigation";
 import { PostViewer } from "@/components/post-viewer";
 import { fetchItem } from "@/lib/hn-api";
 import { fetchFeed } from "@/lib/hn-live";
-import { asset, BASE_PATH, fitTitle, SITE_AUTHOR } from "@/lib/site";
+import {
+  asset,
+  BASE_PATH,
+  fitTitle,
+  SITE_AUTHOR,
+  TWITTER_HANDLE,
+} from "@/lib/site";
 import type { CandidateStory } from "@/lib/types";
 
 interface PostPageProps {
@@ -76,6 +82,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
+      creator: TWITTER_HANDLE,
       title: item.title,
       images: [image.url],
     },
