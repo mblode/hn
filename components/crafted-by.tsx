@@ -17,9 +17,14 @@ export function CraftedBy() {
   return (
     <footer className="flex min-w-0 flex-col items-start gap-0.5">
       <a className={linkClass} href="https://blode.co" rel="author">
+        {/* Decorative, so alt is empty: the link's own text already says
+            "Matthew Blode", and naming the avatar too would make the link's
+            accessible name read it twice. This comment sits above the ignore
+            directive rather than below it — the directive applies to the next
+            line, so anything in between detaches it and the rule fires again. */}
         {/* biome-ignore lint/performance/noImgElement: self-hosted 20px avatar, plain img avoids next/image overhead */}
         <img
-          alt="Matthew Blode"
+          alt=""
           className="shrink-0 rounded-full"
           height={16}
           loading="lazy"
