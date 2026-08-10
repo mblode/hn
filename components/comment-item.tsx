@@ -160,7 +160,7 @@ export const CommentItem = ({
 
   return (
     <li className={cn("comment-wrap", { toggled: hidden })}>
-      <div className={cn("comment", { toggled: hidden })} data-level={level}>
+      <div className="comment" data-level={level}>
         {/* biome-ignore lint/a11y/useSemanticElements: Header wraps a link; avoid nesting interactive elements. */}
         <header
           aria-expanded={!hidden}

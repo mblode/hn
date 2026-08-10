@@ -17,6 +17,10 @@ import {
 
 import "./globals.css";
 
+// Both fall back to Tailwind's own stacks, because `--font-sans` and `--font-mono`
+// point at these. Without one, next/font's generated face takes over, and it is
+// metric-matched to Arial — passable for the sans, proportional for the mono.
+// The lists have to be inline: the font loader only accepts written literals.
 const glide = localFont({
   src: [
     { path: "./fonts/glide-variable.woff2", style: "normal" },
@@ -25,6 +29,16 @@ const glide = localFont({
   variable: "--font-glide",
   weight: "100 950",
   display: "swap",
+  adjustFontFallback: false,
+  fallback: [
+    "ui-sans-serif",
+    "system-ui",
+    "sans-serif",
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji",
+  ],
 });
 
 const glideMono = localFont({
@@ -32,6 +46,17 @@ const glideMono = localFont({
   variable: "--font-glide-mono",
   weight: "400",
   display: "swap",
+  adjustFontFallback: false,
+  fallback: [
+    "ui-monospace",
+    "SFMono-Regular",
+    "Menlo",
+    "Monaco",
+    "Consolas",
+    "Liberation Mono",
+    "Courier New",
+    "monospace",
+  ],
 });
 
 const SITE_DESCRIPTION =
