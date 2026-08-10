@@ -40,7 +40,10 @@ export async function generateMetadata({
     return {};
   }
   const item = await fetchItem(numId);
-  if (!item) {
+  // Title, not just existence: every HN comment is also a fetchable item, and
+  // its title is "". /post/<comment-id> served `<title> | HN</title>` over an
+  // empty page for any of them. See the same guard in the page below.
+  if (!item?.title) {
     return {};
   }
   // Path without `/hn`: layout `metadataBase` is the zone URL, and Next joins
@@ -97,7 +100,10 @@ export default async function PostPage({ params }: PostPageProps) {
     fetchItem(numId),
     fetchFeed("news", 1),
   ]);
-  if (!item) {
+  // Title, not just existence. A comment is a fetchable item with an empty
+  // title, and this route renders a story: the h1 and the metadata are both the
+  // title, so a titleless item has nothing to render and is not this page.
+  if (!item?.title) {
     notFound();
   }
 
