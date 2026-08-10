@@ -12,6 +12,7 @@ import {
   SITE_NAME,
   SITE_ORIGIN,
   SITE_URL,
+  TWITTER_HANDLE,
 } from "@/lib/site";
 
 import "./globals.css";
@@ -42,6 +43,10 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
+  // Person-level attribution otherwise lives only in the footer and the
+  // JSON-LD, neither of which a meta reader looks at.
+  authors: [{ name: SITE_AUTHOR, url: SITE_ORIGIN }],
+  creator: SITE_AUTHOR,
   metadataBase: new URL(SITE_ORIGIN),
   alternates: { canonical: SITE_URL },
   openGraph: {
@@ -56,6 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    creator: TWITTER_HANDLE,
     title: cardTitle,
     description: SITE_DESCRIPTION,
     images: [`${BASE_PATH}/opengraph-image.png`],
