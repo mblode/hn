@@ -15,7 +15,8 @@ import { ImageResponse } from "next/og";
  *
  * Before this card existed the fleet had eighteen unrelated designs, title
  * sizes from 68px to 168px, one zone printing its own URL back at itself, and
- * one rendering Geist Sans in a fleet where every app otherwise loads Glide.
+ * one rendering a mismatched sans in a fleet where every app otherwise loads
+ * Glide.
  *
  * Three constraints, all load-bearing:
  *
