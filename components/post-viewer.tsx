@@ -533,17 +533,16 @@ export const PostViewer = ({
             />
           </Button>
           <span className="text-muted-foreground text-sm tabular-nums">
-            {currentStory.score.toLocaleString()}
+            {currentStory.score.toLocaleString("en-US")}
           </span>
         </div>
         <div className="ml-auto hidden items-center gap-2 md:flex">
           <output aria-live="polite" className="text-sm">
             <span className="text-foreground">
-              {(currentIndex + 1).toLocaleString()}
+              {(currentIndex + 1).toLocaleString("en-US")}
             </span>
             <span className="text-muted-foreground">
-              {" "}
-              / {candidates.length.toLocaleString()}
+              {` / ${candidates.length.toLocaleString("en-US")}`}
             </span>
           </output>
           <div>
