@@ -92,10 +92,10 @@ export const StoryListItem = ({
             rel="nofollow"
           >
             {story.score > 0 && (
-              <span>{story.score.toLocaleString()} likes</span>
+              <span>{`${story.score.toLocaleString("en-US")} likes`}</span>
             )}
             {story.descendants > 0 && (
-              <span>{story.descendants.toLocaleString()} comments</span>
+              <span>{`${story.descendants.toLocaleString("en-US")} comments`}</span>
             )}
           </a>
         )}

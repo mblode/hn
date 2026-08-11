@@ -89,7 +89,7 @@ export const CommentReplyForm = ({
         />
         <div className="mt-2 flex items-center justify-between">
           <span className="text-muted-foreground text-xs tabular-nums">
-            {text.length} characters
+            {`${text.length} characters`}
           </span>
           <div className="flex gap-2">
             <Button

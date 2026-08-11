@@ -152,7 +152,9 @@ export const AppSidebar = ({
               </a>
               <div className="flex items-center gap-2">
                 <span className="text-muted-foreground text-xs">
-                  {karma?.toLocaleString()} karma
+                  {karma != null
+                    ? `${karma.toLocaleString("en-US")} karma`
+                    : null}
                 </span>
                 <button
                   className="inline-flex cursor-pointer items-center gap-1 rounded-sm px-1 py-0.5 text-muted-foreground text-xs transition-colors hover:bg-sidebar-accent hover:text-foreground"

@@ -59,8 +59,7 @@ export const PostCard = ({ story, onLinkClick }: PostCardProps) => {
           </span>
           <Dot />
           <span className="inline-block text-muted-foreground text-sm">
-            {story.descendants.toLocaleString()} comment
-            {story.descendants !== 1 ? "s" : ""}
+            {`${story.descendants.toLocaleString("en-US")} comment${story.descendants !== 1 ? "s" : ""}`}
           </span>
         </div>
         <h2 className="block text-pretty pb-2 text-foreground text-xl leading-tight">
