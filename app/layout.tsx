@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
 import { DevTools } from "@/components/dev-tools";
 import { JsonLd } from "@/components/json-ld";
@@ -16,15 +16,18 @@ import {
 
 import "./globals.css";
 
-// Both fall back to Tailwind's own stacks, because `--font-sans` and `--font-mono`
-// point at these. Without one, next/font's generated face takes over, and it is
-// metric-matched to Arial — passable for the sans, proportional for the mono.
-// The lists have to be inline: the font loader only accepts written literals.
-const geistSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
+// Keep the real Roman and Italic under one family so weight/style selection is
+// automatic. Local WOFF2 files also remove the external Google Fonts request.
+// The lists stay inline because the font loader only accepts written literals.
+const glide = localFont({
+  src: [
+    { path: "./fonts/glide-variable.woff2", style: "normal" },
+    { path: "./fonts/glide-variable-italic.woff2", style: "italic" },
+  ],
+  variable: "--font-glide",
+  weight: "100 950",
   display: "swap",
-  adjustFontFallback: false,
+  adjustFontFallback: "Arial",
   fallback: [
     "ui-sans-serif",
     "system-ui",
@@ -36,9 +39,10 @@ const geistSans = Geist({
   ],
 });
 
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
+const glideMono = localFont({
+  src: "./fonts/glide-mono.woff2",
+  variable: "--font-glide-mono",
+  weight: "400",
   display: "swap",
   adjustFontFallback: false,
   fallback: [
@@ -109,7 +113,7 @@ export default function RootLayout({
    * to it and every face silently falls back to the system sans.
    */
   return (
-    <html className={`${geistSans.variable} ${geistMono.variable}`} lang="en">
+    <html className={`${glide.variable} ${glideMono.variable}`} lang="en">
       <head>
         <link href={process.env.NEXT_PUBLIC_POSTHOG_HOST} rel="preconnect" />
       </head>
