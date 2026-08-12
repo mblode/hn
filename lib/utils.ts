@@ -51,3 +51,6 @@ const locale = { ...enAU, formatDistance };
 export const relativeTime = (time: number, now: number = Date.now()) => {
   return formatDistanceStrict(new Date(time * 1000), new Date(now), { locale });
 };
+
+/** Pinned locale so SSR and client render identical number strings. */
+export const formatCount = new Intl.NumberFormat("en-US").format;

@@ -6,7 +6,7 @@ import { CommentThread } from "@/components/comment-thread";
 import { Dot } from "@/components/dot";
 import { fetchItem } from "@/lib/hn-api";
 import type { CandidateStory } from "@/lib/types";
-import { relativeTime } from "@/lib/utils";
+import { formatCount, relativeTime } from "@/lib/utils";
 
 interface PostCardProps {
   story: CandidateStory;
@@ -59,7 +59,7 @@ export const PostCard = ({ story, onLinkClick }: PostCardProps) => {
           </span>
           <Dot />
           <span className="inline-block text-muted-foreground text-sm">
-            {`${story.descendants.toLocaleString("en-US")} comment${story.descendants !== 1 ? "s" : ""}`}
+            {`${formatCount(story.descendants)} comment${story.descendants !== 1 ? "s" : ""}`}
           </span>
         </div>
         <h2 className="block text-pretty pb-2 text-foreground text-xl leading-tight">

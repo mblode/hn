@@ -31,6 +31,7 @@ import { extractDomain, rankCandidates } from "@/lib/ranking";
 import { asset } from "@/lib/site";
 import { classifyTopics } from "@/lib/topics";
 import type { CandidateStory, EventType } from "@/lib/types";
+import { formatCount } from "@/lib/utils";
 
 const LOAD_MORE_THRESHOLD = 10;
 const MAX_BACKGROUND_PAGES = 4;
@@ -130,7 +131,7 @@ export const PostViewer = ({
         getSeenPostIds(),
         getEvents(),
         ...Array.from({ length: MAX_BACKGROUND_PAGES - 1 }, (_, i) =>
-          fetchFeed("news", i + 2)
+          fetchFeed("news", i + 2).catch(() => [])
         ),
       ]);
 
@@ -210,21 +211,25 @@ export const PostViewer = ({
       const page = nextPageRef.current;
       nextPageRef.current = page + 1;
 
-      fetchFeed("news", page).then(async (stories) => {
-        if (stories.length > 0) {
-          const events = await getEvents();
-          setCandidates((prev) => {
-            const merged = deduplicateStories([...prev, ...stories]);
-            const newOnly = merged.slice(prev.length);
-            if (newOnly.length === 0) {
-              return prev;
-            }
-            const ranked = rankCandidates(newOnly, events);
-            return [...prev, ...ranked];
-          });
-        }
-        loadingRef.current = false;
-      });
+      fetchFeed("news", page)
+        .then(async (stories) => {
+          if (stories.length > 0) {
+            const events = await getEvents();
+            setCandidates((prev) => {
+              const merged = deduplicateStories([...prev, ...stories]);
+              const newOnly = merged.slice(prev.length);
+              if (newOnly.length === 0) {
+                return prev;
+              }
+              const ranked = rankCandidates(newOnly, events);
+              return [...prev, ...ranked];
+            });
+          }
+          loadingRef.current = false;
+        })
+        .catch(() => {
+          loadingRef.current = false;
+        });
     },
     [candidates.length, isCollectionMode, onLoadMore]
   );
@@ -533,16 +538,16 @@ export const PostViewer = ({
             />
           </Button>
           <span className="text-muted-foreground text-sm tabular-nums">
-            {currentStory.score.toLocaleString("en-US")}
+            {formatCount(currentStory.score)}
           </span>
         </div>
         <div className="ml-auto hidden items-center gap-2 md:flex">
           <output aria-live="polite" className="text-sm">
             <span className="text-foreground">
-              {(currentIndex + 1).toLocaleString("en-US")}
+              {formatCount(currentIndex + 1)}
             </span>
             <span className="text-muted-foreground">
-              {` / ${candidates.length.toLocaleString("en-US")}`}
+              {` / ${formatCount(candidates.length)}`}
             </span>
           </output>
           <div>

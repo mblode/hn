@@ -32,6 +32,7 @@ import {
 import { useGlobalShortcuts } from "@/hooks/use-global-shortcuts";
 import { useHnAuth } from "@/hooks/use-hn-auth";
 import { dispatchNavReset } from "@/hooks/use-nav-reset";
+import { formatCount } from "@/lib/utils";
 
 interface AppSidebarProps {
   shortcutsOpen: boolean;
@@ -152,9 +153,7 @@ export const AppSidebar = ({
               </a>
               <div className="flex items-center gap-2">
                 <span className="text-muted-foreground text-xs">
-                  {karma != null
-                    ? `${karma.toLocaleString("en-US")} karma`
-                    : null}
+                  {karma != null ? `${formatCount(karma)} karma` : null}
                 </span>
                 <button
                   className="inline-flex cursor-pointer items-center gap-1 rounded-sm px-1 py-0.5 text-muted-foreground text-xs transition-colors hover:bg-sidebar-accent hover:text-foreground"
