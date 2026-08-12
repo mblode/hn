@@ -2,43 +2,49 @@
 
 Key architectural decisions, service boundaries, data flow, integration points, and why things are the way they are.
 
-## Pages scroll in a nested container, never the document
+## Desktop scrolls a nested inset; mobile scrolls the document
 
-`app/(main)/layout.tsx` pins `SidebarInset` to `h-dvh ... overflow-hidden`, and
-each page renders its own `<main className="min-h-0 flex-1 overflow-y-scroll">`.
-The document itself never scrolls.
+`Sidebar` `variant="inset"` is a rounded panel on `md+`. That panel is pinned
+(`SidebarInset` is `md:h-[calc(100dvh-16px)] md:overflow-hidden`) and each page
+renders a nested `<main>` with `md:overflow-y-scroll`. The document does not
+scroll on desktop.
 
-Anything scroll-dependent must target that `main` element, not the window:
+On mobile the sidebar is a Sheet, not an inset, so there is no panel to pin.
+`SidebarInset` is `min-h-dvh` with no overflow clip, `ScrollMain` is a normal
+flow box, and the **document** is the scroller. That is what makes iOS Safari's
+status-bar tap-to-top work — WebKit only sends that gesture to the document,
+never to a nested overflow box. Linear's *native* iOS app gets the same
+behavior from `UIScrollView`; Linear's *web* app keeps a nested scroller and
+drops the gesture.
 
-- **`IntersectionObserver` must be given an explicit `root`.** With the implicit
-  (viewport) root, the browser still clips the target by `main`'s overflow box,
-  but it applies that clip *unexpanded* — so `rootMargin` is silently discarded
-  and a sentinel only registers at the exact scroll bottom. This is what broke
-  infinite scroll on iOS Safari: WebKit defers observer callbacks until a
-  momentum scroll settles, and rubber-banding carries the sentinel back out of
-  range before one is delivered, so an exact-bottom-only trigger never fires.
-- `window.scrollY` / `scroll` listeners on `window` will never fire.
+Anything scroll-dependent must follow the active root:
 
-`hooks/use-infinite-scroll.ts` encapsulates this: explicit `root`, a 600px
-`rootMargin`, plus a passive `scroll` listener on the container as an iOS
-fallback. Both `news-feed.tsx` and `search-results.tsx` use it — do not hand-roll
-a second observer.
+- **Desktop:** `IntersectionObserver` needs an explicit `root` (the nested
+  main). With the implicit viewport root, the container's overflow clip is
+  applied unexpanded, `rootMargin` is discarded, and a sentinel only registers
+  at the exact scroll bottom. iOS Safari defers observer callbacks until
+  momentum settles, so an exact-bottom-only trigger never fires on a fling.
+- **Mobile:** observe against the viewport (`root: null`) and listen to
+  `window` `scroll`. `window.scrollY` is live here.
+- `hooks/use-overflow-scroller.ts` picks the root from the main's computed
+  `overflow-y` (and the `md` breakpoint).
 
-## Pull-to-refresh is custom, on the same nested scroller
+`hooks/use-infinite-scroll.ts` encapsulates this. Both `news-feed.tsx` and
+`search-results.tsx` use it — do not hand-roll a second observer.
 
-Native browser pull-to-refresh (Safari, Chrome Android) only runs when the
-**document** overscrolls. Because `SidebarInset` is `overflow-hidden` and the
-page scroller is nested, that never happens — and if it did, it would reload
-the whole app rather than refetch the feed.
+Do not "fix" desktop by letting `window` scroll. That would break the inset
+chrome. Do not "fix" mobile by pinning `h-dvh overflow-hidden` — that is what
+killed status-bar tap and Safari's collapsing chrome.
 
-`components/scroll-main.tsx` owns the nested `<main>` and attaches
-`hooks/use-pull-to-refresh.ts` to it. The gesture `preventDefault`s a downward
-touch only while `scrollTop === 0`, so it does not fight infinite scroll.
-`overscroll-behavior-y: contain` on that scroller (and `none` on `body`) stops
-scroll chaining from reaching the document.
+## Pull-to-refresh is custom, on the active scroll root
 
-Do not "fix" PTR by letting `window` scroll. That would re-break iOS infinite
-scroll as described above.
+Native browser PTR reloads the whole document. We suppress that with
+`overscroll-behavior-y: none` on `html`/`body` and refetch in-app instead.
+
+`components/scroll-main.tsx` attaches `hooks/use-pull-to-refresh.ts` to the
+nested main on desktop and to `window` on mobile. The gesture
+`preventDefault`s a downward touch only while the active scroller is at the
+top.
 
 ## Feed data comes from two unrelated HN APIs
 

@@ -14,6 +14,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
 import { FeedSkeleton } from "@/components/feed-skeleton";
+import { PageHeader } from "@/components/page-header";
 import { PostCard } from "@/components/post-card";
 import { ScrollMain } from "@/components/scroll-main";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,7 @@ import {
 } from "@/lib/events";
 import { deduplicateStories, fetchFeed } from "@/lib/hn-live";
 import { extractDomain, rankCandidates } from "@/lib/ranking";
+import { scrollToTop } from "@/lib/scroll-root";
 import { asset } from "@/lib/site";
 import { classifyTopics } from "@/lib/topics";
 import type { CandidateStory, EventType } from "@/lib/types";
@@ -428,6 +430,15 @@ export const PostViewer = ({
     });
   }, [currentStoryId, queryClient]);
 
+  const bodyRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    scrollToTop(window);
+    if (bodyRef.current) {
+      scrollToTop(bodyRef.current);
+    }
+  }, [currentStoryId]);
+
   useEffect(() => {
     if (!currentStoryId) {
       return;
@@ -484,7 +495,7 @@ export const PostViewer = ({
   if (!currentStory) {
     return (
       <>
-        <header className="flex shrink-0 items-center gap-2 border-border border-b px-4 py-2">
+        <PageHeader>
           <SidebarTrigger className="md:hidden" />
           {onBack && (
             <Button
@@ -496,7 +507,7 @@ export const PostViewer = ({
               <ArrowLeft />
             </Button>
           )}
-        </header>
+        </PageHeader>
         <div className="flex flex-1 items-center justify-center">
           <p className="text-muted-foreground">
             No more stories to show. Check back later.
@@ -513,7 +524,7 @@ export const PostViewer = ({
 
   return (
     <>
-      <header className="flex shrink-0 items-center gap-2 border-border border-b px-4 py-2">
+      <PageHeader>
         <SidebarTrigger className="md:hidden" />
         {onBack && (
           <Button
@@ -583,8 +594,12 @@ export const PostViewer = ({
             </Button>
           </div>
         </div>
-      </header>
-      <ScrollMain className="overflow-x-hidden" onRefresh={refreshPost}>
+      </PageHeader>
+      <ScrollMain
+        className="md:overflow-x-hidden"
+        onRefresh={refreshPost}
+        ref={bodyRef}
+      >
         <div className="mx-auto max-w-[80ch] px-4 pt-4 pb-24 md:pb-6">
           <PostCard onLinkClick={handleLinkClick} story={currentStory} />
         </div>

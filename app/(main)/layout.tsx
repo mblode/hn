@@ -29,7 +29,7 @@ export default function MainLayout({
           setShortcutsOpen={setShortcutsOpen}
           shortcutsOpen={shortcutsOpen}
         />
-        <SidebarInset className="flex h-dvh flex-col overflow-hidden md:h-[calc(100dvh-16px)]">
+        <SidebarInset className="flex min-h-dvh flex-col md:h-[calc(100dvh-16px)] md:min-h-0 md:overflow-hidden">
           {children}
         </SidebarInset>
         <CommandMenu

@@ -3,6 +3,7 @@
 import { Bookmark, Heart, Loader2 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
+import { PageHeader } from "@/components/page-header";
 import { PostViewer } from "@/components/post-viewer";
 import { StoryListItem } from "@/components/story-list-item";
 import { Button } from "@/components/ui/button";
@@ -173,7 +174,7 @@ export const CollectionView = ({
     <>
       {showTabs ? (
         <Tabs className="flex min-h-0 flex-1 flex-col" defaultValue="posts">
-          <header className="flex shrink-0 items-center gap-2 border-border border-b px-4 py-2">
+          <PageHeader>
             <SidebarTrigger className="md:hidden" />
             <h1 className="font-medium">{title}</h1>
             <div className="ml-auto">
@@ -182,15 +183,15 @@ export const CollectionView = ({
                 <TabsTrigger value="comments">Comments</TabsTrigger>
               </TabsList>
             </div>
-          </header>
+          </PageHeader>
           <TabsContent
-            className="min-h-0 flex-1 overflow-y-scroll overscroll-y-contain"
+            className="min-h-0 flex-1 md:overflow-y-scroll md:overscroll-y-contain"
             value="posts"
           >
             {postList}
           </TabsContent>
           <TabsContent
-            className="min-h-0 flex-1 overflow-y-scroll overscroll-y-contain"
+            className="min-h-0 flex-1 md:overflow-y-scroll md:overscroll-y-contain"
             value="comments"
           >
             {isLoading && <LoadingSpinner />}
@@ -219,11 +220,11 @@ export const CollectionView = ({
         </Tabs>
       ) : (
         <>
-          <header className="flex shrink-0 items-center gap-2 border-border border-b px-4 py-2">
+          <PageHeader>
             <SidebarTrigger className="md:hidden" />
             <h1 className="font-medium">{title}</h1>
-          </header>
-          <main className="min-h-0 flex-1 overflow-y-scroll overscroll-y-contain">
+          </PageHeader>
+          <main className="min-h-0 flex-1 md:overflow-y-scroll md:overscroll-y-contain">
             {postList}
           </main>
         </>

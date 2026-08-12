@@ -22,10 +22,10 @@ const assignRef = <T,>(ref: Ref<T> | undefined, node: T | null) => {
 const noop = () => undefined;
 
 /**
- * The nested page scroller inside `SidebarInset`.
+ * The page body inside `SidebarInset`.
  *
- * Pull-to-refresh has to live here: the document never scrolls, so the
- * browser's native overscroll refresh cannot run.
+ * Desktop: nested overflow scroller (the inset panel does not scroll the
+ * document). Mobile: document-flow box so iOS status-bar tap-to-top works.
  */
 export const ScrollMain = ({
   onRefresh,
@@ -53,7 +53,7 @@ export const ScrollMain = ({
       {...props}
       aria-busy={isRefreshing || undefined}
       className={cn(
-        "min-h-0 flex-1 overflow-y-scroll overscroll-y-contain",
+        "md:min-h-0 md:flex-1 md:overflow-y-scroll md:overscroll-y-contain",
         className
       )}
       ref={setRefs}
