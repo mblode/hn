@@ -1,8 +1,17 @@
 "use client";
 
-import { useInfiniteQuery } from "@tanstack/react-query";
+import {
+  type InfiniteData,
+  useInfiniteQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import { useCallback } from "react";
 
-import { type SearchSort, searchStories } from "@/lib/hn-algolia";
+import {
+  type SearchResult,
+  type SearchSort,
+  searchStories,
+} from "@/lib/hn-algolia";
 import type { CandidateStory } from "@/lib/types";
 
 interface UseSearchOptions {
@@ -18,6 +27,7 @@ interface UseSearchResult {
   isFetchingNextPage: boolean;
   hasNextPage: boolean;
   fetchNextPage: () => void;
+  refresh: () => Promise<void>;
 }
 
 export const useSearch = ({
@@ -25,6 +35,7 @@ export const useSearch = ({
   sort = "relevance",
   enabled = true,
 }: UseSearchOptions): UseSearchResult => {
+  const queryClient = useQueryClient();
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } =
     useInfiniteQuery({
       queryKey: ["hn-search", query, sort],
@@ -39,6 +50,23 @@ export const useSearch = ({
   const results = data?.pages.flatMap((p) => p.hits) ?? [];
   const totalHits = data?.pages[0]?.nbHits ?? 0;
 
+  const refresh = useCallback(async () => {
+    const queryKey = ["hn-search", query, sort] as const;
+    queryClient.setQueryData<InfiniteData<SearchResult, number>>(
+      queryKey,
+      (current) => {
+        if (!current) {
+          return current;
+        }
+        return {
+          pages: current.pages.slice(0, 1),
+          pageParams: current.pageParams.slice(0, 1),
+        };
+      }
+    );
+    await queryClient.invalidateQueries({ queryKey });
+  }, [queryClient, query, sort]);
+
   return {
     results,
     totalHits,
@@ -46,5 +74,6 @@ export const useSearch = ({
     isFetchingNextPage,
     hasNextPage: hasNextPage ?? false,
     fetchNextPage,
+    refresh,
   };
 };

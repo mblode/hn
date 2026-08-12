@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { PostViewer } from "@/components/post-viewer";
+import { ScrollMain } from "@/components/scroll-main";
 import { StoryActionItem } from "@/components/story-action-item";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
@@ -31,8 +32,14 @@ export const SearchResults = ({ query, sort }: SearchResultsProps) => {
   const { searches, addSearch, removeSearch, clearHistory } =
     useSearchHistory();
 
-  const { results, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useSearch({ query, sort, enabled: query.length > 0 });
+  const {
+    results,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+    refresh,
+  } = useSearch({ query, sort, enabled: query.length > 0 });
   const resultIds = useMemo(
     () => results.map((result) => result.id),
     [results]
@@ -150,45 +157,50 @@ export const SearchResults = ({ query, sort }: SearchResultsProps) => {
 
   return (
     <>
-      <header className="flex shrink-0 items-center gap-2 border-border border-b px-4 py-2">
-        <SidebarTrigger className="md:hidden" />
-        <h1 className="sr-only">Search Hacker News stories</h1>
-        <form
-          className="flex flex-1 items-center gap-2"
-          onSubmit={handleSubmit}
-        >
-          <Search className="size-4 shrink-0 text-muted-foreground" />
-          <input
-            className="h-8 w-full min-w-0 bg-transparent text-base outline-none placeholder:text-muted-foreground md:text-sm"
-            onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Search stories..."
-            ref={inputRef}
-            type="text"
-            value={inputValue}
-          />
-          {inputValue && (
-            <button
-              aria-label="Clear search"
-              className="shrink-0 cursor-pointer rounded-sm p-0.5 text-muted-foreground hover:text-foreground"
-              onClick={handleClear}
-              type="button"
-            >
-              <X className="size-3.5" />
-            </button>
-          )}
-        </form>
-      </header>
-      {query && (
-        <div className="shrink-0 border-border border-b px-4 py-2">
-          <Tabs onValueChange={handleSortChange} value={sort}>
-            <TabsList>
-              <TabsTrigger value="relevance">Top</TabsTrigger>
-              <TabsTrigger value="date">Latest</TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
-      )}
-      <main className="min-h-0 flex-1 overflow-y-scroll" ref={scrollRef}>
+      <div className="sticky top-0 z-10 bg-background">
+        <header className="flex shrink-0 items-center gap-2 border-border border-b px-4 py-2">
+          <SidebarTrigger className="md:hidden" />
+          <h1 className="sr-only">Search Hacker News stories</h1>
+          <form
+            className="flex flex-1 items-center gap-2"
+            onSubmit={handleSubmit}
+          >
+            <Search className="size-4 shrink-0 text-muted-foreground" />
+            <input
+              className="h-8 w-full min-w-0 bg-transparent text-base outline-none placeholder:text-muted-foreground md:text-sm"
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Search stories..."
+              ref={inputRef}
+              type="text"
+              value={inputValue}
+            />
+            {inputValue && (
+              <button
+                aria-label="Clear search"
+                className="shrink-0 cursor-pointer rounded-sm p-0.5 text-muted-foreground hover:text-foreground"
+                onClick={handleClear}
+                type="button"
+              >
+                <X className="size-3.5" />
+              </button>
+            )}
+          </form>
+        </header>
+        {query && (
+          <div className="shrink-0 border-border border-b px-4 py-2">
+            <Tabs onValueChange={handleSortChange} value={sort}>
+              <TabsList>
+                <TabsTrigger value="relevance">Top</TabsTrigger>
+                <TabsTrigger value="date">Latest</TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+        )}
+      </div>
+      <ScrollMain
+        onRefresh={query.length > 0 && !isLoading ? refresh : undefined}
+        ref={scrollRef}
+      >
         {isLoading && (
           <div className="flex items-center justify-center p-8">
             <div className="animate-spin">
@@ -243,7 +255,7 @@ export const SearchResults = ({ query, sort }: SearchResultsProps) => {
             )}
           </div>
         )}
-      </main>
+      </ScrollMain>
     </>
   );
 };
