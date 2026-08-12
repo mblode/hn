@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
+import { PageHeader } from "@/components/page-header";
 import { PostViewer } from "@/components/post-viewer";
+import { ScrollMain } from "@/components/scroll-main";
 import { StoryActionItem } from "@/components/story-action-item";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -32,8 +34,14 @@ interface NewsFeedProps {
 export const NewsFeed = ({ type, initialStories }: NewsFeedProps) => {
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const { stories, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useNewsFeed({ type, initialStories });
+  const {
+    stories,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+    refresh,
+  } = useNewsFeed({ type, initialStories });
   const storyIds = useMemo(() => stories.map((story) => story.id), [stories]);
   const { likedPostIds, bookmarkedPostIds } = useStoryEvents(storyIds);
 
@@ -129,7 +137,7 @@ export const NewsFeed = ({ type, initialStories }: NewsFeedProps) => {
 
   return (
     <>
-      <header className="flex shrink-0 items-center gap-2 border-border border-b px-4 py-2">
+      <PageHeader>
         <SidebarTrigger className="md:hidden" />
         <h1 className="font-medium">News</h1>
         <div className="ml-auto">
@@ -143,8 +151,8 @@ export const NewsFeed = ({ type, initialStories }: NewsFeedProps) => {
             </TabsList>
           </Tabs>
         </div>
-      </header>
-      <main className="min-h-0 flex-1 overflow-y-scroll" ref={scrollRef}>
+      </PageHeader>
+      <ScrollMain onRefresh={isLoading ? undefined : refresh} ref={scrollRef}>
         {isLoading && (
           <div className="flex items-center justify-center p-8">
             <div className="animate-spin">
@@ -178,7 +186,7 @@ export const NewsFeed = ({ type, initialStories }: NewsFeedProps) => {
             )}
           </div>
         )}
-      </main>
+      </ScrollMain>
     </>
   );
 };

@@ -1,15 +1,16 @@
+import { PageHeader } from "@/components/page-header";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const FeedSkeleton = () => (
   <>
-    <header className="flex shrink-0 items-center gap-2 border-border border-b px-4 py-2">
+    <PageHeader>
       <div className="flex items-center gap-2">
         <Skeleton className="h-8 w-8" />
         <Skeleton className="h-8 w-8" />
         <Skeleton className="h-5 w-12" />
       </div>
-    </header>
-    <main className="min-h-0 flex-1 overflow-x-hidden overflow-y-scroll">
+    </PageHeader>
+    <main className="min-h-0 flex-1 md:overflow-x-hidden md:overflow-y-scroll md:overscroll-y-contain">
       <div className="mx-auto max-w-[80ch] px-4 pt-4 pb-24 md:pb-6">
         <div className="mb-6 block border-border border-b pb-4">
           <div className="flex items-center gap-2 pb-2">

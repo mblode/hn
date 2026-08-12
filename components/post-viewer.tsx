@@ -1,5 +1,6 @@
 "use client";
 
+import { useQueryClient } from "@tanstack/react-query";
 import {
   ArrowLeft,
   Bookmark,
@@ -13,7 +14,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
 import { FeedSkeleton } from "@/components/feed-skeleton";
+import { PageHeader } from "@/components/page-header";
 import { PostCard } from "@/components/post-card";
+import { ScrollMain } from "@/components/scroll-main";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useDwellTime } from "@/hooks/use-dwell-time";
@@ -28,6 +31,7 @@ import {
 } from "@/lib/events";
 import { deduplicateStories, fetchFeed } from "@/lib/hn-live";
 import { extractDomain, rankCandidates } from "@/lib/ranking";
+import { scrollToTop } from "@/lib/scroll-root";
 import { asset } from "@/lib/site";
 import { classifyTopics } from "@/lib/topics";
 import type { CandidateStory, EventType } from "@/lib/types";
@@ -58,6 +62,7 @@ export const PostViewer = ({
   originPath,
   heading = "HN",
 }: PostViewerProps) => {
+  const queryClient = useQueryClient();
   const isCollectionMode = mode === "collection";
   const originUrl = originPath ? asset(originPath) : undefined;
   const { isAuthenticated } = useHnAuth();
@@ -416,6 +421,24 @@ export const PostViewer = ({
   }, [onBack, originUrl]);
 
   const currentStoryId = currentStory?.id;
+  const refreshPost = useCallback(async () => {
+    if (!currentStoryId) {
+      return;
+    }
+    await queryClient.invalidateQueries({
+      queryKey: ["hn-item", currentStoryId],
+    });
+  }, [currentStoryId, queryClient]);
+
+  const bodyRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    scrollToTop(window);
+    if (bodyRef.current) {
+      scrollToTop(bodyRef.current);
+    }
+  }, [currentStoryId]);
+
   useEffect(() => {
     if (!currentStoryId) {
       return;
@@ -472,7 +495,7 @@ export const PostViewer = ({
   if (!currentStory) {
     return (
       <>
-        <header className="flex shrink-0 items-center gap-2 border-border border-b px-4 py-2">
+        <PageHeader>
           <SidebarTrigger className="md:hidden" />
           {onBack && (
             <Button
@@ -484,7 +507,7 @@ export const PostViewer = ({
               <ArrowLeft />
             </Button>
           )}
-        </header>
+        </PageHeader>
         <div className="flex flex-1 items-center justify-center">
           <p className="text-muted-foreground">
             No more stories to show. Check back later.
@@ -501,7 +524,7 @@ export const PostViewer = ({
 
   return (
     <>
-      <header className="flex shrink-0 items-center gap-2 border-border border-b px-4 py-2">
+      <PageHeader>
         <SidebarTrigger className="md:hidden" />
         {onBack && (
           <Button
@@ -571,12 +594,16 @@ export const PostViewer = ({
             </Button>
           </div>
         </div>
-      </header>
-      <main className="min-h-0 flex-1 overflow-x-hidden overflow-y-scroll">
+      </PageHeader>
+      <ScrollMain
+        className="md:overflow-x-hidden"
+        onRefresh={refreshPost}
+        ref={bodyRef}
+      >
         <div className="mx-auto max-w-[80ch] px-4 pt-4 pb-24 md:pb-6">
           <PostCard onLinkClick={handleLinkClick} story={currentStory} />
         </div>
-      </main>
+      </ScrollMain>
       <div
         className="slide-nav fixed left-1/2 z-50 flex -translate-x-1/2 items-center gap-1 p-1.5 font-medium md:hidden"
         data-slide-nav

@@ -129,10 +129,15 @@
     @apply border-border outline-ring/50;
   }
 
+  html {
+    overscroll-behavior-y: none;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-kerning: normal;
     font-variant-ligatures: common-ligatures;
+    overscroll-behavior-y: none;
   }
 }
 
