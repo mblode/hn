@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 
+import { useOverflowScroller } from "@/hooks/use-overflow-scroller";
+import { readDistanceToBottom } from "@/lib/scroll-root";
+
 const LOAD_MORE_MARGIN_PX = 600;
 
 interface UseInfiniteScrollOptions {
@@ -12,27 +15,25 @@ interface UseInfiniteScrollOptions {
 }
 
 interface UseInfiniteScrollResult {
-  /** Attach to the scrolling element (the one with `overflow-y-scroll`). */
+  /** Attach to the page `<main>` (nested scroller on desktop, document flow on mobile). */
   scrollRef: (node: HTMLElement | null) => void;
   /** Attach to an empty element rendered after the last list item. */
   sentinelRef: (node: HTMLElement | null) => void;
 }
 
 /**
- * Loads the next page as the bottom of a scroll container comes into range.
+ * Loads the next page as the bottom of the active scroll root comes into range.
  *
- * The feed scrolls inside a `min-h-0 flex-1 overflow-y-scroll` element rather
- * than the document, which makes two things easy to get wrong:
+ * Desktop: the feed scrolls inside a nested `overflow-y-scroll` main. An
+ * observer with the implicit (viewport) root has its `rootMargin` silently
+ * discarded, because the container's overflow clip is applied unexpanded —
+ * plus iOS Safari defers observer callbacks until momentum settles. Observe
+ * against the container as an explicit root, and back it with a passive
+ * scroll check.
  *
- * 1. An observer with the implicit (viewport) root has its `rootMargin`
- *    silently discarded, because the container's overflow clip is applied
- *    unexpanded. The sentinel then only registers at the exact scroll bottom.
- * 2. iOS Safari defers observer callbacks until a momentum scroll settles, and
- *    rubber-banding can carry the sentinel back out of range before one lands
- *    — so "exact bottom only" never fires at all on a fling.
- *
- * So: observe against the container as an explicit root, and back it with a
- * passive scroll check that reads live measurements.
+ * Mobile: the document scrolls, so the observer uses the viewport (`root:
+ * null`) and the scroll listener is on `window`. That is also what makes
+ * tap-status-bar-to-top work.
  */
 export const useInfiniteScroll = ({
   hasNextPage,
@@ -42,10 +43,11 @@ export const useInfiniteScroll = ({
 }: UseInfiniteScrollOptions): UseInfiniteScrollResult => {
   const [scrollEl, setScrollEl] = useState<HTMLElement | null>(null);
   const [sentinelEl, setSentinelEl] = useState<HTMLElement | null>(null);
+  const nested = useOverflowScroller(scrollEl);
 
   useEffect(() => {
     const active = enabled && hasNextPage && !isFetchingNextPage;
-    if (!(active && scrollEl && sentinelEl)) {
+    if (!(active && scrollEl && sentinelEl) || nested === null) {
       return;
     }
 
@@ -66,28 +68,31 @@ export const useInfiniteScroll = ({
           loadMore();
         }
       },
-      { root: scrollEl, rootMargin: `${LOAD_MORE_MARGIN_PX}px 0px` }
+      {
+        root: nested ? scrollEl : null,
+        rootMargin: `${LOAD_MORE_MARGIN_PX}px 0px`,
+      }
     );
     observer.observe(sentinelEl);
 
+    const scroller: HTMLElement | Window = nested ? scrollEl : window;
     const handleScroll = () => {
-      const remaining =
-        scrollEl.scrollHeight - scrollEl.scrollTop - scrollEl.clientHeight;
-      if (remaining < LOAD_MORE_MARGIN_PX) {
+      if (readDistanceToBottom(scroller) < LOAD_MORE_MARGIN_PX) {
         loadMore();
       }
     };
-    scrollEl.addEventListener("scroll", handleScroll, { passive: true });
+    scroller.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       observer.disconnect();
-      scrollEl.removeEventListener("scroll", handleScroll);
+      scroller.removeEventListener("scroll", handleScroll);
     };
   }, [
     enabled,
     hasNextPage,
     isFetchingNextPage,
     fetchNextPage,
+    nested,
     scrollEl,
     sentinelEl,
   ]);

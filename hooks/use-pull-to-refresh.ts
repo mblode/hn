@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState, type RefObject } from "react";
 
+import { useOverflowScroller } from "@/hooks/use-overflow-scroller";
 import {
   dampenPull,
   INDICATOR_HEIGHT,
   shouldRefresh,
 } from "@/lib/pull-to-refresh";
+import { readScrollTop } from "@/lib/scroll-root";
 
 interface UsePullToRefreshOptions {
   onRefresh: () => void | Promise<void>;
@@ -14,7 +16,7 @@ interface UsePullToRefreshOptions {
 }
 
 interface UsePullToRefreshResult {
-  /** Attach to the nested overflow scroller (the same node as infinite scroll). */
+  /** Attach to the page `<main>`. */
   scrollRef: (node: HTMLElement | null) => void;
   /** Attach to the indicator element rendered as the scroller's first child. */
   indicatorRef: RefObject<HTMLDivElement | null>;
@@ -48,11 +50,13 @@ const applyIndicator = (
 };
 
 /**
- * Custom pull-to-refresh for a nested overflow scroller.
+ * Custom pull-to-refresh on the active scroll root.
  *
- * Native browser PTR only runs when the document itself overscrolls. This app
- * pins `SidebarInset` to the viewport and scrolls inside `<main>`, so the
- * gesture has to be implemented on that element.
+ * Native Safari PTR reloads the document. We suppress that with
+ * `overscroll-behavior-y: none` and refetch in-app instead.
+ *
+ * Desktop listens on the nested overflow main. Mobile listens on `window`
+ * because the document is the scroller (so status-bar tap-to-top works).
  */
 export const usePullToRefresh = ({
   onRefresh,
@@ -60,6 +64,7 @@ export const usePullToRefresh = ({
 }: UsePullToRefreshOptions): UsePullToRefreshResult => {
   const [scrollEl, setScrollEl] = useState<HTMLElement | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const nested = useOverflowScroller(scrollEl);
   const indicatorRef = useRef<HTMLDivElement>(null);
   const onRefreshRef = useRef(onRefresh);
   const pullingRef = useRef(false);
@@ -70,31 +75,23 @@ export const usePullToRefresh = ({
   onRefreshRef.current = onRefresh;
 
   useEffect(() => {
-    if (!(enabled && scrollEl)) {
+    if (!(enabled && scrollEl) || nested === null) {
       return;
     }
 
+    const scroller: HTMLElement | Window = nested ? scrollEl : window;
     const indicator = () => indicatorRef.current;
 
-    const onStart = (event: TouchEvent) => {
-      if (refreshingRef.current || event.touches.length !== 1) {
-        return;
-      }
-      if (scrollEl.scrollTop > 0) {
-        pullingRef.current = false;
-        return;
-      }
-      pullingRef.current = true;
-      startYRef.current = event.touches[0].clientY;
-      distanceRef.current = 0;
-    };
-
-    const onMove = (event: TouchEvent) => {
-      if (!pullingRef.current || refreshingRef.current) {
+    const onMove = (event: Event) => {
+      if (
+        !(event instanceof TouchEvent) ||
+        !pullingRef.current ||
+        refreshingRef.current
+      ) {
         return;
       }
       const dy = event.touches[0].clientY - startYRef.current;
-      if (dy <= 0 || scrollEl.scrollTop > 0) {
+      if (dy <= 0 || readScrollTop(scroller) > 0) {
         if (distanceRef.current !== 0) {
           distanceRef.current = 0;
           applyIndicator(indicator(), 0, false, false);
@@ -110,6 +107,28 @@ export const usePullToRefresh = ({
       applyIndicator(indicator(), damped, shouldRefresh(damped), false);
     };
 
+    const detachMove = () => {
+      scroller.removeEventListener("touchmove", onMove);
+    };
+
+    const onStart = (event: Event) => {
+      if (
+        !(event instanceof TouchEvent) ||
+        refreshingRef.current ||
+        event.touches.length !== 1
+      ) {
+        return;
+      }
+      if (readScrollTop(scroller) > 0) {
+        pullingRef.current = false;
+        return;
+      }
+      pullingRef.current = true;
+      startYRef.current = event.touches[0].clientY;
+      distanceRef.current = 0;
+      scroller.addEventListener("touchmove", onMove, { passive: false });
+    };
+
     const finishRefresh = () => {
       applyIndicator(indicator(), 0, false, true);
       refreshingRef.current = false;
@@ -118,6 +137,7 @@ export const usePullToRefresh = ({
     };
 
     const onEnd = () => {
+      detachMove();
       if (!pullingRef.current) {
         return;
       }
@@ -134,18 +154,17 @@ export const usePullToRefresh = ({
       void Promise.resolve(onRefreshRef.current()).finally(finishRefresh);
     };
 
-    scrollEl.addEventListener("touchstart", onStart, { passive: true });
-    scrollEl.addEventListener("touchmove", onMove, { passive: false });
-    scrollEl.addEventListener("touchend", onEnd);
-    scrollEl.addEventListener("touchcancel", onEnd);
+    scroller.addEventListener("touchstart", onStart, { passive: true });
+    scroller.addEventListener("touchend", onEnd);
+    scroller.addEventListener("touchcancel", onEnd);
 
     return () => {
-      scrollEl.removeEventListener("touchstart", onStart);
-      scrollEl.removeEventListener("touchmove", onMove);
-      scrollEl.removeEventListener("touchend", onEnd);
-      scrollEl.removeEventListener("touchcancel", onEnd);
+      detachMove();
+      scroller.removeEventListener("touchstart", onStart);
+      scroller.removeEventListener("touchend", onEnd);
+      scroller.removeEventListener("touchcancel", onEnd);
     };
-  }, [enabled, scrollEl]);
+  }, [enabled, nested, scrollEl]);
 
   return { scrollRef: setScrollEl, indicatorRef, isRefreshing };
 };

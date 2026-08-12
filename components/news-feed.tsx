@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
+import { PageHeader } from "@/components/page-header";
 import { PostViewer } from "@/components/post-viewer";
 import { ScrollMain } from "@/components/scroll-main";
 import { StoryActionItem } from "@/components/story-action-item";
@@ -136,7 +137,7 @@ export const NewsFeed = ({ type, initialStories }: NewsFeedProps) => {
 
   return (
     <>
-      <header className="flex shrink-0 items-center gap-2 border-border border-b px-4 py-2">
+      <PageHeader>
         <SidebarTrigger className="md:hidden" />
         <h1 className="font-medium">News</h1>
         <div className="ml-auto">
@@ -150,7 +151,7 @@ export const NewsFeed = ({ type, initialStories }: NewsFeedProps) => {
             </TabsList>
           </Tabs>
         </div>
-      </header>
+      </PageHeader>
       <ScrollMain onRefresh={isLoading ? undefined : refresh} ref={scrollRef}>
         {isLoading && (
           <div className="flex items-center justify-center p-8">
