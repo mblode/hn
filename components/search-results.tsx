@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { PostViewer } from "@/components/post-viewer";
+import { ScrollMain } from "@/components/scroll-main";
 import { StoryActionItem } from "@/components/story-action-item";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
@@ -31,8 +32,14 @@ export const SearchResults = ({ query, sort }: SearchResultsProps) => {
   const { searches, addSearch, removeSearch, clearHistory } =
     useSearchHistory();
 
-  const { results, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useSearch({ query, sort, enabled: query.length > 0 });
+  const {
+    results,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+    refresh,
+  } = useSearch({ query, sort, enabled: query.length > 0 });
   const resultIds = useMemo(
     () => results.map((result) => result.id),
     [results]
@@ -188,7 +195,10 @@ export const SearchResults = ({ query, sort }: SearchResultsProps) => {
           </Tabs>
         </div>
       )}
-      <main className="min-h-0 flex-1 overflow-y-scroll" ref={scrollRef}>
+      <ScrollMain
+        onRefresh={query.length > 0 && !isLoading ? refresh : undefined}
+        ref={scrollRef}
+      >
         {isLoading && (
           <div className="flex items-center justify-center p-8">
             <div className="animate-spin">
@@ -243,7 +253,7 @@ export const SearchResults = ({ query, sort }: SearchResultsProps) => {
             )}
           </div>
         )}
-      </main>
+      </ScrollMain>
     </>
   );
 };
