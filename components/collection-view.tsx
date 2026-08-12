@@ -184,13 +184,13 @@ export const CollectionView = ({
             </div>
           </header>
           <TabsContent
-            className="min-h-0 flex-1 overflow-y-scroll"
+            className="min-h-0 flex-1 overflow-y-scroll overscroll-y-contain"
             value="posts"
           >
             {postList}
           </TabsContent>
           <TabsContent
-            className="min-h-0 flex-1 overflow-y-scroll"
+            className="min-h-0 flex-1 overflow-y-scroll overscroll-y-contain"
             value="comments"
           >
             {isLoading && <LoadingSpinner />}
@@ -223,7 +223,9 @@ export const CollectionView = ({
             <SidebarTrigger className="md:hidden" />
             <h1 className="font-medium">{title}</h1>
           </header>
-          <main className="min-h-0 flex-1 overflow-y-scroll">{postList}</main>
+          <main className="min-h-0 flex-1 overflow-y-scroll overscroll-y-contain">
+            {postList}
+          </main>
         </>
       )}
     </>

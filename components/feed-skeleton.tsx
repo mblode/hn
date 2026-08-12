@@ -9,7 +9,7 @@ export const FeedSkeleton = () => (
         <Skeleton className="h-5 w-12" />
       </div>
     </header>
-    <main className="min-h-0 flex-1 overflow-x-hidden overflow-y-scroll">
+    <main className="min-h-0 flex-1 overflow-x-hidden overflow-y-scroll overscroll-y-contain">
       <div className="mx-auto max-w-[80ch] px-4 pt-4 pb-24 md:pb-6">
         <div className="mb-6 block border-border border-b pb-4">
           <div className="flex items-center gap-2 pb-2">

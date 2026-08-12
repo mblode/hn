@@ -24,6 +24,22 @@ Anything scroll-dependent must target that `main` element, not the window:
 fallback. Both `news-feed.tsx` and `search-results.tsx` use it — do not hand-roll
 a second observer.
 
+## Pull-to-refresh is custom, on the same nested scroller
+
+Native browser pull-to-refresh (Safari, Chrome Android) only runs when the
+**document** overscrolls. Because `SidebarInset` is `overflow-hidden` and the
+page scroller is nested, that never happens — and if it did, it would reload
+the whole app rather than refetch the feed.
+
+`components/scroll-main.tsx` owns the nested `<main>` and attaches
+`hooks/use-pull-to-refresh.ts` to it. The gesture `preventDefault`s a downward
+touch only while `scrollTop === 0`, so it does not fight infinite scroll.
+`overscroll-behavior-y: contain` on that scroller (and `none` on `body`) stops
+scroll chaining from reaching the document.
+
+Do not "fix" PTR by letting `window` scroll. That would re-break iOS infinite
+scroll as described above.
+
 ## Feed data comes from two unrelated HN APIs
 
 - `lib/hn-live.ts` → `api.hackerwebapp.com/{news,newest,show,ask,jobs}?page=N`,
