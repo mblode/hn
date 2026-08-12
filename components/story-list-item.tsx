@@ -1,7 +1,7 @@
 import { extractDomain } from "@/lib/ranking";
 import { asset } from "@/lib/site";
 import type { CandidateStory } from "@/lib/types";
-import { relativeTime } from "@/lib/utils";
+import { formatCount, relativeTime } from "@/lib/utils";
 
 import { Dot } from "./dot";
 
@@ -92,10 +92,10 @@ export const StoryListItem = ({
             rel="nofollow"
           >
             {story.score > 0 && (
-              <span>{`${story.score.toLocaleString("en-US")} likes`}</span>
+              <span>{`${formatCount(story.score)} likes`}</span>
             )}
             {story.descendants > 0 && (
-              <span>{`${story.descendants.toLocaleString("en-US")} comments`}</span>
+              <span>{`${formatCount(story.descendants)} comments`}</span>
             )}
           </a>
         )}
