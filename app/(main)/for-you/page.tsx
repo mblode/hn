@@ -8,7 +8,7 @@ import { fetchFeed } from "@/lib/hn-live";
 export const metadata: Metadata = {
   title: "Your personalized Hacker News feed",
   description:
-    "Hacker News stories reordered from your reading habits, ranked on your device so your history never leaves the browser.",
+    "Hacker News stories reordered from your reading habits, ranked on your device from the history stored in your browser.",
 };
 
 export const revalidate = 60;
