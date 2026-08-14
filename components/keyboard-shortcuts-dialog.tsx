@@ -39,7 +39,7 @@ const shortcuts = [
     section: "Go to",
     items: [
       { label: "Home", keys: ["G", "then", "H"] },
-      { label: "News", keys: ["G", "then", "N"] },
+      { label: "For you", keys: ["G", "then", "F"] },
       { label: "Likes", keys: ["G", "then", "L"] },
       { label: "Bookmarks", keys: ["G", "then", "B"] },
     ],
