@@ -33,24 +33,43 @@ Open the client and read Hacker News, no account needed.
 
 ## Keyboard shortcuts
 
+Navigation and action keys (`J`, `K`, `O`, `C`, `L`, `B`, `R`) work while you are reading a story. Feed tab keys (`1`–`5`) work on the News list.
+
 | Key | Action |
 |-----|--------|
-| `J` / `K` | Next or previous post |
+| `J` / `K` | Next or previous post (while reading) |
 | `O` | Open the link |
 | `C` | Open on Hacker News |
 | `L` / `B` | Like or bookmark the post |
 | `R` | Reply to the post |
 | `1` to `5` | Top, New, Show, Ask, Jobs |
-| `G` then `H` / `N` / `L` / `B` | Home, News, Likes, Bookmarks |
+| `G` then `H` / `F` / `L` / `B` | Home, For you, Likes, Bookmarks |
 | `/` | Open search |
 | `Cmd+K` | Command menu |
 | `Cmd+/` | Show all shortcuts |
 | `Cmd+B` | Toggle the sidebar |
-| `Esc` | Go back |
+| `Esc` | Back to the list (when you opened a story from a feed) |
+
+On Windows and Linux, use `Ctrl` where the table says `Cmd`.
 
 ## Private by default
 
-Your reading history, likes, bookmarks, and the personalization model live in the browser (IndexedDB) and never leave the device. Story data comes from the public Hacker News APIs.
+Your reading history, likes, bookmarks, and the signals that power For you live in the browser (IndexedDB). Recent searches live in localStorage. That data stays on your device. Story and comment text comes from the public Hacker News APIs. HN sign-in sends your credentials to this app's server so it can vote, comment, and submit on your behalf; the session is stored in an encrypted cookie.
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+To enable upvoting, commenting, and submitting locally, set a session secret and restart the dev server:
+
+```bash
+echo "HN_SESSION_SECRET=$(openssl rand -hex 32)" >> .env.local
+```
+
+Without `HN_SESSION_SECRET`, the app runs read-only. Run tests with `npm run test` (Vitest). See `AGENTS.md` for lint/format commands, the full script list, and how to refresh the For you candidate corpus.
 
 ## License
 
