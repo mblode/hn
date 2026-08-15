@@ -1,4 +1,5 @@
 import { renderZoneOgImage } from "@/app/og-image-shared";
+import { OgLogo } from "@/app/og-logo";
 import { SITE_NAME } from "@/lib/site";
 
 export {
@@ -22,9 +23,9 @@ export { SITE_NAME as alt } from "@/lib/site";
  */
 export default function OpengraphImage() {
   return renderZoneOgImage({
-    badge: "HN",
-    eyebrow: "blode.co/hn",
-    subtitle: "A fast, modern Hacker News client.",
+    background: "#f6f6ef",
+    color: "#000000",
+    logo: <OgLogo />,
     title: SITE_NAME,
   });
 }
