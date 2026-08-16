@@ -32,14 +32,8 @@ export const SearchResults = ({ query, sort }: SearchResultsProps) => {
   const { searches, addSearch, removeSearch, clearHistory } =
     useSearchHistory();
 
-  const {
-    results,
-    isLoading,
-    hasNextPage,
-    fetchNextPage,
-    isFetchingNextPage,
-    refresh,
-  } = useSearch({ query, sort, enabled: query.length > 0 });
+  const { results, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useSearch({ query, sort, enabled: query.length > 0 });
   const resultIds = useMemo(
     () => results.map((result) => result.id),
     [results]
@@ -197,10 +191,7 @@ export const SearchResults = ({ query, sort }: SearchResultsProps) => {
           </div>
         )}
       </div>
-      <ScrollMain
-        onRefresh={query.length > 0 && !isLoading ? refresh : undefined}
-        ref={scrollRef}
-      >
+      <ScrollMain ref={scrollRef}>
         {isLoading && (
           <div className="flex items-center justify-center p-8">
             <div className="animate-spin">
