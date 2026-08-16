@@ -36,15 +36,30 @@ Do not "fix" desktop by letting `window` scroll. That would break the inset
 chrome. Do not "fix" mobile by pinning `h-dvh overflow-hidden` — that is what
 killed status-bar tap and Safari's collapsing chrome.
 
-## Pull-to-refresh is custom, on the active scroll root
+## Pull-to-refresh belongs to iOS Safari, not to us
 
-Native browser PTR reloads the whole document. We suppress that with
-`overscroll-behavior-y: none` on `html`/`body` and refetch in-app instead.
+There is no pull-to-refresh code in this app. On mobile the document is the
+scroller (above), so the gesture is the browser's: Safari rubber-bands, shows
+its own spinner, and reloads. Same physics, same threshold, and same feel as
+every other iOS app — which a JS reimplementation never quite matches.
 
-`components/scroll-main.tsx` attaches `hooks/use-pull-to-refresh.ts` to the
-nested main on desktop and to `window` on mobile. The gesture
-`preventDefault`s a downward touch only while the active scroller is at the
-top.
+The one thing that can take that away is `overscroll-behavior-y` on `html` or
+`body`. It is therefore scoped to `md+` in `app/globals.css`, where the
+document does not scroll anyway and an overscroll chained up to it would only
+bounce pinned chrome. **Do not hoist that rule out of the media query** — an
+unscoped `overscroll-behavior-y: none` kills native PTR on mobile, which is
+what previously forced a hand-rolled `touchmove` gesture with a spinner element
+of its own.
+
+Two corollaries:
+
+- Nested scrollers keep `md:overscroll-y-contain`, never a mobile-wide
+  equivalent.
+- Nothing calls `preventDefault()` on a `touchmove` at the top of the page.
+
+A refresh is a document reload, so nothing needs a React `refresh()` that
+resets an infinite query to page one; `useNewsFeed` and `useSearch` do not
+expose one.
 
 ## Feed data comes from two unrelated HN APIs
 

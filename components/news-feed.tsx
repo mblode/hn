@@ -34,14 +34,8 @@ interface NewsFeedProps {
 export const NewsFeed = ({ type, initialStories }: NewsFeedProps) => {
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const {
-    stories,
-    isLoading,
-    hasNextPage,
-    fetchNextPage,
-    isFetchingNextPage,
-    refresh,
-  } = useNewsFeed({ type, initialStories });
+  const { stories, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useNewsFeed({ type, initialStories });
   const storyIds = useMemo(() => stories.map((story) => story.id), [stories]);
   const { likedPostIds, bookmarkedPostIds } = useStoryEvents(storyIds);
 
@@ -152,7 +146,7 @@ export const NewsFeed = ({ type, initialStories }: NewsFeedProps) => {
           </Tabs>
         </div>
       </PageHeader>
-      <ScrollMain onRefresh={isLoading ? undefined : refresh} ref={scrollRef}>
+      <ScrollMain ref={scrollRef}>
         {isLoading && (
           <div className="flex items-center justify-center p-8">
             <div className="animate-spin">
