@@ -129,15 +129,26 @@
     @apply border-border outline-ring/50;
   }
 
-  html {
-    overscroll-behavior-y: none;
-  }
-
   body {
     @apply bg-background text-foreground;
     font-kerning: normal;
     font-variant-ligatures: common-ligatures;
-    overscroll-behavior-y: none;
+  }
+
+  /*
+   * Mobile deliberately leaves overscroll alone: the document is the scroller,
+   * so iOS Safari owns the rubber band, the chrome collapse, and pull-to-refresh.
+   * Suppressing it here is what forced the old in-app pull-to-refresh gesture.
+   *
+   * Desktop pins the inset panel and scrolls a nested `<main>`
+   * (`md:overscroll-y-contain`), so the document never scrolls — chaining an
+   * overscroll up to it would only bounce chrome that has nowhere to go.
+   */
+  @media (min-width: 48rem) {
+    html,
+    body {
+      overscroll-behavior-y: none;
+    }
   }
 }
 
