@@ -6,9 +6,6 @@ export const overflowYCreatesScrollport = (overflowY: string): boolean =>
 export const isOverflowScroller = (el: HTMLElement): boolean =>
   overflowYCreatesScrollport(getComputedStyle(el).overflowY);
 
-export const readScrollTop = (scroller: HTMLElement | Window): number =>
-  scroller instanceof HTMLElement ? scroller.scrollTop : window.scrollY;
-
 export const readDistanceToBottom = (
   scroller: HTMLElement | Window
 ): number => {
