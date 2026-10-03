@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Geist_Mono, Inter } from "next/font/google";
 
 import { DevTools } from "@/components/dev-tools";
 import { JsonLd } from "@/components/json-ld";
@@ -16,45 +16,16 @@ import {
 
 import "./globals.css";
 
-// Keep the real Roman and Italic under one family so weight/style selection is
-// automatic. Local WOFF2 files also remove the external Google Fonts request.
-// The lists stay inline because the font loader only accepts written literals.
-const glide = localFont({
-  src: [
-    { path: "./fonts/glide-variable.woff2", style: "normal" },
-    { path: "./fonts/glide-variable-italic.woff2", style: "italic" },
-  ],
-  variable: "--font-glide",
-  weight: "100 950",
+const inter = Inter({
   display: "swap",
-  adjustFontFallback: "Arial",
-  fallback: [
-    "ui-sans-serif",
-    "system-ui",
-    "sans-serif",
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji",
-  ],
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
-const glideMono = localFont({
-  src: "./fonts/glide-mono.woff2",
-  variable: "--font-glide-mono",
-  weight: "400",
+const geistMono = Geist_Mono({
   display: "swap",
-  adjustFontFallback: false,
-  fallback: [
-    "ui-monospace",
-    "SFMono-Regular",
-    "Menlo",
-    "Monaco",
-    "Consolas",
-    "Liberation Mono",
-    "Courier New",
-    "monospace",
-  ],
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
 });
 
 const SITE_DESCRIPTION =
@@ -113,7 +84,7 @@ export default function RootLayout({
    * to it and every face silently falls back to the system sans.
    */
   return (
-    <html className={`${glide.variable} ${glideMono.variable}`} lang="en">
+    <html className={`${inter.variable} ${geistMono.variable}`} lang="en">
       <head>
         <link href={process.env.NEXT_PUBLIC_POSTHOG_HOST} rel="preconnect" />
       </head>
