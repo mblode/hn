@@ -71,7 +71,8 @@ if (!isLocalHost()) {
   posthog.init("phc_yYatHXysbRxjTyfmyCKSUyMSQpgepJPuxegz2HtpfX35", {
     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     before_send: (event) => {
-      if (event && isNoisyException(event)) return null;
+      if (!event || isNoisyException(event)) return null;
+      event.properties.project = "hn";
       return event;
     },
     defaults: "2026-05-30",
